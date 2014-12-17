@@ -7,3 +7,14 @@ app/tmp/*
 app/[Cc]onfig/core.php
 app/[Cc]onfig/database.php
 !empty
+.buildpath
+.project
+.settings/.jsdtscope
+*.prefs
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+.settings/org.eclipse.wst.jsdt.ui.superType.name
+*.log
+/app/tmp/cache/*
+app/tmp/logs/debug.log
+app/tmp/logs/error.log
+/app/webroot/files/uploads/*
