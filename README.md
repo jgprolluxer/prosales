@@ -1,2 +1,2 @@
-prosales
+intranet
 ========
