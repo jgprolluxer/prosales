@@ -1,0 +1,1067 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2013-03-19 17:10+0000\n"
+"PO-Revision-Date: 2014-12-15 16:21-0600\n"
+"Last-Translator: hugo <hruiz.it@live.com.mx>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 1.7.1\n"
+"Language: es_MX\n"
+
+# ----------      LOV SECTION      ---------- ###################################
+# ----------      ADD SECTION      ----------
+#
+msgid "LOV_ADD_HEAD_TITLE"
+msgstr "Lista de valores"
+
+msgid "LOV_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nueva lista"
+
+msgid "LOV_ADD_BLOCK_TITLE"
+msgstr "Definición de la lista"
+
+msgid "LOV_ADD_FORM_FIELD_PARENT"
+msgstr "Lista padre"
+
+msgid "LOV_ADD_FORM_FIELD_ORDERSHOW"
+msgstr "Orden"
+
+msgid "LOV_ADD_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "LOV_ADD_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "LOV_ADD_FORM_FIELD_VALUE"
+msgstr "Valor"
+
+msgid "LOV_ADD_FORM_FIELD_NAME_"
+msgstr "Texto default"
+
+msgid "LOV_ADD_FORM_FIELD_NAME_ES_MX"
+msgstr "Texto Español Latinoamericano"
+
+msgid "LOV_ADD_FORM_FIELD_NAME_EN_US"
+msgstr "Texto Inglés Americano"
+
+msgid "LOV_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "LOV_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADD SECTION      ----------
+# ----------      ADMIN ADD SECTION      ----------
+#
+msgid "ADMIN_LOV_ADD_HEAD_TITLE"
+msgstr "Lista de valores"
+
+msgid "ADMIN_LOV_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nueva lista"
+
+msgid "ADMIN_LOV_ADD_BLOCK_TITLE"
+msgstr "Definición de la lista"
+
+msgid "ADMIN_LOV_ADD_FORM_FIELD_PARENT"
+msgstr "Lista padre"
+
+msgid "ADMIN_LOV_ADD_FORM_FIELD_ORDERSHOW"
+msgstr "Orden"
+
+msgid "ADMIN_LOV_ADD_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_LOV_ADD_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_LOV_ADD_FORM_FIELD_VALUE"
+msgstr "Valor"
+
+msgid "ADMIN_LOV_ADD_FORM_FIELD_NAME_"
+msgstr "Texto default"
+
+msgid "ADMIN_LOV_ADD_FORM_FIELD_NAME_ES_MX"
+msgstr "Texto Español Latinoamericano"
+
+msgid "ADMIN_LOV_ADD_FORM_FIELD_NAME_EN_US"
+msgstr "Texto Inglés Americano"
+
+msgid "ADMIN_LOV_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_LOV_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN ADD SECTION      ----------
+# ----------      EDIT SECTION      ----------
+#
+msgid "LOV_EDIT_HEAD_TITLE"
+msgstr "Lista de valores"
+
+msgid "LOV_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar lista"
+
+msgid "LOV_EDIT_BLOCK_TITLE"
+msgstr "Definición de la lista"
+
+msgid "LOV_EDIT_FORM_FIELD_PARENT"
+msgstr "Lista padre"
+
+msgid "LOV_EDIT_FORM_FIELD_ORDERSHOW"
+msgstr "Orden"
+
+msgid "LOV_EDIT_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "LOV_EDIT_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "LOV_EDIT_FORM_FIELD_VALUE"
+msgstr "Valor"
+
+msgid "LOV_EDIT_FORM_FIELD_NAME_"
+msgstr "Texto default"
+
+msgid "LOV_EDIT_FORM_FIELD_NAME_ES_MX"
+msgstr "Texto Español Latinoamericano"
+
+msgid "LOV_EDIT_FORM_FIELD_NAME_EN_US"
+msgstr "Texto Inglés Americano"
+
+msgid "LOV_EDIT_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "LOV_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END EDIT SECTION      ----------
+# ----------      ADMIN EDIT SECTION      ----------
+#
+msgid "ADMIN_LOV_EDIT_HEAD_TITLE"
+msgstr "Lista de valores"
+
+msgid "ADMIN_LOV_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar lista"
+
+msgid "ADMIN_LOV_EDIT_BLOCK_TITLE"
+msgstr "Definición de la lista"
+
+msgid "ADMIN_LOV_EDIT_FORM_FIELD_PARENT"
+msgstr "Lista padre"
+
+msgid "ADMIN_LOV_EDIT_FORM_FIELD_ORDERSHOW"
+msgstr "Orden"
+
+msgid "ADMIN_LOV_EDIT_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_LOV_EDIT_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_LOV_EDIT_FORM_FIELD_VALUE"
+msgstr "Valor"
+
+msgid "ADMIN_LOV_EDIT_FORM_FIELD_NAME_"
+msgstr "Texto default"
+
+msgid "ADMIN_LOV_EDIT_FORM_FIELD_NAME_ES_MX"
+msgstr "Texto Español Latinoamericano"
+
+msgid "ADMIN_LOV_EDIT_FORM_FIELD_NAME_EN_US"
+msgstr "Texto Inglés Americano"
+
+msgid "ADMIN_LOV_EDIT_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_LOV_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN EDIT SECTION      ----------
+# ----------      INDEX SECTION      ----------
+#
+msgid "LOV_INDEX_HEAD_TITLE"
+msgstr "Listas de valores"
+
+msgid "LOV_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado"
+
+msgid "LOV_INDEX_BLOCK_TITLE"
+msgstr "Lista"
+
+msgid "LOV_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "LOV_INDEX_LIST_FIELD_PARENT"
+msgstr "Lista padre"
+
+msgid "LOV_INDEX_LIST_FIELD_ORDERSHOW"
+msgstr "Orden"
+
+msgid "LOV_INDEX_LIST_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "LOV_INDEX_LIST_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "LOV_INDEX_LIST_FIELD_VALUE"
+msgstr "Valor"
+
+msgid "LOV_INDEX_LIST_FIELD_NAME_"
+msgstr "Texto default"
+
+msgid "LOV_INDEX_LIST_FIELD_NAME_ES_MX"
+msgstr "Texto Español Latinoamericano"
+
+msgid "LOV_INDEX_LIST_FIELD_NAME_EN_US"
+msgstr "Texto Inglés Americano"
+
+msgid "LOV_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "LOV_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+# ----------      END INDEX SECTION      ----------
+# ----------      ADMIN INDEX SECTION      ----------
+#
+msgid "ADMIN_LOV_INDEX_HEAD_TITLE"
+msgstr "Listas de valores"
+
+msgid "ADMIN_LOV_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado"
+
+msgid "ADMIN_LOV_INDEX_BLOCK_TITLE"
+msgstr "Lista"
+
+msgid "ADMIN_LOV_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "ADMIN_LOV_INDEX_LIST_FIELD_PARENT"
+msgstr "Lista padre"
+
+msgid "ADMIN_LOV_INDEX_LIST_FIELD_ORDERSHOW"
+msgstr "Orden"
+
+msgid "ADMIN_LOV_INDEX_LIST_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_LOV_INDEX_LIST_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_LOV_INDEX_LIST_FIELD_VALUE"
+msgstr "Valor"
+
+msgid "ADMIN_LOV_INDEX_LIST_FIELD_NAME_"
+msgstr "Texto default"
+
+msgid "ADMIN_LOV_INDEX_LIST_FIELD_NAME_ES_MX"
+msgstr "Texto Español Latinoamericano"
+
+msgid "ADMIN_LOV_INDEX_LIST_FIELD_NAME_EN_US"
+msgstr "Texto Inglés Americano"
+
+msgid "ADMIN_LOV_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "ADMIN_LOV_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+# ----------      END ADMIN INDEX SECTION      ----------
+# ----------      VIEW SECTION      ----------
+#
+msgid "LOV_VIEW_HEAD_TITLE"
+msgstr "Lista de valores"
+
+msgid "LOV_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar lista"
+
+msgid "LOV_VIEW_BLOCK_TITLE"
+msgstr "Definición de la lista"
+
+msgid "LOV_VIEW_FORM_FIELD_PARENT"
+msgstr "Lista padre"
+
+msgid "LOV_VIEW_FORM_FIELD_ORDERSHOW"
+msgstr "Orden"
+
+msgid "LOV_VIEW_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "LOV_VIEW_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "LOV_VIEW_FORM_FIELD_VALUE"
+msgstr "Valor"
+
+msgid "LOV_VIEW_FORM_FIELD_NAME_"
+msgstr "Texto default"
+
+msgid "LOV_VIEW_FORM_FIELD_NAME_ES_MX"
+msgstr "Texto Español Latinoamericano"
+
+msgid "LOV_VIEW_FORM_FIELD_NAME_EN_US"
+msgstr "Texto Inglés Americano"
+
+msgid "LOV_VIEW_FORM_BTN_GO_EDIT"
+msgstr "Editar lista"
+
+msgid "LOV_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Revisión"
+
+# ----------      END VIEW SECTION      ----------
+# ----------      ADMIN VIEW SECTION      ----------
+#
+msgid "ADMIN_LOV_VIEW_HEAD_TITLE"
+msgstr "Lista de valores"
+
+msgid "ADMIN_LOV_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar lista"
+
+msgid "ADMIN_LOV_VIEW_BLOCK_TITLE"
+msgstr "Definición de la lista"
+
+msgid "ADMIN_LOV_VIEW_FORM_FIELD_PARENT"
+msgstr "Lista padre"
+
+msgid "ADMIN_LOV_VIEW_FORM_FIELD_ORDERSHOW"
+msgstr "Orden"
+
+msgid "ADMIN_LOV_VIEW_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_LOV_VIEW_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_LOV_VIEW_FORM_FIELD_VALUE"
+msgstr "Valor"
+
+msgid "ADMIN_LOV_VIEW_FORM_FIELD_NAME_"
+msgstr "Texto default"
+
+msgid "ADMIN_LOV_VIEW_FORM_FIELD_NAME_ES_MX"
+msgstr "Texto Español Latinoamericano"
+
+msgid "ADMIN_LOV_VIEW_FORM_FIELD_NAME_EN_US"
+msgstr "Texto Inglés Americano"
+
+msgid "ADMIN_LOV_VIEW_FORM_BTN_GO_EDIT"
+msgstr "Editar lista"
+
+msgid "ADMIN_LOV_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Revisión"
+
+# ----------      END ADMIN VIEW SECTION      ----------
+# ----------      END LOV SECTION      ---------- ###################################
+# ----------      REPORT SECTION      ---------- ###################################
+#
+msgid "REPORT_TITLE"
+msgstr "titulo de reporte"
+
+msgid "ADMIN_REPORT_ADD_HEAD_TITLE"
+msgstr "Reporte"
+
+msgid "ADMIN_REPORT_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nuevo reporte"
+
+msgid "ADMIN_REPORT_ADD_BLOCK_TITLE"
+msgstr "Definición del reporte"
+
+msgid "ADMIN_REPORT_ADD_FORM_FIELD_TITLE"
+msgstr "Titulo del reporte"
+
+msgid "ADMIN_REPORT_ADD_FORM_FIELD_KEY"
+msgstr "Clave"
+
+msgid "ADMIN_REPORT_ADD_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_REPORT_ADD_FORM_FIELD_CATEGORY"
+msgstr "Categoría"
+
+msgid "ADMIN_REPORT_ADD_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_REPORT_ADD_FORM_FIELD_MODEL"
+msgstr "Modelo de datos"
+
+msgid "ADMIN_REPORT_ADD_FORM_FIELD_FINDTYPE"
+msgstr "Tipo de busqueda"
+
+msgid "ADMIN_REPORT_ADD_FORM_FIELD_RECURSIVE"
+msgstr "Recursividad"
+
+msgid "ADMIN_REPORT_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_REPORT_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END REPORT SECTION      ---------- ###################################
+# ----------      STORE SECTION      ---------- ###################################
+# ----------      ADD SECTION      ----------
+#
+msgid "STORE_ADD_HEAD_TITLE"
+msgstr "Sucursal"
+
+msgid "STORE_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nueva sucursal"
+
+msgid "STORE_ADD_BLOCK_TITLE"
+msgstr "Definición de la sucursal"
+
+msgid "STORE_ADD_FORM_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "STORE_ADD_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "STORE_ADD_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "STORE_ADD_FORM_FIELD_TAXNUMBER"
+msgstr "RFC"
+
+msgid "STORE_ADD_FORM_FIELD_BILLNAME"
+msgstr "BILLNAME"
+
+msgid "STORE_ADD_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "STORE_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "STORE_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADD SECTION      ----------
+# ----------      ADMIN ADD SECTION      ----------
+#
+msgid "ADMIN_STORE_ADD_HEAD_TITLE"
+msgstr "Sucursal"
+
+msgid "ADMIN_STORE_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nueva sucursal"
+
+msgid "ADMIN_STORE_ADD_BLOCK_TITLE"
+msgstr "Definición de la sucursal"
+
+msgid "ADMIN_STORE_ADD_FORM_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "ADMIN_STORE_ADD_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_STORE_ADD_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ADMIN_STORE_ADD_FORM_FIELD_TAXNUMBER"
+msgstr "RFC"
+
+msgid "ADMIN_STORE_ADD_FORM_FIELD_BILLNAME"
+msgstr "BILLNAME"
+
+msgid "ADMIN_STORE_ADD_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_STORE_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_STORE_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN ADD SECTION      ----------
+# ----------      EDIT SECTION      ----------
+#
+msgid "STORE_EDIT_HEAD_TITLE"
+msgstr "Sucursal"
+
+msgid "STORE_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar sucursal"
+
+msgid "STORE_EDIT_BLOCK_TITLE"
+msgstr "Definición de la sucursal"
+
+msgid "STORE_EDIT_FORM_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "STORE_EDIT_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "STORE_EDIT_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "STORE_EDIT_FORM_FIELD_TAXNUMBER"
+msgstr "RFC"
+
+msgid "STORE_EDIT_FORM_FIELD_BILLNAME"
+msgstr "BILLNAME"
+
+msgid "STORE_EDIT_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "STORE_EDIT_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "STORE_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END EDIT SECTION      ----------
+# ----------      ADMIN EDIT SECTION      ----------
+#
+msgid "ADMIN_STORE_EDIT_HEAD_TITLE"
+msgstr "Sucursal"
+
+msgid "ADMIN_STORE_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar sucursal"
+
+msgid "ADMIN_STORE_EDIT_BLOCK_TITLE"
+msgstr "Definición de la sucursal"
+
+msgid "ADMIN_STORE_EDIT_FORM_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "ADMIN_STORE_EDIT_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_STORE_EDIT_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ADMIN_STORE_EDIT_FORM_FIELD_TAXNUMBER"
+msgstr "RFC"
+
+msgid "ADMIN_STORE_EDIT_FORM_FIELD_BILLNAME"
+msgstr "BILLNAME"
+
+msgid "ADMIN_STORE_EDIT_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_STORE_EDIT_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_STORE_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN EDIT SECTION      ----------
+# ----------      INDEX SECTION      ----------
+#
+msgid "STORE_INDEX_HEAD_TITLE"
+msgstr "Sucursal"
+
+msgid "STORE_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de sucursales"
+
+msgid "STORE_INDEX_BLOCK_TITLE"
+msgstr "Listado"
+
+msgid "STORE_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "STORE_INDEX_LIST_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "STORE_INDEX_LIST_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "STORE_INDEX_LIST_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "STORE_INDEX_LIST_FIELD_TAXNUMBER"
+msgstr "RFC"
+
+msgid "STORE_INDEX_LIST_FIELD_BILLNAME"
+msgstr "BILLNAME"
+
+msgid "STORE_INDEX_LIST_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "STORE_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "STORE_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+# ----------      END INDEX SECTION      ----------
+# ----------      ADMIN INDEX SECTION      ----------
+#
+msgid "ADMIN_STORE_INDEX_HEAD_TITLE"
+msgstr "Sucursal"
+
+msgid "ADMIN_STORE_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de sucursales"
+
+msgid "ADMIN_STORE_INDEX_BLOCK_TITLE"
+msgstr "Listado"
+
+msgid "ADMIN_STORE_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "ADMIN_STORE_INDEX_LIST_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "ADMIN_STORE_INDEX_LIST_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_STORE_INDEX_LIST_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ADMIN_STORE_INDEX_LIST_FIELD_TAXNUMBER"
+msgstr "RFC"
+
+msgid "ADMIN_STORE_INDEX_LIST_FIELD_BILLNAME"
+msgstr "BILLNAME"
+
+msgid "ADMIN_STORE_INDEX_LIST_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_STORE_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "ADMIN_STORE_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+# ----------      END ADMIN INDEX SECTION      ----------
+# ----------      VIEW SECTION      ----------
+#
+msgid "STORE_VIEW_HEAD_TITLE"
+msgstr "Sucursal"
+
+msgid "STORE_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar sucursal"
+
+msgid "STORE_VIEW_BLOCK_TITLE"
+msgstr "Definición de la sucursal"
+
+msgid "STORE_VIEW_FORM_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "STORE_VIEW_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "STORE_VIEW_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "STORE_VIEW_FORM_FIELD_TAXNUMBER"
+msgstr "RFC"
+
+msgid "STORE_VIEW_FORM_FIELD_BILLNAME"
+msgstr "BILLNAME"
+
+msgid "STORE_VIEW_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "STORE_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Vista de solo lectura"
+
+# ----------      END VIEW SECTION      ----------
+# ----------      ADMIN VIEW SECTION      ----------
+#
+msgid "ADMIN_STORE_VIEW_HEAD_TITLE"
+msgstr "Sucursal"
+
+msgid "ADMIN_STORE_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar sucursal"
+
+msgid "ADMIN_STORE_VIEW_BLOCK_TITLE"
+msgstr "Definición de la sucursal"
+
+msgid "ADMIN_STORE_VIEW_FORM_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "ADMIN_STORE_VIEW_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_STORE_VIEW_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ADMIN_STORE_VIEW_FORM_FIELD_TAXNUMBER"
+msgstr "RFC"
+
+msgid "ADMIN_STORE_VIEW_FORM_FIELD_BILLNAME"
+msgstr "BILLNAME"
+
+msgid "ADMIN_STORE_VIEW_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_STORE_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Vista de solo lectura"
+
+# ----------      END ADMIN VIEW SECTION      ----------
+# ----------      END STORE SECTION      ---------- ###################################
+# ----------      WORKSTATION SECTION      ---------- ###################################
+# ----------      ADD SECTION      ----------
+#
+msgid "WORKSTATION_ADD_HEAD_TITLE"
+msgstr "Puesto de trabajo"
+
+msgid "WORKSTATION_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nueva posición de trabajo"
+
+msgid "WORKSTATION_ADD_BLOCK_TITLE"
+msgstr "Definición del puesto de trabajo"
+
+msgid "WORKSTATION_ADD_FORM_FIELD_PARENT"
+msgstr "Jefe directo"
+
+msgid "WORKSTATION_ADD_FORM_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "WORKSTATION_ADD_FORM_FIELD_ROLE"
+msgstr "Rol"
+
+msgid "WORKSTATION_ADD_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "WORKSTATION_ADD_FORM_FIELD_WORKAREA"
+msgstr "Area"
+
+msgid "WORKSTATION_ADD_FORM_FIELD_STORE"
+msgstr "Sucursal"
+
+msgid "WORKSTATION_ADD_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
+msgid "WORKSTATION_ADD_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "WORKSTATION_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "WORKSTATION_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADD SECTION      ----------
+# ----------      ADMIN ADD SECTION      ----------
+#
+msgid "ADMIN_WORKSTATION_ADD_HEAD_TITLE"
+msgstr "Puesto de trabajo"
+
+msgid "ADMIN_WORKSTATION_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nueva posición de trabajo"
+
+msgid "ADMIN_WORKSTATION_ADD_BLOCK_TITLE"
+msgstr "Definición del puesto de trabajo"
+
+msgid "ADMIN_WORKSTATION_ADD_FORM_FIELD_PARENT"
+msgstr "Jefe directo"
+
+msgid "ADMIN_WORKSTATION_ADD_FORM_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "ADMIN_WORKSTATION_ADD_FORM_FIELD_ROLE"
+msgstr "Rol"
+
+msgid "ADMIN_WORKSTATION_ADD_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_WORKSTATION_ADD_FORM_FIELD_WORKAREA"
+msgstr "Area"
+
+msgid "ADMIN_WORKSTATION_ADD_FORM_FIELD_STORE"
+msgstr "Sucursal"
+
+msgid "ADMIN_WORKSTATION_ADD_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
+msgid "ADMIN_WORKSTATION_ADD_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "ADMIN_WORKSTATION_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_WORKSTATION_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN ADD SECTION      ----------
+# ----------      EDIT SECTION      ----------
+#
+msgid "WORKSTATION_EDIT_HEAD_TITLE"
+msgstr "Puesto de trabajo"
+
+msgid "WORKSTATION_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar posición de trabajo"
+
+msgid "WORKSTATION_EDIT_BLOCK_TITLE"
+msgstr "Definición del puesto de trabajo"
+
+msgid "WORKSTATION_EDIT_FORM_FIELD_PARENT"
+msgstr "Jefe directo"
+
+msgid "WORKSTATION_EDIT_FORM_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "WORKSTATION_EDIT_FORM_FIELD_ROLE"
+msgstr "Rol"
+
+msgid "WORKSTATION_EDIT_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "WORKSTATION_EDIT_FORM_FIELD_WORKAREA"
+msgstr "Area"
+
+msgid "WORKSTATION_EDIT_FORM_FIELD_STORE"
+msgstr "Sucursal"
+
+msgid "WORKSTATION_EDIT_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
+msgid "WORKSTATION_EDIT_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "WORKSTATION_EDIT_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "WORKSTATION_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END EDIT SECTION      ----------
+# ----------      ADMIN EDIT SECTION      ----------
+#
+msgid "ADMIN_WORKSTATION_EDIT_HEAD_TITLE"
+msgstr "Puesto de trabajo"
+
+msgid "ADMIN_WORKSTATION_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar posición de trabajo"
+
+msgid "ADMIN_WORKSTATION_EDIT_BLOCK_TITLE"
+msgstr "Definición del puesto de trabajo"
+
+msgid "ADMIN_WORKSTATION_EDIT_FORM_FIELD_PARENT"
+msgstr "Jefe directo"
+
+msgid "ADMIN_WORKSTATION_EDIT_FORM_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "ADMIN_WORKSTATION_EDIT_FORM_FIELD_ROLE"
+msgstr "Rol"
+
+msgid "ADMIN_WORKSTATION_EDIT_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_WORKSTATION_EDIT_FORM_FIELD_WORKAREA"
+msgstr "Area"
+
+msgid "ADMIN_WORKSTATION_EDIT_FORM_FIELD_STORE"
+msgstr "Sucursal"
+
+msgid "ADMIN_WORKSTATION_EDIT_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
+msgid "ADMIN_WORKSTATION_EDIT_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "ADMIN_WORKSTATION_EDIT_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_WORKSTATION_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN EDIT SECTION      ----------
+# ----------      INDEX SECTION      ----------
+#
+msgid "WORKSTATION_INDEX_HEAD_TITLE"
+msgstr "Puestos de trabajo"
+
+msgid "WORKSTATION_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de posiciones de trabajo"
+
+msgid "WORKSTATION_INDEX_BLOCK_TITLE"
+msgstr "Lista"
+
+msgid "WORKSTATION_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "WORKSTATION_INDEX_LIST_FIELD_ID"
+msgstr "Jefe directo"
+
+msgid "WORKSTATION_INDEX_LIST_FIELD_PARENT"
+msgstr "Jefe directo"
+
+msgid "WORKSTATION_INDEX_LIST_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "WORKSTATION_INDEX_LIST_FIELD_ROLE"
+msgstr "Rol"
+
+msgid "WORKSTATION_INDEX_LIST_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "WORKSTATION_INDEX_LIST_FIELD_WORKAREA"
+msgstr "Area"
+
+msgid "WORKSTATION_INDEX_LIST_FIELD_STORE"
+msgstr "Sucursal"
+
+msgid "WORKSTATION_INDEX_LIST_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
+msgid "WORKSTATION_INDEX_LIST_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "WORKSTATION_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "WORKSTATION_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+# ----------      END INDEX SECTION      ----------
+# ----------      ADMIN INDEX SECTION      ----------
+#
+msgid "ADMIN_WORKSTATION_INDEX_HEAD_TITLE"
+msgstr "Puestos de trabajo"
+
+msgid "ADMIN_WORKSTATION_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de posiciones de trabajo"
+
+msgid "ADMIN_WORKSTATION_INDEX_BLOCK_TITLE"
+msgstr "Lista"
+
+msgid "ADMIN_WORKSTATION_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_ID"
+msgstr "Jefe directo"
+
+msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_PARENT"
+msgstr "Jefe directo"
+
+msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_ROLE"
+msgstr "Rol"
+
+msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_WORKAREA"
+msgstr "Area"
+
+msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_STORE"
+msgstr "Sucursal"
+
+msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
+msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "ADMIN_WORKSTATION_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "ADMIN_WORKSTATION_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+# ----------      END ADMIN INDEX SECTION      ----------
+# ----------      VIEW SECTION      ----------
+#
+msgid "WORKSTATION_VIEW_HEAD_TITLE"
+msgstr "Puesto de trabajo"
+
+msgid "WORKSTATION_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar posición de trabajo"
+
+msgid "WORKSTATION_VIEW_BLOCK_TITLE"
+msgstr "Definición del puesto de trabajo"
+
+msgid "WORKSTATION_VIEW_FORM_FIELD_PARENT"
+msgstr "Jefe directo"
+
+msgid "WORKSTATION_VIEW_FORM_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "WORKSTATION_VIEW_FORM_FIELD_ROLE"
+msgstr "Rol"
+
+msgid "WORKSTATION_VIEW_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "WORKSTATION_VIEW_FORM_FIELD_WORKAREA"
+msgstr "Area"
+
+msgid "WORKSTATION_VIEW_FORM_FIELD_STORE"
+msgstr "Sucursal"
+
+msgid "WORKSTATION_VIEW_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
+msgid "WORKSTATION_VIEW_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "WORKSTATION_VIEW_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "WORKSTATION_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Revisión"
+
+# ----------      END VIEW SECTION      ----------
+# ----------      ADMIN VIEW SECTION      ----------
+#
+msgid "ADMIN_WORKSTATION_VIEW_HEAD_TITLE"
+msgstr "Puesto de trabajo"
+
+msgid "ADMIN_WORKSTATION_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar posición de trabajo"
+
+msgid "ADMIN_WORKSTATION_VIEW_BLOCK_TITLE"
+msgstr "Definición del puesto de trabajo"
+
+msgid "ADMIN_WORKSTATION_VIEW_FORM_FIELD_PARENT"
+msgstr "Jefe directo"
+
+msgid "ADMIN_WORKSTATION_VIEW_FORM_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "ADMIN_WORKSTATION_VIEW_FORM_FIELD_ROLE"
+msgstr "Rol"
+
+msgid "ADMIN_WORKSTATION_VIEW_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_WORKSTATION_VIEW_FORM_FIELD_WORKAREA"
+msgstr "Area"
+
+msgid "ADMIN_WORKSTATION_VIEW_FORM_FIELD_STORE"
+msgstr "Sucursal"
+
+msgid "ADMIN_WORKSTATION_VIEW_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
+msgid "ADMIN_WORKSTATION_VIEW_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "ADMIN_WORKSTATION_VIEW_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_WORKSTATION_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Revisión"
+
+# ----------      END ADMIN VIEW SECTION      ----------
+# ----------      END WORKSTATION SECTION      ---------- ###################################
+# ----------      COMMON SECTION      ----------
+msgid "active"
+msgstr "Activo"
+
+msgid "NONE"
+msgstr "Ninguno"
+
+msgid "CREATED"
+msgstr "Creado"
+
+msgid "CREATED_BY"
+msgstr "Creado por"
+
+msgid "UPDATED"
+msgstr "Actualizado"
+
+msgid "UPDATED_BY"
+msgstr "Actualizado por"
+
+msgid "PROGRAM"
+msgstr "Programa"

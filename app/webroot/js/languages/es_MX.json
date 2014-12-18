@@ -1,0 +1,12 @@
+{
+    "LANGUAGE":                                     "Idioma",
+    "BUTTON_LANG_EN":                               "Ingles",
+    "BUTTON_LANG_DE":                               "Aleman",
+    
+    "HEADER_MENU_SALES":                            "Ventas",
+    "HEADER_MENU_LINK_ORDERS":                      "Ordenes",
+    "HEADER_MENU_LINK_PAYMENTS":                    "Pagos",
+
+    "active":                                       "Activo"
+    
+}
