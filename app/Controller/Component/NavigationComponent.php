@@ -1,7 +1,8 @@
 <?php
+
 /**
  * NavigationComponent
- **
+ * *
  *
  * @author  Rene Weber
  * @website http://www.webrene.com
@@ -9,7 +10,7 @@
  * @version 1.0
  * @cakephp 1.3
  *
- **
+ * *
  * Purpose
  * ---------
  * Track your way and allow Backwards movement. 
@@ -77,179 +78,159 @@
  *
  * @property Session $Session
  */
-class NavigationComponent extends Component {
+class NavigationComponent extends Component
+{
+    /*     * ************************************ GLOBAL VARIABLES MAY BE ADJUSTED ************************************** */
 
-    /************************************** GLOBAL VARIABLES MAY BE ADJUSTED ***************************************/
+    public $components = array('RequestHandler', 'Session');
 
-	public $components = array('RequestHandler', 'Session');
-    
-        /**
+    /**
      * Methods that shall not be stored. I.e. going from Index to View to Edit to Save 
      * forwarding you to View again, a back button should ignore the Edit but push you back to Index.
      */
-    
-    var $ignoreMethods     = array('findPriceList', 'display','viewTicket','viewPdf',
-    		'feed','jsindex','delete','findUser','findContact','findTeam','addTeam',
-    		'findAccount','findOpportunity','findQuote','findOrder','login','logout');
-    var $ignoreControllers = array( 'CakeError','Aros','Acos','Acl','Pages');
-    
-       
+    var $ignoreMethods = array('findPriceList', 'display', 'viewTicket', 'viewPdf',
+        'feed', 'jsindex', 'delete', 'findUser', 'findContact', 'findTeam', 'addTeam',
+        'findAccount', 'findOpportunity', 'findQuote', 'findOrder', 'login', 'logout');
+    var $ignoreControllers = array('CakeError', 'Aros', 'Acos', 'Acl', 'Pages');
+
     /**
      * Keyname to store session variable in
      */
-    
-       var $sessionVarName        = 'Navigation';
-       
-              
-       /**
-        * This is the key we will use in URL to pass the index to our component.
-        * Default is 'navpoint' and MUST BE THE SAME IN HELPER!
-        * i.e. http://myhost/posts/123?navpoint=3  -> Will jump to 3rd point and delete the rest behind
-        */
-        
-       var $navpointUrl            = 'navpoint';
-       
-       
-       
-       /**
-        *  Maximum entries in our trail variable. Default: 8
-        */
-       
-       var $maxItems = 4;
-       
-       
-       
-       
-       /******************************** END OF GLOBAL VARIABLES. DO NOT CHANGE BELOW ***********************************/
-               
-       
-       
-       /**
-        *  Array holding the Trail we are Moving in
-        */
-       
-       var $trail = array();
-           
-           
-           
-       
-       /**
-         * Write Trail to Session
-        */ 
-       
-       function storeTrail(){               
-       
-           $this->Session->write( $this->sessionVarName, $this->trail );
-                      
-       }
-   
-       
+    var $sessionVarName = 'Navigation';
 
-       
-       
-       public function initialize(Controller $controller){
-       	$this->controller = $controller;
+    /**
+     * This is the key we will use in URL to pass the index to our component.
+     * Default is 'navpoint' and MUST BE THE SAME IN HELPER!
+     * i.e. http://myhost/posts/123?navpoint=3  -> Will jump to 3rd point and delete the rest behind
+     */
+    var $navpointUrl = 'navpoint';
 
-       }
-       
-       /**
-         * If a navigation click brought us here, let's clean all other items
-         * This happens if we came here via helper. This can be parsed from the params.
-         * e.g. /posts/view/1/navpoint/3  --> Navpoint = 3, clean everything behind
-         * It will be next value behind navpoint
-        */ 
-        
-       function walkBack( &$controller ){
-           if( isset( $controller->params['url'][$this->navpointUrl] ) ){
-           
-               for ( $i=sizeof($this->trail); $i>$controller->params['url'][$this->navpointUrl]; $i-- ){
-                   unset( $this->trail[$i] );                   
-               }
-               
-           }           
-       
-       }
-    
-    
-    
-       function process( &$controller ) {
-   
-          
-           $skipThis = 0;
-           
-           $controllerName     = $controller->name;
-           
-           
-           
-           /* Restore from Session if exists */           
-           if( ( $sessionVar = $this->Session->read( $this->sessionVarName ) ) )               
-               $this->trail = $sessionVar;
-               
-                            
-           /* Check if one of our crumbs was clicked ( will be passed via URL ) */           
-           $this->walkBack( $controller );
-               
-           
-           /* Check if current Method is included in our Ignore List */    
-           
-           if( in_array( $controller->params['action'], $this->ignoreMethods ) )
-               $skipThis = 1;
-          
-           /* Check if current Controller is included in our Ignore List */
-           if( in_array( $controller->name, $this->ignoreControllers ) )
-               $skipThis = 1;
+    /**
+     *  Maximum entries in our trail variable. Default: 8
+     */
+    var $maxItems = 4;
 
-            /* Ignore reload of same controller and same action */              
-           if( sizeof( $this->trail ) > 0 ){
-                   
-           		 	$lastElement = $this->trail[sizeof( $this->trail ) -1 ];
-	               if ( !empty( $lastElement['url'] ) && 
-	                       $lastElement['url'] == $controller->params->url ) {
-	                       $skipThis = 1;
-	               }  
-           }
-           
-           //debug($controller->params["NAV_DISPLAY"]);
-           /* Add current Page to trail */
-           if( $skipThis != 1 ) {
-                $this->trail[] = array(  'url' =>    $controller->params->url,
-     									'action'         => $controller->params['action'],
-										'controller' => $controllerName,
-                						'navDisplay' => $controller->params["NAV_DISPLAY"],
-       				);
-			
-                //debug($this->trail);
-           }
-           
-           /* Shorten Trail to maximum lenght */
-           $this->shrinkTrail();
-                       
-           /* Store trail to session */    
-           $this->storeTrail();
-           
-       }
-       
 
-        function shrinkTrail( $length=-1 ){
-        
-          if( $length == -1 ){
-              $length = $this->maxItems;
-          }
-          
-          while( sizeof( $this->trail ) > $length ){
-              array_shift( $this->trail);
-          }             
-          
-      }
 
-      
-       function cleanTrail() {
-       
-              $this->trail = array();
-               $this->Session->delete( $this->sessionVarName );
-       
-       }
-       
 
-       
+    /*     * ****************************** END OF GLOBAL VARIABLES. DO NOT CHANGE BELOW ********************************** */
+
+    /**
+     *  Array holding the Trail we are Moving in
+     */
+    var $trail = array();
+
+    /**
+     * Write Trail to Session
+     */
+    function storeTrail()
+    {
+
+        $this->Session->write($this->sessionVarName, $this->trail);
+    }
+
+    public function initialize(Controller $controller)
+    {
+        $this->controller = $controller;
+    }
+
+    /**
+     * If a navigation click brought us here, let's clean all other items
+     * This happens if we came here via helper. This can be parsed from the params.
+     * e.g. /posts/view/1/navpoint/3  --> Navpoint = 3, clean everything behind
+     * It will be next value behind navpoint
+     */
+    function walkBack(&$controller)
+    {
+        if (isset($controller->params['url'][$this->navpointUrl]))
+        {
+
+            for ($i = sizeof($this->trail); $i > $controller->params['url'][$this->navpointUrl]; $i--)
+            {
+                unset($this->trail[$i]);
+            }
+        }
+    }
+
+    function process(&$controller)
+    {
+
+
+        $skipThis = 0;
+
+        $controllerName = $controller->name;
+
+
+
+        /* Restore from Session if exists */
+        if (( $sessionVar = $this->Session->read($this->sessionVarName)))
+            $this->trail = $sessionVar;
+
+
+        /* Check if one of our crumbs was clicked ( will be passed via URL ) */
+        $this->walkBack($controller);
+
+
+        /* Check if current Method is included in our Ignore List */
+
+        if (in_array($controller->params['action'], $this->ignoreMethods))
+            $skipThis = 1;
+
+        /* Check if current Controller is included in our Ignore List */
+        if (in_array($controller->name, $this->ignoreControllers))
+            $skipThis = 1;
+
+        /* Ignore reload of same controller and same action */
+        if (sizeof($this->trail) > 0)
+        {
+
+            $lastElement = $this->trail[sizeof($this->trail) - 1];
+            if (!empty($lastElement['url']) &&
+                    $lastElement['url'] == $controller->params->url)
+            {
+                $skipThis = 1;
+            }
+        }
+
+        //debug($controller->params["NAV_DISPLAY"]);
+        /* Add current Page to trail */
+        if ($skipThis != 1)
+        {
+            $this->trail[] = array('url' => $controller->params->url,
+                'action' => $controller->params['action'],
+                'controller' => $controllerName,
+                'navDisplay' => $controller->params["NAV_DISPLAY"],
+            );
+
+            //debug($this->trail);
+        }
+
+        /* Shorten Trail to maximum lenght */
+        $this->shrinkTrail();
+
+        /* Store trail to session */
+        $this->storeTrail();
+    }
+
+    function shrinkTrail($length = -1)
+    {
+
+        if ($length == -1)
+        {
+            $length = $this->maxItems;
+        }
+
+        while (sizeof($this->trail) > $length)
+        {
+            array_shift($this->trail);
+        }
+    }
+
+    function cleanTrail()
+    {
+
+        $this->trail = array();
+        $this->Session->delete($this->sessionVarName);
+    }
+
 }
