@@ -334,13 +334,14 @@ class MenuBuilderHelper extends AppHelper
             $class = ' id="' . $item['id'] . '"' . $class;
         }
 
-        if (isset($item["controller"]) && isset($item["action"]))
+        if (isset($item["controller"]) && isset($item["action"]) && isset($item["admin"]))
         {
             if ($item["controller"] && $item["action"])
             {
                 $item['url'] = array();
                 $item['url']["controller"] = $item["controller"];
                 $item['url']["action"] = $item["action"];
+                $item['url']['admin'] = $item["admin"];
             }
         }
 
