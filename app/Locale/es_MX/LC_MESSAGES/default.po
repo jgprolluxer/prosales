@@ -15,7 +15,55 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "Language: es_MX\n"
 
+# ----------      APPMENU SECTION      ---------- ###################################
+#
+# ----------      ADMIN ADD SECTION      ----------
+#
+msgid "ADMIN_APPMENU_ADD_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "ADMIN_APPMENU_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nuevo Menu"
+
+msgid "ADMIN_APPMENU_ADD_BLOCK_TITLE"
+msgstr "Definición del Menu"
+
+msgid "ADMIN_APPMENU_ADD_FORM_FIELD_PARENT"
+msgstr "Menu padre"
+
+msgid "ADMIN_APPMENU_ADD_FORM_FIELD_ORDERSHOW"
+msgstr "Orden"
+
+msgid "ADMIN_APPMENU_ADD_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_APPMENU_ADD_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_APPMENU_ADD_FORM_FIELD_VALUE"
+msgstr "Valor"
+
+msgid "ADMIN_APPMENU_ADD_FORM_FIELD_NAME_"
+msgstr "Texto default"
+
+msgid "ADMIN_APPMENU_ADD_FORM_FIELD_NAME_ES_MX"
+msgstr "Texto Español Latinoamericano"
+
+msgid "ADMIN_APPMENU_ADD_FORM_FIELD_NAME_EN_US"
+msgstr "Texto Inglés Americano"
+
+msgid "ADMIN_APPMENU_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_APPMENU_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN ADD SECTION      ----------
+#
+# ----------      END APPMENU SECTION      ---------- ###################################
+#
 # ----------      LOV SECTION      ---------- ###################################
+#
 # ----------      ADD SECTION      ----------
 #
 msgid "LOV_ADD_HEAD_TITLE"
@@ -58,6 +106,7 @@ msgid "LOV_ADD_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADD SECTION      ----------
+#
 # ----------      ADMIN ADD SECTION      ----------
 #
 msgid "ADMIN_LOV_ADD_HEAD_TITLE"
@@ -100,6 +149,7 @@ msgid "ADMIN_LOV_ADD_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADMIN ADD SECTION      ----------
+#
 # ----------      EDIT SECTION      ----------
 #
 msgid "LOV_EDIT_HEAD_TITLE"
@@ -142,6 +192,7 @@ msgid "LOV_EDIT_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END EDIT SECTION      ----------
+#
 # ----------      ADMIN EDIT SECTION      ----------
 #
 msgid "ADMIN_LOV_EDIT_HEAD_TITLE"
@@ -184,6 +235,7 @@ msgid "ADMIN_LOV_EDIT_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADMIN EDIT SECTION      ----------
+#
 # ----------      INDEX SECTION      ----------
 #
 msgid "LOV_INDEX_HEAD_TITLE"
@@ -229,6 +281,7 @@ msgid "LOV_INDEX_BLOCK_CONTENT_FOOTER"
 msgstr "Listado"
 
 # ----------      END INDEX SECTION      ----------
+#
 # ----------      ADMIN INDEX SECTION      ----------
 #
 msgid "ADMIN_LOV_INDEX_HEAD_TITLE"
@@ -274,6 +327,7 @@ msgid "ADMIN_LOV_INDEX_BLOCK_CONTENT_FOOTER"
 msgstr "Listado"
 
 # ----------      END ADMIN INDEX SECTION      ----------
+#
 # ----------      VIEW SECTION      ----------
 #
 msgid "LOV_VIEW_HEAD_TITLE"
@@ -316,6 +370,7 @@ msgid "LOV_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Revisión"
 
 # ----------      END VIEW SECTION      ----------
+#
 # ----------      ADMIN VIEW SECTION      ----------
 #
 msgid "ADMIN_LOV_VIEW_HEAD_TITLE"
@@ -358,7 +413,9 @@ msgid "ADMIN_LOV_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Revisión"
 
 # ----------      END ADMIN VIEW SECTION      ----------
+#
 # ----------      END LOV SECTION      ---------- ###################################
+#
 # ----------      REPORT SECTION      ---------- ###################################
 #
 msgid "REPORT_TITLE"
@@ -404,7 +461,9 @@ msgid "ADMIN_REPORT_ADD_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END REPORT SECTION      ---------- ###################################
+#
 # ----------      STORE SECTION      ---------- ###################################
+#
 # ----------      ADD SECTION      ----------
 #
 msgid "STORE_ADD_HEAD_TITLE"
@@ -441,6 +500,7 @@ msgid "STORE_ADD_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADD SECTION      ----------
+#
 # ----------      ADMIN ADD SECTION      ----------
 #
 msgid "ADMIN_STORE_ADD_HEAD_TITLE"
@@ -477,6 +537,7 @@ msgid "ADMIN_STORE_ADD_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADMIN ADD SECTION      ----------
+#
 # ----------      EDIT SECTION      ----------
 #
 msgid "STORE_EDIT_HEAD_TITLE"
@@ -513,6 +574,7 @@ msgid "STORE_EDIT_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END EDIT SECTION      ----------
+#
 # ----------      ADMIN EDIT SECTION      ----------
 #
 msgid "ADMIN_STORE_EDIT_HEAD_TITLE"
@@ -549,6 +611,7 @@ msgid "ADMIN_STORE_EDIT_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADMIN EDIT SECTION      ----------
+#
 # ----------      INDEX SECTION      ----------
 #
 msgid "STORE_INDEX_HEAD_TITLE"
@@ -588,6 +651,7 @@ msgid "STORE_INDEX_BLOCK_CONTENT_FOOTER"
 msgstr "Listado"
 
 # ----------      END INDEX SECTION      ----------
+#
 # ----------      ADMIN INDEX SECTION      ----------
 #
 msgid "ADMIN_STORE_INDEX_HEAD_TITLE"
@@ -627,6 +691,7 @@ msgid "ADMIN_STORE_INDEX_BLOCK_CONTENT_FOOTER"
 msgstr "Listado"
 
 # ----------      END ADMIN INDEX SECTION      ----------
+#
 # ----------      VIEW SECTION      ----------
 #
 msgid "STORE_VIEW_HEAD_TITLE"
@@ -660,6 +725,7 @@ msgid "STORE_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Vista de solo lectura"
 
 # ----------      END VIEW SECTION      ----------
+#
 # ----------      ADMIN VIEW SECTION      ----------
 #
 msgid "ADMIN_STORE_VIEW_HEAD_TITLE"
@@ -693,8 +759,11 @@ msgid "ADMIN_STORE_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Vista de solo lectura"
 
 # ----------      END ADMIN VIEW SECTION      ----------
+#
 # ----------      END STORE SECTION      ---------- ###################################
+#
 # ----------      WORKSTATION SECTION      ---------- ###################################
+#
 # ----------      ADD SECTION      ----------
 #
 msgid "WORKSTATION_ADD_HEAD_TITLE"
@@ -737,6 +806,7 @@ msgid "WORKSTATION_ADD_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADD SECTION      ----------
+#
 # ----------      ADMIN ADD SECTION      ----------
 #
 msgid "ADMIN_WORKSTATION_ADD_HEAD_TITLE"
@@ -779,6 +849,7 @@ msgid "ADMIN_WORKSTATION_ADD_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADMIN ADD SECTION      ----------
+#
 # ----------      EDIT SECTION      ----------
 #
 msgid "WORKSTATION_EDIT_HEAD_TITLE"
@@ -821,6 +892,7 @@ msgid "WORKSTATION_EDIT_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END EDIT SECTION      ----------
+#
 # ----------      ADMIN EDIT SECTION      ----------
 #
 msgid "ADMIN_WORKSTATION_EDIT_HEAD_TITLE"
@@ -863,6 +935,7 @@ msgid "ADMIN_WORKSTATION_EDIT_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADMIN EDIT SECTION      ----------
+#
 # ----------      INDEX SECTION      ----------
 #
 msgid "WORKSTATION_INDEX_HEAD_TITLE"
@@ -911,6 +984,7 @@ msgid "WORKSTATION_INDEX_BLOCK_CONTENT_FOOTER"
 msgstr "Listado"
 
 # ----------      END INDEX SECTION      ----------
+#
 # ----------      ADMIN INDEX SECTION      ----------
 #
 msgid "ADMIN_WORKSTATION_INDEX_HEAD_TITLE"
@@ -959,6 +1033,7 @@ msgid "ADMIN_WORKSTATION_INDEX_BLOCK_CONTENT_FOOTER"
 msgstr "Listado"
 
 # ----------      END ADMIN INDEX SECTION      ----------
+#
 # ----------      VIEW SECTION      ----------
 #
 msgid "WORKSTATION_VIEW_HEAD_TITLE"
@@ -1001,6 +1076,7 @@ msgid "WORKSTATION_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Revisión"
 
 # ----------      END VIEW SECTION      ----------
+#
 # ----------      ADMIN VIEW SECTION      ----------
 #
 msgid "ADMIN_WORKSTATION_VIEW_HEAD_TITLE"
@@ -1043,8 +1119,10 @@ msgid "ADMIN_WORKSTATION_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Revisión"
 
 # ----------      END ADMIN VIEW SECTION      ----------
+#
 # ----------      END WORKSTATION SECTION      ---------- ###################################
-# ----------      COMMON SECTION      ----------
+#
+# ----------      COMMON SECTION      ---------- ###################################
 msgid "active"
 msgstr "Activo"
 
