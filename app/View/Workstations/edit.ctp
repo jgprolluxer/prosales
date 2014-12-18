@@ -50,7 +50,8 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('WORKSTATION_EDIT_FORM_FIELD_PARENT')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $parentWorkstations
+                'options' => $parentWorkstations,
+                'value' => 0
             ));
             ?>
             <?php
@@ -65,7 +66,8 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('WORKSTATION_EDIT_FORM_FIELD_ROLE')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $lovWorkstationRole
+                'options' => $lovWorkstationRole,
+                'value' => 0
             ));
             ?>
             <?php
@@ -73,7 +75,8 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('WORKSTATION_EDIT_FORM_FIELD_STATUS')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $lovWorkstationStatus
+                'options' => $lovWorkstationStatus,
+                'value' => 0
             ));
             ?>
         </div>
@@ -83,7 +86,8 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('WORKSTATION_EDIT_FORM_FIELD_WORKAREA')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $lovWorkstationArea
+                'options' => $lovWorkstationArea,
+                'value' => 0
             ));
             ?>
             <?php
@@ -91,7 +95,8 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('WORKSTATION_EDIT_FORM_FIELD_STORE')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $stores
+                'options' => $stores,
+                'value' => 0
             ));
             ?>
             <?php
@@ -99,7 +104,8 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('WORKSTATION_EDIT_FORM_FIELD_PRICELIST')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $pricelists
+                'options' => $pricelists,
+                'value' => 0
             ));
             ?>
             <?php

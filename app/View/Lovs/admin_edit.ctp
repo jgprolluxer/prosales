@@ -50,7 +50,8 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_LOV_EDIT_FORM_FIELD_PARENT')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $parentLovs
+                'options' => $parentLovs,
+                'value' => 0
             ));
             ?>
             <?php

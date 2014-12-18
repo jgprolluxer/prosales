@@ -43,7 +43,8 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_STORE_ADD_FORM_FIELD_OWNER')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $owners
+                'options' => $owners,
+                'value' => 0
             ));
             ?>
             <?php
@@ -81,7 +82,8 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_STORE_ADD_FORM_FIELD_STATUS')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $lovStoreStatus
+                'options' => $lovStoreStatus,
+                'value' => 0
             ));
             ?>
         </div>
