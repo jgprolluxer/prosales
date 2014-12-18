@@ -54,7 +54,8 @@
  * @cakephp 1.3
  *
  */
-class NavigationHelper extends AppHelper {
+class NavigationHelper extends AppHelper
+{
     /*     * ************************************ GLOBAL VARIABLES MAY BE ADJUSTED ************************************** */
 
     /**
@@ -63,14 +64,14 @@ class NavigationHelper extends AppHelper {
      * With aliases:         Posts ( Mine )              > Messages( Read )              >...
      */
     var $actionAliases = array(
-        'indexSelection' => 'Type Selection',
-        'indexGrouped' => 'Grouped',
-        'indexEditor' => 'My Edits',
-        'indexOldVersion' => 'Old Version',
-        'index' => '<i class="hi hi-th-list"></i>',
-        'add' => '<i class="gi gi-plus"></i>',
-        'view' => '<i class="fa fa-eye fa-fw"></i>',
-        'edit' => '<i class="gi gi-pencil"></i>',
+        'admin_index' => '&nbsp;<i class="gi gi-old_man"></i>&nbsp;<i class="hi hi-th-list"></i>&nbsp;',
+        'index' => '&nbsp;<i class="hi hi-th-list"></i>&nbsp;',
+        'add' => '&nbsp;<i class="gi gi-plus"></i>&nbsp;',
+        'admin_add' => '&nbsp;<i class="gi gi-old_man"></i>&nbsp;<i class="gi gi-plus"></i>&nbsp;',
+        'view' => '&nbsp;<i class="fa fa-eye fa-fw"></i>&nbsp;',
+        'admin_view' => '&nbsp;<i class="gi gi-old_man"></i>&nbsp;<i class="fa fa-eye fa-fw"></i>&nbsp;',
+        'edit' => '&nbsp;<i class="gi gi-pencil"></i>&nbsp;',
+        'admin_edit' => '&nbsp;<i class="gi gi-old_man"></i>&nbsp;<i class="gi gi-pencil"></i>&nbsp;',
     );
 
     /**
@@ -89,27 +90,28 @@ class NavigationHelper extends AppHelper {
     /*     * ****************************** END OF GLOBAL VARIABLES. DO NOT CHANGE BELOW ********************************** */
     var $helpers = array('Html');
     var $controllerAliases = array(
+        'Activities' => 'Actividades',
+        'Appmenus' => 'Menus',
+        'Configs' => 'Parametros',
+        'Dashboards' => 'Dashboard',
+        'FullCalendar' => 'Calendario',
+        'Groups' => 'Grupos',
         'Lovs' => 'Listas de valores',
         'Products' => 'Productos',
-        'Groups' => 'Grupos',
-        'Users' => 'Usuarios',
-        'Dashboards' => 'Dashboard',
-        'Activities' => 'Actividades',
-        'FullCalendar' => 'Calendario',
-        'Configs' => 'Parametros',
         'Reports' => 'Reportes',
+        'Stores' => 'Sucursales',
+        'Users' => 'Usuarios',
         'Teams' => 'Equipo de venta',
     );
 
-    function printBackLinks($trail, $count = 1) {
-
-
-        for ($i = $count; $i > 0; $i--) {
-
+    function printBackLinks($trail, $count = 1)
+    {
+        for ($i = $count; $i > 0; $i--)
+        {
             if (sizeof($trail) < $i)
                 continue;
-
-            if (empty($trail[sizeof($trail) - $i])) {
+            if (empty($trail[sizeof($trail) - $i]))
+            {
                 continue;
             }
             $lastElement = $trail[sizeof($trail) - $i];
@@ -123,34 +125,35 @@ class NavigationHelper extends AppHelper {
             if (isset($this->controllerAliases[$lastElement['controller']]))
                 $displayController = $this->controllerAliases[$lastElement['controller']];
 
-            if (!empty($displayAction)) {
-
-                if (!empty($lastElement['navDisplay'])) {
+            if (!empty($displayAction))
+            {
+                if (!empty($lastElement['navDisplay']))
+                {
                     $displayAction = ' (' . $displayAction . $lastElement['navDisplay'] . ') ';
-                } else {
+                } else
+                {
                     $displayAction = ' (' . $displayAction . ')';
                 }
             }
             $url = '/' . $lastElement['url'] . '?' . $this->navpointUrl . '=' . (sizeof($trail) - $i);
             echo "<li>";
-            echo $this->Html->Link($displayController . $displayAction, $url, array('escape' => false, 'class'=>''));
+            echo $this->Html->Link($displayController . $displayAction, $url, array('escape' => false, 'class' => ''));
 
             if ($i - 1 > 0)
-                //echo "&nbsp;" . $this->seperator . "&nbsp;";
-            echo "</li>";
+            //echo "&nbsp;" . $this->seperator . "&nbsp;";
+                echo "</li>";
         }
     }
 
-    function getBacklinkForView($trail) {
-
+    function getBacklinkForView($trail)
+    {
         $url = '';
-
-        if (isset($trail[sizeof($trail) - 2])) {
+        if (isset($trail[sizeof($trail) - 2]))
+        {
             $lastElement = $trail[sizeof($trail) - 2];
 
             $url = '/' . $lastElement['url'] . '?' . $this->navpointUrl . '=' . (sizeof($trail) - 2);
         }
-
         return $url;
     }
 
