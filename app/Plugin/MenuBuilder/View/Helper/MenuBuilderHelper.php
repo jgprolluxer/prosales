@@ -72,7 +72,7 @@ class MenuBuilderHelper extends AppHelper
         'evenOdd' => false,
         'itemFormat' => '<li%s>%s%s</li>',
         'wrapperFormat' => '<ul%s>%s</ul>',
-        'wrapperClass' =>  null,
+        'wrapperClass' => null,
         'noLinkFormat' => '<a href="#">%s</a>',
         'menuVar' => 'menu',
         'authVar' => 'user',
@@ -150,18 +150,20 @@ class MenuBuilderHelper extends AppHelper
         {
             foreach ($parent as $pos => $item)
             {
-                if(isset($item[ $this->defaults['modelName'] ])) {
-                    if(isset($item[ 'children' ]))
+                if (isset($item[$this->defaults['modelName']]))
+                {
+                    if (isset($item['children']))
                     {
-                        $item[ $this->defaults['modelName'] ][ 'children' ] = $item[ 'children' ];
+                        $item[$this->defaults['modelName']]['children'] = $item['children'];
                     }
-                    $parentUlClass = isset($item[ $this->defaults['modelName'] ]['parentUlClass']) ? $item[ $this->defaults['modelName'] ]['parentUlClass'] : null;
+                    $parentUlClass = isset($item[$this->defaults['modelName']]['parentUlClass']) ? $item[$this->defaults['modelName']]['parentUlClass'] : null;
                 }
                 $this->_depth++;
-                if(isset($item[ $this->defaults['modelName'] ]))
+                if (isset($item[$this->defaults['modelName']]))
                 {
-                    $ret = $this->_buildItem($item[ $this->defaults['modelName'] ], $pos - $offset, $nowIsActive);
-                } else {
+                    $ret = $this->_buildItem($item[$this->defaults['modelName']], $pos - $offset, $nowIsActive);
+                } else
+                {
                     $ret = $this->_buildItem($item, $pos - $offset, $nowIsActive);
                 }
 
@@ -203,7 +205,7 @@ class MenuBuilderHelper extends AppHelper
         {
             $class[] = $this->settings['wrapperClass'];
         }
-        if($parentUlClass)
+        if ($parentUlClass)
         {
             $class[] = $parentUlClass;
         }
@@ -332,9 +334,9 @@ class MenuBuilderHelper extends AppHelper
             $class = ' id="' . $item['id'] . '"' . $class;
         }
 
-        if( isset($item["controller"]) && isset($item["action"]) )
+        if (isset($item["controller"]) && isset($item["action"]))
         {
-            if($item["controller"]  && $item["action"])
+            if ($item["controller"] && $item["action"])
             {
                 $item['url'] = array();
                 $item['url']["controller"] = $item["controller"];
@@ -411,7 +413,7 @@ class MenuBuilderHelper extends AppHelper
             $url = $ret . $pad . "\t" . $url;
             $children = $ret . $children . $pad;
         }
-        if ( isset($item['url']["controller"]) && !$this->AclView->hasAccess($item['url']))
+        if (isset($item['url']["controller"]) && !$this->AclView->hasAccess($item['url']))
         {
             return null;
         } else
