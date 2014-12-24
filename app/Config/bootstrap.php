@@ -181,8 +181,6 @@ CakeLog::config('error', array(
 ));
 CakePlugin::load('AclExtras');
 CakePlugin::load('Uploader');
-CakePlugin::load('GoogleChart');
-CakePlugin::load('FullCalendar');
 CakePlugin::load('Acl', array('bootstrap' => true));
 CakePlugin::load('MenuBuilder');
 
