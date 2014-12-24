@@ -155,6 +155,7 @@ class AppController extends Controller
         $hMenuHeader = $this->Appmenu->find('threaded', array(
             'conditions' => array(
                 'Appmenu.id >=' => 1,
+                'Appmenu.status' => array(StatusOfAppmenu::Active),
                 'Appmenu.mkey =' => 'h-menu-header'
             ),
             'order' => 'Appmenu.ordershow'
@@ -172,6 +173,14 @@ class AppController extends Controller
 
 }
 
+/**
+ * Manager Appmenu status
+ */
+abstract class StatusOfAppmenu
+{
+    const Active = "active";
+    const Inactive = "inactive";
+}
 
 /**
  * Manager Report status

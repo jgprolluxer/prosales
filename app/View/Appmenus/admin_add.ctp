@@ -171,7 +171,6 @@
             ));
             ?>
         </div>
-        
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
                 <button type="submit" class="btn btn-info"><?php echo __('ADMIN_APPMENU_ADD_FORM_BTN_SAVE'); ?></button>

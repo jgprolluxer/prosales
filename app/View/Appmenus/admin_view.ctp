@@ -1,209 +1,208 @@
-<div class="appmenus view">
-<h2><?php echo __('Appmenu'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['updated']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created By'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['created_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated By'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['updated_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Parent Appmenu'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($appmenu['ParentAppmenu']['mname'], array('controller' => 'appmenus', 'action' => 'view', $appmenu['ParentAppmenu']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Lft'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['lft']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Rght'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['rght']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Ordershow'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['ordershow']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Mkey'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['mkey']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Type'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['type']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Mname'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['mname']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('EscapeTitle'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['escapeTitle']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Title'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['title']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Admin'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['admin']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Url'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['url']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Controller'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['controller']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Action'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['action']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('LinkClass'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['linkClass']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('LinkID'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['linkID']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('LinkDataToggle'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['linkDataToggle']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('LiClass'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['liClass']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('ParentUlClass'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['parentUlClass']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('MenuSeparator'); ?></dt>
-		<dd>
-			<?php echo h($appmenu['Appmenu']['menuSeparator']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<!-- Forms General Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-bars fa-fw"></i><?php echo __('ADMIN_APPMENU_VIEW_HEAD_TITLE'); ?><br><small><?php echo __('ADMIN_APPMENU_VIEW_HEAD_TITLE_SMALL'); ?></small>
+        </h1>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Appmenu'), array('action' => 'edit', $appmenu['Appmenu']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Appmenu'), array('action' => 'delete', $appmenu['Appmenu']['id']), array(), __('Are you sure you want to delete # %s?', $appmenu['Appmenu']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Appmenus'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Appmenu'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Appmenus'), array('controller' => 'appmenus', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Parent Appmenu'), array('controller' => 'appmenus', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Appmenus'); ?></h3>
-	<?php if (!empty($appmenu['ChildAppmenu'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Updated'); ?></th>
-		<th><?php echo __('Created By'); ?></th>
-		<th><?php echo __('Updated By'); ?></th>
-		<th><?php echo __('Parent Id'); ?></th>
-		<th><?php echo __('Lft'); ?></th>
-		<th><?php echo __('Rght'); ?></th>
-		<th><?php echo __('Ordershow'); ?></th>
-		<th><?php echo __('Mkey'); ?></th>
-		<th><?php echo __('Type'); ?></th>
-		<th><?php echo __('Mname'); ?></th>
-		<th><?php echo __('EscapeTitle'); ?></th>
-		<th><?php echo __('Title'); ?></th>
-		<th><?php echo __('Admin'); ?></th>
-		<th><?php echo __('Url'); ?></th>
-		<th><?php echo __('Controller'); ?></th>
-		<th><?php echo __('Action'); ?></th>
-		<th><?php echo __('LinkClass'); ?></th>
-		<th><?php echo __('LinkID'); ?></th>
-		<th><?php echo __('LinkDataToggle'); ?></th>
-		<th><?php echo __('LiClass'); ?></th>
-		<th><?php echo __('ParentUlClass'); ?></th>
-		<th><?php echo __('MenuSeparator'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($appmenu['ChildAppmenu'] as $childAppmenu): ?>
-		<tr>
-			<td><?php echo $childAppmenu['id']; ?></td>
-			<td><?php echo $childAppmenu['created']; ?></td>
-			<td><?php echo $childAppmenu['updated']; ?></td>
-			<td><?php echo $childAppmenu['created_by']; ?></td>
-			<td><?php echo $childAppmenu['updated_by']; ?></td>
-			<td><?php echo $childAppmenu['parent_id']; ?></td>
-			<td><?php echo $childAppmenu['lft']; ?></td>
-			<td><?php echo $childAppmenu['rght']; ?></td>
-			<td><?php echo $childAppmenu['ordershow']; ?></td>
-			<td><?php echo $childAppmenu['mkey']; ?></td>
-			<td><?php echo $childAppmenu['type']; ?></td>
-			<td><?php echo $childAppmenu['mname']; ?></td>
-			<td><?php echo $childAppmenu['escapeTitle']; ?></td>
-			<td><?php echo $childAppmenu['title']; ?></td>
-			<td><?php echo $childAppmenu['admin']; ?></td>
-			<td><?php echo $childAppmenu['url']; ?></td>
-			<td><?php echo $childAppmenu['controller']; ?></td>
-			<td><?php echo $childAppmenu['action']; ?></td>
-			<td><?php echo $childAppmenu['linkClass']; ?></td>
-			<td><?php echo $childAppmenu['linkID']; ?></td>
-			<td><?php echo $childAppmenu['linkDataToggle']; ?></td>
-			<td><?php echo $childAppmenu['liClass']; ?></td>
-			<td><?php echo $childAppmenu['parentUlClass']; ?></td>
-			<td><?php echo $childAppmenu['menuSeparator']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'appmenus', 'action' => 'view', $childAppmenu['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'appmenus', 'action' => 'edit', $childAppmenu['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'appmenus', 'action' => 'delete', $childAppmenu['id']), array(), __('Are you sure you want to delete # %s?', $childAppmenu['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- END Forms General Header -->
+<!-- Normal Form Block -->
+<div class="block">
+    <!-- Normal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('ADMIN_APPMENU_VIEW_BLOCK_TITLE'); ?></h2>
+    </div>
+    <!-- END Normal Form Title -->
+    <div class="block-content">
+        <!-- User Assist Content -->
+        <?php
+        echo $this->Form->create('Appmenu', array(
+            'onsubmit' => 'return false;',//////NOT SAVE READ ONLY
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+        )));
+        ?>
+        <div class="col-md-6">
+            <h4><?php echo __('ADMIN_APPMENU_VIEW_BLOCK_CONTENT_CAT1'); ?></h4>
+            <?php
+            echo $this->Form->input('id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_ID')),
+                'class' => 'form-control',
+                'type' => 'hidden',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('parent_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_PARENT')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'value' => $this->request->data["ParentAppmenu"]["mname"],
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('ordershow', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_ORDERSHOW')),
+                'class' => 'form-control',
+                'type' => 'number',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('mkey', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_MKEY')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('type', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_TYPE')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('mname', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_MNAME')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('title', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_TITLE')),
+                'class' => 'form-control',
+                'type' => 'textarea',
+                'readonly' => 'readonly'
+            ));
+            ?>		
+        </div>
+        <div class="col-md-6">
+            <h4><?php echo __('ADMIN_APPMENU_VIEW_BLOCK_CONTENT_CAT2'); ?></h4>
+            <?php
+            echo $this->Form->input('admin', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_ADMIN')),
+                'class' => 'form-control',
+                'type' => 'checkbox',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('url', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_URL')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>            
+            <?php
+            echo $this->Form->input('controller', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_CONTROLLER')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('action', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_ACTION')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <h4><?php echo __('ADMIN_APPMENU_VIEW_BLOCK_CONTENT_CAT3'); ?></h4>
+            <?php
+            echo $this->Form->input('escapeTitle', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_ESCAPETITLE')),
+                'class' => 'form-control',
+                'type' => 'checkbox',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('linkClass', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_LINKCLASS')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>            
+            <?php
+            echo $this->Form->input('linkID', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_LINKID')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('linkDataToggle', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_LINKDATATOGGLE')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('liClass', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_LICLASS')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('parentUlClass', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_PARENTULCLASS')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('menuSeparator', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_VIEW_FORM_FIELD_MENUSEPARATOR')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+            	<?php
+            	echo $this->AclView->link(  __('ADMIN_APPMENU_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'),
+            		array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'edit', $this->request->data['Appmenu']['id']),
+            		array('escape' => false, 'class' => array('btn btn-warning')));
+            		?>
+            </div>
+        </div>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Child Appmenu'), array('controller' => 'appmenus', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
+        </form>
+        <!-- END User Assist Content -->
+    </div>
+    <p class="text-muted"><?php echo __('ADMIN_APPMENU_VIEW_BLOCK_CONTENT_FOOTER'); ?></p>
 </div>
+<!-- END Normal Form Block -->

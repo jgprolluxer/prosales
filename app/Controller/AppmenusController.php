@@ -44,6 +44,7 @@ class AppmenusController extends AppController
             throw new NotFoundException(__('Invalid appmenu'));
         }
         $options = array('conditions' => array('Appmenu.' . $this->Appmenu->primaryKey => $id));
+        $this->request->data = $this->Appmenu->find('first', $options);
         $this->set('appmenu', $this->Appmenu->find('first', $options));
     }
 
@@ -211,6 +212,7 @@ class AppmenusController extends AppController
             throw new NotFoundException(__('Invalid appmenu'));
         }
         $options = array('conditions' => array('Appmenu.' . $this->Appmenu->primaryKey => $id));
+        $this->request->data = $this->Appmenu->find('first', $options);
         $this->set('appmenu', $this->Appmenu->find('first', $options));
     }
 

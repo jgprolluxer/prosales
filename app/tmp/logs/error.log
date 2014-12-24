@@ -9722,3 +9722,427 @@ Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
 Stack Trace:
 #0 /Applications/XAMPP/xamppfiles/htdocs/prosales-app/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-12-24 06:04:18 Error: [MissingControllerException] Controller class TemplateAssetsController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateAssetsController',
+  'plugin' => NULL,
+)
+Request URL: /template_assets/img/placeholders/backgrounds/login_full_bg@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:04:18 Error: [MissingControllerException] Controller class TemplateAssetsController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateAssetsController',
+  'plugin' => NULL,
+)
+Request URL: /template_assets/img/favicon.ico
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:04:24 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:04:24 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:04:41 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:04:41 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:06:25 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:06:25 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:06:38 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:06:38 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:06:52 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:06:52 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:08:32 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:08:32 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:10:28 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:10:28 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:14:49 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:14:49 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:14:53 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:14:53 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:15:19 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:15:19 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:17:12 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:17:12 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:17:28 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:17:28 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:18:33 Error: Fatal Error (4): syntax error, unexpected ''readonly'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in [/Volumes/hugo-dev/Developer/PHP/prosales/app/View/Appmenus/admin_view.ctp, line 57]
+2014-12-24 06:18:33 Error: [FatalErrorException] syntax error, unexpected ''readonly'' (T_CONSTANT_ENCAPSED_STRING), expecting ')'
+Request URL: /admin/Appmenus/view/2
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/lib/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/Volumes/hugo-d...', 57)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/Volumes/hugo-d...', 57, Array)
+#2 /Volumes/hugo-dev/Developer/PHP/prosales/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/Volumes/hugo-d...', 57, Array)
+#3 /Volumes/hugo-dev/Developer/PHP/prosales/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-24 06:18:34 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:18:34 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:18:40 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:18:40 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:24:33 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:24:33 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:24:39 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:24:39 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:25:02 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:25:02 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:28:32 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:28:32 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:28:39 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:28:39 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:30:19 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:30:19 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:30:23 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:30:23 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:35:19 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-24 06:35:19 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/uploads/avatars/790fdabcbdf94009e86c763d76262dba@2x.jpg
+Stack Trace:
+#0 /Volumes/hugo-dev/Developer/PHP/prosales/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

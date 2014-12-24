@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2014-12-23 22:12-0600\n"
+"PO-Revision-Date: 2014-12-24 00:29-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -335,6 +335,61 @@ msgstr "Propiedades visuales"
 #
 # ----------      ADMIN INDEX SECTION      ----------
 #
+msgid "APPMENU_INDEX_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "APPMENU_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de Menus"
+
+msgid "APPMENU_INDEX_BLOCK_TITLE"
+msgstr "Lista"
+
+msgid "APPMENU_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "APPMENU_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "APPMENU_INDEX_LIST_FIELD_PARENT"
+msgstr "Padre"
+
+msgid "APPMENU_INDEX_LIST_FIELD_ORDER"
+msgstr "Orden"
+
+msgid "APPMENU_INDEX_LIST_FIELD_KEY"
+msgstr "Clave"
+
+msgid "APPMENU_INDEX_LIST_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "APPMENU_INDEX_LIST_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "APPMENU_INDEX_LIST_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "APPMENU_INDEX_LIST_ADMIN"
+msgstr "Acceso Administrador"
+
+msgid "APPMENU_INDEX_LIST_URL"
+msgstr "URL"
+
+msgid "APPMENU_INDEX_LIST_CONTROLLER"
+msgstr "Controlador"
+
+msgid "APPMENU_INDEX_LIST_ACTION"
+msgstr "Acción"
+
+msgid "APPMENU_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "APPMENU_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+# ----------      END ADMIN INDEX SECTION      ----------
+#
+# ----------      ADMIN INDEX SECTION      ----------
+#
 msgid "ADMIN_APPMENU_INDEX_HEAD_TITLE"
 msgstr "Menus"
 
@@ -387,6 +442,164 @@ msgid "ADMIN_APPMENU_INDEX_BLOCK_CONTENT_FOOTER"
 msgstr "Listado"
 
 # ----------      END ADMIN INDEX SECTION      ----------
+#
+# ----------      VIEW SECTION      ----------
+#
+msgid "APPMENU_VIEW_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "APPMENU_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar Menu"
+
+msgid "APPMENU_VIEW_BLOCK_TITLE"
+msgstr "Definición del Menu"
+
+msgid "APPMENU_VIEW_FORM_FIELD_PARENT"
+msgstr "Menu padre"
+
+msgid "APPMENU_VIEW_FORM_FIELD_ORDERSHOW"
+msgstr "Orden"
+
+msgid "APPMENU_VIEW_FORM_FIELD_MKEY"
+msgstr "Clave"
+
+msgid "APPMENU_VIEW_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "APPMENU_VIEW_FORM_FIELD_MNAME"
+msgstr "Nombre"
+
+msgid "APPMENU_VIEW_FORM_FIELD_ESCAPETITLE"
+msgstr "Escapar el titulo?"
+
+msgid "APPMENU_VIEW_FORM_FIELD_TITLE"
+msgstr "Titlulo"
+
+msgid "APPMENU_VIEW_FORM_FIELD_ADMIN"
+msgstr "Accesso administrador?"
+
+msgid "APPMENU_VIEW_FORM_FIELD_URL"
+msgstr "URL"
+
+msgid "APPMENU_VIEW_FORM_FIELD_CONTROLLER"
+msgstr "Controlador"
+
+msgid "APPMENU_VIEW_FORM_FIELD_ACTION"
+msgstr "Acción"
+
+msgid "APPMENU_VIEW_FORM_FIELD_LINKCLASS"
+msgstr "Clases css de link"
+
+msgid "APPMENU_VIEW_FORM_FIELD_LINKID"
+msgstr "ID html del link"
+
+msgid "APPMENU_VIEW_FORM_FIELD_LINKDATATOGGLE"
+msgstr "Data toggle del link"
+
+msgid "APPMENU_VIEW_FORM_FIELD_LICLASS"
+msgstr "Clases css del LI Contenedor"
+
+msgid "APPMENU_VIEW_FORM_FIELD_PARENTULCLASS"
+msgstr "Clases css del UL Contenedor"
+
+msgid "APPMENU_VIEW_FORM_FIELD_MENUSEPARATOR"
+msgstr "Html separador"
+
+msgid "APPMENU_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "APPMENU_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Revisión"
+
+msgid "APPMENU_VIEW_BLOCK_CONTENT_CAT1"
+msgstr "Propiedades del menu"
+
+msgid "APPMENU_VIEW_BLOCK_CONTENT_CAT2"
+msgstr "Propiedades del acceso"
+
+msgid "APPMENU_VIEW_BLOCK_CONTENT_CAT3"
+msgstr "Propiedades visuales"
+
+# ----------      END VIEW SECTION      ----------
+#
+# ----------      ADMIN VIEW SECTION      ----------
+#
+msgid "ADMIN_APPMENU_VIEW_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "ADMIN_APPMENU_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar Menu"
+
+msgid "ADMIN_APPMENU_VIEW_BLOCK_TITLE"
+msgstr "Definición del Menu"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_PARENT"
+msgstr "Menu padre"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_ORDERSHOW"
+msgstr "Orden"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_MKEY"
+msgstr "Clave"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_MNAME"
+msgstr "Nombre"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_ESCAPETITLE"
+msgstr "Escapar el titulo?"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_TITLE"
+msgstr "Titlulo"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_ADMIN"
+msgstr "Accesso administrador?"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_URL"
+msgstr "URL"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_CONTROLLER"
+msgstr "Controlador"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_ACTION"
+msgstr "Acción"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_LINKCLASS"
+msgstr "Clases css de link"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_LINKID"
+msgstr "ID html del link"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_LINKDATATOGGLE"
+msgstr "Data toggle del link"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_LICLASS"
+msgstr "Clases css del LI Contenedor"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_PARENTULCLASS"
+msgstr "Clases css del UL Contenedor"
+
+msgid "ADMIN_APPMENU_VIEW_FORM_FIELD_MENUSEPARATOR"
+msgstr "Html separador"
+
+msgid "ADMIN_APPMENU_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "ADMIN_APPMENU_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Revisión"
+
+msgid "ADMIN_APPMENU_VIEW_BLOCK_CONTENT_CAT1"
+msgstr "Propiedades del menu"
+
+msgid "ADMIN_APPMENU_VIEW_BLOCK_CONTENT_CAT2"
+msgstr "Propiedades del acceso"
+
+msgid "ADMIN_APPMENU_VIEW_BLOCK_CONTENT_CAT3"
+msgstr "Propiedades visuales"
+
+# ----------      END ADMIN VIEW SECTION      ----------
 #
 # ----------      END APPMENU SECTION      ---------- ###################################
 #

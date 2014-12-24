@@ -13,9 +13,9 @@ var TablesDatatables = function() {
 
             /* Initialize Datatables */
             $('#example-datatable').dataTable({
-                columnDefs: [ { orderable: false, targets: [ 1, 5 ] } ],
-                pageLength: 10,
-                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']]
+                columnDefs: [ ],
+                pageLength: 4,
+                lengthMenu: [[4, 8, 10, 20, 30, 50, 80, 100, -1], [4, 8, 10, 20, 30, 50, 80, 100, 'All']]
             });
 
             /* Add placeholder attribute to the search input */
