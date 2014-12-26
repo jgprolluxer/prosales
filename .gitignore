@@ -72,3 +72,9 @@ tmp/*
 app/tmp/*
 !empty
 app/webroot/files/uploads/*
+
+app/tmp/cache/persistent/controllers_hashes.txt
+
+app/tmp/logs/error.log
+
+app/tmp/logs/debug.log
