@@ -41,7 +41,7 @@
             </ul>-->
 
             <?php
-            echo $this->MenuBuilder->build('sidebar-nav');
+            echo $this->MenuBuilder->build('menu-sidebar-nav');
             //echo $this->MenuBuilder->build('left-menu');
             ?>
             <!-- END Sidebar Navigation -->

@@ -100,56 +100,6 @@ class AppController extends Controller
 
     private function buildMainMenu()
     {
-        $appMenu['sidebar-nav'] = array(
-            array(
-                'class' => 'sidebar-nav',
-                'escapeTitle' => false,
-                'title' => 'Accounts <i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-wallet sidebar-nav-icon"></i>',
-                'url' => 'javascript:;',
-                'linkID' => 'orders-nav',
-                'linkClass' => 'sidebar-nav-menu',
-                //'class' => 'active',
-                //'url' => array('controller' => 'Accounts', 'action' => 'index'),
-                'children' => array(
-                    array(
-                        'linkID' => 'link_orders',
-                        'title' => 'Orders',
-                        //'linkClass' => 'active',
-                        //'class' => 'open',
-                        'url' => array('admin' => true, 'controller' => 'Orders', 'action' => 'index'),
-                    ),
-                    array(
-                        'escapeTitle' => false,
-                        'title' => 'Payments <i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-wallet sidebar-nav-icon"></i>',
-                        'url' => 'javascript:;',
-                        //'class' => 'sidebar-nav-menu',
-                        'linkClass' => 'sidebar-nav-submenu',
-                        'linkID' => 'payments-nav',
-                        'children' => array(
-                            array(
-                                'linkID' => 'link_payments',
-                                'title' => 'Payments',
-                                'url' => array('controller' => 'Payments', 'action' => 'index'),
-                                //'linkClass' => 'active',
-                            ),
-                            array(
-                                'title' => 'Users',
-                                'url' => array('controller' => 'Users', 'action' => 'index'),
-                                //'permissions' => array('Administrators'),
-                                //'linkClass' => 'active',
-                            ),
-                        )
-                    )
-                )
-            ),
-            array(
-                'title' => 'Groups',
-                'url' => array('controller' => 'Groups', 'action' => 'index'),
-            ),
-
-        );
-
-
         //////@Override menu from data base
         $this->loadModel('Appmenu');
         $hMenuHeader = $this->Appmenu->find('threaded', array(
@@ -161,10 +111,43 @@ class AppController extends Controller
             'order' => 'Appmenu.ordershow'
         ));
 
-        //$this->log('query menu');
-        //$this->log($hMenuHeader);
+        $appMenu['h-menu-header'] = array();
+        if(!empty($hMenuHeader))
+        {
+            $appMenu['h-menu-header'] = $hMenuHeader;
+        }
 
-        $appMenu['h-menu-header'] = $hMenuHeader;
+        $hMenuSidebarNav = $this->Appmenu->find('threaded', array(
+            'conditions' => array(
+                'Appmenu.id >=' => 1,
+                'Appmenu.status' => array(StatusOfAppmenu::Active),
+                'Appmenu.mkey =' => 'menu-sidebar-nav'
+            ),
+            'order' => 'Appmenu.ordershow'
+        ));
+
+        $appMenu['menu-sidebar-nav'] = array();
+
+        if(!empty($hMenuSidebarNav))
+        {
+            $appMenu['menu-sidebar-nav'] = $hMenuSidebarNav;
+        }
+
+        $hMenuSidebarAlt = $this->Appmenu->find('threaded', array(
+            'conditions' => array(
+                'Appmenu.id >=' => 1,
+                'Appmenu.status' => array(StatusOfAppmenu::Active),
+                'Appmenu.mkey =' => 'menu-sidebar-alt'
+            ),
+            'order' => 'Appmenu.ordershow'
+        ));
+
+        $appMenu['menu-sidebar-alt'] = array();
+
+        if(!empty($hMenuSidebarNav))
+        {
+            $appMenu['menu-sidebar-alt'] = $hMenuSidebarAlt;
+        }
 
         return $appMenu;
     }

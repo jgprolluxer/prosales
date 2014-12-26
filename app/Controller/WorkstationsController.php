@@ -90,7 +90,26 @@ class WorkstationsController extends AppController {
 				$this->Session->setFlash(__('The workstation has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The workstation could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Workstation->validationErrors))
+                {
+                    foreach ($this->Workstation->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+				$this->Session->setFlash(__('The workstation could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		}
         $parentWorkstations = $this->Workstation->ParentWorkstation->find('list');
@@ -146,7 +165,26 @@ class WorkstationsController extends AppController {
 				$this->Session->setFlash(__('The workstation has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The workstation could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Workstation->validationErrors))
+                {
+                    foreach ($this->Workstation->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+				$this->Session->setFlash(__('The workstation could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('Workstation.' . $this->Workstation->primaryKey => $id));
@@ -283,7 +321,26 @@ class WorkstationsController extends AppController {
 				$this->Session->setFlash(__('The workstation has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The workstation could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Workstation->validationErrors))
+                {
+                    foreach ($this->Workstation->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+				$this->Session->setFlash(__('The workstation could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		}
 		$parentWorkstations = $this->Workstation->ParentWorkstation->find('list');
@@ -339,7 +396,26 @@ class WorkstationsController extends AppController {
 				$this->Session->setFlash(__('The workstation has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The workstation could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Workstation->validationErrors))
+                {
+                    foreach ($this->Workstation->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+				$this->Session->setFlash(__('The workstation could not be saved.'.$message.'<br/> Please, try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('Workstation.' . $this->Workstation->primaryKey => $id));

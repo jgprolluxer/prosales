@@ -90,7 +90,26 @@ class StoresController extends AppController {
 				$this->Session->setFlash(__('The store has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The store could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Store->validationErrors))
+                {
+                    foreach ($this->Store->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		}
         $owners = $this->Store->Owner->find('list');
@@ -126,7 +145,26 @@ class StoresController extends AppController {
 				$this->Session->setFlash(__('The store has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The store could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Store->validationErrors))
+                {
+                    foreach ($this->Store->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('Store.' . $this->Store->primaryKey => $id));
@@ -244,7 +282,26 @@ class StoresController extends AppController {
 				$this->Session->setFlash(__('The store has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The store could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Store->validationErrors))
+                {
+                    foreach ($this->Store->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		}
 		$owners = $this->Store->Owner->find('list');
@@ -280,7 +337,26 @@ class StoresController extends AppController {
 				$this->Session->setFlash(__('The store has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The store could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Store->validationErrors))
+                {
+                    foreach ($this->Store->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('Store.' . $this->Store->primaryKey => $id));

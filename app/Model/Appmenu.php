@@ -14,7 +14,7 @@ class Appmenu extends AppModel {
  * @var string
  */
 	public $displayField = 'mname';
-	public $actsAs = array('Tree');
+	public $actsAs = array('Tree', 'Appmenu');
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

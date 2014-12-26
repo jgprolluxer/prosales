@@ -59,9 +59,7 @@
             echo $this->Form->input('mkey', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_APPMENU_ADD_FORM_FIELD_MKEY')),
                 'class' => 'form-control',
-                'type' => 'select',
-                'options' => $lovAppmenuMKey,
-                'value' => 0
+                'type' => 'text'
             ));
             ?>
             <?php

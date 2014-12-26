@@ -64,7 +64,26 @@ class AppmenusController extends AppController
                 return $this->redirect(array('action' => 'index'));
             } else
             {
-                $this->Session->setFlash(__('The appmenu could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Appmenu->validationErrors))
+                {
+                    foreach ($this->Appmenu->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+                $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
             }
         }
         $parentAppmenus = $this->Appmenu->ParentAppmenu->find('list');
@@ -116,7 +135,26 @@ class AppmenusController extends AppController
                 return $this->redirect(array('action' => 'index'));
             } else
             {
-                $this->Session->setFlash(__('The appmenu could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Appmenu->validationErrors))
+                {
+                    foreach ($this->Appmenu->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+                $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
             }
         } else
         {
@@ -232,7 +270,26 @@ class AppmenusController extends AppController
                 return $this->redirect(array('action' => 'index'));
             } else
             {
-                $this->Session->setFlash(__('The appmenu could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Appmenu->validationErrors))
+                {
+                    foreach ($this->Appmenu->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+                $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
             }
         }
         $parentAppmenus = $this->Appmenu->ParentAppmenu->find('list');
@@ -284,7 +341,26 @@ class AppmenusController extends AppController
                 return $this->redirect(array('action' => 'index'));
             } else
             {
-                $this->Session->setFlash(__('The appmenu could not be saved. Please, try again.'));
+                $message = '';
+                if (isset($this->Appmenu->validationErrors))
+                {
+                    foreach ($this->Appmenu->validationErrors as $idx => $value)
+                    {
+                        $message .='<br />';
+                        if (is_array($value))
+                        {
+                            foreach ($value as $ldx => $prop)
+                            {
+                                $message .='<br />';
+                                $message .= $ldx.' -> '.$prop;
+                            }
+                        } else
+                        {
+                            $message .= $idx.' -> '.$prop;
+                        }
+                    }
+                }
+                $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
             }
         } else
         {
