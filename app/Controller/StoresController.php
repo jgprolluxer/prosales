@@ -109,6 +109,7 @@ class StoresController extends AppController {
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
 				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		}
@@ -164,6 +165,7 @@ class StoresController extends AppController {
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
 				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		} else {
@@ -301,6 +303,7 @@ class StoresController extends AppController {
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
 				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		}
@@ -356,6 +359,7 @@ class StoresController extends AppController {
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
 				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		} else {

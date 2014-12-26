@@ -83,6 +83,7 @@ class AppmenusController extends AppController
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
                 $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
             }
         }
@@ -154,6 +155,7 @@ class AppmenusController extends AppController
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
                 $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
             }
         } else
@@ -289,6 +291,7 @@ class AppmenusController extends AppController
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
                 $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
             }
         }
@@ -360,6 +363,7 @@ class AppmenusController extends AppController
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
                 $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
             }
         } else

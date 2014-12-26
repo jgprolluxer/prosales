@@ -109,6 +109,7 @@ class WorkstationsController extends AppController {
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
 				$this->Session->setFlash(__('The workstation could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		}
@@ -184,6 +185,7 @@ class WorkstationsController extends AppController {
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
 				$this->Session->setFlash(__('The workstation could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		} else {
@@ -340,6 +342,7 @@ class WorkstationsController extends AppController {
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
 				$this->Session->setFlash(__('The workstation could not be saved. '.$message.'<br/> Please, try again.'));
 			}
 		}
@@ -415,6 +418,7 @@ class WorkstationsController extends AppController {
                         }
                     }
                 }
+                $this->Session->write('Operation', 'danger');
 				$this->Session->setFlash(__('The workstation could not be saved.'.$message.'<br/> Please, try again.'));
 			}
 		} else {
