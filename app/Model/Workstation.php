@@ -17,7 +17,7 @@ class Workstation extends AppModel {
  * @var string
  */
 	public $displayField = 'title';
-    public $actsAs = array('Tree');
+    public $actsAs = array('Tree', 'Workstation');
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

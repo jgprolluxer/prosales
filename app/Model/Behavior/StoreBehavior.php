@@ -2,7 +2,7 @@
 
 App::uses('ModelBehavior', 'Model');
 
-class AppmenuBehavior extends ModelBehavior
+class StoreBehavior extends ModelBehavior
 {
 
     protected function _addToWhitelist(\Model $model, $field)
@@ -78,22 +78,22 @@ class AppmenuBehavior extends ModelBehavior
         {
             if ($Model->id)
             {
-                $Model->data['Appmenu']['updated'] = date("Y-m-d H:i:s");
-                if (!(isset($Model->data['Appmenu']['updated_by'])))
+                $Model->data['Store']['updated'] = date("Y-m-d H:i:s");
+                if (!(isset($Model->data['Store']['updated_by'])))
                 {
-                    $Model->data['Appmenu']['updated_by'] = $loggedUser["id"];
+                    $Model->data['Store']['updated_by'] = $loggedUser["id"];
                 }
             } else
             {
-                $Model->data['Appmenu']['created'] = date("Y-m-d H:i:s");
-                $Model->data['Appmenu']['updated'] = date("Y-m-d H:i:s");
-                if (!(isset($Model->data['Appmenu']['updated_by'])))
+                $Model->data['Store']['created'] = date("Y-m-d H:i:s");
+                $Model->data['Store']['updated'] = date("Y-m-d H:i:s");
+                if (!(isset($Model->data['Store']['updated_by'])))
                 {
-                    $Model->data['Appmenu']['updated_by'] = $loggedUser["id"];
+                    $Model->data['Store']['updated_by'] = $loggedUser["id"];
                 }
-                if (!(isset($Model->data['Appmenu']['created_by'])))
+                if (!(isset($Model->data['Store']['created_by'])))
                 {
-                    $Model->data['Appmenu']['created_by'] = $loggedUser["id"];
+                    $Model->data['Store']['created_by'] = $loggedUser["id"];
                 }
             }
         }
