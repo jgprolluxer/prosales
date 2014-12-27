@@ -181,7 +181,21 @@
 </div>
 <!-- END Normal Form Block -->
 <script type="text/javascript">
-    
+/**
+*Prevent hit submit form
+*/
+$(document).ready(function()
+{
+  $(window).keydown(function(event)
+  {
+    if(event.keyCode == 13)
+    {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+
     /**
      * 
      * @param {type} param
