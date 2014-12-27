@@ -180,6 +180,16 @@
     <p class="text-muted"><?php echo __('ADMIN_TEAM_ADD_BLOCK_CONTENT_FOOTER'); ?></p>
 </div>
 <!-- END Normal Form Block -->
+<script type="text/javascript">
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
 <div class="teams form">
 <?php echo $this->Form->create('Team'); ?>
 	<fieldset>
