@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2014-12-27 00:18-0600\n"
+"PO-Revision-Date: 2014-12-27 01:11-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -602,7 +602,7 @@ msgstr "Propiedades visuales"
 # ----------      END ADMIN VIEW SECTION      ----------
 #
 # ----------      END APPMENU SECTION      ---------- ##########################
-################################################################################
+# ###############################################################################
 # ----------      FAMILY SECTION      ---------- ###############################
 #
 # ----------      ADMIN ADD SECTION      ----------
@@ -639,7 +639,7 @@ msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADMIN ADD SECTION      ----------
 # ----------      END FAMILY SECTION      ---------- ###########################
-################################################################################
+# ###############################################################################
 # ----------      LOV SECTION      ---------- ##################################
 #
 # ----------      ADD SECTION      ----------
