@@ -23,7 +23,13 @@ class TeamsController extends AppController {
  */
 	public function index() {
 		$this->Team->recursive = 0;
-		$this->set('teams', $this->Paginator->paginate());
+		$teams = $this->Team->find('all', array(
+			'conditions' => array(
+				'Team.id >=' => 1,
+				'Team.status' => array(StatusOfTeam::Active)
+			)
+		));
+		$this->set('teams', $teams);
 	}
 
 /**
@@ -57,7 +63,17 @@ class TeamsController extends AppController {
 			}
 		}
 		$owners = $this->Team->Owner->find('list');
-		$this->set(compact('owners'));
+        $this->loadModel('Lov');
+        $this->Lov->recursive = -1;
+        $lovTeamStatus = $this->Lov->find('list', array(
+            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+            'conditions' => array(
+                'Lov.type =' => 'TEAM_FIELD_STATUS',
+                'Lov.status' => array(StatusOfLov::Active)
+            ),
+            'order' => array('ordershow')
+        ));
+		$this->set(compact('owners', 'lovTeamStatus'));
 	}
 
 /**
@@ -83,7 +99,17 @@ class TeamsController extends AppController {
 			$this->request->data = $this->Team->find('first', $options);
 		}
 		$owners = $this->Team->Owner->find('list');
-		$this->set(compact('owners'));
+        $this->loadModel('Lov');
+        $this->Lov->recursive = -1;
+        $lovTeamStatus = $this->Lov->find('list', array(
+            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+            'conditions' => array(
+                'Lov.type =' => 'TEAM_FIELD_STATUS',
+                'Lov.status' => array(StatusOfLov::Active)
+            ),
+            'order' => array('ordershow')
+        ));
+		$this->set(compact('owners', 'lovTeamStatus'));
 	}
 
 /**
@@ -114,7 +140,13 @@ class TeamsController extends AppController {
  */
 	public function admin_index() {
 		$this->Team->recursive = 0;
-		$this->set('teams', $this->Paginator->paginate());
+		$teams = $this->Team->find('all', array(
+			'conditions' => array(
+				'Team.id >=' => 1,
+				'Team.status' => array(StatusOfTeam::Active)
+			)
+		));
+		$this->set('teams', $teams);
 	}
 
 /**
@@ -148,7 +180,17 @@ class TeamsController extends AppController {
 			}
 		}
 		$owners = $this->Team->Owner->find('list');
-		$this->set(compact('owners'));
+        $this->loadModel('Lov');
+        $this->Lov->recursive = -1;
+        $lovTeamStatus = $this->Lov->find('list', array(
+            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+            'conditions' => array(
+                'Lov.type =' => 'TEAM_FIELD_STATUS',
+                'Lov.status' => array(StatusOfLov::Active)
+            ),
+            'order' => array('ordershow')
+        ));
+		$this->set(compact('owners', 'lovTeamStatus'));
 	}
 
 /**
@@ -174,7 +216,17 @@ class TeamsController extends AppController {
 			$this->request->data = $this->Team->find('first', $options);
 		}
 		$owners = $this->Team->Owner->find('list');
-		$this->set(compact('owners'));
+        $this->loadModel('Lov');
+        $this->Lov->recursive = -1;
+        $lovTeamStatus = $this->Lov->find('list', array(
+            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+            'conditions' => array(
+                'Lov.type =' => 'TEAM_FIELD_STATUS',
+                'Lov.status' => array(StatusOfLov::Active)
+            ),
+            'order' => array('ordershow')
+        ));
+		$this->set(compact('owners', 'lovTeamStatus'));
 	}
 
 /**
