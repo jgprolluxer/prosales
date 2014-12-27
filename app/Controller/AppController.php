@@ -202,8 +202,8 @@ abstract class StatusOfProduct
 abstract class StatusOfChat
 {
 
-    const Active = "Activo";
-    const Inactive = "Inactivo";
+    const Active = "active";
+    const Inactive = "inactive";
 
 }
 
@@ -213,8 +213,8 @@ abstract class StatusOfChat
 abstract class StatusOfComment
 {
 
-    const Active = "Activo";
-    const Inactive = "Inactivo";
+    const Active = "active";
+    const Inactive = "inactive";
 
 }
 
@@ -224,8 +224,8 @@ abstract class StatusOfComment
 abstract class StatusOfGroup
 {
 
-    const Active = "Activo";
-    const Inactive = "Inactivo";
+    const Active = "active";
+    const Inactive = "inactive";
 
 }
 
@@ -246,8 +246,8 @@ abstract class StatusOfLov
 abstract class StatusOfProjectTeam
 {
 
-    const Active = "Activo";
-    const Inactive = "Inactivo";
+    const Active = "active";
+    const Inactive = "inactive";
 
 }
 
@@ -338,8 +338,8 @@ abstract class StatusOfStores
 abstract class StatusOfTeamWorkstation
 {
 
-    const Active = "Activo";
-    const Inactive = "Inactivo";
+    const Active = "active";
+    const Inactive = "inactive";
 
 }
 
@@ -349,8 +349,8 @@ abstract class StatusOfTeamWorkstation
 abstract class StatusOfTeam
 {
 
-    const Active = "Activo";
-    const Inactive = "Inactivo";
+    const Active = "active";
+    const Inactive = "inactive";
 
 }
 
@@ -360,8 +360,8 @@ abstract class StatusOfTeam
 abstract class StatusOfTeamResource
 {
 
-    const Active = "Activo";
-    const Inactive = "Inactivo";
+    const Active = "active";
+    const Inactive = "inactive";
 
 }
 
