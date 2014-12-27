@@ -5,5 +5,6 @@ App::uses('AppModel', 'Model');
  *
  */
 class Mail extends AppModel {
+//    public $actsAs = array('Mail');
 
 }

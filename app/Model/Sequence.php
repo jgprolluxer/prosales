@@ -14,6 +14,7 @@ class Sequence extends AppModel
      *
      * @var array
      */
+    public $actsAs = array('Sequence');
     public $validate = array(
         'name' => array(
             'notempty' => array(

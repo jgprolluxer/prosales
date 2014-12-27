@@ -12,5 +12,6 @@ class Address extends AppModel {
  * @var string
  */
 	public $displayField = 'country';
+        public $actsAs = array('Address');
 
 }

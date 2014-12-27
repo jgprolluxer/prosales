@@ -15,6 +15,7 @@ class OrderPayment extends AppModel {
  * @var string
  */
 	public $displayField = 'total_amt';
+        public $actsAs = array('OrderPayment');
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

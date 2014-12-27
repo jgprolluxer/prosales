@@ -14,6 +14,7 @@ class Product extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
+        public $actsAs = array('Product');
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

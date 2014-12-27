@@ -13,6 +13,7 @@ class Family extends AppModel {
  * @var string
  */
 	public $displayField = 'title';
+        public $actsAs = array('Family');
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

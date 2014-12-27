@@ -12,5 +12,6 @@ class Note extends AppModel {
  * @var string
  */
 	public $displayField = 'title';
+//        public $actsAs = array('Note');
 
 }

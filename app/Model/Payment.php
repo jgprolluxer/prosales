@@ -13,6 +13,7 @@ class Payment extends AppModel {
  * @var string
  */
 	public $displayField = 'amount';
+        public $actsAs = array('Payment');
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

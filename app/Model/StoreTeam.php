@@ -14,6 +14,7 @@ class StoreTeam extends AppModel {
  * @var string
  */
 	public $displayField = 'store_id';
+        public $actsAs = array('StoreTeam');
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

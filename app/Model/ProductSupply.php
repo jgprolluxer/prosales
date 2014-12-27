@@ -13,6 +13,7 @@ class ProductSupply extends AppModel {
  * @var string
  */
 	public $displayField = 'product_id';
+        public $actsAs = array('ProductSupply');
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
