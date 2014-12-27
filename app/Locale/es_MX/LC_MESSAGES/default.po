@@ -601,9 +601,46 @@ msgstr "Propiedades visuales"
 
 # ----------      END ADMIN VIEW SECTION      ----------
 #
-# ----------      END APPMENU SECTION      ---------- ###################################
+# ----------      END APPMENU SECTION      ---------- ##########################
+################################################################################
+# ----------      FAMILY SECTION      ---------- ###############################
 #
-# ----------      LOV SECTION      ---------- ###################################
+# ----------      ADMIN ADD SECTION      ----------
+#
+msgid "ADMIN_FAMILY_ADD_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "ADMIN_FAMILY_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nueva Familia"
+
+msgid "ADMIN_FAMILY_ADD_BLOCK_TITLE"
+msgstr "Definición de Familia"
+
+msgid "ADMIN_FAMILY_ADD_FORM_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "ADMIN_FAMILY_ADD_FORM_FIELD_DESCRIPTION"
+msgstr "Descripcion"
+
+msgid "ADMIN_FAMILY_ADD_FORM_FIELD_COLOR"
+msgstr "Color"
+
+msgid "ADMIN_FAMILY_ADD_FORM_FIELD_STATUS"
+msgstr "Estatus"
+
+msgid "ADMIN_FAMILY_ADD_FORM_FIELD_PICTURE"
+msgstr "Imagen"
+
+msgid "ADMIN_FAMILY_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_FAMILY_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN ADD SECTION      ----------
+# ----------      END FAMILY SECTION      ---------- ###########################
+################################################################################
+# ----------      LOV SECTION      ---------- ##################################
 #
 # ----------      ADD SECTION      ----------
 #
