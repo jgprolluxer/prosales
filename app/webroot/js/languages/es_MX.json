@@ -10,6 +10,7 @@
 
     
     "MENU_DASHBOARD":                               "Tablero Herramientas",
+    "MENU_POS":                                     "Punto de Venta",
     "MENU_SOCIALCENTER":                            "Centro social",
     "MENU_ADMINISTRATION":                          "Administración",
     "MENU_CONFIGURATION":                           "Configuración",
@@ -27,6 +28,7 @@
     "SUBMENU_GROUPS":                               "Grupos",
     "SUBMENU_USERS":                                "Usuarios",
     "SUBMENU_ACLS":                                 "Permisos",
+    "LINK_ADMIN_LOVS":                              "Listas de valores",
 
 
     "active":                                       "Activo"

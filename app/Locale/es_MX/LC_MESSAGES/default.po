@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2014-12-27 01:11-0600\n"
+"PO-Revision-Date: 2014-12-27 02:06-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -1039,7 +1039,7 @@ msgid "ADMIN_REPORT_ADD_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END REPORT SECTION      ---------- ###################################
-#
+# #################################################################################
 # ----------      STORE SECTION      ---------- ###################################
 #
 # ----------      ADD SECTION      ----------
@@ -1339,7 +1339,7 @@ msgstr "Vista de solo lectura"
 # ----------      END ADMIN VIEW SECTION      ----------
 #
 # ----------      END STORE SECTION      ---------- ###################################
-#
+# #############################################################################
 # ----------      TEAM SECTION      ---------- ###################################
 #
 # ----------      ADD SECTION      ----------
@@ -1348,7 +1348,7 @@ msgid "TEAM_ADD_HEAD_TITLE"
 msgstr "Equipos de venta"
 
 msgid "TEAM_ADD_HEAD_TITLE_SMALL"
-msgstr "Configurar nuevo Menu"
+msgstr "Configurar nuevo equipo"
 
 msgid "TEAM_ADD_BLOCK_TITLE"
 msgstr "Definición del Equipo"
@@ -1379,7 +1379,7 @@ msgid "ADMIN_TEAM_ADD_HEAD_TITLE"
 msgstr "Equipos de venta"
 
 msgid "ADMIN_TEAM_ADD_HEAD_TITLE_SMALL"
-msgstr "Configurar nuevo Menu"
+msgstr "Configurar nuevo equipo"
 
 msgid "ADMIN_TEAM_ADD_BLOCK_TITLE"
 msgstr "Definición del Equipo"
@@ -1410,7 +1410,7 @@ msgid "TEAM_EDIT_HEAD_TITLE"
 msgstr "Equipos de venta"
 
 msgid "TEAM_EDIT_HEAD_TITLE_SMALL"
-msgstr "Configurar nuevo Menu"
+msgstr "Editar equipo"
 
 msgid "TEAM_EDIT_BLOCK_TITLE"
 msgstr "Definición del Equipo"
@@ -1441,7 +1441,7 @@ msgid "ADMIN_TEAM_EDIT_HEAD_TITLE"
 msgstr "Equipos de venta"
 
 msgid "ADMIN_TEAM_EDIT_HEAD_TITLE_SMALL"
-msgstr "Configurar nuevo Menu"
+msgstr "Editar equipo"
 
 msgid "ADMIN_TEAM_EDIT_BLOCK_TITLE"
 msgstr "Definición del Equipo"
@@ -1463,6 +1463,142 @@ msgstr "Guardar"
 
 msgid "ADMIN_TEAM_EDIT_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN EDIT SECTION      ----------
+#
+# ----------      INDEX SECTION      ----------
+#
+msgid "TEAM_INDEX_HEAD_TITLE"
+msgstr "Equipos de venta"
+
+msgid "TEAM_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de equipos de venta"
+
+msgid "TEAM_INDEX_BLOCK_TITLE"
+msgstr "Lista"
+
+msgid "TEAM_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "TEAM_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "TEAM_INDEX_LIST_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "TEAM_INDEX_LIST_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "TEAM_INDEX_LIST_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "TEAM_INDEX_LIST_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "TEAM_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "TEAM_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+# ----------      END INDEX SECTION      ----------
+#
+# ----------      ADMIN INDEX SECTION      ----------
+#
+msgid "ADMIN_TEAM_INDEX_HEAD_TITLE"
+msgstr "Equipos de venta"
+
+msgid "ADMIN_TEAM_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de equipos de venta"
+
+msgid "ADMIN_TEAM_INDEX_BLOCK_TITLE"
+msgstr "Lista"
+
+msgid "ADMIN_TEAM_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "ADMIN_TEAM_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_TEAM_INDEX_LIST_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "ADMIN_TEAM_INDEX_LIST_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_TEAM_INDEX_LIST_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ADMIN_TEAM_INDEX_LIST_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_TEAM_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "ADMIN_TEAM_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+# ----------      END ADMIN INDEX SECTION      ----------
+#
+# ----------      EDIT SECTION      ----------
+#
+msgid "TEAM_VIEW_HEAD_TITLE"
+msgstr "Equipos de venta"
+
+msgid "TEAM_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar Equipo"
+
+msgid "TEAM_VIEW_BLOCK_TITLE"
+msgstr "Definición del Equipo"
+
+msgid "TEAM_VIEW_FORM_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "TEAM_VIEW_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "TEAM_VIEW_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "TEAM_VIEW_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "TEAMS_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "TEAM_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Revisión"
+
+# ----------      END EDIT SECTION      ----------
+#
+# ----------      ADMIN EDIT SECTION      ----------
+#
+msgid "ADMIN_TEAM_VIEW_HEAD_TITLE"
+msgstr "Equipos de venta"
+
+msgid "ADMIN_TEAM_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar Equipo"
+
+msgid "ADMIN_TEAM_VIEW_BLOCK_TITLE"
+msgstr "Definición del Equipo"
+
+msgid "ADMIN_TEAM_VIEW_FORM_FIELD_OWNER"
+msgstr "Responsable"
+
+msgid "ADMIN_TEAM_VIEW_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_TEAM_VIEW_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ADMIN_TEAM_VIEW_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_TEAMS_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "ADMIN_TEAM_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Revisión"
 
 # ----------      END ADMIN EDIT SECTION      ----------
 #

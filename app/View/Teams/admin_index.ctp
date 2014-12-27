@@ -2,7 +2,7 @@
 <div class="content-header">
 	<div class="header-section">
 		<h1>
-			<i class="gi gi-pipe"></i><?php echo __('ADMIN_TEAM_INDEX_HEAD_TITLE'); ?><br><small><?php echo __('ADMIN_TEAM_INDEX_HEAD_TITLE_SMALL'); ?></small>
+			<i class="gi gi-group"></i><?php echo __('ADMIN_TEAM_INDEX_HEAD_TITLE'); ?><br><small><?php echo __('ADMIN_TEAM_INDEX_HEAD_TITLE_SMALL'); ?></small>
 		</h1>
 	</div>
 </div>

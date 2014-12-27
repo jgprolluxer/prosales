@@ -44,6 +44,7 @@ class TeamsController extends AppController {
 			throw new NotFoundException(__('Invalid team'));
 		}
 		$options = array('conditions' => array('Team.' . $this->Team->primaryKey => $id));
+		$this->request->data = $this->Team->find('first', $options);
 		$this->set('team', $this->Team->find('first', $options));
 	}
 
@@ -161,6 +162,7 @@ class TeamsController extends AppController {
 			throw new NotFoundException(__('Invalid team'));
 		}
 		$options = array('conditions' => array('Team.' . $this->Team->primaryKey => $id));
+		$this->request->data = $this->Team->find('first', $options);
 		$this->set('team', $this->Team->find('first', $options));
 	}
 
