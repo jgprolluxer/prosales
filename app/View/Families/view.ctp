@@ -1,136 +1,104 @@
-<div class="families view">
-<h2><?php echo __('Family'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($family['Family']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($family['Family']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($family['Family']['updated']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created By'); ?></dt>
-		<dd>
-			<?php echo h($family['Family']['created_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated By'); ?></dt>
-		<dd>
-			<?php echo h($family['Family']['updated_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Description'); ?></dt>
-		<dd>
-			<?php echo h($family['Family']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Title'); ?></dt>
-		<dd>
-			<?php echo h($family['Family']['title']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Picture'); ?></dt>
-		<dd>
-			<?php echo h($family['Family']['picture']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Color'); ?></dt>
-		<dd>
-			<?php echo h($family['Family']['color']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<!-- Forms General Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-bars fa-fw"></i><?php echo __('FAMILY_VIEW_HEAD_TITLE'); ?><br><small><?php echo __('FAMILY_VIEW_HEAD_TITLE_SMALL'); ?></small>
+        </h1>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Family'), array('action' => 'edit', $family['Family']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Family'), array('action' => 'delete', $family['Family']['id']), array(), __('Are you sure you want to delete # %s?', $family['Family']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Families'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Family'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Products'), array('controller' => 'products', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Product'), array('controller' => 'products', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Products'); ?></h3>
-	<?php if (!empty($family['Product'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Integration Num'); ?></th>
-		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Updated'); ?></th>
-		<th><?php echo __('Created By'); ?></th>
-		<th><?php echo __('Updated By'); ?></th>
-		<th><?php echo __('Active Flg'); ?></th>
-		<th><?php echo __('Uom'); ?></th>
-		<th><?php echo __('Status'); ?></th>
-		<th><?php echo __('Unit Price'); ?></th>
-		<th><?php echo __('Stock'); ?></th>
-		<th><?php echo __('Track Stock Flg'); ?></th>
-		<th><?php echo __('Short Desc'); ?></th>
-		<th><?php echo __('Long Desc'); ?></th>
-		<th><?php echo __('Part Number'); ?></th>
-		<th><?php echo __('Family Id'); ?></th>
-		<th><?php echo __('Product Type'); ?></th>
-		<th><?php echo __('Picture'); ?></th>
-		<th><?php echo __('Color'); ?></th>
-		<th><?php echo __('Bundle Flg'); ?></th>
-		<th><?php echo __('Track Refund Flg'); ?></th>
-		<th><?php echo __('Supply Type'); ?></th>
-		<th><?php echo __('Resourcetype'); ?></th>
-		<th><?php echo __('Schedulable'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($family['Product'] as $product): ?>
-		<tr>
-			<td><?php echo $product['id']; ?></td>
-			<td><?php echo $product['integration_num']; ?></td>
-			<td><?php echo $product['name']; ?></td>
-			<td><?php echo $product['created']; ?></td>
-			<td><?php echo $product['updated']; ?></td>
-			<td><?php echo $product['created_by']; ?></td>
-			<td><?php echo $product['updated_by']; ?></td>
-			<td><?php echo $product['active_flg']; ?></td>
-			<td><?php echo $product['uom']; ?></td>
-			<td><?php echo $product['status']; ?></td>
-			<td><?php echo $product['unit_price']; ?></td>
-			<td><?php echo $product['stock']; ?></td>
-			<td><?php echo $product['track_stock_flg']; ?></td>
-			<td><?php echo $product['short_desc']; ?></td>
-			<td><?php echo $product['long_desc']; ?></td>
-			<td><?php echo $product['part_number']; ?></td>
-			<td><?php echo $product['family_id']; ?></td>
-			<td><?php echo $product['product_type']; ?></td>
-			<td><?php echo $product['picture']; ?></td>
-			<td><?php echo $product['color']; ?></td>
-			<td><?php echo $product['bundle_flg']; ?></td>
-			<td><?php echo $product['track_refund_flg']; ?></td>
-			<td><?php echo $product['supply_type']; ?></td>
-			<td><?php echo $product['resourcetype']; ?></td>
-			<td><?php echo $product['schedulable']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'products', 'action' => 'view', $product['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'products', 'action' => 'edit', $product['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'products', 'action' => 'delete', $product['id']), array(), __('Are you sure you want to delete # %s?', $product['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- END Forms General Header -->
+<!-- Normal Form Block -->
+<div class="block">
+    <!-- Normal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('FAMILY_VIEW_BLOCK_TITLE'); ?></h2>
+    </div>
+    <!-- END Normal Form Title -->
+    <div class="block-content">
+        <!-- User Assist Content -->
+        <?php
+        echo $this->Form->create('Family', array(
+            'onsubmit' => 'return false;', //////NOT SAVE READ ONLY
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+        )));
+        ?>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('FAMILY_VIEW_FORM_FIELD_ID')),
+                'class' => 'form-control',
+                'type' => 'hidden',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('title', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('FAMILY_VIEW_FORM_FIELD_TITLE')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('description', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('FAMILY_VIEW_FORM_FIELD_DESCRIPTION')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('picture', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('FAMILY_VIEW_FORM_FIELD_PICTURE')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>		
+        </div>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Product'), array('controller' => 'products', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+                <?php
+                echo $this->AclView->link(__('FAMILY_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'edit', $this->request->data['Family']['id']), array('escape' => false, 'class' => array('btn btn-warning')));
+                ?>
+            </div>
+        </div>
+        </form>
+        <!-- END User Assist Content -->
+    </div>
+    <p class="text-muted"><?php echo __('FAMILY_VIEW_BLOCK_CONTENT_FOOTER'); ?></p>
 </div>
+<!-- END Normal Form Block -->
+<script type="text/javascript">
+    /**
+     *Prevent hit submit form
+     */
+    $(document).ready(function ()
+    {
+        $(window).keydown(function (event)
+        {
+            if (event.keyCode == 13)
+            {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+</script>
