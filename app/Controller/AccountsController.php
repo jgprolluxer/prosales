@@ -56,8 +56,40 @@ class AccountsController extends AppController {
 				$this->Session->setFlash(__('The account could not be saved. Please, try again.'));
 			}
 		}
-		$teams = $this->Account->Team->find('list');
-		$this->set(compact('teams'));
+		$this->loadModel('Lov');
+                $this->Lov->recursive = -1;  
+                $teams = $this->Account->Team->find('list', array(
+                    'conditions' => array(
+                        'Team.id >=' => 1,
+                        'Team.status' => array(StatusOfTeam::Active)
+                    )                    
+                ));
+                $lovAccountSex = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_SEX',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+                $lovAccountMode = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_MODE',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+                $lovAccountType = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_TYPE',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+		$this->set(compact('teams', 'lovAccountSex', 'lovAccountMode', 'lovAccountType'));
+                
 	}
 
 /**
@@ -82,8 +114,39 @@ class AccountsController extends AppController {
 			$options = array('conditions' => array('Account.' . $this->Account->primaryKey => $id));
 			$this->request->data = $this->Account->find('first', $options);
 		}
-		$teams = $this->Account->Team->find('list');
-		$this->set(compact('teams'));
+		$this->loadModel('Lov');
+                $this->Lov->recursive = -1;  
+                $teams = $this->Account->Team->find('list', array(
+                    'conditions' => array(
+                        'Team.id >=' => 1,
+                        'Team.status' => array(StatusOfTeam::Active)
+                    )                    
+                ));
+                $lovAccountSex = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_SEX',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+                $lovAccountMode = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_MODE',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+                $lovAccountType = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_TYPE',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+		$this->set(compact('teams', 'lovAccountSex', 'lovAccountMode', 'lovAccountType'));
 	}
 
 /**
@@ -129,6 +192,7 @@ class AccountsController extends AppController {
 			throw new NotFoundException(__('Invalid account'));
 		}
 		$options = array('conditions' => array('Account.' . $this->Account->primaryKey => $id));
+                $this->request->data = $this->Account->find('first', $options);
 		$this->set('account', $this->Account->find('first', $options));
 	}
 
@@ -147,8 +211,40 @@ class AccountsController extends AppController {
 				$this->Session->setFlash(__('The account could not be saved. Please, try again.'));
 			}
 		}
-		$teams = $this->Account->Team->find('list');
-		$this->set(compact('teams'));
+		            
+                $this->loadModel('Lov');
+                $this->Lov->recursive = -1;  
+                $teams = $this->Account->Team->find('list', array(
+                    'conditions' => array(
+                        'Team.id >=' => 1,
+                        'Team.status' => array(StatusOfTeam::Active)
+                    )                    
+                ));
+                $lovAccountSex = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_SEX',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+                $lovAccountMode = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_MODE',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+                $lovAccountType = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_TYPE',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+		$this->set(compact('teams', 'lovAccountSex', 'lovAccountMode', 'lovAccountType'));
 	}
 
 /**
@@ -173,8 +269,39 @@ class AccountsController extends AppController {
 			$options = array('conditions' => array('Account.' . $this->Account->primaryKey => $id));
 			$this->request->data = $this->Account->find('first', $options);
 		}
-		$teams = $this->Account->Team->find('list');
-		$this->set(compact('teams'));
+		$this->loadModel('Lov');
+                $this->Lov->recursive = -1;  
+                $teams = $this->Account->Team->find('list', array(
+                    'conditions' => array(
+                        'Team.id >=' => 1,
+                        'Team.status' => array(StatusOfTeam::Active)
+                    )                    
+                ));
+                $lovAccountSex = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_SEX',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+                $lovAccountMode = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_MODE',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+                $lovAccountType = $this->Lov->find('list', array(
+                    'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+                    'conditions' => array(
+                        'Lov.type =' => 'ACCOUNT_FIELD_TYPE',
+                        'Lov.status' => array(StatusOfLov::Active)
+                    ),
+                    'order' => array('ordershow')
+                ));
+		$this->set(compact('teams', 'lovAccountSex', 'lovAccountMode', 'lovAccountType'));
 	}
 
 /**
