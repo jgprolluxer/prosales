@@ -1,168 +1,110 @@
-<div class="pricelists view">
-<h2><?php echo __('Pricelist'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($pricelist['Pricelist']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created By'); ?></dt>
-		<dd>
-			<?php echo h($pricelist['Pricelist']['created_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated By'); ?></dt>
-		<dd>
-			<?php echo h($pricelist['Pricelist']['updated_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($pricelist['Pricelist']['updated']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($pricelist['Pricelist']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Status'); ?></dt>
-		<dd>
-			<?php echo h($pricelist['Pricelist']['status']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
-			<?php echo h($pricelist['Pricelist']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Currency'); ?></dt>
-		<dd>
-			<?php echo h($pricelist['Pricelist']['currency']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Currency Symbol'); ?></dt>
-		<dd>
-			<?php echo h($pricelist['Pricelist']['currency_symbol']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Tax'); ?></dt>
-		<dd>
-			<?php echo h($pricelist['Pricelist']['tax']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<!-- Forms General Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="gi gi-group"></i><?php echo __('ADMIN_PRICELIST_VIEW_HEAD_TITLE'); ?><br><small><?php echo __('ADMIN_PRICELIST_VIEW_HEAD_TITLE_SMALL'); ?></small>
+        </h1>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Pricelist'), array('action' => 'edit', $pricelist['Pricelist']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Pricelist'), array('action' => 'delete', $pricelist['Pricelist']['id']), array(), __('Are you sure you want to delete # %s?', $pricelist['Pricelist']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Pricelists'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Pricelist'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Pricelist Products'), array('controller' => 'pricelist_products', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Pricelist Product'), array('controller' => 'pricelist_products', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Teams'), array('controller' => 'teams', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Team'), array('controller' => 'teams', 'action' => 'add')); ?> </li>
-	</ul>
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- END Forms General Header -->
+<!-- Normal Form Block -->
+<div class="block">
+    <!-- Normal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('ADMIN_PRICELIST_VIEW_BLOCK_TITLE'); ?></h2>
+    </div>
+    <!-- END Normal Form Title -->
+    <div class="block-content">
+        <!-- User Assist Content -->
+        <?php
+        echo $this->Form->create('Pricelist', array(
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+        )));
+        ?>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRICELIST_VIEW_FORM_FIELD_ID')),
+                'class' => 'form-control',
+                'type' => 'hidden',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('name', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRICELIST_VIEW_FORM_FIELD_NAME')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('currency', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRICELIST_VIEW_FORM_FIELD_CURRENCY')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>            
+            <?php
+            echo $this->Form->input('currency_symbol', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRICELIST_VIEW_FORM_FIELD_CURRENCY_SYMBOL')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('tax', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRICELIST_VIEW_FORM_FIELD_TAX')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('status', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRICELIST_VIEW_FORM_FIELD_STATUS')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>	
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+                <button type="submit" class="btn btn-info"><?php echo __('ADMIN_PRICELIST_VIEW_FORM_BTN_SAVE'); ?></button>
+            </div>
+        </div>
+        </form>
+        <!-- END User Assist Content -->
+    </div>
+    <p class="text-muted"><?php echo __('ADMIN_PRICELIST_VIEW_BLOCK_CONTENT_FOOTER'); ?></p>
 </div>
-<div class="related">
-	<h3><?php echo __('Related Pricelist Products'); ?></h3>
-	<?php if (!empty($pricelist['PricelistProduct'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Updated'); ?></th>
-		<th><?php echo __('Updated By'); ?></th>
-		<th><?php echo __('Created By'); ?></th>
-		<th><?php echo __('Pricelist Id'); ?></th>
-		<th><?php echo __('Product Id'); ?></th>
-		<th><?php echo __('Unit Price'); ?></th>
-		<th><?php echo __('Tax'); ?></th>
-		<th><?php echo __('Priceinpoints'); ?></th>
-		<th><?php echo __('Startdt'); ?></th>
-		<th><?php echo __('Enddt'); ?></th>
-		<th><?php echo __('Disc Percent'); ?></th>
-		<th><?php echo __('Disc Startdt'); ?></th>
-		<th><?php echo __('Disc Enddt'); ?></th>
-		<th><?php echo __('Maxdisc Percent'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($pricelist['PricelistProduct'] as $pricelistProduct): ?>
-		<tr>
-			<td><?php echo $pricelistProduct['id']; ?></td>
-			<td><?php echo $pricelistProduct['created']; ?></td>
-			<td><?php echo $pricelistProduct['updated']; ?></td>
-			<td><?php echo $pricelistProduct['updated_by']; ?></td>
-			<td><?php echo $pricelistProduct['created_by']; ?></td>
-			<td><?php echo $pricelistProduct['pricelist_id']; ?></td>
-			<td><?php echo $pricelistProduct['product_id']; ?></td>
-			<td><?php echo $pricelistProduct['unit_price']; ?></td>
-			<td><?php echo $pricelistProduct['tax']; ?></td>
-			<td><?php echo $pricelistProduct['priceinpoints']; ?></td>
-			<td><?php echo $pricelistProduct['startdt']; ?></td>
-			<td><?php echo $pricelistProduct['enddt']; ?></td>
-			<td><?php echo $pricelistProduct['disc_percent']; ?></td>
-			<td><?php echo $pricelistProduct['disc_startdt']; ?></td>
-			<td><?php echo $pricelistProduct['disc_enddt']; ?></td>
-			<td><?php echo $pricelistProduct['maxdisc_percent']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'pricelist_products', 'action' => 'view', $pricelistProduct['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'pricelist_products', 'action' => 'edit', $pricelistProduct['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'pricelist_products', 'action' => 'delete', $pricelistProduct['id']), array(), __('Are you sure you want to delete # %s?', $pricelistProduct['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Pricelist Product'), array('controller' => 'pricelist_products', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Teams'); ?></h3>
-	<?php if (!empty($pricelist['Team'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Created By'); ?></th>
-		<th><?php echo __('Updated By'); ?></th>
-		<th><?php echo __('Updated'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Workstation Id'); ?></th>
-		<th><?php echo __('Alias'); ?></th>
-		<th><?php echo __('Status'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($pricelist['Team'] as $team): ?>
-		<tr>
-			<td><?php echo $team['id']; ?></td>
-			<td><?php echo $team['created_by']; ?></td>
-			<td><?php echo $team['updated_by']; ?></td>
-			<td><?php echo $team['updated']; ?></td>
-			<td><?php echo $team['created']; ?></td>
-			<td><?php echo $team['name']; ?></td>
-			<td><?php echo $team['workstation_id']; ?></td>
-			<td><?php echo $team['alias']; ?></td>
-			<td><?php echo $team['status']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'teams', 'action' => 'view', $team['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'teams', 'action' => 'edit', $team['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'teams', 'action' => 'delete', $team['id']), array(), __('Are you sure you want to delete # %s?', $team['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Team'), array('controller' => 'teams', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
+<!-- END Normal Form Block -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(window).keydown(function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+</script>
