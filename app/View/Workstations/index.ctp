@@ -69,7 +69,7 @@
     <!-- END Interactive Content -->
     <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['orgchart']}]}"></script>
 
-    <div class="jumbotron">
+    <div class="jumbotron" style="overflow-x:auto; overflow-y:auto;">
         <div id="chart_div"></div>
     </div>
 </div>
