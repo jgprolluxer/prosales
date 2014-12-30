@@ -24,6 +24,51 @@ class WorkstationsController extends AppController {
 	public function index() {
 		$this->Workstation->recursive = 0;
 		$this->set('workstations', $this->Paginator->paginate());
+
+        $this->Workstation->recursive = 1;
+		$treeObjQ = $this->Workstation->find('all', array(
+            'joins' => array(
+                array(
+                    'table' => 'users',
+                    'alias' => 'User',
+                    'type' => 'left',
+                    'conditions' => array(
+                        'User.workstation_id = Workstation.id'
+                    )
+                ),
+            )
+        ));
+
+        $treeObj = array();
+        foreach ($treeObjQ as $key => $obj)
+        {
+            $userInfo = '<h6 class="text-success">'.$obj["Workstation"]["title"].'</h6><br/>';
+            $treeObj[$key][0]["v"] = $obj["Workstation"]["id"];
+            if(!empty($obj["User"]))
+            {
+                $userInfo .= '<h6 class="text-info">'.$obj["User"][0]["firstname"] . ' '. $obj["User"][0]["lastname"].'</h6><br/>';
+                if("" != $obj["User"][0]["avatar"])
+                {
+                    $userInfo .= '<img width="40" height="40" src="'.$obj["User"][0]["avatar"].'" alt="avatar">';
+                }
+            } else
+            {
+                $userInfo .= '<span class="label label-danger">SIN USUARIO</span><br/>' ;
+            }
+            $treeObj[$key][0]["f"] = $userInfo;
+            if($obj["ParentWorkstation"]["id"])
+            {
+                $treeObj[$key][1] = $obj["ParentWorkstation"]["id"];
+            } else
+            {
+                $treeObj[$key][1] = "";
+            }
+            $treeObj[$key][2] = $obj["Workstation"]["title"];
+            
+        }
+
+		$this->set('treeObj', $treeObj);
+
 	}
 
     /**
