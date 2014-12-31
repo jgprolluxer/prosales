@@ -1,103 +1,71 @@
-<div class="groups view">
-<h2><?php echo __('Group'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($group['Group']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
-			<?php echo h($group['Group']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($group['Group']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($group['Group']['modified']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<!-- Forms General Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-users fa-fw"></i><?php echo __('ADMIN_GROUP_VIEW_HEAD_TITLE'); ?><br><small><?php echo __('ADMIN_GROUP_VIEW_HEAD_TITLE_SMALL'); ?></small>
+        </h1>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Group'), array('action' => 'edit', $group['Group']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Group'), array('action' => 'delete', $group['Group']['id']), array(), __('Are you sure you want to delete # %s?', $group['Group']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-	</ul>
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- END Forms General Header -->
+<!-- Normal Form Block -->
+<div class="block">
+    <!-- Normal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('ADMIN_GROUP_VIEW_BLOCK_TITLE'); ?></h2>
+    </div>
+    <!-- END Normal Form Title -->
+    <div class="block-content">
+        <!-- Account Assist Content -->
+        <?php
+        echo $this->Form->create('Group', array(
+            'onsubmit' => 'return false;',//////NOT SAVE READ ONLY
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+        )));
+        ?>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_GROUP_VIEW_FORM_FIELD_ID')),
+                'class' => 'form-control',
+                'type' => 'hidden',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('name', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_GROUP_VIEW_FORM_FIELD_NAME')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+            	<?php
+            	echo $this->AclView->link(  __('ADMIN_GROUP_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'),
+            		array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'edit', $this->request->data['Group']['id']),
+            		array('escape' => false, 'class' => array('btn btn-warning')));
+            		?>
+            </div>
+        </div>
+    </div>
+    <p class="text-muted"><?php echo __('ADMIN_GROUP_VIEW_BLOCK_CONTENT_FOOTER'); ?></p>
 </div>
-<div class="related">
-	<h3><?php echo __('Related Users'); ?></h3>
-	<?php if (!empty($group['User'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Username'); ?></th>
-		<th><?php echo __('Password'); ?></th>
-		<th><?php echo __('Group Id'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Modified'); ?></th>
-		<th><?php echo __('Blocked'); ?></th>
-		<th><?php echo __('Logged'); ?></th>
-		<th><?php echo __('Chatstatus'); ?></th>
-		<th><?php echo __('Time Zone'); ?></th>
-		<th><?php echo __('Firstname'); ?></th>
-		<th><?php echo __('Lastname'); ?></th>
-		<th><?php echo __('Email'); ?></th>
-		<th><?php echo __('Gender'); ?></th>
-		<th><?php echo __('Maritalstatus'); ?></th>
-		<th><?php echo __('Shortdescription'); ?></th>
-		<th><?php echo __('Fulldescription'); ?></th>
-		<th><?php echo __('Coverimg'); ?></th>
-		<th><?php echo __('Avatar'); ?></th>
-		<th><?php echo __('Status'); ?></th>
-		<th><?php echo __('Workstation Id'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($group['User'] as $user): ?>
-		<tr>
-			<td><?php echo $user['id']; ?></td>
-			<td><?php echo $user['username']; ?></td>
-			<td><?php echo $user['password']; ?></td>
-			<td><?php echo $user['group_id']; ?></td>
-			<td><?php echo $user['created']; ?></td>
-			<td><?php echo $user['modified']; ?></td>
-			<td><?php echo $user['blocked']; ?></td>
-			<td><?php echo $user['logged']; ?></td>
-			<td><?php echo $user['chatstatus']; ?></td>
-			<td><?php echo $user['time_zone']; ?></td>
-			<td><?php echo $user['firstname']; ?></td>
-			<td><?php echo $user['lastname']; ?></td>
-			<td><?php echo $user['email']; ?></td>
-			<td><?php echo $user['gender']; ?></td>
-			<td><?php echo $user['maritalstatus']; ?></td>
-			<td><?php echo $user['shortdescription']; ?></td>
-			<td><?php echo $user['fulldescription']; ?></td>
-			<td><?php echo $user['coverimg']; ?></td>
-			<td><?php echo $user['avatar']; ?></td>
-			<td><?php echo $user['status']; ?></td>
-			<td><?php echo $user['workstation_id']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'edit', $user['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'users', 'action' => 'delete', $user['id']), array(), __('Are you sure you want to delete # %s?', $user['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
+<!-- END Normal Form Block -->
