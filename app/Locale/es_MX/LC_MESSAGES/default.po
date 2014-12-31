@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2014-12-30 22:11-0600\n"
+"PO-Revision-Date: 2014-12-30 22:46-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,6 @@ msgstr "Recuerda revisar todos los campos"
 #
 # ----------      EDIT SECTION      ----------
 #
-
 msgid "ACCOUNT_EDIT_HEAD_TITLE"
 msgstr "Clientes"
 
@@ -137,7 +136,6 @@ msgstr "ID"
 #
 # ----------      VIEW SECTION      ----------
 #
-
 msgid "ACCOUNT_VIEW_HEAD_TITLE"
 msgstr "Clientes"
 
@@ -361,12 +359,10 @@ msgstr "Tipo"
 msgid "ADMIN_ACCOUNT_INDEX_LIST_ACTIONS"
 msgstr "Acciones"
 
-
 # ----------      END ADMIN INDEX SECTION      ----------
 #
 # ----------      ADMIN VIEW SECTION      ----------
 #
-
 msgid "ADMIN_ACCOUNT_VIEW_HEAD_TITLE"
 msgstr "Clientes"
 
@@ -1136,7 +1132,6 @@ msgstr "Acciones"
 #
 # ----------      ADMIN VIEW SECTION      ----------
 #
-
 msgid "ADMIN_GROUP_VIEW_HEAD_TITLE"
 msgstr "Grupos"
 
@@ -1212,7 +1207,6 @@ msgstr "Acciones"
 #
 # ----------      VIEW SECTION      ----------
 #
-
 msgid "GROUP_VIEW_HEAD_TITLE"
 msgstr "Grupos"
 
