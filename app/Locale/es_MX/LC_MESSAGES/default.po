@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2014-12-29 13:32-0600\n"
+"PO-Revision-Date: 2014-12-30 22:11-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -15,6 +15,34 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "Language: es_MX\n"
 
+# ----------      MENUES SECTION      ---------- ###################################
+#
+msgid "MENU_SIDEBAR_NAV_LINK_DASHBOARD"
+msgstr "<i class='fa fa-bar-chart sidebar-nav-icon'></i>Dashboard"
+
+msgid "MENU_SIDEBAR_NAV_LINK_POS"
+msgstr "<i class='gi gi-shopping_cart sidebar-nav-icon'></i>Punto de venta"
+
+msgid "MENU_SIDEBAR_NAV_ADMINISTRATION"
+msgstr "<i class='fa fa-angle-left sidebar-nav-indicator'></i><i class='gi gi-wallet sidebar-nav-icon'></i>Administración"
+
+msgid "MENU_SIDEBAR_NAV_LINK_USERS"
+msgstr "<i class='gi gi-user sidebar-nav-icon'></i>Usuarios"
+
+msgid "MENU_SIDEBAR_NAV_LINK_ADMIN_TEAMS"
+msgstr "<i class='gi gi-group sidebar-nav-icon'></i>Equipos de venta"
+
+msgid "MENU_SIDEBAR_NAV_CONFIGURATION"
+msgstr "<i class='fa fa-angle-left sidebar-nav-indicator'></i><i class='gi gi-cogwheel sidebar-nav-icon'></i>Configuración"
+
+msgid "MENU_SIDEBAR_NAV_LINK_LOVS"
+msgstr "<i class='hi hi-list sidebar-nav-icon'></i>Listas de valores"
+
+msgid "MENU_SIDEBAR_NAV_LINK_APPMENUS"
+msgstr "<i class='fa fa-bars fa-fw sidebar-nav-icon'></i>Menus de la aplicación"
+
+# ----------      END MENUES SECTION      ---------- ###################################
+#
 # ----------      APPMENU SECTION      ---------- ###################################
 #
 # ----------      ADD SECTION      ----------
@@ -1606,6 +1634,16 @@ msgstr "Revisión"
 #
 # ----------      WORKSTATION SECTION      ---------- ###################################
 #
+# ----------      MODEL VALIDATION SECTION      ----------
+#
+msgid "WORKSTATION_VALIDATIONMESSAGE_FIELD_TITLE_NOTEMPTY"
+msgstr "El campo título no puede estar vacío! favor de revisar"
+
+msgid "WORKSTATION_VALIDATIONMESSAGE_FIELD_TITLE_ISUNIQUE"
+msgstr "El puesto de trabajo ya existe! favor de revisar"
+
+# ----------      END MODEL VALIDATION SECTION      ----------
+#
 # ----------      ADD SECTION      ----------
 #
 msgid "WORKSTATION_ADD_HEAD_TITLE"
@@ -1622,6 +1660,9 @@ msgstr "Jefe directo"
 
 msgid "WORKSTATION_ADD_FORM_FIELD_TITLE"
 msgstr "Titulo"
+
+msgid "WORKSTATION_ADD_FORM_FIELD_EMPLOYEENUMBER"
+msgstr "Número o secuencia de empleado"
 
 msgid "WORKSTATION_ADD_FORM_FIELD_ROLE"
 msgstr "Rol"
@@ -1666,6 +1707,9 @@ msgstr "Jefe directo"
 msgid "ADMIN_WORKSTATION_ADD_FORM_FIELD_TITLE"
 msgstr "Titulo"
 
+msgid "ADMIN_WORKSTATION_ADD_FORM_FIELD_EMPLOYEENUMBER"
+msgstr "Número o secuencia de empleado"
+
 msgid "ADMIN_WORKSTATION_ADD_FORM_FIELD_ROLE"
 msgstr "Rol"
 
@@ -1709,6 +1753,9 @@ msgstr "Jefe directo"
 msgid "WORKSTATION_EDIT_FORM_FIELD_TITLE"
 msgstr "Titulo"
 
+msgid "WORKSTATION_EDIT_FORM_FIELD_EMPLOYEENUMBER"
+msgstr "Número o secuencia de empleado"
+
 msgid "WORKSTATION_EDIT_FORM_FIELD_ROLE"
 msgstr "Rol"
 
@@ -1751,6 +1798,9 @@ msgstr "Jefe directo"
 
 msgid "ADMIN_WORKSTATION_EDIT_FORM_FIELD_TITLE"
 msgstr "Titulo"
+
+msgid "ADMIN_WORKSTATION_EDIT_FORM_FIELD_EMPLOYEENUMBER"
+msgstr "Número o secuencia de empleado"
 
 msgid "ADMIN_WORKSTATION_EDIT_FORM_FIELD_ROLE"
 msgstr "Rol"
@@ -1801,6 +1851,9 @@ msgstr "Jefe directo"
 msgid "WORKSTATION_INDEX_LIST_FIELD_TITLE"
 msgstr "Titulo"
 
+msgid "WORKSTATION_INDEX_LIST_FIELD_EMPLOYEENUMBER"
+msgstr "Número empleado"
+
 msgid "WORKSTATION_INDEX_LIST_FIELD_ROLE"
 msgstr "Rol"
 
@@ -1850,6 +1903,9 @@ msgstr "Jefe directo"
 msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_TITLE"
 msgstr "Titulo"
 
+msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_EMPLOYEENUMBER"
+msgstr "Número empleado"
+
 msgid "ADMIN_WORKSTATION_INDEX_LIST_FIELD_ROLE"
 msgstr "Rol"
 
@@ -1893,6 +1949,9 @@ msgstr "Jefe directo"
 msgid "WORKSTATION_VIEW_FORM_FIELD_TITLE"
 msgstr "Titulo"
 
+msgid "WORKSTATION_VIEW_FORM_FIELD_EMPLOYEENUMBER"
+msgstr "Número o secuencia de empleado"
+
 msgid "WORKSTATION_VIEW_FORM_FIELD_ROLE"
 msgstr "Rol"
 
@@ -1935,6 +1994,9 @@ msgstr "Jefe directo"
 
 msgid "ADMIN_WORKSTATION_VIEW_FORM_FIELD_TITLE"
 msgstr "Titulo"
+
+msgid "ADMIN_WORKSTATION_VIEW_FORM_FIELD_EMPLOYEENUMBER"
+msgstr "Número o secuencia de empleado"
 
 msgid "ADMIN_WORKSTATION_VIEW_FORM_FIELD_ROLE"
 msgstr "Rol"

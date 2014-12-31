@@ -25,6 +25,7 @@
         <!-- User Assist Content -->
         <?php
         echo $this->Form->create('Lov', array(
+            'onsubmit' => '$("#modal-loading").modal("show");return true;',
             'class' => 'form-horizontal',
             'type' => 'file',
             'inputDefaults' => array(
@@ -117,3 +118,19 @@
     <p class="text-muted"><?php echo __('ADMIN_LOV_EDIT_BLOCK_CONTENT_FOOTER');?></p>
 </div>
 <!-- END Normal Form Block -->
+<script type="text/javascript">
+/**
+*Prevent hit submit form
+*/
+$(document).ready(function()
+{
+  $(window).keydown(function(event)
+  {
+    if(event.keyCode == 13)
+    {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>

@@ -1,36 +1,4 @@
 {
-    "LANGUAGE":                                     "Idioma",
-    "BUTTON_LANG_EN":                               "Ingles",
-    "BUTTON_LANG_DE":                               "Aleman",
-    
-    "HEADER_MENU_SALES":                            "Ventas",
-    "HEADER_MENU_LINK_ORDERS":                      "Ordenes",
-    "HEADER_MENU_LINK_PAYMENTS":                    "Pagos",
-
-
-    
-    "MENU_DASHBOARD":                               "Tablero Herramientas",
-    "MENU_POS":                                     "Punto de Venta",
-    "MENU_SOCIALCENTER":                            "Centro social",
-    "MENU_ADMINISTRATION":                          "Administración",
-    "MENU_CONFIGURATION":                           "Configuración",
-    
-    "SUBMENU_CHAT":                                 "Chat",
-    "SUBMENU_SERVICEREQUESTS":                      "Solicitudes",
-    "SUBMENU_PROJECTS":                             "Proyectos",
-    "SUBMENU_RESOURCES":                            "Recursos",
-    "SUBMENU_DPTOS":                                "Departamentos",
-    "SUBMENU_WORKSTATIONS":                         "Estaciones de trabajo",
-    "SUBMENU_TEAMS":                                "Equipos de trabajo",
-    "SUBMENU_ARCHIVE":                              "Archivero",
-    "SUBMENU_LOVS":                                 "Listas de valores",
-    "SUBMENU_CONFIGS":                              "Parámetros globales",
-    "SUBMENU_GROUPS":                               "Grupos",
-    "SUBMENU_USERS":                                "Usuarios",
-    "SUBMENU_ACLS":                                 "Permisos",
-    "LINK_ADMIN_LOVS":                              "Listas de valores",
-
-
-    "active":                                       "Activo"
+    "LANGUAGE":                                     "Idioma"
     
 }

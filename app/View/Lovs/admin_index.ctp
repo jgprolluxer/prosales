@@ -30,9 +30,8 @@
             array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'add'),
             array('escape' => false, 'class' => array('btn btn-info')));
         ?>
-        <section data-ng-controller="adminLovsIndexController">
             <div class="table-responsive">
-                <table class="table" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" >
+                <table class="table" id="example-datatable">
                     <thead>
                     <tr>
                         <th><?php echo __('ID'); ?></th>
@@ -48,29 +47,49 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="lov in lovs">
-                        <td>{{lov.Lov.id}}</td>
-                        <td><label translate="{{lov.Lov.status}}"></label></td>
-                        <td>{{lov.ParentLov.value}} - {{lov.ParentLov.type}}</td>
-                        <td>{{lov.Lov.type}}</td>
-                        <td>{{lov.Lov.ordershow}}</td>
-                        <td>{{lov.Lov.value}}</td>
-                        <td>{{lov.Lov.name_}}</td>
-                        <td>{{lov.Lov.name_es_MX}}</td>
-                        <td>{{lov.Lov.name_en_US}}</td>
-                        <td>
-                            <a href="<?php echo Router::url(($this->params['admin']?'/admin/':'/').$this->params['controller'].'/view/'); ?>{{lov.Lov.id}}" class="btn btn-info btn-xs">
-                                <i class="fa fa-eye fa-fw"></i>
-                            </a>
-                        </td>
-                    </tr>
+                        <?php
+                        foreach ($lovs as $key => $lov)
+                        {
+                            ?>
+                            <tr>
+                                <td><?php echo $lov["Lov"]["id"]; ?></td>
+                                <td><?php echo $lov["Lov"]["status"]; ?></td>
+                                <td><?php echo $lov["ParentLov"]["value"] . ' ' . $lov["ParentLov"]["type"]; ?></td>
+                                <td><?php echo $lov["Lov"]["type"]; ?></td>
+                                <td><?php echo $lov["Lov"]["ordershow"]; ?></td>
+                                <td><?php echo $lov["Lov"]["value"]; ?></td>
+                                <td><?php echo $lov["Lov"]["name_"]; ?></td>
+                                <td><?php echo $lov["Lov"]["name_es_MX"]; ?></td>
+                                <td><?php echo $lov["Lov"]["name_en_US"]; ?></td>
+                                <td>
+                                <?php
+                                echo $this->AclView->link(__('<i class="fa fa-eye fa-fw"></i>'), 
+                                    array('plugin' => $this->params['plugin'], 'prefix' => null, 
+                                        'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 
+                                        'action' => 'view', $lov['Lov']['id']), 
+                                    array('escape' => false, 'class' => array('btn btn-xs btn-info')));
+                                ?>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
-        </section>
-
     </div>
     <p class="text-muted"><?php echo __('ADMIN_LOV_INDEX_BLOCK_CONTENT_FOOTER');?></p>
     <!-- END Interactive Content -->
 </div>
 <!-- END Interactive Block -->
+<!-- Load and execute javascript code used only in this page -->
+<!-- BEGIN VIEW SPECIFIC CSS -->
+<?php
+echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
+?>
+<!-- Load and execute javascript code used only in this page -->
+<script type="text/javascript">
+    $(function() {
+        TablesDatatables.init();
+    });
+</script>

@@ -19,6 +19,31 @@ class Workstation extends AppModel {
 	public $displayField = 'title';
     public $actsAs = array('Tree', 'Workstation');
 
+/**
+ * Validation rules
+ *
+ * @var array
+ */
+	public $validate = array(
+		'title' => array(
+            'isUnique' => array(
+                'rule' => array('checkUnique',
+                    array(
+                        'title',
+                        'parent_id',
+                        'employeenumber'
+                    )
+                ),
+                'message' => 'WORKSTATION_VALIDATIONMESSAGE_FIELD_TITLE_ISUNIQUE',
+            )
+		),
+		/*'role' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'message' => 'WORKSTATION_VALIDATIONMESSAGE_FIELD_ROLE_NUMERIC'
+			)
+		)*/
+	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

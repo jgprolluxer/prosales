@@ -42,6 +42,7 @@ class AppmenuBehavior extends ModelBehavior
 
     public function beforeSave(\Model $model, $options = array())
     {
+        $model = $this->checkParent($model);
         $model = $this->setCreatedUpdated($model);
         return parent::beforeSave($model, $options);
     }
@@ -64,6 +65,21 @@ class AppmenuBehavior extends ModelBehavior
     public function setup(\Model $model, $config = array())
     {
         return parent::setup($model, $config);
+    }
+
+    /**
+     * 
+     * @param type $Model
+     * @return type
+     */
+    private function checkParent($Model)
+    {
+        if(0 == $Model->data['Appmenu']['parent_id'])
+        {
+            $Model->data['Appmenu']['parent_id'] = null;
+        }
+        
+        return $Model;
     }
 
     /**

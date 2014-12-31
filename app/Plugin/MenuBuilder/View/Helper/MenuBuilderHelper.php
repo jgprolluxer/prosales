@@ -360,7 +360,7 @@ class MenuBuilderHelper extends AppHelper
                 }
             }
 
-            $urlOptions = array('title' => trim(html_entity_decode(strip_tags($item['title'])), chr(0xC2) . chr(0xA0)));
+            $urlOptions = array('title' => trim(html_entity_decode(strip_tags( __( $item['title'] ) )), chr(0xC2) . chr(0xA0)));
             if (!empty($item['target']))
             {
                 $urlOptions['target'] = $item['target'];
@@ -397,7 +397,7 @@ class MenuBuilderHelper extends AppHelper
                 $url = $this->Html->link($this->Html->image($item['image'], array('alt' => $item['title'])) . '<span class="label">' . $labelTitle . '</span>', $item['url'], $urlOptions);
             } else
             {
-                $url = $this->Html->link($item['title'], $item['url'], $urlOptions);
+                $url = $this->Html->link(__($item['title']), $item['url'], $urlOptions);
             }
         }
 

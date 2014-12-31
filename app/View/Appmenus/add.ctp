@@ -25,6 +25,7 @@
         <!-- User Assist Content -->
         <?php
         echo $this->Form->create('Appmenu', array(
+            'onsubmit' => '$("#modal-loading").modal("show");return true;',
             'class' => 'form-horizontal',
             'type' => 'file',
             'inputDefaults' => array(
@@ -181,7 +182,21 @@
 </div>
 <!-- END Normal Form Block -->
 <script type="text/javascript">
-    
+/**
+*Prevent hit submit form
+*/
+$(document).ready(function()
+{
+  $(window).keydown(function(event)
+  {
+    if(event.keyCode == 13)
+    {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+
     /**
      * 
      * @param {type} param

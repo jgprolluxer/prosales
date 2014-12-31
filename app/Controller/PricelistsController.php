@@ -69,7 +69,15 @@ class PricelistsController extends AppController {
             ),
             'order' => array('ordershow')
         ));
-        $this->set(compact('lovPricelistStatus'));
+        $lovPricelistCurrency = $this->Lov->find('list', array(
+            'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+            'conditions' => array(
+                'Lov.type =' => 'PRICELIST_FIELD_CURRENCY',
+                'Lov.status' => array(StatusOfLov::Active)
+            ),
+            'order' => array('ordershow')
+        ));
+        $this->set(compact('lovPricelistStatus', 'lovPricelistCurrency'));
     }
 
     /**
@@ -104,7 +112,15 @@ class PricelistsController extends AppController {
             ),
             'order' => array('ordershow')
         ));
-        $this->set(compact('lovPricelistStatus'));
+        $lovPricelistCurrency = $this->Lov->find('list', array(
+            'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+            'conditions' => array(
+                'Lov.type =' => 'PRICELIST_FIELD_CURRENCY',
+                'Lov.status' => array(StatusOfLov::Active)
+            ),
+            'order' => array('ordershow')
+        ));
+        $this->set(compact('lovPricelistStatus', 'lovPricelistCurrency'));
     }
 
     /**
@@ -222,7 +238,15 @@ class PricelistsController extends AppController {
             ),
             'order' => array('ordershow')
         ));
-        $this->set(compact('lovPricelistStatus'));
+        $lovPricelistCurrency = $this->Lov->find('list', array(
+            'fields' => array('Lov.value', 'Lov.name_' . $this->appLangConf),
+            'conditions' => array(
+                'Lov.type =' => 'PRICELIST_FIELD_CURRENCY',
+                'Lov.status' => array(StatusOfLov::Active)
+            ),
+            'order' => array('ordershow')
+        ));
+        $this->set(compact('lovPricelistStatus', 'lovPricelistCurrency'));
     }
 
     /**

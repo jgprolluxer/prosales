@@ -64,31 +64,12 @@ class AppmenusController extends AppController
                 return $this->redirect(array('action' => 'index'));
             } else
             {
-                $message = '';
-                if (isset($this->Appmenu->validationErrors))
-                {
-                    foreach ($this->Appmenu->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-                $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+                $this->Session->setFlash(__('RECORD_NOT_SAVED'));
             }
         }
-        $parentAppmenus = $this->Appmenu->ParentAppmenu->find('list');
         $parentAppmenus[0] = __('NONE');
+        $parentAppmenus += $this->Appmenu->ParentAppmenu->find('list');
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
@@ -136,35 +117,16 @@ class AppmenusController extends AppController
                 return $this->redirect(array('action' => 'index'));
             } else
             {
-                $message = '';
-                if (isset($this->Appmenu->validationErrors))
-                {
-                    foreach ($this->Appmenu->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-                $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+                $this->Session->setFlash(__('RECORD_NOT_SAVED'));
             }
         } else
         {
             $options = array('conditions' => array('Appmenu.' . $this->Appmenu->primaryKey => $id));
             $this->request->data = $this->Appmenu->find('first', $options);
         }
-        $parentAppmenus = $this->Appmenu->ParentAppmenu->find('list');
         $parentAppmenus[0] = __('NONE');
+        $parentAppmenus += $this->Appmenu->ParentAppmenu->find('list');
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
@@ -272,31 +234,12 @@ class AppmenusController extends AppController
                 return $this->redirect(array('action' => 'index'));
             } else
             {
-                $message = '';
-                if (isset($this->Appmenu->validationErrors))
-                {
-                    foreach ($this->Appmenu->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-                $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+                $this->Session->setFlash(__('RECORD_NOT_SAVED'));
             }
         }
-        $parentAppmenus = $this->Appmenu->ParentAppmenu->find('list');
         $parentAppmenus[0] = __('NONE');
+        $parentAppmenus += $this->Appmenu->ParentAppmenu->find('list');
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
@@ -344,35 +287,16 @@ class AppmenusController extends AppController
                 return $this->redirect(array('action' => 'index'));
             } else
             {
-                $message = '';
-                if (isset($this->Appmenu->validationErrors))
-                {
-                    foreach ($this->Appmenu->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-                $this->Session->setFlash(__('The appmenu could not be saved. '.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+                $this->Session->setFlash(__('RECORD_NOT_SAVED'));
             }
         } else
         {
             $options = array('conditions' => array('Appmenu.' . $this->Appmenu->primaryKey => $id));
             $this->request->data = $this->Appmenu->find('first', $options);
         }
-        $parentAppmenus = $this->Appmenu->ParentAppmenu->find('list');
         $parentAppmenus[0] = __('NONE');
+        $parentAppmenus += $this->Appmenu->ParentAppmenu->find('list');
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;

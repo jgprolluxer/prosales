@@ -21,7 +21,20 @@ class WorkstationsController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index()
+    {
+        $this->Workstation->recursive = 1;
+        $workstations = $this->Workstation->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'Workstation.id >=' => 1,
+                    'Workstation.status' => array(StatusOfWorkstation::Active)
+                )
+            )
+        );
+        $this->set(compact('workstations'));
+
 		$this->Workstation->recursive = 0;
 		$this->set('workstations', $this->Paginator->paginate());
 
@@ -71,42 +84,6 @@ class WorkstationsController extends AppController {
 
 	}
 
-    /**
-     *
-     */
-    public function jsIndex()
-    {
-        $this->autoRender = false;
-        $this->layout = 'ajax';
-
-        $response = array();
-        try{
-            $workstations = $this->Workstation->find(
-                'all',
-                array(
-                    'conditions' => array(
-                        'Workstation.id >=' => 1,
-                        'Workstation.status' => array(StatusOfWorkstation::Active)
-                    )
-                )
-            );
-            $response = array(
-                'success' => true,
-                'message' => 'Correcto',
-                'xData' => $workstations
-            );
-        }catch (Exeption $ex)
-        {
-            $response = array(
-                'success' => false,
-                'message' => $ex->getMessage(),
-                'xData' => array()
-            );
-        }
-
-        echo json_encode($response);
-    }
-
 /**
  * view method
  *
@@ -135,35 +112,17 @@ class WorkstationsController extends AppController {
 				$this->Session->setFlash(__('The workstation has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-                $message = '';
-                if (isset($this->Workstation->validationErrors))
-                {
-                    foreach ($this->Workstation->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-				$this->Session->setFlash(__('The workstation could not be saved. '.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		}
-        $parentWorkstations = $this->Workstation->ParentWorkstation->find('list');
+
         $parentWorkstations[0] = __('NONE');
-        $stores = $this->Workstation->Store->find('list');
+        $parentWorkstations += $this->Workstation->ParentWorkstation->find('list');
         $stores[0] = __('NONE');
-        $pricelists = $this->Workstation->Pricelist->find('list');
+        $stores += $this->Workstation->Store->find('list');
         $pricelists[0] = __('NONE');
+        $pricelists += $this->Workstation->Pricelist->find('list');
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
@@ -211,38 +170,20 @@ class WorkstationsController extends AppController {
 				$this->Session->setFlash(__('The workstation has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-                $message = '';
-                if (isset($this->Workstation->validationErrors))
-                {
-                    foreach ($this->Workstation->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-				$this->Session->setFlash(__('The workstation could not be saved. '.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		} else {
 			$options = array('conditions' => array('Workstation.' . $this->Workstation->primaryKey => $id));
 			$this->request->data = $this->Workstation->find('first', $options);
 		}
-        $parentWorkstations = $this->Workstation->ParentWorkstation->find('list');
+
         $parentWorkstations[0] = __('NONE');
-        $stores = $this->Workstation->Store->find('list');
+        $parentWorkstations += $this->Workstation->ParentWorkstation->find('list');
         $stores[0] = __('NONE');
-        $pricelists = $this->Workstation->Pricelist->find('list');
+        $stores += $this->Workstation->Store->find('list');
         $pricelists[0] = __('NONE');
+        $pricelists += $this->Workstation->Pricelist->find('list');
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
@@ -300,45 +241,19 @@ class WorkstationsController extends AppController {
  * @return void
  */
 	public function admin_index() {
-		$this->Workstation->recursive = 0;
-		$this->set('workstations', $this->Paginator->paginate());
+		$this->Workstation->recursive = 1;
+        $workstations = $this->Workstation->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'Workstation.id >=' => 1,
+                    'Workstation.status' => array(StatusOfWorkstation::Active)
+                )
+            )
+        );
+        $this->set(compact('workstations'));
 	}
 
-    /**
-     *
-     */
-    public function adminjsIndex()
-    {
-        $this->autoRender = false;
-        $this->layout = 'ajax';
-
-        $response = array();
-        try{
-            $workstations = $this->Workstation->find(
-                'all',
-                array(
-                    'conditions' => array(
-                        'Workstation.id >=' => 1,
-                        'Workstation.status' => array(StatusOfWorkstation::Active)
-                    )
-                )
-            );
-            $response = array(
-                'success' => true,
-                'message' => 'Correcto',
-                'xData' => $workstations
-            );
-        }catch (Exeption $ex)
-        {
-            $response = array(
-                'success' => false,
-                'message' => $ex->getMessage(),
-                'xData' => array()
-            );
-        }
-
-        echo json_encode($response);
-    }
 
 /**
  * admin_view method
@@ -368,35 +283,17 @@ class WorkstationsController extends AppController {
 				$this->Session->setFlash(__('The workstation has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-                $message = '';
-                if (isset($this->Workstation->validationErrors))
-                {
-                    foreach ($this->Workstation->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-				$this->Session->setFlash(__('The workstation could not be saved. '.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		}
-		$parentWorkstations = $this->Workstation->ParentWorkstation->find('list');
+
         $parentWorkstations[0] = __('NONE');
-		$stores = $this->Workstation->Store->find('list');
+        $parentWorkstations += $this->Workstation->ParentWorkstation->find('list');
         $stores[0] = __('NONE');
-		$pricelists = $this->Workstation->Pricelist->find('list');
+        $stores += $this->Workstation->Store->find('list');
         $pricelists[0] = __('NONE');
+        $pricelists += $this->Workstation->Pricelist->find('list');
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
@@ -444,38 +341,20 @@ class WorkstationsController extends AppController {
 				$this->Session->setFlash(__('The workstation has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-                $message = '';
-                if (isset($this->Workstation->validationErrors))
-                {
-                    foreach ($this->Workstation->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-				$this->Session->setFlash(__('The workstation could not be saved.'.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		} else {
 			$options = array('conditions' => array('Workstation.' . $this->Workstation->primaryKey => $id));
 			$this->request->data = $this->Workstation->find('first', $options);
 		}
-		$parentWorkstations = $this->Workstation->ParentWorkstation->find('list');
+
         $parentWorkstations[0] = __('NONE');
-		$stores = $this->Workstation->Store->find('list');
+        $parentWorkstations += $this->Workstation->ParentWorkstation->find('list');
         $stores[0] = __('NONE');
-		$pricelists = $this->Workstation->Pricelist->find('list');
+        $stores += $this->Workstation->Store->find('list');
         $pricelists[0] = __('NONE');
+        $pricelists += $this->Workstation->Pricelist->find('list');
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;

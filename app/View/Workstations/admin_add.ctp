@@ -25,6 +25,7 @@
         <!-- User Assist Content -->
         <?php
         echo $this->Form->create('Workstation', array(
+            'onsubmit' => '$("#modal-loading").modal("show");return true;',
             'class' => 'form-horizontal',
             'type' => 'file',
             'inputDefaults' => array(
@@ -43,8 +44,7 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_WORKSTATION_ADD_FORM_FIELD_PARENT')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $parentWorkstations,
-                'value' => 0
+                'options' => $parentWorkstations
             ));
             ?>
             <?php
@@ -55,12 +55,18 @@
             ));
             ?>
             <?php
+            echo $this->Form->input('employeenumber', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_WORKSTATION_ADD_FORM_FIELD_EMPLOYEENUMBER')),
+                'class' => 'form-control',
+                'type' => 'number'
+            ));
+            ?>
+            <?php
             echo $this->Form->input('role', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_WORKSTATION_ADD_FORM_FIELD_ROLE')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $lovWorkstationRole,
-                'value' => 0
+                'options' => $lovWorkstationRole
             ));
             ?>
             <?php
@@ -68,8 +74,7 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_WORKSTATION_ADD_FORM_FIELD_STATUS')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $lovWorkstationStatus,
-                'value' => 0
+                'options' => $lovWorkstationStatus
             ));
             ?>
         </div>
@@ -79,8 +84,7 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_WORKSTATION_ADD_FORM_FIELD_WORKAREA')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $lovWorkstationArea,
-                'value' => 0
+                'options' => $lovWorkstationArea
             ));
             ?>
             <?php
@@ -88,8 +92,7 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_WORKSTATION_ADD_FORM_FIELD_STORE')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $stores,
-                'value' => 0
+                'options' => $stores
             ));
             ?>
             <?php
@@ -97,8 +100,7 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_WORKSTATION_ADD_FORM_FIELD_PRICELIST')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $pricelists,
-                'value' => 0
+                'options' => $pricelists
             ));
             ?>
             <?php
@@ -111,7 +113,7 @@
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
-                <button type="submit" class="btn btn-info"><?php echo __('ADMIN_WORKSTATION_ADD_FORM_BTN_SAVE'); ?></button>
+                <button type="submit" class="btn btn-info" ><?php echo __('ADMIN_WORKSTATION_ADD_FORM_BTN_SAVE'); ?></button>
             </div>
         </div>
         </form>
