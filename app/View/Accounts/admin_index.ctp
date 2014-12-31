@@ -73,7 +73,6 @@
             </table>
         </div>
     </div>
-    <p class="text-muted"><?php echo __('ADMIN_APPMENU_INDEX_BLOCK_CONTENT_FOOTER'); ?></p>
     <!-- END Interactive Content -->
 </div>
 <!-- END Interactive Block -->
