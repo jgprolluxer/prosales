@@ -38,6 +38,7 @@ class GroupsController extends AppController {
 			throw new NotFoundException(__('Invalid group'));
 		}
 		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
+                $this->request->data = $this->Group->find('first', $options);
 		$this->set('group', $this->Group->find('first', $options));
 	}
 
@@ -125,6 +126,7 @@ class GroupsController extends AppController {
 			throw new NotFoundException(__('Invalid group'));
 		}
 		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
+                $this->request->data = $this->Group->find('first', $options);
 		$this->set('group', $this->Group->find('first', $options));
 	}
 

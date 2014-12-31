@@ -38,6 +38,7 @@ class AccountsController extends AppController {
 			throw new NotFoundException(__('Invalid account'));
 		}
 		$options = array('conditions' => array('Account.' . $this->Account->primaryKey => $id));
+                $this->request->data = $this->Account->find('first', $options);
 		$this->set('account', $this->Account->find('first', $options));
 	}
 
