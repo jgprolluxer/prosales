@@ -43,6 +43,376 @@ msgstr "<i class='fa fa-bars fa-fw sidebar-nav-icon'></i>Menus de la aplicación
 
 # ----------      END MENUES SECTION      ---------- ###################################
 #
+# ----------      ACCOUNT SECTION      ---------- ###################################
+#
+# ----------      ADD SECTION      ----------
+#
+msgid "ACCOUNT_ADD_HEAD_TITLE"
+msgstr "Clientes"
+
+msgid "ACCOUNT_ADD_HEAD_TITLE_SMALL"
+msgstr "Agregar nuevo Cliente"
+
+msgid "ACCOUNT_ADD_BLOCK_TITLE"
+msgstr "Definición del CLiente"
+
+msgid "ACCOUNT_ADD_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ACCOUNT_ADD_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "ACCOUNT_ADD_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ACCOUNT_ADD_FORM_FIELD_SEX"
+msgstr "Sexo"
+
+msgid "ACCOUNT_ADD_FORM_FIELD_BIRTHDATE"
+msgstr "Fecha de Nacimiento"
+
+msgid "ACCOUNT_ADD_FORM_FIELD_TEAM"
+msgstr "Equipo"
+
+msgid "ACCOUNT_ADD_FORM_FIELD_MODE"
+msgstr "Modo"
+
+msgid "ACCOUNT_ADD_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ACCOUNT_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ACCOUNT_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADD SECTION      ----------
+#
+# ----------      EDIT SECTION      ----------
+#
+
+msgid "ACCOUNT_EDIT_HEAD_TITLE"
+msgstr "Clientes"
+
+msgid "ACCOUNT_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar Cliente"
+
+msgid "ACCOUNT_EDIT_BLOCK_TITLE"
+msgstr "Definición de Cliente"
+
+msgid "ACCOUNT_EDIT_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ACCOUNT_EDIT_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "ACCOUNT_EDIT_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ACCOUNT_EDIT_FORM_FIELD_SEX"
+msgstr "Sexo"
+
+msgid "ACCOUNT_EDIT_FORM_FIELD_BIRTHDATE"
+msgstr "Fecha de Nacimiento"
+
+msgid "ACCOUNT_EDIT_FORM_FIELD_TEAM"
+msgstr "Equipo"
+
+msgid "ACCOUNT_EDIT_FORM_FIELD_MODE"
+msgstr "Modo"
+
+msgid "ACCOUNT_EDIT_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ACCOUNT_EDIT_FORM_BTN_SAVE"
+msgstr "Editar"
+
+msgid "ACCOUNT_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+msgid "ACCOUNT_EDIT_FORM_FIELD_ID"
+msgstr "ID"
+
+# ----------      END EDIT SECTION      ----------
+#
+# ----------      VIEW SECTION      ----------
+#
+
+msgid "ACCOUNT_VIEW_HEAD_TITLE"
+msgstr "Clientes"
+
+msgid "ACCOUNT_VIEW_HEAD_TITLE_SMALL"
+msgstr "Ver Cliente"
+
+msgid "ACCOUNT_VIEW_BLOCK_TITLE"
+msgstr "Información de Cliente"
+
+msgid "ACCOUNT_VIEW_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "ACCOUNT_VIEW_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ACCOUNT_VIEW_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "ACCOUNT_VIEW_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ACCOUNT_VIEW_FORM_FIELD_SEX"
+msgstr "Sexo"
+
+msgid "ACCOUNT_VIEW_FORM_FIELD_BIRTHDATE"
+msgstr "Fecha de Nacimiento"
+
+msgid "ACCOUNT_VIEW_FORM_FIELD_TEAM"
+msgstr "Equipo"
+
+msgid "ACCOUNT_VIEW_FORM_FIELD_MODE"
+msgstr "Modo"
+
+msgid "ACCOUNT_VIEW_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ACCOUNT_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "ACCOUNT_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      ADMIN VIEW SECTION      ----------
+#
+# ----------      INDEX SECTION      ----------
+#
+msgid "ACCOUNT_INDEX_HEAD_TITLE"
+msgstr "Clientes"
+
+msgid "ACCOUNT_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de Clientes"
+
+msgid "ACCOUNT_INDEX_BLOCK_TITLE"
+msgstr "Lista de Clientes"
+
+msgid "ACCOUNT_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "ACCOUNT_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "ACCOUNT_INDEX_LIST_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ACCOUNT_INDEX_LIST_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "ACCOUNT_INDEX_LIST_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ACCOUNT_INDEX_LIST_FIELD_SEX"
+msgstr "Sexo"
+
+msgid "ACCOUNT_INDEX_LIST_FIELD_BIRTHDAY"
+msgstr "Fecha de Nacimiento"
+
+msgid "ACCOUNT_INDEX_LIST_FIELD_TEAM"
+msgstr "Equipo"
+
+msgid "ACCOUNT_INDEX_LIST_FIELD_MODE"
+msgstr "Modo"
+
+msgid "ACCOUNT_INDEX_LIST_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ACCOUNT_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+# ----------      END INDEX SECTION      ----------
+#
+# ----------      ADMIN ADD SECTION      ----------
+#
+msgid "ADMIN_ACCOUNT_ADD_HEAD_TITLE"
+msgstr "Clientes"
+
+msgid "ADMIN_ACCOUNT_ADD_HEAD_TITLE_SMALL"
+msgstr "Agregar nuevo Cliente"
+
+msgid "ADMIN_ACCOUNT_ADD_BLOCK_TITLE"
+msgstr "Definición del Cliente"
+
+msgid "ADMIN_ACCOUNT_ADD_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ADMIN_ACCOUNT_ADD_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "ADMIN_ACCOUNT_ADD_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ADMIN_ACCOUNT_ADD_FORM_FIELD_SEX"
+msgstr "Sexo"
+
+msgid "ADMIN_ACCOUNT_ADD_FORM_FIELD_BIRTHDATE"
+msgstr "Fecha de Nacimiento"
+
+msgid "ADMIN_ACCOUNT_ADD_FORM_FIELD_TEAM"
+msgstr "Equipo"
+
+msgid "ADMIN_ACCOUNT_ADD_FORM_FIELD_MODE"
+msgstr "Modo"
+
+msgid "ADMIN_ACCOUNT_ADD_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_ACCOUNT_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_ACCOUNT_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN ADD SECTION      ----------
+#
+# ----------      ADMIN EDIT SECTION      ----------
+#
+msgid "ADMIN_ACCOUNT_EDIT_HEAD_TITLE"
+msgstr "Clientes"
+
+msgid "ADMIN_ACCOUNT_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar Cliente"
+
+msgid "ADMIN_ACCOUNT_EDIT_BLOCK_TITLE"
+msgstr "Definición de Cliente"
+
+msgid "ADMIN_ACCOUNT_EDIT_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ADMIN_ACCOUNT_EDIT_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "ADMIN_ACCOUNT_EDIT_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ADMIN_ACCOUNT_EDIT_FORM_FIELD_SEX"
+msgstr "Sexo"
+
+msgid "ADMIN_ACCOUNT_EDIT_FORM_FIELD_BIRTHDATE"
+msgstr "Fecha de Nacimiento"
+
+msgid "ADMIN_ACCOUNT_EDIT_FORM_FIELD_TEAM"
+msgstr "Equipo"
+
+msgid "ADMIN_ACCOUNT_EDIT_FORM_FIELD_MODE"
+msgstr "Modo"
+
+msgid "ADMIN_ACCOUNT_EDIT_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_ACCOUNT_EDIT_FORM_BTN_SAVE"
+msgstr "Editar"
+
+msgid "ADMIN_ACCOUNT_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+msgid "ADMIN_ACCOUNT_EDIT_FORM_FIELD_ID"
+msgstr "ID"
+
+# ----------      END ADMIN EDIT SECTION      ----------
+#
+# ----------      ADMIN INDEX SECTION      ----------
+#
+msgid "ADMIN_ACCOUNT_INDEX_HEAD_TITLE"
+msgstr "Clientes"
+
+msgid "ADMIN_ACCOUNT_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de Clientes"
+
+msgid "ADMIN_ACCOUNT_INDEX_BLOCK_TITLE"
+msgstr "Lista de Clientes"
+
+msgid "ADMIN_ACCOUNT_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "ADMIN_ACCOUNT_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_ACCOUNT_INDEX_LIST_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ADMIN_ACCOUNT_INDEX_LIST_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "ADMIN_ACCOUNT_INDEX_LIST_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ADMIN_ACCOUNT_INDEX_LIST_FIELD_SEX"
+msgstr "Sexo"
+
+msgid "ADMIN_ACCOUNT_INDEX_LIST_FIELD_BIRTHDAY"
+msgstr "Fecha de Nacimiento"
+
+msgid "ADMIN_ACCOUNT_INDEX_LIST_FIELD_TEAM"
+msgstr "Equipo"
+
+msgid "ADMIN_ACCOUNT_INDEX_LIST_FIELD_MODE"
+msgstr "Modo"
+
+msgid "ADMIN_ACCOUNT_INDEX_LIST_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_ACCOUNT_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+
+# ----------      END ADMIN INDEX SECTION      ----------
+#
+# ----------      ADMIN VIEW SECTION      ----------
+#
+
+msgid "ADMIN_ACCOUNT_VIEW_HEAD_TITLE"
+msgstr "Clientes"
+
+msgid "ADMIN_ACCOUNT_VIEW_HEAD_TITLE_SMALL"
+msgstr "Ver Cliente"
+
+msgid "ADMIN_ACCOUNT_VIEW_BLOCK_TITLE"
+msgstr "Información de Cliente"
+
+msgid "ADMIN_ACCOUNT_VIEW_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_ACCOUNT_VIEW_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ADMIN_ACCOUNT_VIEW_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "ADMIN_ACCOUNT_VIEW_FORM_FIELD_ALIAS"
+msgstr "Alias"
+
+msgid "ADMIN_ACCOUNT_VIEW_FORM_FIELD_SEX"
+msgstr "Sexo"
+
+msgid "ADMIN_ACCOUNT_VIEW_FORM_FIELD_BIRTHDATE"
+msgstr "Fecha de Nacimiento"
+
+msgid "ADMIN_ACCOUNT_VIEW_FORM_FIELD_TEAM"
+msgstr "Equipo"
+
+msgid "ADMIN_ACCOUNT_VIEW_FORM_FIELD_MODE"
+msgstr "Modo"
+
+msgid "ADMIN_ACCOUNT_VIEW_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_ACCOUNT_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "ADMIN_ACCOUNT_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN VIEW SECTION      ----------
+#
+# ----------      END ACCOUNT SECTION      ---------- ##########################
+# ###############################################################################
 # ----------      APPMENU SECTION      ---------- ###################################
 #
 # ----------      ADD SECTION      ----------
@@ -667,6 +1037,206 @@ msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADMIN ADD SECTION      ----------
 # ----------      END FAMILY SECTION      ---------- ###########################
+# ###############################################################################
+# ----------      GROUP SECTION      ---------- ###################################
+#
+# ----------      ADD SECTION      ----------
+#
+msgid "GROUP_ADD_HEAD_TITLE"
+msgstr "Grupos"
+
+msgid "GROUP_ADD_HEAD_TITLE_SMALL"
+msgstr "Agregar nuevo Grupo"
+
+msgid "GROUP_ADD_BLOCK_TITLE"
+msgstr "Definición del Grupo"
+
+msgid "GROUP_ADD_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "GROUP_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "GROUP_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADD SECTION      ----------
+#
+# ----------      ADMIN ADD SECTION      ----------
+#
+msgid "ADMIN_GROUP_ADD_HEAD_TITLE"
+msgstr "Grupos"
+
+msgid "ADMIN_GROUP_ADD_HEAD_TITLE_SMALL"
+msgstr "Agregar nuevo Grupo"
+
+msgid "ADMIN_GROUP_ADD_BLOCK_TITLE"
+msgstr "Definición del Grupo"
+
+msgid "ADMIN_GROUP_ADD_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_GROUP_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_GROUP_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN ADD SECTION      ----------
+#
+# ----------      ADMIN EDIT SECTION      ----------
+#
+msgid "ADMIN_GROUP_EDIT_HEAD_TITLE"
+msgstr "Grupos"
+
+msgid "ADMIN_GROUP_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar Grupo"
+
+msgid "ADMIN_GROUP_EDIT_BLOCK_TITLE"
+msgstr "Definición del Grupo"
+
+msgid "ADMIN_GROUP_EDIT_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_GROUP_EDIT_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_GROUP_EDIT_FORM_BTN_SAVE"
+msgstr "Editar"
+
+msgid "ADMIN_GROUP_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN EDIT SECTION      ----------
+#
+# ----------      ADMIN INDEX SECTION      ----------
+#
+msgid "ADMIN_GROUP_INDEX_HEAD_TITLE"
+msgstr "Grupos"
+
+msgid "ADMIN_GROUP_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de Grupos"
+
+msgid "ADMIN_GROUP_INDEX_BLOCK_TITLE"
+msgstr "Lista de Grupos"
+
+msgid "ADMIN_GROUP_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "ADMIN_GROUP_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_GROUP_INDEX_LIST_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_GROUP_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+# ----------      END ADMIN INDEX SECTION      ----------
+#
+# ----------      ADMIN VIEW SECTION      ----------
+#
+
+msgid "ADMIN_GROUP_VIEW_HEAD_TITLE"
+msgstr "Grupos"
+
+msgid "ADMIN_GROUP_VIEW_HEAD_TITLE_SMALL"
+msgstr "Ver Grupos"
+
+msgid "ADMIN_GROUP_VIEW_BLOCK_TITLE"
+msgstr "Información de Grupo"
+
+msgid "ADMIN_GROUP_VIEW_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_GROUP_VIEW_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_GROUP_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "ADMIN_GROUP_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN VIEW SECTION      ----------
+#
+# ----------      EDIT SECTION      ----------
+#
+msgid "GROUP_EDIT_HEAD_TITLE"
+msgstr "Grupos"
+
+msgid "GROUP_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar Grupo"
+
+msgid "GROUP_EDIT_BLOCK_TITLE"
+msgstr "Definición del Grupo"
+
+msgid "GROUP_EDIT_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "GROUP_EDIT_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "GROUP_EDIT_FORM_BTN_SAVE"
+msgstr "Editar"
+
+msgid "GROUP_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END EDIT SECTION      ----------
+#
+# ----------      INDEX SECTION      ----------
+#
+msgid "GROUP_INDEX_HEAD_TITLE"
+msgstr "Grupos"
+
+msgid "GROUP_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de Grupos"
+
+msgid "GROUP_INDEX_BLOCK_TITLE"
+msgstr "Lista de Grupos"
+
+msgid "GROUP_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "GROUP_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "GROUP_INDEX_LIST_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "GROUP_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+# ----------      END INDEX SECTION      ----------
+#
+# ----------      VIEW SECTION      ----------
+#
+
+msgid "GROUP_VIEW_HEAD_TITLE"
+msgstr "Grupos"
+
+msgid "GROUP_VIEW_HEAD_TITLE_SMALL"
+msgstr "Ver Grupos"
+
+msgid "GROUP_VIEW_BLOCK_TITLE"
+msgstr "Información de Grupo"
+
+msgid "GROUP_VIEW_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "GROUP_VIEW_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "GROUP_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "GROUP_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END VIEW SECTION      ----------
+#
+# ----------      END GROUP SECTION      ---------- ##########################
 # ###############################################################################
 # ----------      LOV SECTION      ---------- ##################################
 #
