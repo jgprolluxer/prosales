@@ -1,59 +1,97 @@
-<div class="notes view">
-<h2><?php echo __('Note'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($note['Note']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($note['Note']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($note['Note']['updated']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created By'); ?></dt>
-		<dd>
-			<?php echo h($note['Note']['created_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated By'); ?></dt>
-		<dd>
-			<?php echo h($note['Note']['updated_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Description'); ?></dt>
-		<dd>
-			<?php echo h($note['Note']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Title'); ?></dt>
-		<dd>
-			<?php echo h($note['Note']['title']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('ObjectType'); ?></dt>
-		<dd>
-			<?php echo h($note['Note']['objectType']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Objectid'); ?></dt>
-		<dd>
-			<?php echo h($note['Note']['objectid']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<!-- Forms General Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-file-text-o fa-fw"></i><?php echo __('NOTE_VIEW_HEAD_TITLE'); ?><br><small><?php echo __('NOTE_VIEW_HEAD_TITLE_SMALL'); ?></small>
+        </h1>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Note'), array('action' => 'edit', $note['Note']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Note'), array('action' => 'delete', $note['Note']['id']), array(), __('Are you sure you want to delete # %s?', $note['Note']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Notes'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Note'), array('action' => 'add')); ?> </li>
-	</ul>
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- END Forms General Header -->
+<!-- Normal Form Block -->
+<div class="block">
+    <!-- Normal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('NOTE_VIEW_BLOCK_TITLE'); ?></h2>
+    </div>
+    <!-- END Normal Form Title -->
+    <div class="block-content">
+        <!-- Account Assist Content -->
+        <?php
+        echo $this->Form->create('Note', array(
+            'onsubmit' => 'return false;',//////NOT SAVE READ ONLY
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+        )));
+        ?>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('NOTE_VIEW_FORM_FIELD_ID')),
+                'class' => 'form-control',
+                'type' => 'hidden',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('title', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('NOTE_VIEW_FORM_FIELD_TITLE')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('description', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('NOTE_VIEW_FORM_FIELD_DESCRIPTION')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+        </div>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('objectType', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Tipo de objeto')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('objectid', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ID de objeto')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+            	<?php
+            	echo $this->AclView->link(  __('NOTE_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'),
+            		array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'edit', $this->request->data['Note']['id']),
+            		array('escape' => false, 'class' => array('btn btn-warning')));
+            		?>
+            </div>
+        </div>
+    </div>
+    <p class="text-muted"><?php echo __('NOTE_VIEW_BLOCK_CONTENT_FOOTER'); ?></p>
 </div>
+<!-- END Normal Form Block -->
