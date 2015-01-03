@@ -38,6 +38,7 @@ class NotesController extends AppController {
 			throw new NotFoundException(__('Invalid note'));
 		}
 		$options = array('conditions' => array('Note.' . $this->Note->primaryKey => $id));
+                $this->request->data = $this->Note->find('first', $options);
 		$this->set('note', $this->Note->find('first', $options));
 	}
 
@@ -125,6 +126,7 @@ class NotesController extends AppController {
 			throw new NotFoundException(__('Invalid note'));
 		}
 		$options = array('conditions' => array('Note.' . $this->Note->primaryKey => $id));
+                $this->request->data = $this->Note->find('first', $options);
 		$this->set('note', $this->Note->find('first', $options));
 	}
 
