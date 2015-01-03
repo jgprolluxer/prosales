@@ -1586,6 +1586,228 @@ msgstr "Revisión"
 #
 # ----------      END LOV SECTION      ---------- ###################################
 #
+# ----------      NOTE SECTION      ---------- ###################################
+#
+# ----------      ADD SECTION      ----------
+#
+msgid "NOTE_ADD_HEAD_TITLE"
+msgstr "Notas"
+
+msgid "NOTE_ADD_HEAD_TITLE_SMALL"
+msgstr "Agregar nueva Nota"
+
+msgid "NOTE_ADD_BLOCK_TITLE"
+msgstr "Definición de la Nota"
+
+msgid "NOTE_ADD_FORM_FIELD_TITLE"
+msgstr "Título"
+
+msgid "NOTE_ADD_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "NOTE_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "NOTE_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADD SECTION      ----------
+#
+# ----------      ADMIN ADD SECTION      ----------
+#
+msgid "ADMIN_NOTE_ADD_HEAD_TITLE"
+msgstr "Notas"
+
+msgid "ADMIN_NOTE_ADD_HEAD_TITLE_SMALL"
+msgstr "Agregar nueva Nota"
+
+msgid "ADMIN_NOTE_ADD_BLOCK_TITLE"
+msgstr "Definición de la Nota"
+
+msgid "ADMIN_NOTE_ADD_FORM_FIELD_TITLE"
+msgstr "Título"
+
+msgid "ADMIN_NOTE_ADD_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "ADMIN_NOTE_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_NOTE_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN ADD SECTION      ----------
+#
+# ----------      ADMIN EDIT SECTION      ----------
+#
+msgid "ADMIN_NOTE_EDIT_HEAD_TITLE"
+msgstr "Notas"
+
+msgid "ADMIN_NOTE_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar Nota"
+
+msgid "ADMIN_NOTE_EDIT_BLOCK_TITLE"
+msgstr "Definición de la Nota"
+
+msgid "ADMIN_NOTE_EDIT_FORM_FIELD_TITLE"
+msgstr "Título"
+
+msgid "ADMIN_NOTE_EDIT_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "ADMIN_NOTE_EDIT_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_NOTE_EDIT_FORM_BTN_SAVE"
+msgstr "Editar"
+
+msgid "ADMIN_NOTE_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN EDIT SECTION      ----------
+#
+# ----------      ADMIN INDEX SECTION      ----------
+#
+msgid "ADMIN_NOTE_INDEX_HEAD_TITLE"
+msgstr "Notas"
+
+msgid "ADMIN_NOTE_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de Notas"
+
+msgid "ADMIN_NOTE_INDEX_BLOCK_TITLE"
+msgstr "Lista de Notas"
+
+msgid "ADMIN_NOTE_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "ADMIN_NOTE_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_NOTE_INDEX_LIST_FIELD_TITLE"
+msgstr "Título"
+
+msgid "ADMIN_NOTE_INDEX_LIST_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "ADMIN_NOTE_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+# ----------      END ADMIN INDEX SECTION      ----------
+#
+# ----------      ADMIN VIEW SECTION      ----------
+#
+msgid "ADMIN_NOTE_VIEW_HEAD_TITLE"
+msgstr "Notas"
+
+msgid "ADMIN_NOTE_VIEW_HEAD_TITLE_SMALL"
+msgstr "Ver Notas"
+
+msgid "ADMIN_NOTE_VIEW_BLOCK_TITLE"
+msgstr "Información de Nota"
+
+msgid "ADMIN_NOTE_VIEW_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_NOTE_VIEW_FORM_FIELD_TITLE"
+msgstr "Título"
+
+msgid "ADMIN_NOTE_VIEW_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "ADMIN_NOTE_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "ADMIN_NOTE_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN VIEW SECTION      ----------
+#
+# ----------      EDIT SECTION      ----------
+#
+msgid "NOTE_EDIT_HEAD_TITLE"
+msgstr "Notas"
+
+msgid "NOTE_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar Nota"
+
+msgid "NOTE_EDIT_BLOCK_TITLE"
+msgstr "Definición de la Nota"
+
+msgid "NOTE_EDIT_FORM_FIELD_TITLE"
+msgstr "Título"
+
+msgid "NOTE_EDIT_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "NOTE_EDIT_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "NOTE_EDIT_FORM_BTN_SAVE"
+msgstr "Editar"
+
+msgid "NOTE_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END EDIT SECTION      ----------
+#
+# ----------      INDEX SECTION      ----------
+#
+msgid "NOTE_INDEX_HEAD_TITLE"
+msgstr "Notas"
+
+msgid "NOTE_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de Notas"
+
+msgid "NOTE_INDEX_BLOCK_TITLE"
+msgstr "Lista de Notas"
+
+msgid "NOTE_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "NOTE_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "NOTE_INDEX_LIST_FIELD_TITLE"
+msgstr "Título"
+
+msgid "NOTE_INDEX_LIST_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "NOTE_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+# ----------      END INDEX SECTION      ----------
+#
+# ----------      VIEW SECTION      ----------
+#
+msgid "NOTE_VIEW_HEAD_TITLE"
+msgstr "Notas"
+
+msgid "NOTE_VIEW_HEAD_TITLE_SMALL"
+msgstr "Ver Notas"
+
+msgid "NOTE_VIEW_BLOCK_TITLE"
+msgstr "Información de Nota"
+
+msgid "NOTE_VIEW_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "NOTE_VIEW_FORM_FIELD_TITLE"
+msgstr "Título"
+
+msgid "NOTE_VIEW_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "NOTE_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "NOTE_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END VIEW SECTION      ----------
+#
+# ----------      END NOTE SECTION      ---------- ##########################
+# ###############################################################################
 # ----------      REPORT SECTION      ---------- ###################################
 #
 msgid "REPORT_TITLE"
