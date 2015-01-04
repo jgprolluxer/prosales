@@ -32,6 +32,13 @@ class Store extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Pricelist' => array(
+			'className' => 'Pricelist',
+			'foreignKey' => 'pricelist_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

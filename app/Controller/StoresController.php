@@ -68,8 +68,11 @@ class StoresController extends AppController {
 				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		}
-        $owners[0] = __('Ninguno');
+        $owners[0] = __('NONE');
         $owners += $this->Store->Owner->find('list');
+
+        $pricelists[0] = __('NONE');
+        $pricelists += $this->Store->Pricelist->find('list');
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
@@ -82,7 +85,7 @@ class StoresController extends AppController {
             ),
             'order' => array('ordershow')
         ));
-        $this->set(compact('owners', 'lovStoreStatus'));
+        $this->set(compact('owners', 'pricelists' , 'lovStoreStatus'));
 	}
 
 /**
@@ -120,6 +123,9 @@ class StoresController extends AppController {
         		$ownerAll["Owner"]["employeenumber"] . ' ' . __('NOT_USER_ASSIGNED');
         }
 
+        $pricelists[0] = __('NONE');
+        $pricelists += $this->Store->Pricelist->find('list');
+
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
 
@@ -131,7 +137,7 @@ class StoresController extends AppController {
             ),
             'order' => array('ordershow')
         ));
-        $this->set(compact('owners', 'lovStoreStatus'));
+        $this->set(compact('owners', 'pricelists', 'lovStoreStatus'));
 	}
 
 /**
@@ -211,6 +217,9 @@ class StoresController extends AppController {
         $owners[0] = __('Ninguno');
 		$owners += $this->Store->Owner->find('list');
 
+        $pricelists[0] = __('NONE');
+        $pricelists += $this->Store->Pricelist->find('list');
+
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
 
@@ -222,7 +231,7 @@ class StoresController extends AppController {
             ),
             'order' => array('ordershow')
         ));
-		$this->set(compact('owners', 'lovStoreStatus'));
+		$this->set(compact('owners', 'pricelists', 'lovStoreStatus'));
 	}
 
 /**
@@ -260,6 +269,9 @@ class StoresController extends AppController {
         		$ownerAll["Owner"]["employeenumber"] . ' ' . __('NOT_USER_ASSIGNED');
         }
 
+        $pricelists[0] = __('NONE');
+        $pricelists += $this->Store->Pricelist->find('list');
+
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
 
@@ -271,7 +283,7 @@ class StoresController extends AppController {
             ),
             'order' => array('ordershow')
         ));
-		$this->set(compact('owners', 'lovStoreStatus'));
+		$this->set(compact('owners', 'pricelists', 'lovStoreStatus'));
 	}
 
 /**

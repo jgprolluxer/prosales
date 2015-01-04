@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2015-01-04 00:34-0600\n"
+"PO-Revision-Date: 2015-01-04 16:52-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -1902,6 +1902,9 @@ msgstr "Definición de la sucursal"
 msgid "STORE_ADD_FORM_FIELD_OWNER"
 msgstr "Responsable"
 
+msgid "STORE_ADD_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
 msgid "STORE_ADD_FORM_FIELD_NAME"
 msgstr "Nombre"
 
@@ -1938,6 +1941,9 @@ msgstr "Definición de la sucursal"
 
 msgid "ADMIN_STORE_ADD_FORM_FIELD_OWNER"
 msgstr "Responsable"
+
+msgid "ADMIN_STORE_ADD_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
 
 msgid "ADMIN_STORE_ADD_FORM_FIELD_NAME"
 msgstr "Nombre"
@@ -1976,6 +1982,9 @@ msgstr "Definición de la sucursal"
 msgid "STORE_EDIT_FORM_FIELD_OWNER"
 msgstr "Responsable"
 
+msgid "STORE_EDIT_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
 msgid "STORE_EDIT_FORM_FIELD_NAME"
 msgstr "Nombre"
 
@@ -2012,6 +2021,9 @@ msgstr "Definición de la sucursal"
 
 msgid "ADMIN_STORE_EDIT_FORM_FIELD_OWNER"
 msgstr "Responsable"
+
+msgid "ADMIN_STORE_EDIT_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
 
 msgid "ADMIN_STORE_EDIT_FORM_FIELD_NAME"
 msgstr "Nombre"
@@ -2053,6 +2065,9 @@ msgstr "Agregar"
 msgid "STORE_INDEX_LIST_FIELD_OWNER"
 msgstr "Responsable"
 
+msgid "STORE_INDEX_LIST_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
 msgid "STORE_INDEX_LIST_FIELD_NAME"
 msgstr "Nombre"
 
@@ -2093,6 +2108,9 @@ msgstr "Agregar"
 msgid "ADMIN_STORE_INDEX_LIST_FIELD_OWNER"
 msgstr "Responsable"
 
+msgid "ADMIN_STORE_INDEX_LIST_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
 msgid "ADMIN_STORE_INDEX_LIST_FIELD_NAME"
 msgstr "Nombre"
 
@@ -2130,6 +2148,9 @@ msgstr "Definición de la sucursal"
 msgid "STORE_VIEW_FORM_FIELD_OWNER"
 msgstr "Responsable"
 
+msgid "STORE_VIEW_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
+
 msgid "STORE_VIEW_FORM_FIELD_NAME"
 msgstr "Nombre"
 
@@ -2163,6 +2184,9 @@ msgstr "Definición de la sucursal"
 
 msgid "ADMIN_STORE_VIEW_FORM_FIELD_OWNER"
 msgstr "Responsable"
+
+msgid "ADMIN_STORE_VIEW_FORM_FIELD_PRICELIST"
+msgstr "Lista de precios"
 
 msgid "ADMIN_STORE_VIEW_FORM_FIELD_NAME"
 msgstr "Nombre"

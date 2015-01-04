@@ -71,6 +71,14 @@
         </div>
         <div class="col-md-6">
             <?php
+            echo $this->Form->input('pricelist_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_STORE_EDIT_FORM_FIELD_PRICELIST')),
+                'class' => 'form-control',
+                'type' => 'select',
+                'options' => $pricelists
+            ));
+            ?>
+            <?php
             echo $this->Form->input('billing_rfc', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_STORE_EDIT_FORM_FIELD_TAXNUMBER')),
                 'class' => 'form-control',

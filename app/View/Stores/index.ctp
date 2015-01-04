@@ -37,6 +37,7 @@
                         <th><?php echo __('ID'); ?></th>
                         <th><?php echo __('STORE_INDEX_LIST_FIELD_OWNER'); ?></th>
                         <th><?php echo __('STORE_INDEX_LIST_FIELD_NAME'); ?></th>
+                        <th><?php echo __('STORE_INDEX_LIST_FIELD_PRICELIST'); ?></th>
                         <th><?php echo __('STORE_INDEX_LIST_FIELD_TAXNUMBER'); ?></th>
                         <th><?php echo __('STORE_INDEX_LIST_FIELD_BILLNAME'); ?></th>
                         <th><?php echo __('STORE_INDEX_LIST_FIELD_ALIAS'); ?></th>
@@ -53,6 +54,7 @@
                                 <td><?php echo $store["Store"]["id"]; ?></td>
                                 <td><?php echo isset($store["Owner"]["User"][0]["id"]) ? $store["Owner"]["title"] . ' ' . $store["Owner"]["employeenumber"] . ' - ' . $store["Owner"]["User"][0]["firstname"] . ' ' . $store["Owner"]["User"][0]["lastname"] : $store["Owner"]["title"] . ' - ' . $store["Owner"]["employeenumber"] ; ?></td>
                                 <td><?php echo $store["Store"]["name"]; ?></td>
+                                <td><?php echo $store["Pricelist"]["name"]; ?></td>
                                 <td><?php echo $store["Store"]["billing_rfc"]; ?></td>
                                 <td><?php echo $store["Store"]["billing_name"]; ?></td>
                                 <td><?php echo $store["Store"]["alias"]; ?></td>
@@ -82,3 +84,14 @@
     <!-- END Interactive Content -->
 </div>
 <!-- END Interactive Block -->
+<!-- Load and execute javascript code used only in this page -->
+<!-- BEGIN VIEW SPECIFIC CSS -->
+<?php
+echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
+?>
+<!-- Load and execute javascript code used only in this page -->
+<script type="text/javascript">
+    $(function() {
+        TablesDatatables.init();
+    });
+</script>
