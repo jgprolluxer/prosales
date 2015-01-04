@@ -25,6 +25,7 @@
         <!-- User Assist Content -->
         <?php
         echo $this->Form->create('Store', array(
+            'onsubmit' => '$("#modal-loading").modal("show");return true;',
             'class' => 'form-horizontal',
             'type' => 'file',
             'inputDefaults' => array(
@@ -50,8 +51,7 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_STORE_EDIT_FORM_FIELD_OWNER')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $owners,
-                'value' => 0
+                'options' => $owners
             ));
             ?>
             <?php
@@ -89,8 +89,7 @@
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_STORE_EDIT_FORM_FIELD_STATUS')),
                 'class' => 'form-control',
                 'type' => 'select',
-                'options' => $lovStoreStatus,
-                'value' => 0
+                'options' => $lovStoreStatus
             ));
             ?>
         </div>

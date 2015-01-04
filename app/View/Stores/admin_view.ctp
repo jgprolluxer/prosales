@@ -88,6 +88,17 @@
             ));
             ?>
         </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+                <?php
+                echo $this->AclView->link(  __('ADMIN_STORE_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'),
+                    array('plugin' => $this->params['plugin'], 'prefix' => null, 
+                        'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 
+                        'action' => 'edit', $this->request->data['Store']['id']),
+                    array('escape' => false, 'class' => array('btn btn-warning')));
+                    ?>
+            </div>
+        </div>
         </form>
         <!-- END User Assist Content -->
     </div>

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2015-01-03 22:25-0600\n"
+"PO-Revision-Date: 2015-01-04 00:34-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -15,6 +15,38 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "Language: es_MX\n"
 
+#
+# ----------      COMMON SECTION      ---------- ###################################
+msgid "active"
+msgstr "Activo"
+
+msgid "NONE"
+msgstr "Ninguno"
+
+msgid "CREATED"
+msgstr "Creado"
+
+msgid "CREATED_BY"
+msgstr "Creado por"
+
+msgid "UPDATED"
+msgstr "Actualizado"
+
+msgid "UPDATED_BY"
+msgstr "Actualizado por"
+
+msgid "PROGRAM"
+msgstr "Programa"
+
+msgid "NOT_USER_ASSIGNED"
+msgstr "Sin usuario asignado"
+
+msgid "RECORD_NOT_SAVED"
+msgstr "El registro no pudo ser guardado"
+
+#
+# ----------      END COMMON SECTION      ---------- ###############################
+# ###################################################################################
 # ----------      MENUES SECTION      ---------- ###################################
 #
 msgid "MENU_SIDEBAR_NAV_LINK_DASHBOARD"
@@ -42,7 +74,7 @@ msgid "MENU_SIDEBAR_NAV_LINK_APPMENUS"
 msgstr "<i class='fa fa-bars fa-fw sidebar-nav-icon'></i>Menus de la aplicación"
 
 # ----------      END MENUES SECTION      ---------- ###################################
-#
+# ####################################################################################
 # ----------      ACCOUNT SECTION      ---------- ###################################
 #
 # ----------      ADD SECTION      ----------
@@ -1585,7 +1617,7 @@ msgstr "Revisión"
 # ----------      END ADMIN VIEW SECTION      ----------
 #
 # ----------      END LOV SECTION      ---------- ###################################
-#
+# #################################################################################
 # ----------      NOTE SECTION      ---------- ###################################
 #
 # ----------      ADD SECTION      ----------
@@ -2417,7 +2449,7 @@ msgstr "Revisión"
 # ----------      END ADMIN EDIT SECTION      ----------
 #
 # ----------      END TEAM SECTION      ---------- ###################################
-#
+# #####################################################################################
 # ----------      WORKSTATION SECTION      ---------- ###################################
 #
 # ----------      MODEL VALIDATION SECTION      ----------
@@ -2807,29 +2839,3 @@ msgstr "Guardar"
 
 msgid "ADMIN_WORKSTATION_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Revisión"
-
-# ----------      END ADMIN VIEW SECTION      ----------
-#
-# ----------      END WORKSTATION SECTION      ---------- ###################################
-#
-# ----------      COMMON SECTION      ---------- ###################################
-msgid "active"
-msgstr "Activo"
-
-msgid "NONE"
-msgstr "Ninguno"
-
-msgid "CREATED"
-msgstr "Creado"
-
-msgid "CREATED_BY"
-msgstr "Creado por"
-
-msgid "UPDATED"
-msgstr "Actualizado"
-
-msgid "UPDATED_BY"
-msgstr "Actualizado por"
-
-msgid "PROGRAM"
-msgstr "Programa"

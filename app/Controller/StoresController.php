@@ -21,46 +21,20 @@ class StoresController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->Store->recursive = 0;
-		$this->set('stores', $this->Paginator->paginate());
-	}
-
-    /**
-     *
-     */
-    public function jsIndex()
+	public function index()
     {
-        $this->autoRender = false;
-        $this->layout = 'ajax';
-
-        $response = array();
-        try{
-            $stores = $this->Store->find(
-                'all',
-                array(
-                    'conditions' => array(
-                        'Store.id >=' => 1,
-                        'Store.status' => array(StatusOfStores::Active)
-                    )
+        $this->Store->recursive = 2;
+        $stores = $this->Store->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'Store.id >=' => 1,
+                    'Store.status' => array(StatusOfStore::Active)
                 )
-            );
-            $response = array(
-                'success' => true,
-                'message' => 'Correcto',
-                'xData' => $stores
-            );
-        }catch (Exeption $ex)
-        {
-            $response = array(
-                'success' => false,
-                'message' => $ex->getMessage(),
-                'xData' => array()
-            );
-        }
-
-        echo json_encode($response);
-    }
+            )
+        );
+        $this->set(compact('stores'));
+	}
 
 /**
  * view method
@@ -90,31 +64,12 @@ class StoresController extends AppController {
 				$this->Session->setFlash(__('The store has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-                $message = '';
-                if (isset($this->Store->validationErrors))
-                {
-                    foreach ($this->Store->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		}
-        $owners = $this->Store->Owner->find('list');
         $owners[0] = __('Ninguno');
+        $owners += $this->Store->Owner->find('list');
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
@@ -146,34 +101,24 @@ class StoresController extends AppController {
 				$this->Session->setFlash(__('The store has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-                $message = '';
-                if (isset($this->Store->validationErrors))
-                {
-                    foreach ($this->Store->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		} else {
 			$options = array('conditions' => array('Store.' . $this->Store->primaryKey => $id));
 			$this->request->data = $this->Store->find('first', $options);
 		}
-        $owners = $this->Store->Owner->find('list');
+        ////// Find all owners of store
+        $ownersAll = $this->Store->Owner->find('all');
         $owners[0] = __('Ninguno');
+        ////// iterate owners to add title and user name of workstation
+        foreach ($ownersAll as $key => $ownerAll)
+        {
+        	$owners[$key] = isset($ownerAll["User"][0]["id"]) ? $ownerAll["Owner"]["title"] . ' ' . 
+        		$ownerAll["Owner"]["employeenumber"] . ' - ' . $ownerAll["User"][0]["firstname"] . ' ' . 
+        		$ownerAll["User"][0]["lastname"] : $ownerAll["Owner"]["title"] . ' - ' . 
+        		$ownerAll["Owner"]["employeenumber"] . ' ' . __('NOT_USER_ASSIGNED');
+        }
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
@@ -215,46 +160,20 @@ class StoresController extends AppController {
  *
  * @return void
  */
-	public function admin_index() {
-		$this->Store->recursive = 0;
-		$this->set('stores', $this->Paginator->paginate());
-	}
-
-    /**
-     *
-     */
-    public function adminjsIndex()
+	public function admin_index()
     {
-        $this->autoRender = false;
-        $this->layout = 'ajax';
-
-        $response = array();
-        try{
-            $stores = $this->Store->find(
-                'all',
-                array(
-                    'conditions' => array(
-                        'Store.id >=' => 1,
-                        'Store.status' => array(StatusOfStores::Active)
-                    )
+        $this->Store->recursive = 2;
+        $stores = $this->Store->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'Store.id >=' => 1,
+                    'Store.status' => array(StatusOfStore::Active)
                 )
-            );
-            $response = array(
-                'success' => true,
-                'message' => 'Correcto',
-                'xData' => $stores
-            );
-        }catch (Exeption $ex)
-        {
-            $response = array(
-                'success' => false,
-                'message' => $ex->getMessage(),
-                'xData' => array()
-            );
-        }
-
-        echo json_encode($response);
-    }
+            )
+        );
+        $this->set(compact('stores'));
+	}
 
 /**
  * admin_view method
@@ -284,31 +203,13 @@ class StoresController extends AppController {
 				$this->Session->setFlash(__('The store has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-                $message = '';
-                if (isset($this->Store->validationErrors))
-                {
-                    foreach ($this->Store->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		}
-		$owners = $this->Store->Owner->find('list');
+
         $owners[0] = __('Ninguno');
+		$owners += $this->Store->Owner->find('list');
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;
@@ -340,34 +241,24 @@ class StoresController extends AppController {
 				$this->Session->setFlash(__('The store has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-                $message = '';
-                if (isset($this->Store->validationErrors))
-                {
-                    foreach ($this->Store->validationErrors as $idx => $value)
-                    {
-                        $message .='<br />';
-                        if (is_array($value))
-                        {
-                            foreach ($value as $ldx => $prop)
-                            {
-                                $message .='<br />';
-                                $message .= $ldx.' -> '.$prop;
-                            }
-                        } else
-                        {
-                            $message .= $idx.' -> '.$prop;
-                        }
-                    }
-                }
-                $this->Session->write('Operation', 'danger');
-				$this->Session->setFlash(__('The store could not be saved. '.$message.'<br/> Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		} else {
 			$options = array('conditions' => array('Store.' . $this->Store->primaryKey => $id));
 			$this->request->data = $this->Store->find('first', $options);
 		}
-		$owners = $this->Store->Owner->find('list');
+        ////// Find all owners of store
+        $ownersAll = $this->Store->Owner->find('all');
         $owners[0] = __('Ninguno');
+        ////// iterate owners to add title and user name of workstation
+        foreach ($ownersAll as $key => $ownerAll)
+        {
+        	$owners[$key] = isset($ownerAll["User"][0]["id"]) ? $ownerAll["Owner"]["title"] . ' ' . 
+        		$ownerAll["Owner"]["employeenumber"] . ' - ' . $ownerAll["User"][0]["firstname"] . ' ' . 
+        		$ownerAll["User"][0]["lastname"] : $ownerAll["Owner"]["title"] . ' - ' . 
+        		$ownerAll["Owner"]["employeenumber"] . ' ' . __('NOT_USER_ASSIGNED');
+        }
 
         $this->loadModel('Lov');
         $this->Lov->recursive = -1;

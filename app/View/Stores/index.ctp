@@ -30,9 +30,8 @@
             array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'add'),
             array('escape' => false, 'class' => array('btn btn-info')));
         ?>
-        <section data-ng-controller="StoresIndexController">
             <div class="table-responsive">
-                <table class="table" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" >
+                <table class="table" id="example-datatable" >
                     <thead>
                     <tr>
                         <th><?php echo __('ID'); ?></th>
@@ -46,22 +45,38 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="store in stores">
-                        <td>{{store.Store.id}}</td>
-                        <td>{{store.Owner.id}}</td>
-                        <td>{{store.Store.name}}</td>
-                        <td>{{store.Store.billing_rfc}}</td>
-                        <td>{{store.Store.billing_name}}</td>
-                        <td>{{store.Store.alias}}</td>
-                        <td><label translate="{{store.Store.status}}"></label></td>
-                        <td>
-                            <a href="<?php echo Router::url(($this->params['admin']?'/admin/':'/').$this->params['controller'].'/view/'); ?>{{store.Store.id}}" class="btn btn-info btn-xs"><i class="fa fa-eye fa-fw"></i></a></td>
-                    </tr>
+                        <?php
+                        foreach ($stores as $key => $store)
+                        {
+                            ?>
+                            <tr>
+                                <td><?php echo $store["Store"]["id"]; ?></td>
+                                <td><?php echo isset($store["Owner"]["User"][0]["id"]) ? $store["Owner"]["title"] . ' ' . $store["Owner"]["employeenumber"] . ' - ' . $store["Owner"]["User"][0]["firstname"] . ' ' . $store["Owner"]["User"][0]["lastname"] : $store["Owner"]["title"] . ' - ' . $store["Owner"]["employeenumber"] ; ?></td>
+                                <td><?php echo $store["Store"]["name"]; ?></td>
+                                <td><?php echo $store["Store"]["billing_rfc"]; ?></td>
+                                <td><?php echo $store["Store"]["billing_name"]; ?></td>
+                                <td><?php echo $store["Store"]["alias"]; ?></td>
+                                <td><?php echo __($store["Store"]["status"]); ?></td>
+                                <td>
+                                <?php
+                                echo $this->AclView->link(  __('<i class="fa fa-eye fa-fw"></i>'),
+                                    array(
+                                        'plugin' => $this->params['plugin'], 
+                                        'prefix' => null, 
+                                        'admin' => $this->params['admin'], 
+                                        'controller' => $this->params['controller'], 
+                                        'action' => 'view', $store['Store']['id']
+                                    ),
+                                    array('escape' => false, 'class' => array('btn btn-xs btn-info')));
+                                ?>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
-        </section>
-
     </div>
     <p class="text-muted"><?php echo __('STORE_INDEX_BLOCK_CONTENT_FOOTER');?></p>
     <!-- END Interactive Content -->

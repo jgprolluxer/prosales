@@ -324,7 +324,7 @@ abstract class StatusOfStory
 /**
  * Manage Stores Status
  */
-abstract class StatusOfStores
+abstract class StatusOfStore
 {
 
     const Active = "active";
