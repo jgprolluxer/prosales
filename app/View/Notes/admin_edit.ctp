@@ -24,6 +24,7 @@
     <div class="block-content">
         <?php
         echo $this->Form->create('Note', array(
+            'onsubmit' => '$("#modal-loading").modal("show");return true;',
             'class' => 'form-horizontal',
             'type' => 'file',
             'inputDefaults' => array(
@@ -48,7 +49,7 @@
             echo $this->Form->input('description', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_NOTE_EDIT_FORM_FIELD_DESCRIPTION')),
                 'class' => 'form-control',
-                'type' => 'text'
+                'type' => 'textarea'
             ));
             ?>    
             <?php

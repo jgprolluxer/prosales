@@ -59,7 +59,7 @@
             echo $this->Form->input('description', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('NOTE_VIEW_FORM_FIELD_DESCRIPTION')),
                 'class' => 'form-control',
-                'type' => 'text',
+                'type' => 'textarea',
                 'readonly' => 'readonly'
             ));
             ?>
