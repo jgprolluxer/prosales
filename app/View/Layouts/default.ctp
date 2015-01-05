@@ -146,7 +146,7 @@
                 'header-fixed-top'                              has to be added only if the class 'navbar-fixed-top' was added on header.navbar
                 'header-fixed-bottom'                           has to be added only if the class 'navbar-fixed-bottom' was added on header.navbar
             -->
-            <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+            <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations header-fixed-top footer-fixed">
                 <?php echo $this->element('sidebar-alt'); ?>
                 <?php echo $this->element('sidebar'); ?>
                 <!-- Main Container -->

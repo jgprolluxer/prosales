@@ -7,14 +7,12 @@
 		echo $this->Form->input('created_by');
 		echo $this->Form->input('updated_by');
 		echo $this->Form->input('status');
-		echo $this->Form->input('part_number');
-		echo $this->Form->input('integration_num');
+		echo $this->Form->input('partnumber');
+		echo $this->Form->input('mergenumber');
 		echo $this->Form->input('name');
 		echo $this->Form->input('family_id');
 		echo $this->Form->input('uom');
-		echo $this->Form->input('unit_price');
 		echo $this->Form->input('type');
-		echo $this->Form->input('short_desc');
 		echo $this->Form->input('description');
 	?>
 	</fieldset>

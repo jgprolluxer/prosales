@@ -1,34 +1,36 @@
 <input type="hidden" name="orderID" id="orderID" value="<?php echo $orderID ?>" />
-<div class="row" ng-controller="posController">
-<!--    <a ng-href="/admin/Users">Users</a>-->
+<section class="row" ng-controller="posController">
+    <!--    <a ng-href="/admin/Users">Users</a>-->
     <!-- eCommerce Orders Header -->
     <div class="content-header">
-        <ul class="nav-horizontal text-center">
-            <li>
-                <a href="page_ecom_dashboard.php"><i class="fa fa-bar-chart"></i> Dashboard</a>
-            </li>
-            <li>
-                <a href="page_ecom_orders.php"><i class="gi gi-shop_window"></i> Orders</a>
-            </li>
-            <li class="active">
-                <a href="page_ecom_order_view.php"><i class="gi gi-shopping_cart"></i> Order View</a>
-            </li>
-            <li>
-                <a href="page_ecom_products.php"><i class="gi gi-shopping_bag"></i> Products</a>
-            </li>
-            <li>
-                <a href="page_ecom_product_edit.php"><i class="gi gi-pencil"></i> Product Edit</a>
-            </li>
-            <li>
-                <a href="page_ecom_customer_view.php"><i class="gi gi-user"></i> Customer View</a>
-            </li>
-            <li>
-                <a href="page_ecom_products.php"><i class="gi gi-shopping_bag"></i> Products</a>
-            </li>
-            <li>
-                <a href="page_ecom_product_edit.php"><i class="gi gi-pencil"></i> Product Edit</a>
-            </li>
-        </ul>
+        <div class="header-section">
+            <ul class="nav-horizontal text-center">
+                <li>
+                    <a href="page_ecom_dashboard.php"><i class="fa fa-bar-chart"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="page_ecom_orders.php"><i class="gi gi-shop_window"></i> Orders</a>
+                </li>
+                <li class="active">
+                    <a href="page_ecom_order_view.php"><i class="gi gi-shopping_cart"></i> Order View</a>
+                </li>
+                <li>
+                    <a href="page_ecom_products.php"><i class="gi gi-shopping_bag"></i> Products</a>
+                </li>
+                <li>
+                    <a href="page_ecom_product_edit.php"><i class="gi gi-pencil"></i> Product Edit</a>
+                </li>
+                <li>
+                    <a href="page_ecom_customer_view.php"><i class="gi gi-user"></i> Customer View</a>
+                </li>
+                <li>
+                    <a href="page_ecom_products.php"><i class="gi gi-shopping_bag"></i> Products</a>
+                </li>
+                <li>
+                    <a href="page_ecom_product_edit.php"><i class="gi gi-pencil"></i> Product Edit</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <!-- END eCommerce Orders Header -->
     <div class="col-md-8">
@@ -152,13 +154,14 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 <script type="text/javascript">
-    $(document).ready(function ()
-    {
+$(document).ready(function ()
+{
         //$('#page-container').removeClass('sidebar-visible-xs');
         //$('#page-container').removeClass('sidebar-visible-lg');
 
         $('#page-container').attr('class', 'sidebar-no-animations');
+        $('header').hide();
     });
 </script>

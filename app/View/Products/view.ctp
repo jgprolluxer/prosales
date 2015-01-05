@@ -31,14 +31,14 @@
 			<?php echo h($product['Product']['status']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Part Number'); ?></dt>
+		<dt><?php echo __('Partnumber'); ?></dt>
 		<dd>
-			<?php echo h($product['Product']['part_number']); ?>
+			<?php echo h($product['Product']['partnumber']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Integration Num'); ?></dt>
+		<dt><?php echo __('Mergenumber'); ?></dt>
 		<dd>
-			<?php echo h($product['Product']['integration_num']); ?>
+			<?php echo h($product['Product']['mergenumber']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
@@ -56,19 +56,9 @@
 			<?php echo h($product['Product']['uom']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Unit Price'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['unit_price']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Type'); ?></dt>
 		<dd>
 			<?php echo h($product['Product']['type']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Short Desc'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['short_desc']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Description'); ?></dt>

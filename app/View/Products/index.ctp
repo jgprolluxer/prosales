@@ -9,14 +9,12 @@
 			<th><?php echo $this->Paginator->sort('created_by'); ?></th>
 			<th><?php echo $this->Paginator->sort('updated_by'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
-			<th><?php echo $this->Paginator->sort('part_number'); ?></th>
-			<th><?php echo $this->Paginator->sort('integration_num'); ?></th>
+			<th><?php echo $this->Paginator->sort('partnumber'); ?></th>
+			<th><?php echo $this->Paginator->sort('mergenumber'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('family_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('uom'); ?></th>
-			<th><?php echo $this->Paginator->sort('unit_price'); ?></th>
 			<th><?php echo $this->Paginator->sort('type'); ?></th>
-			<th><?php echo $this->Paginator->sort('short_desc'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -30,16 +28,14 @@
 		<td><?php echo h($product['Product']['created_by']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['updated_by']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['status']); ?>&nbsp;</td>
-		<td><?php echo h($product['Product']['part_number']); ?>&nbsp;</td>
-		<td><?php echo h($product['Product']['integration_num']); ?>&nbsp;</td>
+		<td><?php echo h($product['Product']['partnumber']); ?>&nbsp;</td>
+		<td><?php echo h($product['Product']['mergenumber']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['name']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($product['Family']['title'], array('controller' => 'families', 'action' => 'view', $product['Family']['id'])); ?>
 		</td>
 		<td><?php echo h($product['Product']['uom']); ?>&nbsp;</td>
-		<td><?php echo h($product['Product']['unit_price']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['type']); ?>&nbsp;</td>
-		<td><?php echo h($product['Product']['short_desc']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['description']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $product['Product']['id'])); ?>

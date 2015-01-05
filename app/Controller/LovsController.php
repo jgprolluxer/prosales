@@ -160,42 +160,6 @@ class LovsController extends AppController {
         $this->set(compact('lovs'));
     }
 
-    /**
-     *
-     */
-    public function adminjsIndex()
-    {
-        $this->autoRender = false;
-        $this->layout = 'ajax';
-
-        $response = array();
-        try{
-            $lovs = $this->Lov->find(
-                'all',
-                array(
-                    'conditions' => array(
-                        'Lov.id >=' => 1,
-                        'Lov.status' => array(StatusOfLov::Active)
-                    )
-                )
-            );
-            $response = array(
-                'success' => true,
-                'message' => 'Correcto',
-                'xData' => $lovs
-            );
-        }catch (Exeption $ex)
-        {
-            $response = array(
-                'success' => false,
-                'message' => $ex->getMessage(),
-                'xData' => array()
-            );
-        }
-
-        echo json_encode($response);
-    }
-
 /**
  * admin_view method
  *
