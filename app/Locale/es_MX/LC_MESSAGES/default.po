@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2015-01-04 16:52-0600\n"
+"PO-Revision-Date: 2015-01-06 15:59-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -1839,6 +1839,90 @@ msgstr "Recuerda revisar todos los campos"
 # ----------      END VIEW SECTION      ----------
 #
 # ----------      END NOTE SECTION      ---------- ##########################
+# ###############################################################################
+# ----------      PRODUCT SECTION      ---------- ###################################
+#
+# ----------      ADD SECTION      ----------
+#
+msgid "PRODUCT_ADD_HEAD_TITLE"
+msgstr "Products"
+
+msgid "PRODUCT_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nuevo producto"
+
+msgid "PRODUCT_ADD_BLOCK_TITLE"
+msgstr "Definición del Producto"
+
+msgid "PRODUCT_ADD_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "PRODUCT_ADD_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "PRODUCT_ADD_FORM_FIELD_FAMILY"
+msgstr "Familia"
+
+msgid "PRODUCT_ADD_FORM_FIELD_UOM"
+msgstr "Unidad de medida"
+
+msgid "PRODUCT_ADD_FORM_FIELD_PARTNUMBER"
+msgstr "Código de barras"
+
+msgid "PRODUCT_ADD_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "PRODUCT_ADD_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "PRODUCT_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "PRODUCT_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADD SECTION      ----------
+#
+# ----------      ADMIN ADD SECTION      ----------
+#
+msgid "ADMIN_PRODUCT_ADD_HEAD_TITLE"
+msgstr "Products"
+
+msgid "ADMIN_PRODUCT_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nuevo producto"
+
+msgid "ADMIN_PRODUCT_ADD_BLOCK_TITLE"
+msgstr "Definición del Producto"
+
+msgid "ADMIN_PRODUCT_ADD_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_PRODUCT_ADD_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_PRODUCT_ADD_FORM_FIELD_FAMILY"
+msgstr "Familia"
+
+msgid "ADMIN_PRODUCT_ADD_FORM_FIELD_UOM"
+msgstr "Unidad de medida"
+
+msgid "ADMIN_PRODUCT_ADD_FORM_FIELD_PARTNUMBER"
+msgstr "Código de barras"
+
+msgid "ADMIN_PRODUCT_ADD_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "ADMIN_PRODUCT_ADD_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_PRODUCT_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_PRODUCT_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN ADD SECTION      ----------
+#
+# ----------      END PRODUCT SECTION      ---------- ###################################
 # ###############################################################################
 # ----------      REPORT SECTION      ---------- ###################################
 #

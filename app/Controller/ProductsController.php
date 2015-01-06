@@ -53,10 +53,29 @@ class ProductsController extends AppController {
 				$this->Session->setFlash(__('The product has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		}
-		$families = $this->Product->Family->find('list');
+        $families[0] = __('NONE');
+		$families = $this->Product->Family->find('list', array(
+            'conditions' => array(
+                'Family.id >=' => 1,
+                'Family.status' array(StatusOfFamily::Active)
+            )
+        ));
+
+        $this->loadModel('Lov');
+        $this->Lov->recursive = -1;
+        $lovProductStatus = $this->Lov->find('list', array(
+            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+            'conditions' => array(
+                'Lov.type =' => 'PRODUCT_FIELD_STATUS',
+                'Lov.status' => array(StatusOfLov::Active)
+            ),
+            'order' => array('ordershow')
+        ));
+
 		$this->set(compact('families'));
 	}
 
@@ -76,13 +95,20 @@ class ProductsController extends AppController {
 				$this->Session->setFlash(__('The product has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		} else {
 			$options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
 			$this->request->data = $this->Product->find('first', $options);
 		}
-		$families = $this->Product->Family->find('list');
+        $families[0] = __('NONE');
+		$families += $this->Product->Family->find('list', array(
+            'conditions' => array(
+                'Family.id >=' => 1,
+                'Family.status' array(StatusOfFamily::Active)
+            )
+        ));
 		$this->set(compact('families'));
 	}
 
@@ -144,11 +170,30 @@ class ProductsController extends AppController {
 				$this->Session->setFlash(__('The product has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		}
-		$families = $this->Product->Family->find('list');
-		$this->set(compact('families'));
+        $families[0] = __('NONE');
+		$families += $this->Product->Family->find('list', array(
+            'conditions' => array(
+                'Family.id >=' => 1,
+                'Family.status' array(StatusOfFamily::Active)
+            )
+        ));
+
+        $this->loadModel('Lov');
+        $this->Lov->recursive = -1;
+        $lovProductStatus = $this->Lov->find('list', array(
+            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+            'conditions' => array(
+                'Lov.type =' => 'PRODUCT_FIELD_STATUS',
+                'Lov.status' => array(StatusOfLov::Active)
+            ),
+            'order' => array('ordershow')
+        ));
+
+		$this->set(compact('families', 'lovProductStatus'));
 	}
 
 /**
@@ -167,13 +212,20 @@ class ProductsController extends AppController {
 				$this->Session->setFlash(__('The product has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.'));
+                $this->Session->write('Operation', 'warning');
+				$this->Session->setFlash(__('RECORD_NOT_SAVED'));
 			}
 		} else {
 			$options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
 			$this->request->data = $this->Product->find('first', $options);
 		}
-		$families = $this->Product->Family->find('list');
+        $families[0] = __('NONE');
+		$families += $this->Product->Family->find('list', array(
+            'conditions' => array(
+                'Family.id >=' => 1,
+                'Family.status' array(StatusOfFamily::Active)
+            )
+        ));
 		$this->set(compact('families'));
 	}
 
