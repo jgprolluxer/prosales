@@ -25,6 +25,7 @@
         <!-- User Assist Content -->
         <?php
         echo $this->Form->create('Pricelist', array(
+            'onsubmit' => '$("#modal-loading").modal("show");return true;',
             'class' => 'form-horizontal',
             'type' => 'file',
             'inputDefaults' => array(
@@ -63,13 +64,6 @@
             <?php
             echo $this->Form->input('currency_symbol', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRICELIST_EDIT_FORM_FIELD_CURRENCY_SYMBOL')),
-                'class' => 'form-control',
-                'type' => 'text'
-            ));
-            ?>
-            <?php
-            echo $this->Form->input('tax', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRICELIST_EDIT_FORM_FIELD_TAX')),
                 'class' => 'form-control',
                 'type' => 'text'
             ));

@@ -25,6 +25,7 @@
         <!-- User Assist Content -->
         <?php
         echo $this->Form->create('Pricelist', array(
+            'onsubmit' => '$("#modal-loading").modal("show");return true;',
             'class' => 'form-horizontal',
             'type' => 'file',
             'inputDefaults' => array(
@@ -67,14 +68,6 @@
                 'type' => 'text'
             ));
             ?>
-            <?php
-            echo $this->Form->input('tax', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRICELIST_EDIT_FORM_FIELD_TAX')),
-                'class' => 'form-control',
-                'type' => 'text'
-            ));
-            ?>
-
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">

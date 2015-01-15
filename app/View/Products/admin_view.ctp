@@ -66,6 +66,11 @@
 			<?php echo h($product['Product']['description']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('stockcheck'); ?></dt>
+		<dd>
+			<?php echo h($product['Product']['stockcheck']); ?>
+			&nbsp;
+		</dd>
 	</dl>
 </div>
 <div class="actions">

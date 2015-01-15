@@ -39,7 +39,6 @@
 						<th><?php echo __('ADMIN_PRICELIST_INDEX_LIST_FIELD_CURRENCY'); ?></th>
 						<th><?php echo __('ADMIN_PRICELIST_INDEX_LIST_FIELD_CURRENCY_SYMBOL'); ?></th>
 						<th><?php echo __('ADMIN_PRICELIST_INDEX_LIST_FIELD_STATUS'); ?></th>
-                                                <th><?php echo __('ADMIN_PRICELIST_INDEX_LIST_FIELD_TAX'); ?></th>
 						<th><?php echo __('ADMIN_PRICELIST_INDEX_LIST_ACTIONS'); ?></th>
 					</tr>
 					</thead>
@@ -53,8 +52,7 @@
 							<td><?php echo __($pricelist['Pricelist']['name']); ?></td>
 							<td><?php echo __($pricelist['Pricelist']['currency']); ?></td>
 							<td><?php echo __($pricelist['Pricelist']['currency_symbol']); ?></td>
-                                                        <td><?php echo __($pricelist['Pricelist']['status']); ?></td>
-							<td><?php echo __($pricelist['Pricelist']['tax']); ?></td>
+							<td><?php echo __($pricelist['Pricelist']['status']); ?></td>
 							<td>
 							<?php
 							echo $this->AclView->link(  __('<i class="fa fa-eye fa-fw"></i>'),

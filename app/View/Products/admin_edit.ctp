@@ -14,6 +14,7 @@
 		echo $this->Form->input('uom');
 		echo $this->Form->input('type');
 		echo $this->Form->input('description');
+		echo $this->Form->input('stockcheck');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

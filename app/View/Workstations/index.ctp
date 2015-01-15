@@ -28,42 +28,55 @@
         <?php
         echo $this->AclView->link(__('WORKSTATION_INDEX_BLOCK_CONTENT_BTN_ADD'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'add'), array('escape' => false, 'class' => array('btn btn-info')));
         ?>
-        <section data-ng-controller="WorkstationsIndexController">
             <div class="table-responsive">
-                <table class="table" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" >
+                <table class="table" id="example-datatable">
                     <thead>
                         <tr>
-                            <th><?php echo __('ID'); ?></th>
-                            <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_PARENT'); ?></th>
-                            <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_TITLE'); ?></th>
-                            <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_ROLE'); ?></th>
-                            <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_STATUS'); ?></th>
-                            <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_WORKAREA'); ?></th>
-                            <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_STORE'); ?></th>
-                            <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_PRICELIST'); ?></th>
-                            <th><?php echo __('WORKSTATION_INDEX_LIST_ACTIONS'); ?></th>
+                        <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_PARENT'); ?></th>
+                        <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_TITLE'); ?></th>
+                        <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_EMPLOYEENUMBER'); ?></th>
+                        <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_ROLE'); ?></th>
+                        <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_STATUS'); ?></th>
+                        <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_WORKAREA'); ?></th>
+                        <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_STORE'); ?></th>
+                        <th><?php echo __('WORKSTATION_INDEX_LIST_FIELD_PRICELIST'); ?></th>
+                        <th><?php echo __('WORKSTATION_INDEX_LIST_ACTIONS'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="workstation in workstations">
-                            <td>{{workstation.Workstation.id}}</td>
-                            <td>{{workstation.ParentWorkstation.title}}</td>
-                            <td>{{workstation.Workstation.title}}</td>
-                            <td>{{workstation.Workstation.role}}</td>
-                            <td><label translate="{{workstation.Workstation.status}}"></label></td>
-                            <td>{{workstation.Workstation.workarea}}</td>
-                            <td>{{workstation.Workstation.store}}</td>
-                            <td>{{workstation.Workstation.pricelist}}</td>
-                            <td>
-                                <a href="<?php echo Router::url(($this->params['admin'] ? '/admin/' : '/') . $this->params['controller'] . '/view/'); ?>{{workstation.Workstation.id}}" class="btn btn-info btn-xs">
-                                    <i class="fa fa-eye fa-fw"></i>
-                                </a>
-                            </td>
-                        </tr>
+                        <?php
+                        foreach ($workstations as $key => $workstation)
+                        {
+                            ?>
+                            <tr>
+                                <td><?php echo __($workstation["ParentWorkstation"]["title"]); ?></td>
+                                <td><?php echo __($workstation["Workstation"]["title"]); ?></td>
+                                <td><?php echo __($workstation["Workstation"]["employeenumber"]); ?></td>
+                                <td><?php echo __($workstation["Workstation"]["role"]); ?></td>
+                                <td><?php echo __($workstation["Workstation"]["status"]); ?></td>
+                                <td><?php echo __($workstation["Workstation"]["workarea"]); ?></td>
+                                <td><?php echo __($workstation["Store"]["name"]); ?></td>
+                                <td><?php echo __($workstation["Pricelist"]["name"]); ?></td>
+                                <td>
+                                <?php
+                                echo $this->AclView->link(  __('<i class="fa fa-eye fa-fw"></i>'),
+                                    array(
+                                        'plugin' => $this->params['plugin'], 
+                                        'prefix' => null, 
+                                        'admin' => $this->params['admin'], 
+                                        'controller' => $this->params['controller'], 
+                                        'action' => 'view', $workstation['Workstation']['id']
+                                    ),
+                                    array('escape' => false, 'class' => array('btn btn-xs btn-info')));
+                                ?>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
-        </section>
     </div>
     <p class="text-muted"><?php echo __('WORKSTATION_INDEX_BLOCK_CONTENT_FOOTER'); ?></p>
     <!-- END Interactive Content -->
@@ -74,8 +87,18 @@
     </div>
 </div>
 <!-- END Interactive Block -->
-
+<!-- Load and execute javascript code used only in this page -->
+<!-- BEGIN VIEW SPECIFIC CSS -->
+<?php
+echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
+?>
+<!-- Load and execute javascript code used only in this page -->
 <script type="text/javascript">
+    $(function()
+    {
+        TablesDatatables.init();
+    });
+
 function drawChart()
 {
     var data = new google.visualization.DataTable();
@@ -84,7 +107,7 @@ function drawChart()
     data.addColumn('string', 'ToolTip');
 
     var jsonOBJ = <?php echo json_encode($treeObj); ?>;
-    console.log(jsonOBJ);
+//console.log(jsonOBJ);
 
     data.addRows(jsonOBJ);
     var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));

@@ -85,11 +85,10 @@
             ));
             ?>
             <?php
-            echo $this->Form->input('status', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRODUCT_ADD_FORM_FIELD_STATUS')),
+            echo $this->Form->input('stockcheck', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRODUCT_ADD_FORM_FIELD_STOCKCHECK')),
                 'class' => 'form-control',
-                'type' => 'select',
-                'options' => $lovProductStatus
+                'type' => 'checkbox'
             ));
             ?>
         </div>

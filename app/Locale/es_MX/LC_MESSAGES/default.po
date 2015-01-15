@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2015-01-06 15:59-0600\n"
+"PO-Revision-Date: 2015-01-15 10:42-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,19 @@ msgstr ""
 
 #
 # ----------      COMMON SECTION      ---------- ###################################
+#
+msgid "sales"
+msgstr "Ventas"
+
+msgid "director"
+msgstr "Director"
+
+msgid "manager"
+msgstr "Gerente"
+
+msgid "salesman"
+msgstr "Vendedor"
+
 msgid "active"
 msgstr "Activo"
 

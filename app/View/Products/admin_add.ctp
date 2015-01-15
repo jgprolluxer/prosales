@@ -85,6 +85,14 @@
             ));
             ?>
             <?php
+            echo $this->Form->input('stockcheck', array(
+                'label' => array('class' => 'col-md-4 switch switch-default', 'text' => __('ADMIN_PRODUCT_ADD_FORM_FIELD_STOCKCHECK')),
+                'class' => 'form-control',
+                'type' => 'checkbox'
+            ));
+            ?>
+            <label class="switch switch-default"><input type="checkbox"><span></span></label>
+            <?php
             echo $this->Form->input('status', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRODUCT_ADD_FORM_FIELD_STATUS')),
                 'class' => 'form-control',

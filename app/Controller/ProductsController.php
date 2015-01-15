@@ -58,10 +58,10 @@ class ProductsController extends AppController {
 			}
 		}
         $families[0] = __('NONE');
-		$families = $this->Product->Family->find('list', array(
+		$families += $this->Product->Family->find('list', array(
             'conditions' => array(
                 'Family.id >=' => 1,
-                'Family.status' array(StatusOfFamily::Active)
+                'Family.status' => array(StatusOfFamily::Active)
             )
         ));
 
@@ -106,7 +106,7 @@ class ProductsController extends AppController {
 		$families += $this->Product->Family->find('list', array(
             'conditions' => array(
                 'Family.id >=' => 1,
-                'Family.status' array(StatusOfFamily::Active)
+                'Family.status' => array(StatusOfFamily::Active)
             )
         ));
 		$this->set(compact('families'));
@@ -178,7 +178,7 @@ class ProductsController extends AppController {
 		$families += $this->Product->Family->find('list', array(
             'conditions' => array(
                 'Family.id >=' => 1,
-                'Family.status' array(StatusOfFamily::Active)
+                'Family.status' => array(StatusOfFamily::Active)
             )
         ));
 
@@ -223,7 +223,7 @@ class ProductsController extends AppController {
 		$families += $this->Product->Family->find('list', array(
             'conditions' => array(
                 'Family.id >=' => 1,
-                'Family.status' array(StatusOfFamily::Active)
+                'Family.status' => array(StatusOfFamily::Active)
             )
         ));
 		$this->set(compact('families'));

@@ -16,6 +16,7 @@
 			<th><?php echo $this->Paginator->sort('uom'); ?></th>
 			<th><?php echo $this->Paginator->sort('type'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
+			<th><?php echo $this->Paginator->sort('stockcheck'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -37,6 +38,7 @@
 		<td><?php echo h($product['Product']['uom']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['type']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['description']); ?>&nbsp;</td>
+		<td><?php echo h($product['Product']['stockcheck']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $product['Product']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $product['Product']['id'])); ?>

@@ -14,7 +14,21 @@ class Pricelist extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
-        public $actsAs = array('Pricelist');
+	public $actsAs = array('Pricelist');
+
+/**
+ * Validation rules
+ *
+ * @var array
+ */
+	public $validate = array(
+		'name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'PRICELIST_VALIDATIONMESSAGE_FIELD_NAME_NOTEMPTY'
+			)
+		)
+	);
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

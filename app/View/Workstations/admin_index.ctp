@@ -35,7 +35,6 @@
                 <table class="table" id="example-datatable">
                     <thead>
                     <tr>
-                        <th><?php echo __('ID'); ?></th>
                         <th><?php echo __('ADMIN_WORKSTATION_INDEX_LIST_FIELD_PARENT'); ?></th>
                         <th><?php echo __('ADMIN_WORKSTATION_INDEX_LIST_FIELD_TITLE'); ?></th>
                         <th><?php echo __('ADMIN_WORKSTATION_INDEX_LIST_FIELD_EMPLOYEENUMBER'); ?></th>
@@ -53,7 +52,6 @@
                         {
                             ?>
                             <tr>
-                                <td><?php echo __($workstation["Workstation"]["id"]); ?></td>
                                 <td><?php echo __($workstation["ParentWorkstation"]["title"]); ?></td>
                                 <td><?php echo __($workstation["Workstation"]["title"]); ?></td>
                                 <td><?php echo __($workstation["Workstation"]["employeenumber"]); ?></td>
