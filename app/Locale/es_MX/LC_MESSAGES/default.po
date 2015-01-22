@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2015-01-15 10:42-0600\n"
+"PO-Revision-Date: 2015-01-22 10:11-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -2571,7 +2571,6 @@ msgstr "Revisión"
 #
 # ----------      END TEAM SECTION      ---------- ###################################
 # #####################################################################################
-
 # ----------      USER SECTION      ---------- ###################################
 #
 # ----------      ADD SECTION      ----------
@@ -2613,7 +2612,6 @@ msgstr "Recuerda revisar todos los campos"
 #
 # ----------      EDIT SECTION      ----------
 #
-
 msgid "USER_EDIT_HEAD_TITLE"
 msgstr "Usuarios"
 
@@ -2644,7 +2642,7 @@ msgstr "Estación de Trabajo"
 msgid "USER_EDIT_FORM_BTN_SAVE"
 msgstr "Editar"
 
-msgid "USER_VIEW_FORM_FIELD_ID"
+msgid "USER_EDIT_FORM_FIELD_ID"
 msgstr "ID"
 
 msgid "USER_EDIT_BLOCK_CONTENT_FOOTER"
@@ -2654,7 +2652,6 @@ msgstr "Recuerda revisar todos los campos"
 #
 # ----------      VIEW SECTION      ----------
 #
-
 msgid "USER_VIEW_HEAD_TITLE"
 msgstr "Usuarios"
 
@@ -2692,7 +2689,6 @@ msgstr "Recuerda revisar todos los campos"
 #
 # ----------      INDEX SECTION      ----------
 #
-
 msgid "USER_INDEX_HEAD_TITLE"
 msgstr "Usuarios"
 
@@ -2708,7 +2704,7 @@ msgstr "Agregar"
 msgid "USER_INDEX_LIST_FIELD_FIRSTNAME"
 msgstr "Nombre"
 
-msgid "USER_INDEX_LIST_FIELD_FIRSTNAME"
+msgid "USER_INDEX_LIST_FIELD_LASTNAME"
 msgstr "Apellido"
 
 msgid "USER_INDEX_LIST_FIELD_USERNAME"
@@ -2730,7 +2726,6 @@ msgstr "ID"
 #
 # ----------      ADMIN ADD SECTION      ----------
 #
-
 msgid "ADMIN_USER_ADD_HEAD_TITLE"
 msgstr "Usuarios"
 
@@ -2768,7 +2763,6 @@ msgstr "Recuerda revisar todos los campos"
 #
 # ----------      ADMIN EDIT SECTION      ----------
 #
-
 msgid "ADMIN_USER_EDIT_HEAD_TITLE"
 msgstr "Usuarios"
 
@@ -2799,7 +2793,7 @@ msgstr "Estación de Trabajo"
 msgid "ADMIN_USER_EDIT_FORM_BTN_SAVE"
 msgstr "Editar"
 
-msgid "ADMIN_USER_VIEW_FORM_FIELD_ID"
+msgid "ADMIN_USER_EDIT_FORM_FIELD_ID"
 msgstr "ID"
 
 msgid "ADMIN_USER_EDIT_BLOCK_CONTENT_FOOTER"
@@ -2809,7 +2803,6 @@ msgstr "Recuerda revisar todos los campos"
 #
 # ----------      ADMIN INDEX SECTION      ----------
 #
-
 msgid "ADMIN_USER_INDEX_HEAD_TITLE"
 msgstr "Usuarios"
 
@@ -2825,7 +2818,7 @@ msgstr "Agregar"
 msgid "ADMIN_USER_INDEX_LIST_FIELD_FIRSTNAME"
 msgstr "Nombre"
 
-msgid "ADMIN_USER_INDEX_LIST_FIELD_FIRSTNAME"
+msgid "ADMIN_USER_INDEX_LIST_FIELD_LASTNAME"
 msgstr "Apellido"
 
 msgid "ADMIN_USER_INDEX_LIST_FIELD_USERNAME"
@@ -2845,7 +2838,6 @@ msgstr "ID"
 
 # ----------      ADMIN VIEW SECTION      ----------
 #
-
 msgid "ADMIN_USER_VIEW_HEAD_TITLE"
 msgstr "Usuarios"
 
@@ -2883,7 +2875,6 @@ msgstr "Recuerda revisar todos los campos"
 #
 # ----------      END USER SECTION      ---------- ##########################
 # ###############################################################################
-
 # ----------      WORKSTATION SECTION      ---------- ###################################
 #
 # ----------      MODEL VALIDATION SECTION      ----------
