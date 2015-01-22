@@ -1,90 +1,83 @@
-<div class="users index">
-	<h2><?php echo __('Users'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('username'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
-			<th><?php echo $this->Paginator->sort('group_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('blocked'); ?></th>
-			<th><?php echo $this->Paginator->sort('logged'); ?></th>
-			<th><?php echo $this->Paginator->sort('chatstatus'); ?></th>
-			<th><?php echo $this->Paginator->sort('time_zone'); ?></th>
-			<th><?php echo $this->Paginator->sort('firstname'); ?></th>
-			<th><?php echo $this->Paginator->sort('lastname'); ?></th>
-			<th><?php echo $this->Paginator->sort('email'); ?></th>
-			<th><?php echo $this->Paginator->sort('gender'); ?></th>
-			<th><?php echo $this->Paginator->sort('maritalstatus'); ?></th>
-			<th><?php echo $this->Paginator->sort('shortdescription'); ?></th>
-			<th><?php echo $this->Paginator->sort('fulldescription'); ?></th>
-			<th><?php echo $this->Paginator->sort('coverimg'); ?></th>
-			<th><?php echo $this->Paginator->sort('avatar'); ?></th>
-			<th><?php echo $this->Paginator->sort('status'); ?></th>
-			<th><?php echo $this->Paginator->sort('workstation_id'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($users as $user): ?>
-	<tr>
-		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
-		</td>
-		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['blocked']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['logged']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['chatstatus']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['time_zone']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['firstname']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['lastname']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['gender']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['maritalstatus']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['shortdescription']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['fulldescription']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['coverimg']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['avatar']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['status']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($user['Workstation']['title'], array('controller' => 'workstations', 'action' => 'view', $user['Workstation']['id'])); ?>
-		</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array(), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+<!-- Forms General Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-user"></i><?php echo __('USER_INDEX_HEAD_TITLE'); ?><br><small><?php echo __('USER_INDEX_HEAD_TITLE_SMALL'); ?></small>
+        </h1>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Workstations'), array('controller' => 'workstations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Workstation'), array('controller' => 'workstations', 'action' => 'add')); ?> </li>
-	</ul>
+<ul class="breadcrumb breadcrumb-top">
+	<?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- END Forms General Header -->
+<!-- Interactive Block -->
+<div class="block">
+    <!-- Interactive Title -->
+    <div class="block-title">
+        <!-- Interactive block controls (initialized in js/app.js -> interactiveBlocks()) -->
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('USER_INDEX_BLOCK_TITLE'); ?></h2>
+    </div>
+    <!-- END Interactive Title -->
+    <!-- Interactive Content -->
+    <!-- The content you will put inside div.block-content, will be toggled -->
+    <div class="block-content">
+        <?php
+        echo $this->AclView->link(__('USER_INDEX_BLOCK_CONTENT_BTN_ADD'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'add'), array('escape' => false, 'class' => array('btn btn-info')));
+        ?>
+        <div class="table-responsive">
+            <table class="table" id="example-datatable">
+                <thead>
+                    <tr>
+                        <th><?php echo __('USER_INDEX_LIST_FIELD_ID'); ?></th>
+                        <th><?php echo __('USER_INDEX_LIST_FIELD_USERNAME'); ?></th>
+                        <th><?php echo __('USER_INDEX_LIST_FIELD_FIRSTNAME'); ?></th>
+                        <th><?php echo __('USER_INDEX_LIST_FIELD_LASTNAME'); ?></th>
+                        <th><?php echo __('USER_INDEX_LIST_FIELD_EMAIL'); ?></th>
+                        <th><?php echo __('USER_INDEX_LIST_FIELD_WORKSTATION'); ?></th>
+                        <th><?php echo __('USER_INDEX_LIST_ACTIONS'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($users as $idx => $user) {
+                        ?>
+
+                        <tr>
+                            <td><?php echo __($user['User']['id']); ?></td>
+                            <td><?php echo __($user['User']['username']); ?></td>
+                            <td><?php echo __($user['User']['firstname']); ?></td>
+                            <td><?php echo __($user['User']['lastname']); ?></td>
+                            <td><?php echo __($user['User']['email']); ?></td>
+                            <td><?php echo __($user['User']['workstation_id']); ?></td>
+                            <td>
+                                <?php
+                                echo $this->AclView->link(__('<i class="fa fa-eye fa-fw"></i>'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'view', $user['User']['id']), array('escape' => false, 'class' => array('btn btn-xs btn-info')));
+                                ?>
+                            </td>
+                        </tr>
+
+                    <?php
+                        }
+                        ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+<!-- END Interactive Block -->
+<!-- Load and execute javascript code used only in this page -->
+<!-- BEGIN VIEW SPECIFIC CSS -->
+<?php
+echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
+?>
+<!-- Load and execute javascript code used only in this page -->
+
+<script type="text/javascript">
+	$(function() {
+		TablesDatatables.init();
+	});
+</script>

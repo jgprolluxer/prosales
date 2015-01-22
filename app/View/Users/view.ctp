@@ -1,123 +1,104 @@
-<div class="users view">
-<h2><?php echo __('User'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Username'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['username']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Password'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['password']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Group'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['modified']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Blocked'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['blocked']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Logged'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['logged']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Chatstatus'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['chatstatus']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Time Zone'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['time_zone']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Firstname'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['firstname']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Lastname'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['lastname']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Email'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['email']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Gender'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['gender']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Maritalstatus'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['maritalstatus']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Shortdescription'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['shortdescription']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Fulldescription'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['fulldescription']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Coverimg'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['coverimg']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Avatar'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['avatar']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Status'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['status']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Workstation'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($user['Workstation']['title'], array('controller' => 'workstations', 'action' => 'view', $user['Workstation']['id'])); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<!-- Forms General Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-user fa-fw"></i><?php echo __('USER_VIEW_HEAD_TITLE'); ?><br><small><?php echo __('USER_VIEW_HEAD_TITLE_SMALL'); ?></small>
+        </h1>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), array(), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Workstations'), array('controller' => 'workstations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Workstation'), array('controller' => 'workstations', 'action' => 'add')); ?> </li>
-	</ul>
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- END Forms General Header -->
+<!-- Normal Form Block -->
+<div class="block">
+     <!-- Normal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('USER_VIEW_BLOCK_TITLE'); ?></h2>
+    </div>
+    <!-- END Normal Form Title -->
+    <div class="block-content">
+        <!-- Account Assist Content -->
+        <?php
+        echo $this->Form->create('User', array(
+            'onsubmit' => 'return false;',//////NOT SAVE READ ONLY
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+        )));
+        ?>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('USER_VIEW_FORM_FIELD_ID')),
+                'class' => 'form-control',
+                'type' => 'hidden',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('firstname', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('USER_VIEW_FORM_FIELD_FIRSTNAME')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('lastname', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('USER_VIEW_FORM_FIELD_LASTNAME')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('username', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('USER_VIEW_FORM_FIELD_USERNAME')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>            
+        </div>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('email', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('USER_VIEW_FORM_FIELD_EMAIL')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('workstation_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('USER_VIEW_FORM_FIELD_WORKSTATION')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+            	<?php
+            	echo $this->AclView->link(  __('USER_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'),
+            		array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'edit', $this->request->data['User']['id']),
+            		array('escape' => false, 'class' => array('btn btn-warning')));
+            		?>
+            </div>
+        </div>
+    </div>
+    <p class="text-muted"><?php echo __('USER_VIEW_BLOCK_CONTENT_FOOTER'); ?></p>
 </div>
