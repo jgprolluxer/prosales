@@ -2571,6 +2571,319 @@ msgstr "Revisión"
 #
 # ----------      END TEAM SECTION      ---------- ###################################
 # #####################################################################################
+
+# ----------      USER SECTION      ---------- ###################################
+#
+# ----------      ADD SECTION      ----------
+#
+msgid "USER_ADD_HEAD_TITLE"
+msgstr "Usuarios"
+
+msgid "USER_ADD_HEAD_TITLE_SMALL"
+msgstr "Agregar nuevo Usuario"
+
+msgid "USER_ADD_BLOCK_TITLE"
+msgstr "Definición del Usuario"
+
+msgid "USER_ADD_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "USER_ADD_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "USER_ADD_FORM_FIELD_USERNAME"
+msgstr "Nombre de Usuario"
+
+msgid "USER_ADD_FORM_FIELD_PASSWORD"
+msgstr "Contraseña"
+
+msgid "USER_ADD_FORM_FIELD_EMAIL"
+msgstr "Email"
+
+msgid "USER_ADD_FORM_FIELD_WORKSTATION"
+msgstr "Estación de Trabajo"
+
+msgid "USER_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "USER_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADD SECTION      ----------
+#
+# ----------      EDIT SECTION      ----------
+#
+
+msgid "USER_EDIT_HEAD_TITLE"
+msgstr "Usuarios"
+
+msgid "USER_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar Usuario"
+
+msgid "USER_EDIT_BLOCK_TITLE"
+msgstr "Definición del Usuario"
+
+msgid "USER_EDIT_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "USER_EDIT_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "USER_EDIT_FORM_FIELD_USERNAME"
+msgstr "Nombre de Usuario"
+
+msgid "USER_EDIT_FORM_FIELD_PASSWORD"
+msgstr "Contraseña"
+
+msgid "USER_EDIT_FORM_FIELD_EMAIL"
+msgstr "Email"
+
+msgid "USER_EDIT_FORM_FIELD_WORKSTATION"
+msgstr "Estación de Trabajo"
+
+msgid "USER_EDIT_FORM_BTN_SAVE"
+msgstr "Editar"
+
+msgid "USER_VIEW_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "USER_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END EDIT SECTION      ----------
+#
+# ----------      VIEW SECTION      ----------
+#
+
+msgid "USER_VIEW_HEAD_TITLE"
+msgstr "Usuarios"
+
+msgid "USER_VIEW_HEAD_TITLE_SMALL"
+msgstr "Ver Usuario"
+
+msgid "USER_VIEW_BLOCK_TITLE"
+msgstr "Definición del Usuario"
+
+msgid "USER_VIEW_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "USER_VIEW_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "USER_VIEW_FORM_FIELD_USERNAME"
+msgstr "Nombre de Usuario"
+
+msgid "USER_VIEW_FORM_FIELD_EMAIL"
+msgstr "Email"
+
+msgid "USER_VIEW_FORM_FIELD_WORKSTATION"
+msgstr "Estación de Trabajo"
+
+msgid "USER_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "USER_VIEW_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "USER_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END VIEW SECTION      ----------
+#
+# ----------      INDEX SECTION      ----------
+#
+
+msgid "USER_INDEX_HEAD_TITLE"
+msgstr "Usuarios"
+
+msgid "USER_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de Usuarios"
+
+msgid "USER_INDEX_BLOCK_TITLE"
+msgstr "Lista de Usuarios"
+
+msgid "USER_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "USER_INDEX_LIST_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "USER_INDEX_LIST_FIELD_FIRSTNAME"
+msgstr "Apellido"
+
+msgid "USER_INDEX_LIST_FIELD_USERNAME"
+msgstr "Usuario"
+
+msgid "USER_INDEX_LIST_FIELD_EMAIL"
+msgstr "Email"
+
+msgid "USER_INDEX_LIST_FIELD_WORKSTATION"
+msgstr "Estación de Trabajo"
+
+msgid "USER_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "USER_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+# ----------      END INDEX SECTION      ----------
+#
+# ----------      ADMIN ADD SECTION      ----------
+#
+
+msgid "ADMIN_USER_ADD_HEAD_TITLE"
+msgstr "Usuarios"
+
+msgid "ADMIN_USER_ADD_HEAD_TITLE_SMALL"
+msgstr "Agregar nuevo Usuario"
+
+msgid "ADMIN_USER_ADD_BLOCK_TITLE"
+msgstr "Definición del Usuario"
+
+msgid "ADMIN_USER_ADD_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ADMIN_USER_ADD_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "ADMIN_USER_ADD_FORM_FIELD_USERNAME"
+msgstr "Nombre de Usuario"
+
+msgid "ADMIN_USER_ADD_FORM_FIELD_PASSWORD"
+msgstr "Contraseña"
+
+msgid "ADMIN_USER_ADD_FORM_FIELD_EMAIL"
+msgstr "Email"
+
+msgid "ADMIN_USER_ADD_FORM_FIELD_WORKSTATION"
+msgstr "Estación de Trabajo"
+
+msgid "ADMIN_USER_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_USER_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN ADD SECTION      ----------
+#
+# ----------      ADMIN EDIT SECTION      ----------
+#
+
+msgid "ADMIN_USER_EDIT_HEAD_TITLE"
+msgstr "Usuarios"
+
+msgid "ADMIN_USER_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar Usuario"
+
+msgid "ADMIN_USER_EDIT_BLOCK_TITLE"
+msgstr "Definición del Usuario"
+
+msgid "ADMIN_USER_EDIT_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ADMIN_USER_EDIT_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "ADMIN_USER_EDIT_FORM_FIELD_USERNAME"
+msgstr "Nombre de Usuario"
+
+msgid "ADMIN_USER_EDIT_FORM_FIELD_PASSWORD"
+msgstr "Contraseña"
+
+msgid "ADMIN_USER_EDIT_FORM_FIELD_EMAIL"
+msgstr "Email"
+
+msgid "ADMIN_USER_EDIT_FORM_FIELD_WORKSTATION"
+msgstr "Estación de Trabajo"
+
+msgid "ADMIN_USER_EDIT_FORM_BTN_SAVE"
+msgstr "Editar"
+
+msgid "ADMIN_USER_VIEW_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_USER_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN EDIT SECTION      ----------
+#
+# ----------      ADMIN INDEX SECTION      ----------
+#
+
+msgid "ADMIN_USER_INDEX_HEAD_TITLE"
+msgstr "Usuarios"
+
+msgid "ADMIN_USER_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de Usuarios"
+
+msgid "ADMIN_USER_INDEX_BLOCK_TITLE"
+msgstr "Lista de Usuarios"
+
+msgid "ADMIN_USER_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "ADMIN_USER_INDEX_LIST_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ADMIN_USER_INDEX_LIST_FIELD_FIRSTNAME"
+msgstr "Apellido"
+
+msgid "ADMIN_USER_INDEX_LIST_FIELD_USERNAME"
+msgstr "Usuario"
+
+msgid "ADMIN_USER_INDEX_LIST_FIELD_EMAIL"
+msgstr "Email"
+
+msgid "ADMIN_USER_INDEX_LIST_FIELD_WORKSTATION"
+msgstr "Estación de Trabajo"
+
+msgid "ADMIN_USER_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "ADMIN_USER_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+# ----------      ADMIN VIEW SECTION      ----------
+#
+
+msgid "ADMIN_USER_VIEW_HEAD_TITLE"
+msgstr "Usuarios"
+
+msgid "ADMIN_USER_VIEW_HEAD_TITLE_SMALL"
+msgstr "Ver Usuario"
+
+msgid "ADMIN_USER_VIEW_BLOCK_TITLE"
+msgstr "Definición del Usuario"
+
+msgid "ADMIN_USER_VIEW_FORM_FIELD_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "ADMIN_USER_VIEW_FORM_FIELD_LASTNAME"
+msgstr "Apellido"
+
+msgid "ADMIN_USER_VIEW_FORM_FIELD_USERNAME"
+msgstr "Nombre de Usuario"
+
+msgid "ADMIN_USER_VIEW_FORM_FIELD_EMAIL"
+msgstr "Email"
+
+msgid "ADMIN_USER_VIEW_FORM_FIELD_WORKSTATION"
+msgstr "Estación de Trabajo"
+
+msgid "ADMIN_USER_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "ADMIN_USER_VIEW_FORM_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_USER_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN VIEW SECTION      ----------
+#
+# ----------      END USER SECTION      ---------- ##########################
+# ###############################################################################
+
 # ----------      WORKSTATION SECTION      ---------- ###################################
 #
 # ----------      MODEL VALIDATION SECTION      ----------
