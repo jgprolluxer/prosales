@@ -1,121 +1,142 @@
-<div class="products view">
-<h2><?php echo __('Product'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['updated']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created By'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['created_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated By'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['updated_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Status'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['status']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Partnumber'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['partnumber']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Mergenumber'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['mergenumber']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Family'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($product['Family']['title'], array('controller' => 'families', 'action' => 'view', $product['Family']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Uom'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['uom']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Type'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['type']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Description'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('stockcheck'); ?></dt>
-		<dd>
-			<?php echo h($product['Product']['stockcheck']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<!-- Forms General Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-gift"></i><?php echo __('PRODUCT_VIEW_HEAD_TITLE'); ?><br><small><?php echo __('PRODUCT_VIEW_HEAD_TITLE_SMALL'); ?></small>
+        </h1>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Product'), array('action' => 'edit', $product['Product']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Product'), array('action' => 'delete', $product['Product']['id']), array(), __('Are you sure you want to delete # %s?', $product['Product']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Products'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Product'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Families'), array('controller' => 'families', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Family'), array('controller' => 'families', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Product Supplies'), array('controller' => 'product_supplies', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Product Supply'), array('controller' => 'product_supplies', 'action' => 'add')); ?> </li>
-	</ul>
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- END Forms General Header -->
+<!-- Normal Form Block -->
+<div class="block">
+    <!-- Normal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('PRODUCT_VIEW_BLOCK_TITLE');?></h2>
+    </div>
+    <!-- END Normal Form Title -->
+    <div class="block-content">
+        <!-- User Assist Content -->
+        <?php
+        echo $this->Form->create('Product', array(
+            'onsubmit' => 'return false;',
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+            )));
+        ?>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('name', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRODUCT_VIEW_FORM_FIELD_NAME')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('type', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRODUCT_VIEW_FORM_FIELD_TYPE')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('family_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRODUCT_VIEW_FORM_FIELD_FAMILY')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('uom', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRODUCT_VIEW_FORM_FIELD_UOM')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('partnumber', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRODUCT_VIEW_FORM_FIELD_PARTNUMBER')),
+                'class' => 'form-control',
+                'type' => 'number',
+                'readonly' => 'readonly'
+            ));
+            ?>
+         </div>
+         <div class="col-md-6">
+            <?php
+            echo $this->Form->input('description', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRODUCT_VIEW_FORM_FIELD_DESCRIPTION')),
+                'class' => 'form-control',
+                'type' => 'textarea',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('status', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRODUCT_VIEW_FORM_FIELD_STATUS')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('stockcheck', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRODUCT_VIEW_FORM_FIELD_STOCKCHECK')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly',
+                'value' => $this->request->data["Product"]["stockcheck"] ? '√' : 'X'
+            ));
+            ?> 
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+                <?php
+                echo $this->AclView->link(  __('PRODUCT_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'),
+                    array('plugin' => $this->params['plugin'], 'prefix' => null, 
+                        'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 
+                        'action' => 'edit', $this->request->data['Product']['id']),
+                    array('escape' => false, 'class' => array('btn btn-warning')));
+                    ?>
+            </div>
+        </div>
+        </form>
+        <!-- END User Assist Content -->
+    </div>
+    <p class="text-muted"><?php echo __('PRODUCT_VIEW_BLOCK_CONTENT_FOOTER');?></p>
 </div>
-<div class="related">
-	<h3><?php echo __('Related Product Supplies'); ?></h3>
-	<?php if (!empty($product['ProductSupply'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Product Id'); ?></th>
-		<th><?php echo __('Uomqty'); ?></th>
-		<th><?php echo __('Supplyid'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($product['ProductSupply'] as $productSupply): ?>
-		<tr>
-			<td><?php echo $productSupply['id']; ?></td>
-			<td><?php echo $productSupply['product_id']; ?></td>
-			<td><?php echo $productSupply['uomqty']; ?></td>
-			<td><?php echo $productSupply['supplyid']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'product_supplies', 'action' => 'view', $productSupply['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'product_supplies', 'action' => 'edit', $productSupply['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'product_supplies', 'action' => 'delete', $productSupply['id']), array(), __('Are you sure you want to delete # %s?', $productSupply['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Product Supply'), array('controller' => 'product_supplies', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
+<!-- END Normal Form Block -->
+<script type="text/javascript">
+/**
+*Prevent hit submit form
+*/
+$(document).ready(function()
+{
+  $(window).keydown(function(event)
+  {
+    if(event.keyCode == 13)
+    {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>

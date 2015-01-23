@@ -38,6 +38,7 @@ class ProductsController extends AppController {
 			throw new NotFoundException(__('Invalid product'));
 		}
 		$options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
+        $this->request->data = $this->Product->find('first', $options);
 		$this->set('product', $this->Product->find('first', $options));
 	}
 
@@ -76,7 +77,7 @@ class ProductsController extends AppController {
             'order' => array('ordershow')
         ));
 
-		$this->set(compact('families'));
+		$this->set(compact('families', 'lovProductStatus'));
 	}
 
 /**
@@ -109,7 +110,19 @@ class ProductsController extends AppController {
                 'Family.status' => array(StatusOfFamily::Active)
             )
         ));
-		$this->set(compact('families'));
+
+        $this->loadModel('Lov');
+        $this->Lov->recursive = -1;
+        $lovProductStatus = $this->Lov->find('list', array(
+            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+            'conditions' => array(
+                'Lov.type =' => 'PRODUCT_FIELD_STATUS',
+                'Lov.status' => array(StatusOfLov::Active)
+            ),
+            'order' => array('ordershow')
+        ));
+
+		$this->set(compact('families', 'lovProductStatus'));
 	}
 
 /**
@@ -155,6 +168,7 @@ class ProductsController extends AppController {
 			throw new NotFoundException(__('Invalid product'));
 		}
 		$options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
+        $this->request->data = $this->Product->find('first', $options);
 		$this->set('product', $this->Product->find('first', $options));
 	}
 
@@ -226,7 +240,19 @@ class ProductsController extends AppController {
                 'Family.status' => array(StatusOfFamily::Active)
             )
         ));
-		$this->set(compact('families'));
+
+        $this->loadModel('Lov');
+        $this->Lov->recursive = -1;
+        $lovProductStatus = $this->Lov->find('list', array(
+            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+            'conditions' => array(
+                'Lov.type =' => 'PRODUCT_FIELD_STATUS',
+                'Lov.status' => array(StatusOfLov::Active)
+            ),
+            'order' => array('ordershow')
+        ));
+
+		$this->set(compact('families', 'lovProductStatus'));
 	}
 
 /**

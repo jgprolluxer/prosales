@@ -237,7 +237,7 @@ class WorkstationsController extends AppController {
 
 /**
  * admin_index method
- *
+ * Active condition removed, on administration view show all to take actions
  * @return void
  */
 	public function admin_index() {
@@ -247,7 +247,7 @@ class WorkstationsController extends AppController {
             array(
                 'conditions' => array(
                     'Workstation.id >=' => 1,
-                    'Workstation.status' => array(StatusOfWorkstation::Active)
+                    //'Workstation.status' => array(StatusOfWorkstation::Active)
                 )
             )
         );

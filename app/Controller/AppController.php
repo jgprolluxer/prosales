@@ -56,8 +56,12 @@ class AppController extends Controller
         $this->set('trail', $this->Navigation->trail);
 
         $this->loadModel('Config');
-        $this->Config->recursive = -1;
-        $config = $this->Config->read(null, 1);
+        $config = $this->Config->find('all', array(
+            'conditions' => array(
+                'Config.active_flg' => true
+            )
+        ));
+        $config = $config[0];
 
         $this->loadModel('User');
         $this->User->recursive = 1;
@@ -70,7 +74,7 @@ class AppController extends Controller
         }
         Configure::write('Config.language', $slangConf);
         $this->appLangConf = $slangConf;
-        $this->set('$langConf', $slangConf);
+        $this->set('slangConf', $slangConf);
         $this->set('menu', $this->buildMainMenu());
         $this->set('config', $config);
         $this->set('signedUser', $signedUser);

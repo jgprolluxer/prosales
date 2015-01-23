@@ -163,7 +163,7 @@ class StoresController extends AppController {
 
 /**
  * admin_index method
- *
+ * Active condition removed, on administration view, show all to take actions
  * @return void
  */
 	public function admin_index()
@@ -174,7 +174,7 @@ class StoresController extends AppController {
             array(
                 'conditions' => array(
                     'Store.id >=' => 1,
-                    'Store.status' => array(StatusOfStore::Active)
+                    //'Store.status' => array(StatusOfStore::Active)
                 )
             )
         );

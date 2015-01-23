@@ -143,7 +143,7 @@ class LovsController extends AppController {
 
 /**
  * admin_index method
- *
+ * Active condition removed on administration view, show all to take actions
  * @return void
  */
 	public function admin_index()
@@ -153,7 +153,7 @@ class LovsController extends AppController {
             array(
                 'conditions' => array(
                     'Lov.id >=' => 1,
-                    'Lov.status' => array(StatusOfLov::Active)
+                    //'Lov.status' => array(StatusOfLov::Active)
                 )
             )
         );

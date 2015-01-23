@@ -136,7 +136,7 @@ class TeamsController extends AppController {
 
 /**
  * admin_index method
- *
+ * Active condition removed, on administration view show all to take actions
  * @return void
  */
 	public function admin_index() {
@@ -144,7 +144,7 @@ class TeamsController extends AppController {
 		$teams = $this->Team->find('all', array(
 			'conditions' => array(
 				'Team.id >=' => 1,
-				'Team.status' => array(StatusOfTeam::Active)
+				//'Team.status' => array(StatusOfTeam::Active)
 			)
 		));
 		$this->set('teams', $teams);

@@ -15,6 +15,7 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "Language: es_MX\n"
 
+###### sudo msgfmt -o default.mo default.po
 #
 # ----------      COMMON SECTION      ---------- ###################################
 #
@@ -1858,7 +1859,7 @@ msgstr "Recuerda revisar todos los campos"
 # ----------      ADD SECTION      ----------
 #
 msgid "PRODUCT_ADD_HEAD_TITLE"
-msgstr "Products"
+msgstr "Productos"
 
 msgid "PRODUCT_ADD_HEAD_TITLE_SMALL"
 msgstr "Configurar nuevo producto"
@@ -1887,6 +1888,12 @@ msgstr "Descripción"
 msgid "PRODUCT_ADD_FORM_FIELD_STATUS"
 msgstr "Estado"
 
+msgid "PRODUCT_ADD_FORM_FIELD_STOCKCHECK"
+msgstr "Seguimiento a inventario?"
+
+msgid "PRODUCT_ADD_FORM_FIELD_STOCKCHECK_TOOLTIP"
+msgstr "Seguimiento a inventario?"
+
 msgid "PRODUCT_ADD_FORM_BTN_SAVE"
 msgstr "Guardar"
 
@@ -1898,7 +1905,7 @@ msgstr "Recuerda revisar todos los campos"
 # ----------      ADMIN ADD SECTION      ----------
 #
 msgid "ADMIN_PRODUCT_ADD_HEAD_TITLE"
-msgstr "Products"
+msgstr "Productos"
 
 msgid "ADMIN_PRODUCT_ADD_HEAD_TITLE_SMALL"
 msgstr "Configurar nuevo producto"
@@ -1927,6 +1934,12 @@ msgstr "Descripción"
 msgid "ADMIN_PRODUCT_ADD_FORM_FIELD_STATUS"
 msgstr "Estado"
 
+msgid "ADMIN_PRODUCT_ADD_FORM_FIELD_STOCKCHECK"
+msgstr "Seguimiento a inventario?"
+
+msgid "ADMIN_PRODUCT_ADD_FORM_FIELD_STOCKCHECK_TOOLTIP"
+msgstr "Seguimiento a inventario?"
+
 msgid "ADMIN_PRODUCT_ADD_FORM_BTN_SAVE"
 msgstr "Guardar"
 
@@ -1934,6 +1947,190 @@ msgid "ADMIN_PRODUCT_ADD_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADMIN ADD SECTION      ----------
+#
+# ----------      EDIT SECTION      ----------
+#
+msgid "PRODUCT_EDIT_HEAD_TITLE"
+msgstr "Productos"
+
+msgid "PRODUCT_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar producto"
+
+msgid "PRODUCT_EDIT_BLOCK_TITLE"
+msgstr "Definición del Producto"
+
+msgid "PRODUCT_EDIT_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "PRODUCT_EDIT_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "PRODUCT_EDIT_FORM_FIELD_FAMILY"
+msgstr "Familia"
+
+msgid "PRODUCT_EDIT_FORM_FIELD_UOM"
+msgstr "Unidad de medida"
+
+msgid "PRODUCT_EDIT_FORM_FIELD_PARTNUMBER"
+msgstr "Código de barras"
+
+msgid "PRODUCT_EDIT_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "PRODUCT_EDIT_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "PRODUCT_EDIT_FORM_FIELD_STOCKCHECK"
+msgstr "Seguimiento a inventario?"
+
+msgid "PRODUCT_EDIT_FORM_FIELD_STOCKCHECK_TOOLTIP"
+msgstr "Seguimiento a inventario?"
+
+msgid "PRODUCT_EDIT_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "PRODUCT_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN EDIT SECTION      ----------
+#
+# ----------      ADMIN EDIT SECTION      ----------
+#
+msgid "ADMIN_PRODUCT_EDIT_HEAD_TITLE"
+msgstr "Productos"
+
+msgid "ADMIN_PRODUCT_EDIT_HEAD_TITLE_SMALL"
+msgstr "Editar producto"
+
+msgid "ADMIN_PRODUCT_EDIT_BLOCK_TITLE"
+msgstr "Definición del Producto"
+
+msgid "ADMIN_PRODUCT_EDIT_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_PRODUCT_EDIT_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_PRODUCT_EDIT_FORM_FIELD_FAMILY"
+msgstr "Familia"
+
+msgid "ADMIN_PRODUCT_EDIT_FORM_FIELD_UOM"
+msgstr "Unidad de medida"
+
+msgid "ADMIN_PRODUCT_EDIT_FORM_FIELD_PARTNUMBER"
+msgstr "Código de barras"
+
+msgid "ADMIN_PRODUCT_EDIT_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "ADMIN_PRODUCT_EDIT_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_PRODUCT_EDIT_FORM_FIELD_STOCKCHECK"
+msgstr "Seguimiento a inventario?"
+
+msgid "ADMIN_PRODUCT_EDIT_FORM_FIELD_STOCKCHECK_TOOLTIP"
+msgstr "Seguimiento a inventario?"
+
+msgid "ADMIN_PRODUCT_EDIT_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_PRODUCT_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN EDIT SECTION      ----------
+#
+# ----------      VIEW SECTION      ----------
+#
+msgid "PRODUCT_VIEW_HEAD_TITLE"
+msgstr "Productos"
+
+msgid "PRODUCT_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar producto"
+
+msgid "PRODUCT_VIEW_BLOCK_TITLE"
+msgstr "Definición del Producto"
+
+msgid "PRODUCT_VIEW_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "PRODUCT_VIEW_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "PRODUCT_VIEW_FORM_FIELD_FAMILY"
+msgstr "Familia"
+
+msgid "PRODUCT_VIEW_FORM_FIELD_UOM"
+msgstr "Unidad de medida"
+
+msgid "PRODUCT_VIEW_FORM_FIELD_PARTNUMBER"
+msgstr "Código de barras"
+
+msgid "PRODUCT_VIEW_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "PRODUCT_VIEW_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "PRODUCT_VIEW_FORM_FIELD_STOCKCHECK"
+msgstr "Seguimiento a inventario?"
+
+msgid "PRODUCT_VIEW_FORM_FIELD_STOCKCHECK_TOOLTIP"
+msgstr "Seguimiento a inventario?"
+
+msgid "PRODUCT_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "PRODUCT_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Revisión"
+
+# ----------      END ADMIN VIEW SECTION      ----------
+#
+# ----------      ADMIN VIEW SECTION      ----------
+#
+msgid "ADMIN_PRODUCT_VIEW_HEAD_TITLE"
+msgstr "Productos"
+
+msgid "ADMIN_PRODUCT_VIEW_HEAD_TITLE_SMALL"
+msgstr "Revisar producto"
+
+msgid "ADMIN_PRODUCT_VIEW_BLOCK_TITLE"
+msgstr "Definición del Producto"
+
+msgid "ADMIN_PRODUCT_VIEW_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_PRODUCT_VIEW_FORM_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_PRODUCT_VIEW_FORM_FIELD_FAMILY"
+msgstr "Familia"
+
+msgid "ADMIN_PRODUCT_VIEW_FORM_FIELD_UOM"
+msgstr "Unidad de medida"
+
+msgid "ADMIN_PRODUCT_VIEW_FORM_FIELD_PARTNUMBER"
+msgstr "Código de barras"
+
+msgid "ADMIN_PRODUCT_VIEW_FORM_FIELD_DESCRIPTION"
+msgstr "Descripción"
+
+msgid "ADMIN_PRODUCT_VIEW_FORM_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_PRODUCT_VIEW_FORM_FIELD_STOCKCHECK"
+msgstr "Seguimiento a inventario?"
+
+msgid "ADMIN_PRODUCT_VIEW_FORM_FIELD_STOCKCHECK_TOOLTIP"
+msgstr "Seguimiento a inventario?"
+
+msgid "ADMIN_PRODUCT_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
+
+msgid "ADMIN_PRODUCT_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Revisión"
+
+# ----------      END ADMIN VIEW SECTION      ----------
 #
 # ----------      END PRODUCT SECTION      ---------- ###################################
 # ###############################################################################

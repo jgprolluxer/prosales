@@ -2,7 +2,7 @@
 <div class="content-header">
     <div class="header-section">
         <h1>
-            <i class="gi gi-pipe"></i><?php echo __('ADMIN_PRODUCT_ADD_HEAD_TITLE'); ?><br><small><?php echo __('ADMIN_PRODUCT_ADD_HEAD_TITLE_SMALL'); ?></small>
+            <i class="fa fa-gift"></i><?php echo __('ADMIN_PRODUCT_ADD_HEAD_TITLE'); ?><br><small><?php echo __('ADMIN_PRODUCT_ADD_HEAD_TITLE_SMALL'); ?></small>
         </h1>
     </div>
 </div>
@@ -85,14 +85,6 @@
             ));
             ?>
             <?php
-            echo $this->Form->input('stockcheck', array(
-                'label' => array('class' => 'col-md-4 switch switch-default', 'text' => __('ADMIN_PRODUCT_ADD_FORM_FIELD_STOCKCHECK')),
-                'class' => 'form-control',
-                'type' => 'checkbox'
-            ));
-            ?>
-            <label class="switch switch-default"><input type="checkbox"><span></span></label>
-            <?php
             echo $this->Form->input('status', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRODUCT_ADD_FORM_FIELD_STATUS')),
                 'class' => 'form-control',
@@ -100,6 +92,17 @@
                 'options' => $lovProductStatus
             ));
             ?>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label><?php echo __('ADMIN_PRODUCT_ADD_FORM_FIELD_STOCKCHECK'); ?></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="ProductStockcheck" class="switch switch-primary" data-toggle="tooltip" title="<?php echo __('ADMIN_PRODUCT_ADD_FORM_FIELD_STOCKCHECK_TOOLTIP'); ?>" >
+                            <input name="data[Product][stockcheck]" id="ProductStockcheck" class="" type="checkbox" />
+                        <span></span>
+                    </label>
+                </div>
+            </div> 
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
