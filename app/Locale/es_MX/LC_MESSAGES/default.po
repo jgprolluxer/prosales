@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2015-01-22 10:11-0600\n"
+"PO-Revision-Date: 2015-01-30 12:42-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -1854,6 +1854,261 @@ msgstr "Recuerda revisar todos los campos"
 #
 # ----------      END NOTE SECTION      ---------- ##########################
 # ###############################################################################
+# ----------      PRICELIST SECTION      ---------- ###################################
+#
+# ----------      ADMIN ADD SECTION      ----------
+#
+msgid "ADMIN_PRICELIST_ADD_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "ADMIN_PRICELIST_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nueva Lista de Precios"
+
+msgid "ADMIN_PRICELIST_ADD_BLOCK_TITLE"
+msgstr "Definición de Precios"
+
+msgid "ADMIN_PRICELIST_ADD_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_PRICELIST_ADD_FORM_FIELD_CURRENCY"
+msgstr "Descripcion"
+
+msgid "ADMIN_PRICELIST_ADD_FORM_FIELD_CURRENCY_SYMBOL"
+msgstr "Simbolo"
+
+msgid "ADMIN_PRICELIST_ADD_FORM_FIELD_STATUS"
+msgstr "Estatus"
+
+msgid "ADMIN_PRICELIST_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_PRICELIST_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+#
+# ----------      END ADMIN ADD SECTION      ----------
+#
+# ----------       ADD SECTION      ----------
+#
+msgid "PRICELIST_ADD_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "PRICELIST_ADD_HEAD_TITLE_SMALL"
+msgstr "Configurar nueva Lista de Precios"
+
+msgid "PRICELIST_ADD_BLOCK_TITLE"
+msgstr "Definición de Precios"
+
+msgid "PRICELIST_ADD_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "PRICELIST_ADD_FORM_FIELD_CURRENCY"
+msgstr "Descripcion"
+
+msgid "PRICELIST_ADD_FORM_FIELD_CURRENCY_SYMBOL"
+msgstr "Simbolo"
+
+msgid "PRICELIST_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "PRICELIST_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+#
+# ----------      END ADD SECTION      ----------
+#
+# ----------      ADMIN VIEW SECTION      ----------
+#
+msgid "ADMIN_PRICELIST_VIEW_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "ADMIN_PRICELIST_VIEW_HEAD_TITLE_SMALL"
+msgstr "Ver Lista de Precios"
+
+msgid "ADMIN_PRICELIST_VIEW_BLOCK_TITLE"
+msgstr "Definición de Precios"
+
+msgid "ADMIN_PRICELIST_VIEW_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_PRICELIST_VIEW_FORM_FIELD_CURRENCY"
+msgstr "Descripcion"
+
+msgid "ADMIN_PRICELIST_VIEW_FORM_FIELD_CURRENCY_SYMBOL"
+msgstr "Simbolo"
+
+msgid "ADMIN_PRICELIST_VIEW_FORM_FIELD_STATUS"
+msgstr "Estatus"
+
+msgid "ADMIN_PRICELIST_VIEW_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_PRICELIST_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+#
+# ----------      END ADMIN VIEW SECTION      ----------
+#
+# ----------       VIEW SECTION      ----------
+#
+msgid "PRICELIST_VIEW_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "PRICELIST_VIEW_HEAD_TITLE_SMALL"
+msgstr "Ver Lista de Precios"
+
+msgid "PRICELIST_VIEW_BLOCK_TITLE"
+msgstr "Definición de Precios"
+
+msgid "PRICELIST_VIEW_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "PRICELIST_VIEW_FORM_FIELD_CURRENCY"
+msgstr "Descripcion"
+
+msgid "PRICELIST_VIEW_FORM_FIELD_CURRENCY_SYMBOL"
+msgstr "Simbolo"
+
+msgid "PRICELIST_VIEW_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "PRICELIST_VIEW_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+#
+# ----------      END VIEW SECTION      ----------
+#
+# ----------      ADMIN EDIT SECTION      ----------
+#
+msgid "ADMIN_PRICELIST_EDIT_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "ADMIN_PRICELIST_EDIT_HEAD_TITLE_SMALL"
+msgstr "Configurar Lista de Precios"
+
+msgid "ADMIN_PRICELIST_EDIT_BLOCK_TITLE"
+msgstr "Definición de Precios"
+
+msgid "ADMIN_PRICELIST_EDIT_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_PRICELIST_EDIT_FORM_FIELD_CURRENCY"
+msgstr "Descripcion"
+
+msgid "ADMIN_PRICELIST_EDIT_FORM_FIELD_CURRENCY_SYMBOL"
+msgstr "Simbolo"
+
+msgid "ADMIN_PRICELIST_EDIT_FORM_FIELD_STATUS"
+msgstr "Estatus"
+
+msgid "ADMIN_PRICELIST_EDIT_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "ADMIN_PRICELIST_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+#
+# ----------      END ADMIN EDIT SECTION      ----------
+#
+# ----------      EDIT SECTION      ----------
+#
+msgid "PRICELIST_EDIT_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "PRICELIST_EDIT_HEAD_TITLE_SMALL"
+msgstr "Configurar Lista de Precios"
+
+msgid "PRICELIST_EDIT_BLOCK_TITLE"
+msgstr "Definición de Precios"
+
+msgid "PRICELIST_EDIT_FORM_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "PRICELIST_EDIT_FORM_FIELD_CURRENCY"
+msgstr "Descripcion"
+
+msgid "PRICELIST_EDIT_FORM_FIELD_CURRENCY_SYMBOL"
+msgstr "Simbolo"
+
+msgid "PRICELIST_EDIT_FORM_FIELD_STATUS"
+msgstr "Estatus"
+
+msgid "PRICELIST_EDIT_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "PRICELIST_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+#
+# ----------      END EDIT SECTION      ----------
+#
+# ----------      ADMIN INDEX SECTION      ----------
+#
+msgid "ADMIN_PRICELIST_INDEX_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "ADMIN_PRICELIST_INDEX_HEAD_TITLE_SMALL"
+msgstr "Configurar Lista de Precios"
+
+msgid "ADMIN_PRICELIST_INDEX_BLOCK_TITLE"
+msgstr "Definición de Precios"
+
+msgid "ADMIN_PRICELIST_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar Lista"
+
+msgid "ADMIN_PRICELIST_INDEX_LIST_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_PRICELIST_INDEX_LIST_FIELD_CURRENCY"
+msgstr "Descripcion"
+
+msgid "ADMIN_PRICELIST_INDEX_LIST_FIELD_CURRENCY_SYMBOL"
+msgstr "Simbolo"
+
+msgid "ADMIN_PRICELIST_INDEX_LIST_FIELD_STATUS"
+msgstr "Estatus"
+
+msgid "ADMIN_PRICELIST_INDEX_LIST_FIELD_ACTION"
+msgstr "Accion"
+
+msgid "ADMIN_PRICELIST_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END ADMIN INDEX SECTION      ----------
+#
+# ----------      INDEX SECTION      ----------
+#
+msgid "PRICELIST_INDEX_HEAD_TITLE"
+msgstr "Menus"
+
+msgid "PRICELIST_INDEX_HEAD_TITLE_SMALL"
+msgstr "Configurar Lista de Precios"
+
+msgid "PRICELIST_INDEX_BLOCK_TITLE"
+msgstr "Definición de Precios"
+
+msgid "PRICELIST_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar Lista"
+
+msgid "PRICELIST_INDEX_LIST_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "PRICELIST_INDEX_LIST_FIELD_CURRENCY"
+msgstr "Descripcion"
+
+msgid "PRICELIST_INDEX_LIST_FIELD_CURRENCY_SYMBOL"
+msgstr "Simbolo"
+
+msgid "PRICELIST_INDEX_LIST_FIELD_ACTION"
+msgstr "Accion"
+
+msgid "PRICELIST_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+# ----------      END  INDEX SECTION      ----------
+#
+# ----------      END PRICELIST SECTION      ---------- ##########################
+#
 # ----------      PRODUCT SECTION      ---------- ###################################
 #
 # ----------      ADD SECTION      ----------
@@ -2039,6 +2294,86 @@ msgid "ADMIN_PRODUCT_EDIT_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADMIN EDIT SECTION      ----------
+#
+# ----------      INDEX SECTION      ----------
+#
+msgid "PRODUCT_INDEX_HEAD_TITLE"
+msgstr "Productos"
+
+msgid "PRODUCT_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de productos"
+
+msgid "PRODUCT_INDEX_BLOCK_TITLE"
+msgstr "Listado"
+
+msgid "PRODUCT_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "PRODUCT_INDEX_LIST_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "PRODUCT_INDEX_LIST_FIELD_FAMILY"
+msgstr "Familia"
+
+msgid "PRODUCT_INDEX_LIST_FIELD_PARTNUMBER"
+msgstr "Código de Barras"
+
+msgid "PRODUCT_INDEX_LIST_FIELD_UOM"
+msgstr "Código de Barras"
+
+msgid "PRODUCT_INDEX_LIST_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "PRODUCT_INDEX_LIST_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "PRODUCT_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "PRODUCT_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+# ----------      END ADMIN INDEX SECTION      ----------
+#
+# ----------      ADMIN INDEX SECTION      ----------
+#
+msgid "ADMIN_PRODUCT_INDEX_HEAD_TITLE"
+msgstr "Productos"
+
+msgid "ADMIN_PRODUCT_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de productos"
+
+msgid "ADMIN_PRODUCT_INDEX_BLOCK_TITLE"
+msgstr "Listado"
+
+msgid "ADMIN_PRODUCT_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "ADMIN_PRODUCT_INDEX_LIST_FIELD_NAME"
+msgstr "Nombre"
+
+msgid "ADMIN_PRODUCT_INDEX_LIST_FIELD_FAMILY"
+msgstr "Familia"
+
+msgid "ADMIN_PRODUCT_INDEX_LIST_FIELD_PARTNUMBER"
+msgstr "Código de Barras"
+
+msgid "ADMIN_PRODUCT_INDEX_LIST_FIELD_UOM"
+msgstr "Código de Barras"
+
+msgid "ADMIN_PRODUCT_INDEX_LIST_FIELD_TYPE"
+msgstr "Tipo"
+
+msgid "ADMIN_PRODUCT_INDEX_LIST_FIELD_STATUS"
+msgstr "Estado"
+
+msgid "ADMIN_PRODUCT_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "ADMIN_PRODUCT_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+# ----------      END ADMIN INDEX SECTION      ----------
 #
 # ----------      VIEW SECTION      ----------
 #
@@ -3461,3 +3796,4 @@ msgstr "Guardar"
 
 msgid "ADMIN_WORKSTATION_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Revisión"
+

@@ -163,5 +163,5 @@ $(document).ready(function ()
 
         $('#page-container').attr('class', 'sidebar-no-animations');
         $('header').hide();
-    });
+});
 </script>

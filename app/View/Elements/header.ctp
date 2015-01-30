@@ -36,8 +36,8 @@
             </li>
             <!-- END Main Sidebar Toggle Button -->
 
-            <!-- Template Options -->
-            <!-- Change Options functionality can be found in js/app.js - templateOptions() -->
+            <!-- Template Options
+            <!-- Change Options functionality can be found in js/app.js - templateOptions() 
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="gi gi-settings"></i>
@@ -59,7 +59,7 @@
                     </li>
                 </ul>
             </li>
-            <!-- END Template Options -->
+            END Template Options -->
         </ul>
         <!-- END Left Header Navigation -->
         <?php echo $this->MenuBuilder->build('h-menu-header');?>
