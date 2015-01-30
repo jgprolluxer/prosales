@@ -62,11 +62,11 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '127.0.0.1',
+		'host' => '104.239.163.170',
 		'port' => 3306,
 		'login' => 'admin',
-		'password' => 'admin',
-		'database' => 'prosales-app',
+		'password' => 'fmTfAx29QnDQTXrf',
+		'database' => 'prosales-db',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
