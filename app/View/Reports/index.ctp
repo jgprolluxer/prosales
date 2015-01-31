@@ -1,3 +1,16 @@
+<!-- Forms General Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="gi gi-building"></i><?php echo __('PRODUCT_INDEX_HEAD_TITLE'); ?><br><small><?php echo __('PRODUCT_INDEX_HEAD_TITLE_SMALL'); ?></small>
+        </h1>
+        <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- END Forms General Header -->
 <div class="reports index">
 	<h2><?php echo __('Reports'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -62,3 +75,14 @@
 		<li><?php echo $this->Html->link(__('New Report'), array('action' => 'add')); ?></li>
 	</ul>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function ()
+{
+        //$('#page-container').removeClass('sidebar-visible-xs');
+        //$('#page-container').removeClass('sidebar-visible-lg');
+
+        $('#page-container').attr('class', 'sidebar-no-animations');
+        $('header').hide();
+});
+</script>

@@ -1,38 +1,19 @@
 <input type="hidden" name="orderID" id="orderID" value="<?php echo $orderID ?>" />
 <section class="row" ng-controller="posController">
     <!--    <a ng-href="/admin/Users">Users</a>-->
-    <!-- eCommerce Orders Header -->
+    <!-- Forms General Header -->
     <div class="content-header">
         <div class="header-section">
-            <ul class="nav-horizontal text-center">
-                <li>
-                    <a href="page_ecom_dashboard.php"><i class="fa fa-bar-chart"></i> Dashboard</a>
-                </li>
-                <li>
-                    <a href="page_ecom_orders.php"><i class="gi gi-shop_window"></i> Orders</a>
-                </li>
-                <li class="active">
-                    <a href="page_ecom_order_view.php"><i class="gi gi-shopping_cart"></i> Order View</a>
-                </li>
-                <li>
-                    <a href="page_ecom_products.php"><i class="gi gi-shopping_bag"></i> Products</a>
-                </li>
-                <li>
-                    <a href="page_ecom_product_edit.php"><i class="gi gi-pencil"></i> Product Edit</a>
-                </li>
-                <li>
-                    <a href="page_ecom_customer_view.php"><i class="gi gi-user"></i> Customer View</a>
-                </li>
-                <li>
-                    <a href="page_ecom_products.php"><i class="gi gi-shopping_bag"></i> Products</a>
-                </li>
-                <li>
-                    <a href="page_ecom_product_edit.php"><i class="gi gi-pencil"></i> Product Edit</a>
-                </li>
-            </ul>
+            <h1>
+                <i class="gi gi-building"></i><?php echo __('POS_INDEX_HEAD_TITLE'); ?><br><small><?php echo __('POS_INDEX_HEAD_TITLE_SMALL'); ?></small>
+            </h1>
+            <?php echo $this->MenuBuilder->build('menu-header-pos');?>
         </div>
     </div>
-    <!-- END eCommerce Orders Header -->
+    <ul class="breadcrumb breadcrumb-top">
+        <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+    </ul>
+    <!-- END Forms General Header -->
     <div class="col-md-8">
         <a href="" class="btn btn-info btn-xs animation-floating" ng-click="toogleFam()" ><i class="fa fa-bars "></i>&nbsp;{{familySearchLegend}}</a>
         <div id="famContainer">

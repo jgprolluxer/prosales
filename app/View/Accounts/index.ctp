@@ -4,6 +4,7 @@
 		<h1>
 			<i class="fa fa-users"></i><?php echo __('ACCOUNT_INDEX_HEAD_TITLE'); ?><br><small><?php echo __('ACCOUNT_INDEX_HEAD_TITLE_SMALL'); ?></small>
 		</h1>
+        <?php echo $this->MenuBuilder->build('menu-header-pos');?>
 	</div>
 </div>
 <ul class="breadcrumb breadcrumb-top">
@@ -88,4 +89,15 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
 	$(function() {
 		TablesDatatables.init();
 	});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function ()
+{
+        //$('#page-container').removeClass('sidebar-visible-xs');
+        //$('#page-container').removeClass('sidebar-visible-lg');
+
+        $('#page-container').attr('class', 'sidebar-no-animations');
+        $('header').hide();
+});
 </script>

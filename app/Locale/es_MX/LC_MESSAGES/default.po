@@ -87,6 +87,24 @@ msgstr "<i class='hi hi-list sidebar-nav-icon'></i>Listas de valores"
 msgid "MENU_SIDEBAR_NAV_LINK_APPMENUS"
 msgstr "<i class='fa fa-bars fa-fw sidebar-nav-icon'></i>Menus de la aplicación"
 
+msgid "MENU_HEADER_POS_LINK_DASHBOARD"
+msgstr "<i class='gi gi-stopwatch'></i> Indicadores"
+
+msgid "MENU_HEADER_POS_LINK_REPORTS"
+msgstr "<i class='fa fa-bar-chart'></i> Reportes"
+
+msgid "MENU_HEADER_POS_LINK_ACCOUNTS"
+msgstr "<i class='gi gi-user'></i> Clientes"
+
+msgid "MENU_HEADER_POS_LINK_POS"
+msgstr "<i class='gi gi-shopping_cart'></i> Punto de Venta"
+
+msgid "MENU_HEADER_POS_LINK_ORDERS"
+msgstr "<i class='gi gi-shopping_cart'></i> Ordenes"
+
+msgid "MENU_HEADER_POS_LINK_PRODUCTS"
+msgstr "<i class='gi gi-shopping_bag'></i> Productos"
+
 # ----------      END MENUES SECTION      ---------- ###################################
 # ####################################################################################
 # ----------      ACCOUNT SECTION      ---------- ###################################

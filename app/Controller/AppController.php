@@ -137,6 +137,22 @@ class AppController extends Controller
             $appMenu['menu-sidebar-nav'] = $hMenuSidebarNav;
         }
 
+        $menuHeaderPos = $this->Appmenu->find('threaded', array(
+            'conditions' => array(
+                'Appmenu.id >=' => 1,
+                'Appmenu.status' => array(StatusOfAppmenu::Active),
+                'Appmenu.mkey =' => 'menu-header-pos'
+            ),
+            'order' => 'Appmenu.ordershow'
+        ));
+
+        $appMenu['menu-header-pos'] = array();
+
+        if(!empty($menuHeaderPos))
+        {
+            $appMenu['menu-header-pos'] = $menuHeaderPos;
+        }
+
         $hMenuSidebarAlt = $this->Appmenu->find('threaded', array(
             'conditions' => array(
                 'Appmenu.id >=' => 1,
