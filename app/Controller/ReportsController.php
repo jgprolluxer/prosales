@@ -14,17 +14,78 @@ class ReportsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'ControllerList');
+public $components = array('Paginator', 'Session', 'ControllerList');
 
 /**
  * index method
  *
  * @return void
  */
-	public function index() {
-		$this->Report->recursive = 0;
-		$this->set('reports', $this->Paginator->paginate());
+public function index() {
+	$this->Report->recursive = 0;
+	$this->set('reports', $this->Paginator->paginate());
+}
+
+
+/**
+ * index method
+ *
+ * @return void
+ */
+public function getReports()
+{
+	//Configure::write('debug', 0);
+	$this->autoRender = false;
+	$this->layout = 'ajax';
+
+
+	$response = array(
+		'success' => false,
+		'message' => '',
+		'xData' => array()
+	);
+
+	$xData = array();
+	try
+	{
+		$this->loadModel('Order');
+		$orders = $this->Order->find('all', array(
+			'fields' => array(
+				'Order.status',
+				'SUM(Order.total_amt) total'
+			),
+			'conditions' => array(
+				//'Order.status' => array('cancelled')
+			),
+			'group' => array('Order.status')
+		));
+		$rOrder = array();
+		foreach ($orders as $key => $order)
+		{
+			$rOrder[$key] = array($order["Order"]["status"], intval($order["0"]["total"]) );
+			
+			//$rOrder[$key]["name"] = $order["Order"]["status"];
+			//$rOrder[$key]["visible"] = true;
+			//$rOrder[$key]["y"] =  $order["0"]["total"];
+		}
+		$xData["OrderByStatus"] = $rOrder;
+		$response = array(
+			'success' => true,
+			'message' => '',
+			'xData' => $xData
+		);
+		$this->log($response);
+	}catch(Exception $ex)
+	{
+		$response = array(
+			'success' => false,
+			'message' => $ex->getMessage(),
+			'xData' => array()
+		);
 	}
+
+	echo json_encode($response);
+}
 
 /**
  * view method
@@ -33,30 +94,30 @@ class ReportsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
-		if (!$this->Report->exists($id)) {
-			throw new NotFoundException(__('Invalid report'));
-		}
-		$options = array('conditions' => array('Report.' . $this->Report->primaryKey => $id));
-		$this->set('report', $this->Report->find('first', $options));
+public function view($id = null) {
+	if (!$this->Report->exists($id)) {
+		throw new NotFoundException(__('Invalid report'));
 	}
+	$options = array('conditions' => array('Report.' . $this->Report->primaryKey => $id));
+	$this->set('report', $this->Report->find('first', $options));
+}
 
 /**
  * add method
  *
  * @return void
  */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->Report->create();
-			if ($this->Report->save($this->request->data)) {
-				$this->Session->setFlash(__('The report has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The report could not be saved. Please, try again.'));
-			}
+public function add() {
+	if ($this->request->is('post')) {
+		$this->Report->create();
+		if ($this->Report->save($this->request->data)) {
+			$this->Session->setFlash(__('The report has been saved.'));
+			return $this->redirect(array('action' => 'index'));
+		} else {
+			$this->Session->setFlash(__('The report could not be saved. Please, try again.'));
 		}
 	}
+}
 
 /**
  * edit method
@@ -65,22 +126,22 @@ class ReportsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
-		if (!$this->Report->exists($id)) {
-			throw new NotFoundException(__('Invalid report'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Report->save($this->request->data)) {
-				$this->Session->setFlash(__('The report has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The report could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Report.' . $this->Report->primaryKey => $id));
-			$this->request->data = $this->Report->find('first', $options);
-		}
+public function edit($id = null) {
+	if (!$this->Report->exists($id)) {
+		throw new NotFoundException(__('Invalid report'));
 	}
+	if ($this->request->is(array('post', 'put'))) {
+		if ($this->Report->save($this->request->data)) {
+			$this->Session->setFlash(__('The report has been saved.'));
+			return $this->redirect(array('action' => 'index'));
+		} else {
+			$this->Session->setFlash(__('The report could not be saved. Please, try again.'));
+		}
+	} else {
+		$options = array('conditions' => array('Report.' . $this->Report->primaryKey => $id));
+		$this->request->data = $this->Report->find('first', $options);
+	}
+}
 
 /**
  * delete method
@@ -89,63 +150,63 @@ class ReportsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
-		$this->Report->id = $id;
-		if (!$this->Report->exists()) {
-			throw new NotFoundException(__('Invalid report'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Report->delete()) {
-			$this->Session->setFlash(__('The report has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The report could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
+public function delete($id = null) {
+	$this->Report->id = $id;
+	if (!$this->Report->exists()) {
+		throw new NotFoundException(__('Invalid report'));
 	}
+	$this->request->allowMethod('post', 'delete');
+	if ($this->Report->delete()) {
+		$this->Session->setFlash(__('The report has been deleted.'));
+	} else {
+		$this->Session->setFlash(__('The report could not be deleted. Please, try again.'));
+	}
+	return $this->redirect(array('action' => 'index'));
+}
 
 /**
  * admin_index method
  *
  * @return void
  */
-	public function admin_index() {
-		$this->Report->recursive = 0;
-		$this->set('reports', $this->Paginator->paginate());
+public function admin_index() {
+	$this->Report->recursive = 0;
+	$this->set('reports', $this->Paginator->paginate());
+}
+
+public function admnJsIndex()
+{
+	$this->log('loading report data');
+	$this->autoRender = false;
+	$this->layout = 'ajax';
+
+	$response = array();
+	try{
+		$reports = $this->Report->find(
+			'all',
+			array(
+				'conditions' => array(
+					'Report.id >=' => 1,
+					'Report.status' => array(StatusOfReport::Active)
+					)
+				)
+			);
+		$response = array(
+			'success' => true,
+			'message' => 'Correcto',
+			'xData' => $reports
+			);
+	}catch (Exeption $ex)
+	{
+		$response = array(
+			'success' => false,
+			'message' => $ex->getMessage(),
+			'xData' => array()
+			);
 	}
 
-    public function admnJsIndex()
-    {
-        $this->log('loading report data');
-        $this->autoRender = false;
-        $this->layout = 'ajax';
-
-        $response = array();
-        try{
-            $reports = $this->Report->find(
-                'all',
-                array(
-                    'conditions' => array(
-                        'Report.id >=' => 1,
-                        'Report.status' => array(StatusOfReport::Active)
-                    )
-                )
-            );
-            $response = array(
-                'success' => true,
-                'message' => 'Correcto',
-                'xData' => $reports
-            );
-        }catch (Exeption $ex)
-        {
-            $response = array(
-                'success' => false,
-                'message' => $ex->getMessage(),
-                'xData' => array()
-            );
-        }
-
-        echo json_encode($response);
-    }
+	echo json_encode($response);
+}
 
 /**
  * admin_view method
@@ -154,82 +215,82 @@ class ReportsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function admin_view($id = null) {
-		if (!$this->Report->exists($id)) {
-			throw new NotFoundException(__('Invalid report'));
-		}
-		$options = array('conditions' => array('Report.' . $this->Report->primaryKey => $id));
-		$this->set('report', $this->Report->find('first', $options));
+public function admin_view($id = null) {
+	if (!$this->Report->exists($id)) {
+		throw new NotFoundException(__('Invalid report'));
 	}
+	$options = array('conditions' => array('Report.' . $this->Report->primaryKey => $id));
+	$this->set('report', $this->Report->find('first', $options));
+}
 
 /**
  * admin_add method
  *
  * @return void
  */
-	public function admin_add() {
-		if ($this->request->is('post')) {
-			$this->Report->create();
-			if ($this->Report->save($this->request->data)) {
-				$this->Session->setFlash(__('The report has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The report could not be saved. Please, try again.'));
-			}
+public function admin_add() {
+	if ($this->request->is('post')) {
+		$this->Report->create();
+		if ($this->Report->save($this->request->data)) {
+			$this->Session->setFlash(__('The report has been saved.'));
+			return $this->redirect(array('action' => 'index'));
+		} else {
+			$this->Session->setFlash(__('The report could not be saved. Please, try again.'));
 		}
-
-        $ctrlList = $this->ControllerList->getList(array('P28nController', 'PagesController'));
-        $ctrls = (array_combine(array_keys($ctrlList), array_keys($ctrlList)));
-        $models = (array_combine(App::objects('model'), App::objects('model')));
-
-
-        $this->loadModel('Lov');
-        $this->Lov->recursive = -1;
-
-        $lovReportRKey = $this->Lov->find('list', array(
-            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
-            'conditions' => array(
-                'Lov.type =' => 'REPORT_FIELD_RKEY',
-                'Lov.status' => array(StatusOfLov::Active)
-            ),
-            'order' => array('ordershow')
-        ));
-        $lovReportType = $this->Lov->find('list', array(
-            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
-            'conditions' => array(
-                'Lov.type =' => 'REPORT_FIELD_TYPE',
-                'Lov.status' => array(StatusOfLov::Active)
-            ),
-            'order' => array('ordershow')
-        ));
-        $lovReportStatus = $this->Lov->find('list', array(
-            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
-            'conditions' => array(
-                'Lov.type =' => 'REPORT_FIELD_STATUS',
-                'Lov.status' => array(StatusOfLov::Active)
-            ),
-            'order' => array('ordershow')
-        ));
-        $lovReportCategory = $this->Lov->find('list', array(
-            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
-            'conditions' => array(
-                'Lov.type =' => 'REPORT_FIELD_ CATEGORY',
-                'Lov.status' => array(StatusOfLov::Active)
-            ),
-            'order' => array('ordershow')
-        ));
-        $lovReportFindType = $this->Lov->find('list', array(
-            'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
-            'conditions' => array(
-                'Lov.type =' => 'REPORT_FIELD_FINDTYPE',
-                'Lov.status' => array(StatusOfLov::Active)
-            ),
-            'order' => array('ordershow')
-        ));
-
-
-        $this->set(compact('models', 'lovReportRKey', 'lovReportType', 'lovReportStatus', 'lovReportCategory', 'lovReportFindType'));
 	}
+
+	$ctrlList = $this->ControllerList->getList(array('P28nController', 'PagesController'));
+	$ctrls = (array_combine(array_keys($ctrlList), array_keys($ctrlList)));
+	$models = (array_combine(App::objects('model'), App::objects('model')));
+
+
+	$this->loadModel('Lov');
+	$this->Lov->recursive = -1;
+
+	$lovReportRKey = $this->Lov->find('list', array(
+		'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+		'conditions' => array(
+			'Lov.type =' => 'REPORT_FIELD_RKEY',
+			'Lov.status' => array(StatusOfLov::Active)
+			),
+		'order' => array('ordershow')
+		));
+	$lovReportType = $this->Lov->find('list', array(
+		'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+		'conditions' => array(
+			'Lov.type =' => 'REPORT_FIELD_TYPE',
+			'Lov.status' => array(StatusOfLov::Active)
+			),
+		'order' => array('ordershow')
+		));
+	$lovReportStatus = $this->Lov->find('list', array(
+		'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+		'conditions' => array(
+			'Lov.type =' => 'REPORT_FIELD_STATUS',
+			'Lov.status' => array(StatusOfLov::Active)
+			),
+		'order' => array('ordershow')
+		));
+	$lovReportCategory = $this->Lov->find('list', array(
+		'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+		'conditions' => array(
+			'Lov.type =' => 'REPORT_FIELD_ CATEGORY',
+			'Lov.status' => array(StatusOfLov::Active)
+			),
+		'order' => array('ordershow')
+		));
+	$lovReportFindType = $this->Lov->find('list', array(
+		'fields' => array('Lov.value', 'Lov.name_'.$this->appLangConf),
+		'conditions' => array(
+			'Lov.type =' => 'REPORT_FIELD_FINDTYPE',
+			'Lov.status' => array(StatusOfLov::Active)
+			),
+		'order' => array('ordershow')
+		));
+
+
+	$this->set(compact('models', 'lovReportRKey', 'lovReportType', 'lovReportStatus', 'lovReportCategory', 'lovReportFindType'));
+}
 
 /**
  * admin_edit method
@@ -238,22 +299,22 @@ class ReportsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function admin_edit($id = null) {
-		if (!$this->Report->exists($id)) {
-			throw new NotFoundException(__('Invalid report'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Report->save($this->request->data)) {
-				$this->Session->setFlash(__('The report has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The report could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Report.' . $this->Report->primaryKey => $id));
-			$this->request->data = $this->Report->find('first', $options);
-		}
+public function admin_edit($id = null) {
+	if (!$this->Report->exists($id)) {
+		throw new NotFoundException(__('Invalid report'));
 	}
+	if ($this->request->is(array('post', 'put'))) {
+		if ($this->Report->save($this->request->data)) {
+			$this->Session->setFlash(__('The report has been saved.'));
+			return $this->redirect(array('action' => 'index'));
+		} else {
+			$this->Session->setFlash(__('The report could not be saved. Please, try again.'));
+		}
+	} else {
+		$options = array('conditions' => array('Report.' . $this->Report->primaryKey => $id));
+		$this->request->data = $this->Report->find('first', $options);
+	}
+}
 
 /**
  * admin_delete method
@@ -262,17 +323,17 @@ class ReportsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function admin_delete($id = null) {
-		$this->Report->id = $id;
-		if (!$this->Report->exists()) {
-			throw new NotFoundException(__('Invalid report'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Report->delete()) {
-			$this->Session->setFlash(__('The report has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The report could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
+public function admin_delete($id = null) {
+	$this->Report->id = $id;
+	if (!$this->Report->exists()) {
+		throw new NotFoundException(__('Invalid report'));
 	}
+	$this->request->allowMethod('post', 'delete');
+	if ($this->Report->delete()) {
+		$this->Session->setFlash(__('The report has been deleted.'));
+	} else {
+		$this->Session->setFlash(__('The report could not be deleted. Please, try again.'));
+	}
+	return $this->redirect(array('action' => 'index'));
+}
 }
