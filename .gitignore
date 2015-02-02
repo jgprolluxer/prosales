@@ -53,9 +53,9 @@ node_modules/
 # --------------------
 # Bower Files
 # --------------------
-.bower-*/
-app/webroot/bower_components
-app/webroot/bower_components/
+#.bower-*/
+#app/webroot/bower_components
+#app/webroot/bower_components/
 
 # --------------------
 # App Files

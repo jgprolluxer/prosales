@@ -1,0 +1,29 @@
+{
+  "name": "Prosales",
+  "version": "0.1.0",
+  "homepage": "https://github.com/ruizhit/prosales",
+  "authors": [
+    "Hugo Ruíz <hruiz.it@live.com.mx>"
+  ],
+  "description": "Point Of Sale",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "~2.9.0",
+    "moment-timezone": "~0.3.0",
+    "angular": "~1.3.11",
+    "angular-datatables": "~0.4.0",
+    "angular-moment": "~0.9.0",
+    "angular-route": "~1.3.11",
+    "angular-translate": "~2.5.2",
+    "angular-translate-loader-url": "~2.5.2",
+    "angular-translate-loader-static-files": "~2.5.2"
+  }
+}
