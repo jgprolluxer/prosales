@@ -38,6 +38,18 @@ public function getReports()
 	$this->autoRender = false;
 	$this->layout = 'ajax';
 
+	$this->log('Dates');
+	$this->log($this->request->query);
+
+	$startDt = date("Y-m-d H:i:s", strtotime("-30 day"));
+	$endDt = date("Y-m-d H:i:s");
+
+	if( isset($this->request->query["startDt"]) && isset($this->request->query["endDt"]) )
+	{
+		$startDt = $this->request->query["startDt"];
+		$endDt = $this->request->query["endDt"];
+	}
+
 
 	$response = array(
 		'success' => false,
@@ -48,14 +60,17 @@ public function getReports()
 	$xData = array();
 	try
 	{
+
+//////////////////Orders Reports
 		$this->loadModel('Order');
 		$orders = $this->Order->find('all', array(
 			'fields' => array(
 				'Order.status',
-				'SUM(Order.total_amt) total'
+				'IFNULL(SUM(Order.total_amt),0) total'
 			),
 			'conditions' => array(
-				//'Order.status' => array('cancelled')
+				//'Order.created >=' => $startDt,
+				//'Order.created <=' => $endDt
 			),
 			'group' => array('Order.status')
 		));
@@ -69,12 +84,16 @@ public function getReports()
 			//$rOrder[$key]["y"] =  $order["0"]["total"];
 		}
 		$xData["OrderByStatus"] = $rOrder;
+
+
+
+
 		$response = array(
 			'success' => true,
 			'message' => '',
 			'xData' => $xData
 		);
-		$this->log($response);
+
 	}catch(Exception $ex)
 	{
 		$response = array(
