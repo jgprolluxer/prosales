@@ -3,13 +3,11 @@
 <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
 <script type="text/javascript" src="/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
-
+<input type="hidden" id="rptStartDT" value="<?php echo $startDt; ?>">
+<input type="hidden" id="rptEndDT" value="<?php echo $endDt; ?>">
 <!-- Forms General Header -->
 <div class="content-header">
 	<div class="header-section">
-		<h1>
-			<i class="gi gi-building"></i><?php echo __('REPORTS_INDEX_HEAD_TITLE'); ?><br><small><?php echo __('REPORT_INDEX_HEAD_TITLE_SMALL'); ?></small>
-		</h1>
 		<?php echo $this->MenuBuilder->build('menu-header-pos');?>
 	</div>
 </div>
@@ -18,21 +16,21 @@
 	<div class="block-title">
 		<!-- Interactive block controls (initialized in js/app.js -> interactiveBlocks()) -->
 		<div class="block-options pull-right">
-			<a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
-			<a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
-			<a class="btn btn-alt btn-sm btn-primary" id="reportrange"><i class="fa fa-calendar fa-lg"></i>
-				<span><?php echo date("F j, Y", strtotime('-30 day')); ?> - <?php echo date("F j, Y"); ?></span> <b class="caret"></b>
+			<a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content">
+				<i class="fa fa-arrows-v"></i>
+			</a>
+			<a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen">
+				<i class="fa fa-desktop"></i>
+			</a>
+			<a class="btn btn-alt btn-sm btn-primary" id="reportrange">
+				<i class="fa fa-calendar fa-lg"></i>
+				<span><?php echo $startDt; ?> - <?php echo $endDt; ?></span> <b class="caret"></b>
 			</a>
 		</div>
 		<ul class="nav nav-tabs" data-toggle="tabs">
 			<li class="active"><a href="#reportOrderAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_ORDER'); ?></a></li>
 			<li><a href="#reportProductAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_PRODUCT'); ?></a></li>
-			
 		</ul>
-
-		<script type="text/javascript">
-
-		</script>
 	</div>
 	<div class="tab-content">
 		<div class="tab-pane active" id="reportOrderAnalytic"><i class="fa fa-spinner fa-spin fa-4x "></i></div>
@@ -48,37 +46,36 @@ $(document).ready(function ()
     $('#page-container').attr('class', 'sidebar-no-animations');
     $('header').hide();
 
-    feedReports('<?php echo date("Y-m-d H:i:s", strtotime("-30 day")); ?>', '<?php echo date("Y-m-d H:i:s"); ?>');
+    feedReports($('#rptStartDT').val(), $('#rptEndDT').val());
 
-    		$('#reportrange').daterangepicker(
-		{
-			ranges: {
-				'Today': [moment(), moment()],
-				'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-				'Last 7 Days': [moment().subtract('days', 6), moment()],
-				'Last 30 Days': [moment().subtract('days', 29), moment()],
-				'This Month': [moment().startOf('month'), moment().endOf('month')],
-				'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
-			},
-			startDate: moment().subtract('days', 29),
-			endDate: moment()
-		},
-		function(start, end) {
-			$('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-		});
-		$('#reportrange').on('apply.daterangepicker', function(ev, picker)
-		{
-			console.log(picker.startDate.format('YYYY-MM-DD'));
-			console.log(picker.endDate.format('YYYY-MM-DD'));
-		});
+    $('#reportrange').daterangepicker(
+    {
+    	format: 'YYYY-MM-DD',
+    	ranges: {
+    		'Today': [moment(), moment()],
+    		'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+    		'Last 7 Days': [moment().subtract('days', 6), moment()],
+    		'Last 30 Days': [moment().subtract('days', 29), moment()],
+    		'This Month': [moment().startOf('month'), moment().endOf('month')],
+    		'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+    	},
+    	startDate: moment().subtract('days', 29),
+    	endDate: moment()
+    },
+    function(start, end) {
+    	$('#reportrange span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+    });
+    $('#reportrange').on('apply.daterangepicker', function(ev, picker)
+    {
+    	window.location.href = qualifyURL("/Reports/index/?startDt="
+    		+ picker.startDate.format('YYYY-MM-DD') + " 00:00:00&endDt="
+    		+ picker.endDate.format('YYYY-MM-DD') + " 23:59:59");
+    });
 
 });
 
 function feedReports(startDate, endDate)
 {
-	console.log('feeding');
-	console.log(startDate);
-	console.log(endDate);
 	var input =  "startDt=" + startDate + "&endDt=" + endDate +"";
 	var url = "/Reports/getReports/?"+input;
 	$.ajax({
@@ -95,6 +92,11 @@ function feedReports(startDate, endDate)
 			console.log(data);
 		}
 	});
+}
+
+function handleBarOrderByDate()
+{
+	
 }
 
 function handlePieOrderByStatusChart(xData)
@@ -121,7 +123,7 @@ function handlePieOrderByStatusChart(xData)
     		plotShadow: false
     	},
     	title: {
-    		text: 'Browser market shares at a specific website, 2014'
+    		text: '<?php echo __("REPORTS_CAT_ORDER_REPORT_BY_STATUS_TITLE"); ?>'
     	},
     	credits: {
     		enabled: false

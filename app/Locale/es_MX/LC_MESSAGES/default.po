@@ -34,6 +34,12 @@ msgstr "Vendedor"
 msgid "active"
 msgstr "Activo"
 
+msgid "cancelled"
+msgstr "Cancelado"
+
+msgid "closed"
+msgstr "Cerrado"
+
 msgid "NONE"
 msgstr "Ninguno"
 
@@ -2489,6 +2495,15 @@ msgstr "Revisión"
 # ###############################################################################
 # ----------      REPORT SECTION      ---------- ###################################
 #
+msgid "REPORT_INDEX_TAB_TITLE_CAT_ORDER"
+msgstr "Análisis de Ordenes"
+
+msgid "REPORTS_CAT_ORDER_REPORT_BY_STATUS_TITLE"
+msgstr "Reporte de Ordenes por estado"
+
+msgid "REPORT_INDEX_TAB_TITLE_CAT_PRODUCT"
+msgstr "Análisis de Productos"
+
 msgid "REPORT_TITLE"
 msgstr "titulo de reporte"
 

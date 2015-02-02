@@ -22,8 +22,18 @@ public $components = array('Paginator', 'Session', 'ControllerList');
  * @return void
  */
 public function index() {
-	$this->Report->recursive = 0;
-	$this->set('reports', $this->Paginator->paginate());
+
+
+	$startDt = date("Y-m-d H:i:s", strtotime("-30 day"));
+	$endDt = date("Y-m-d H:i:s");
+
+	if( isset($this->request->query["startDt"]) && isset($this->request->query["endDt"]) )
+	{
+		$startDt = $this->request->query["startDt"];
+		$endDt = $this->request->query["endDt"];
+	}
+
+	$this->set(compact('startDt', 'endDt'));
 }
 
 
@@ -69,19 +79,15 @@ public function getReports()
 				'IFNULL(SUM(Order.total_amt),0) total'
 			),
 			'conditions' => array(
-				//'Order.created >=' => $startDt,
-				//'Order.created <=' => $endDt
+				'Order.created >=' => $startDt,
+				'Order.created <=' => $endDt
 			),
 			'group' => array('Order.status')
 		));
 		$rOrder = array();
 		foreach ($orders as $key => $order)
 		{
-			$rOrder[$key] = array($order["Order"]["status"], intval($order["0"]["total"]) );
-			
-			//$rOrder[$key]["name"] = $order["Order"]["status"];
-			//$rOrder[$key]["visible"] = true;
-			//$rOrder[$key]["y"] =  $order["0"]["total"];
+			$rOrder[$key] = array(__($order["Order"]["status"]), intval($order["0"]["total"]) );
 		}
 		$xData["OrderByStatus"] = $rOrder;
 
