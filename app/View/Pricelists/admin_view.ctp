@@ -91,6 +91,40 @@
     <p class="text-muted"><?php echo __('ADMIN_PRICELIST_VIEW_BLOCK_CONTENT_FOOTER'); ?></p>
 </div>
 <!-- END Normal Form Block -->
+
+<!-- Block Tabs -->
+<div class="block full">
+    <!-- Block Tabs Title -->
+    <div class="block-title">
+        <ul class="nav nav-tabs" data-toggle="tabs">
+            <?php
+            $painted = FALSE;
+            if ($this->AclView->hasAccess(array('controller' => 'PricelistProducts', 'action' => 'index')))
+            {
+                echo '<li class="' . ($painted ? '' : 'active') . '"><a href="#tab_products">'.__('ADMIN_PRICELIST_VIEW_TAB_PRODUCTS').'</a></li>';
+                $painted = TRUE;
+            }
+            ?>
+        </ul>
+    </div>
+    <!-- END Block Tabs Title -->
+    <!-- Tabs Content -->
+    <div class="tab-content">
+            <?php
+            $painted = FALSE;
+            if ($this->AclView->hasAccess(array('controller' => 'PricelistProducts', 'action' => 'index')))
+            {
+                echo '<div class="tab-pane ' . ($painted ? '' : 'active') . '" id="tab_products">';
+                echo $this->element('DataTables/pricelist_products');
+                echo '</div>';
+                $painted = TRUE;
+            }
+            ?>
+        </div>
+    </div>
+    <!-- END Tabs Content -->
+</div>
+<!-- END Block Tabs -->
 <script type="text/javascript">
     $(document).ready(function () {
         $(window).keydown(function (event) {
