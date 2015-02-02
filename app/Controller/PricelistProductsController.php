@@ -14,7 +14,7 @@ class PricelistProductsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'DataTable', 'Navigation');
 
 /**
  * index method
@@ -24,6 +24,47 @@ class PricelistProductsController extends AppController {
 	public function index() {
 		$this->PricelistProduct->recursive = 0;
 		$this->set('pricelistProducts', $this->Paginator->paginate());
+	}
+
+	public function jsindex()
+	{
+        $this->autoRender = false;
+        $this->layout = 'ajax';
+
+        $arrayConditions = array(
+            'PricelistProduct.id >=' => 1
+        );
+
+        $this->paginate = array(
+            'fields' => array(
+                'Product.name',
+                'PricelistProduct.username',
+                'PricelistProduct.firstname',
+                'PricelistProduct.lastname',
+				//"CONCAT('<a href=\"" . Router::url("/Users/view/") . "', User.id, '\">', User.firstname ,'</a>') as useractions",
+            ),
+            'conditions' => $arrayConditions
+        );
+
+        $this->DataTable->fields = array(
+            'PricelistProduct.id',
+            'PricelistProduct.username',
+            'PricelistProduct.firstname',
+            'PricelistProduct.lastname',
+            'PricelistProduct.name',
+            'PricelistProduct.useractions'
+        );
+
+        $this->DataTable->filterFields = array(
+            'PricelistProduct.id',
+            'PricelistProduct.username',
+            'PricelistProduct.firstname',
+            'PricelistProduct.lastname',
+            'PricelistProduct.name',
+            'PricelistProduct.name'
+        );
+
+        echo json_encode($this->DataTable->getResponse());
 	}
 
 /**
