@@ -77,7 +77,7 @@ class WorkstationsController extends AppController {
                 $treeObj[$key][1] = "";
             }
             $treeObj[$key][2] = $obj["Workstation"]["title"];
-            
+
         }
 
 		$this->set('treeObj', $treeObj);
@@ -405,4 +405,60 @@ class WorkstationsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function getPricelist()
+	{
+		$this->autoRender = false;
+		$this->layout = 'ajax';
+
+		$response = array(
+			'success' => false,
+			'message' => '',
+			'xData' => array()
+		);
+
+		try{
+			$this->log('read Auth');
+			$this->log(CakeSession::read('Auth.User'));
+			$uLogged = CakeSession::read('Auth.User');
+			if(isset($uLogged["Workstation"]["pricelist_id"]))
+			{
+				if(null !== $uLogged["Workstation"]["pricelist_id"] && 0 !== $uLogged["Workstation"]["pricelist_id"])
+				{
+
+				} else
+				{
+					if(null !== $uLogged["Workstation"]["store_id"] && 0 !== $uLogged["Workstation"]["store_id"])
+					{
+						$this->loadModel('Store');
+						$store = $this->Store->read(null, $uLogged["Workstation"]["store_id"]);
+
+						if(null !== $store["Store"]["pricelist_id"] && 0 !== $store["Store"]["pricelist_id"] )
+						{
+
+						} else {
+							$response = array(
+								'success' => false,
+								'message' => __('NO_STRUCTURE_FOR_PRICELIST'),
+								'xData' => array()
+							);
+						}
+
+					} else
+					{
+						$response = array(
+							'success' => false,
+							'message' => __('NO_STRUCTURE_FOR_PRICELIST'),
+							'xData' => array()
+						);
+					}
+				}
+			}
+		}catch(Exception $ex)
+		{
+
+		}
+	}
+
+	echo json_encode($response);
 }

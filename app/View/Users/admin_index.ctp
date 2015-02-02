@@ -55,14 +55,18 @@
                             <td><?php echo __($user['User']['workstation_id']); ?></td>
                             <td>
                                 <?php
-                                echo $this->AclView->link(__('<i class="fa fa-eye fa-fw"></i>'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'view', $user['User']['id']), array('escape' => false, 'class' => array('btn btn-xs btn-info')));
+                                echo $this->AclView->link(__('<i class="fa fa-eye fa-fw"></i>'),
+                                array('plugin' => $this->params['plugin'],
+                                    'prefix' => null, 'admin' => $this->params['admin'],
+                                    'controller' => $this->params['controller'], 'action' => 'view',
+                                    $user['User']['id']),
+                                array('escape' => false, 'class' => array('btn btn-xs btn-info')));
                                 ?>
                             </td>
                         </tr>
-
-                    <?php
-                        }
-                        ?>
+                    <?php 
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>

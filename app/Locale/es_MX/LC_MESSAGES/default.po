@@ -2098,6 +2098,9 @@ msgstr "Accion"
 msgid "ADMIN_PRICELIST_INDEX_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
+msgid "ADMIN_PRICELIST_VIEW_TAB_PRODUCTS"
+msgstr "Productos"
+
 # ----------      END ADMIN INDEX SECTION      ----------
 #
 # ----------      INDEX SECTION      ----------
@@ -2132,6 +2135,32 @@ msgstr "Recuerda revisar todos los campos"
 # ----------      END  INDEX SECTION      ----------
 #
 # ----------      END PRICELIST SECTION      ---------- ##########################
+#################################################################################
+# ----------      PRICELIST_PRODUCT SECTION      ---------- ###################################
+#
+# ----------      ELEMENT INDEX SECTION      ----------
+#
+# ----------      END ELEMENT INDEX SECTION      ----------
+#
+msgid "ADMIN_PRICELIST_PRODUCT_ELEMENT_INDEX_BTN_GO_ADD"
+msgstr "Agregar"
+
+msgid "ADMIN_ELEMENT_PRICELIST_PRODUCT_INDEX_FIELD_PRODUCT"
+msgstr "Producto"
+
+msgid "ADMIN_ELEMENT_PRICELIST_PRODUCT_INDEX_FIELD_STARTDT"
+msgstr "Inicio"
+
+msgid "ADMIN_ELEMENT_PRICELIST_PRODUCT_INDEX_FIELD_ENDDT"
+msgstr "Fin"
+
+msgid "ADMIN_ELEMENT_PRICELIST_PRODUCT_INDEX_FIELD_TAX"
+msgstr "Impuestos %"
+
+msgid "ADMIN_ELEMENT_PRICELIST_PRODUCT_INDEX_ACTION"
+msgstr "Acciones"
+
+# ----------      END PRICELIST_PRODUCT SECTION      ---------- ###################################
 #
 # ----------      PRODUCT SECTION      ---------- ###################################
 #
@@ -3829,4 +3858,3 @@ msgstr "Guardar"
 
 msgid "ADMIN_WORKSTATION_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Revisión"
-

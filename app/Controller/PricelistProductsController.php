@@ -26,47 +26,6 @@ class PricelistProductsController extends AppController {
 		$this->set('pricelistProducts', $this->Paginator->paginate());
 	}
 
-	public function jsindex()
-	{
-        $this->autoRender = false;
-        $this->layout = 'ajax';
-
-        $arrayConditions = array(
-            'PricelistProduct.id >=' => 1
-        );
-
-        $this->paginate = array(
-            'fields' => array(
-                'Product.name',
-                'PricelistProduct.username',
-                'PricelistProduct.firstname',
-                'PricelistProduct.lastname',
-				//"CONCAT('<a href=\"" . Router::url("/Users/view/") . "', User.id, '\">', User.firstname ,'</a>') as useractions",
-            ),
-            'conditions' => $arrayConditions
-        );
-
-        $this->DataTable->fields = array(
-            'PricelistProduct.id',
-            'PricelistProduct.username',
-            'PricelistProduct.firstname',
-            'PricelistProduct.lastname',
-            'PricelistProduct.name',
-            'PricelistProduct.useractions'
-        );
-
-        $this->DataTable->filterFields = array(
-            'PricelistProduct.id',
-            'PricelistProduct.username',
-            'PricelistProduct.firstname',
-            'PricelistProduct.lastname',
-            'PricelistProduct.name',
-            'PricelistProduct.name'
-        );
-
-        echo json_encode($this->DataTable->getResponse());
-	}
-
 /**
  * view method
  *
@@ -160,6 +119,55 @@ class PricelistProductsController extends AppController {
 		$this->set('pricelistProducts', $this->Paginator->paginate());
 	}
 
+
+	public function jsindexadmin($pricelistID = null)
+	{
+		$this->autoRender = false;
+		$this->layout = 'ajax';
+
+		$arrayConditions = array(
+			'PricelistProduct.id >=' => 1
+		);
+		if(null !== $pricelistID)
+		{
+			$arrayConditions = array(
+				'PricelistProduct.id >=' => 1,
+				'Pricelist.id =' => $pricelistID
+			);
+		}
+
+		$this->paginate = array(
+			'fields' => array(
+				'PricelistProduct.id',
+				"CONCAT('<a href=\"" . Router::url("/admin/Products/view/") . "', Product.id, '\">', Product.name ,'</a>') as productview",
+				'PricelistProduct.startdt',
+				'PricelistProduct.enddt',
+				'PricelistProduct.tax',
+				"CONCAT('<a href=\"" . Router::url("/admin/PricelistProducts/view/") . "', PricelistProduct.id, '\" class=\"btn btn-xs btn-info\">', '<i class=\"fa fa-eye fa-fw\"></i>' ,'</a>') as pricelistview",
+			),
+			'conditions' => $arrayConditions
+		);
+
+		$this->DataTable->fields = array(
+			'PricelistProduct.id',
+			'0.productview',
+			'PricelistProduct.startdt',
+			'PricelistProduct.enddt',
+			'PricelistProduct.tax',
+			'0.pricelistview',
+		);
+
+		$this->DataTable->filterFields = array(
+			'PricelistProduct.id',
+			'Product.name',
+			'PricelistProduct.startdt',
+			'PricelistProduct.enddt',
+			'PricelistProduct.tax',
+			'PricelistProduct.tax',
+		);
+
+		echo json_encode($this->DataTable->getResponse());
+	}
 /**
  * admin_view method
  *

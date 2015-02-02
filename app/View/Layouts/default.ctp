@@ -193,7 +193,7 @@
         echo $this->Html->script("/js/controllers/workstationsController.js");
         echo $this->Html->script("/js/controllers/lovsController.js");
         echo $this->Html->script("/js/controllers/adminAccountsController.js");
-        echo $this->Html->script("/js/controllers/posController.js");
+        echo $this->Html->script("/js/controllers/ordersController.js");
         ?>
         <?php
         /**
@@ -265,7 +265,7 @@
                      {
                      $("#" + "<?php //echo $this->params['ACTIVE_SUBMENU'];  ?>").trigger('click');
                      }
-                     
+
                      }, 1000);
                      */
 
