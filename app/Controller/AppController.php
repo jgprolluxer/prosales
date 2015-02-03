@@ -263,6 +263,28 @@ abstract class StatusOfLov
 /**
  * Manage ProjectTeam Status
  */
+abstract class StatusOfPricelist
+{
+
+    const Active = "active";
+    const Inactive = "inactive";
+
+}
+
+/**
+ * Manage ProjectTeam Status
+ */
+abstract class StatusOfPricelistProduct
+{
+
+    const Active = "active";
+    const Inactive = "inactive";
+
+}
+
+/**
+ * Manage ProjectTeam Status
+ */
 abstract class StatusOfProjectTeam
 {
 

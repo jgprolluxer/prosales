@@ -418,13 +418,28 @@ class WorkstationsController extends AppController {
 		);
 
 		try{
-			$this->log('read Auth');
-			$this->log(CakeSession::read('Auth.User'));
 			$uLogged = CakeSession::read('Auth.User');
 			if(isset($uLogged["Workstation"]["pricelist_id"]))
 			{
 				if(null !== $uLogged["Workstation"]["pricelist_id"] && 0 !== $uLogged["Workstation"]["pricelist_id"])
 				{
+					$this->loadModel('Pricelist');
+					$pricelist = $this->Pricelist->read(null, $uLogged["Workstation"]["pricelist_id"]);
+					if(StatusOfPricelist::Active == $pricelist["Pricelist"]["status"])
+					{
+						$response = array(
+							'success' => true,
+							'message' => __('OK'),
+							'xData' => $pricelist
+						);
+					} else
+					{
+						$response = array(
+							'success' => false,
+							'message' => __('PRICELIST_NOT_ACTIVE'),
+							'xData' => array()
+						);
+					}
 
 				} else
 				{
@@ -435,6 +450,24 @@ class WorkstationsController extends AppController {
 
 						if(null !== $store["Store"]["pricelist_id"] && 0 !== $store["Store"]["pricelist_id"] )
 						{
+							$this->loadModel('Pricelist');
+							$pricelist = $this->Pricelist->read(null, $store["Store"]["pricelist_id"]);
+
+							if(StatusOfPricelist::Active == $pricelist["Pricelist"]["status"])
+							{
+								$response = array(
+									'success' => true,
+									'message' => __('OK'),
+									'xData' => $pricelist
+								);
+							} else
+							{
+								$response = array(
+									'success' => false,
+									'message' => __('PRICELIST_NOT_ACTIVE'),
+									'xData' => array()
+								);
+							}
 
 						} else {
 							$response = array(
@@ -456,9 +489,12 @@ class WorkstationsController extends AppController {
 			}
 		}catch(Exception $ex)
 		{
-
+			$response = array(
+				'success' => false,
+				'message' => $ex->getMessage(),
+				'xData' => array()
+			);
 		}
+		echo json_encode($response);
 	}
-
-	echo json_encode($response);
 }

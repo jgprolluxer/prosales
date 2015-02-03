@@ -250,4 +250,56 @@ class PricelistProductsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+	public function jsfindPricelistProduct()
+	{
+		Configure::write('debug', 0);
+		$this->autoRender = false;
+		$this->layout = 'ajax';
+
+		$arrayConditions = array();
+		$response = array();
+		$results = array();
+		try
+		{
+			switch ($this->request->query['format'])
+			{
+				case 'POStypeahead':
+					{
+						$pricelistID = $this->request->query['pricelistID'];
+						$this->PricelistProduct->recursive = 3;
+						$arrayConditions = array(
+							'PricelistProduct.id >= ' => 1,
+							'PricelistProduct.id = ' => $pricelistID,
+							'PricelistProduct.status' => array(StatusOfPricelistProduct::Active)
+						);
+						$results = $this->PricelistProduct->find('all', array(
+							'conditions' => $arrayConditions
+						));
+						foreach ($results as $key => $value)
+						{
+							$rd[$key]["id"] = $value["Product"]["id"];
+							$rd[$key]["value"] = $value["Product"]["name"];
+						}
+						$response = array(
+							'success' => true,
+							'xData' => $rd,
+							'message' => 'Correcto'
+						);
+					}
+					break;
+				default :
+					break;
+			}
+		} catch (Exception $ex)
+		{
+			$response = array(
+				'success' => false,
+				'message' => $ex->getMessage(),
+				'xData' => array()
+			);
+		}
+		echo json_encode($response);
+	}
 }

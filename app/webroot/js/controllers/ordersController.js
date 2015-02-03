@@ -1,6 +1,12 @@
 angular.module('prosales-app')
 .controller('OrderAddController', function ($scope, $http, DTOptionsBuilder, DTColumnDefBuilder) {
-
+    ////// Add Loading
+    var pageWrapper = $('#page-wrapper');
+    if (pageWrapper.hasClass('page-loading'))
+    {//pageWrapper.removeClass('page-loading');
+    }else{
+        $('#page-wrapper').addClass('page-loading');
+    }
     $scope.activeStyles = [
     'themed-background-default',
     'themed-background-night',
@@ -28,6 +34,9 @@ angular.module('prosales-app')
         var item = elArr[Math.floor(Math.random() * elArr.length)];
         return item;
     };
+
+    ////// Initialize pricelist
+    $scope.pricelist = {};
 
     //////Initialize New Order Object
     $scope.newOrder = {
@@ -95,62 +104,80 @@ angular.module('prosales-app')
             }
         }).error(function(data, status, headers, config)
         {
+            $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                type: 'danger',
+                delay: 0,
+                allow_dismiss: false,
+                from: "top",
+                align: "center"
+            });
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-            alert('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+            console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
         });
     };
 
     //////Load typeahead products to product searcher control
-    $http.get("/Products/jsfindProduct/?format=POStypeahead").success(function (data)
+    $scope.loadProductNames = function ()
     {
-        if (data)
+        var pricelistID = $scope.pricelist.Pricelist.id;
+        $http.get("/PricelistProducts/jsfindPricelistProduct/?format=POStypeahead&pricelistID="+pricelistID+'').success(function (data)
         {
-            if (data["success"])
+            if (data)
             {
-                var products;
-                var map;
-                var selectedProduct;
-                $('#productSearcher').typeahead({
-                    source: function (query, process) {
-                        products = [];
-                        map = {};
-                        $.each(data["xData"], function (i, product) {
-                            map[product.value] = product;
-                            products.push(product.value);
-                        });
-                        process(products);
-                    }
-                    ,
-                    updater: function (item) {
-                        selectedProduct = map[item].id;
-                        $scope.processSelectedProduct(selectedProduct);
-                        return item;
-                    },
-                    matcher: function (item) {
-                        if (item.toLowerCase().indexOf(this.query.trim().toLowerCase()) !== -1) {
-                            return true;
+                if (data["success"])
+                {
+                    var products;
+                    var map;
+                    var selectedProduct;
+                    $('#productSearcher').typeahead({
+                        source: function (query, process) {
+                            products = [];
+                            map = {};
+                            $.each(data["xData"], function (i, product) {
+                                map[product.value] = product;
+                                products.push(product.value);
+                            });
+                            process(products);
                         }
-                    },
-                    sorter: function (items) {
-                        return items.sort();
-                    },
-                    highlighter: function (item) {
-                        var regex = new RegExp('(' + this.query + ')', 'gi');
-                        return item.replace(regex, "<strong>$1</strong>");
-                    }
-                });
-            } else
-            {
-                alert(data["message"]);
+                        ,
+                        updater: function (item) {
+                            selectedProduct = map[item].id;
+                            $scope.processSelectedProduct(selectedProduct);
+                            return item;
+                        },
+                        matcher: function (item) {
+                            if (item.toLowerCase().indexOf(this.query.trim().toLowerCase()) !== -1) {
+                                return true;
+                            }
+                        },
+                        sorter: function (items) {
+                            return items.sort();
+                        },
+                        highlighter: function (item) {
+                            var regex = new RegExp('(' + this.query + ')', 'gi');
+                            return item.replace(regex, "<strong>$1</strong>");
+                        }
+                    });
+                } else
+                {
+                    alert(data["message"]);
+                }
             }
-        }
-    }).error(function(data, status, headers, config)
-    {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        alert('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
-    });
+        }).error(function(data, status, headers, config)
+        {
+            $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                type: 'danger',
+                delay: 0,
+                allow_dismiss: false,
+                from: "top",
+                align: "center"
+            });
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+        });
+    };
 
     $scope.loadFamilies = function ()
     {
@@ -169,9 +196,16 @@ angular.module('prosales-app')
             }
         }).error(function(data, status, headers, config)
         {
+            $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                type: 'danger',
+                delay: 0,
+                allow_dismiss: false,
+                from: "top",
+                align: "center"
+            });
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-            alert('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+            console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
         });
     };
     $scope.loadFamilies();
@@ -191,9 +225,16 @@ angular.module('prosales-app')
             }
         }).error(function(data, status, headers, config)
         {
+            $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                type: 'danger',
+                delay: 0,
+                allow_dismiss: false,
+                from: "top",
+                align: "center"
+            });
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-            alert('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+            console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
         });
     };
 
@@ -202,8 +243,9 @@ angular.module('prosales-app')
     {
         var orderProduct = {
             OrderProduct: {
-                product_id: productID,
-                order_id: $scope.newOrder.Order.id
+                product_id:     productID,
+                order_id:       $scope.newOrder.Order.id,
+                pricelist_id:   $scope.pricelist.Pricelist.id
             }
         };
         $http.post("/OrderProducts/addFromPOSByJs", orderProduct).success(function (data)
@@ -214,7 +256,6 @@ angular.module('prosales-app')
                 {
                     ////// Reload Data
                     $scope.refreshData();
-                    ////// Clean product searcher after add
                     $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i> <p>+1 ' + $('#productSearcher').val() + ' Agregado! </p>', {
                         type: 'warning',
                         delay: 1000,
@@ -222,17 +263,31 @@ angular.module('prosales-app')
                         from: "top",
                         align: "center"
                     });
+                    ////// Clean product searcher after add
                     $('#productSearcher').val('');
                 } else {
-                    alert('No se agrego el producto por las siguientes razones' + data["message"]);
+                    $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i> <p>No se agrego el producto por las siguientes razones' + data["message"]+ ' </p>', {
+                        type: 'warning',
+                        delay: 10000,
+                        allow_dismiss: true,
+                        from: "top",
+                        align: "center"
+                    });
                 }
             }
 
         }).error(function(data, status, headers, config)
         {
+            $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                type: 'danger',
+                delay: 0,
+                allow_dismiss: false,
+                from: "top",
+                align: "center"
+            });
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-            alert('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+            console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
         });
     };
 
@@ -252,9 +307,16 @@ angular.module('prosales-app')
             }
         }).error(function(data, status, headers, config)
         {
+            $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                type: 'danger',
+                delay: 0,
+                allow_dismiss: false,
+                from: "top",
+                align: "center"
+            });
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-            alert('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+            cosole.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
         });
     };
 
@@ -279,40 +341,113 @@ angular.module('prosales-app')
             }
         }).error(function(data, status, headers, config)
         {
+            $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                type: 'danger',
+                delay: 0,
+                allow_dismiss: false,
+                from: "top",
+                align: "center"
+            });
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-            alert('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+            console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
         });
     };
 
-
     $scope.refreshData = function ()
     {
+        ////// load products
+        $scope.loadProductNames();
         ////// load Order
         $scope.refreshOrder();
         ////// load products
         $scope.loadOrderProducts();
     };
 
-    //////Initialize New Order
-    $http.post("/Orders/addByPOSJS", $scope.newOrder).success(function (data)
+    ////// Load Pricelist
+    $http.get("/Workstations/getPricelist/").success(function (data)
     {
+        ////// Add Loading
+        var pageWrapper = $('#page-wrapper');
+        if (pageWrapper.hasClass('page-loading'))
+        {//pageWrapper.removeClass('page-loading');
+        }else{
+            $('#page-wrapper').addClass('page-loading');
+        }
+
         if (data)
         {
             if (data["success"])
             {
-                $scope.newOrder = data["xData"];
-                $scope.refreshData();
+                $scope.pricelist = data["xData"];
+                console.log('pricelist');
+                console.log($scope.pricelist);
+
+                //////Initialize New Order
+                    $http.post("/Orders/addByPOSJS", $scope.newOrder).success(function (data)
+                    {
+                        if (data)
+                        {
+                            if (data["success"])
+                            {
+                                $scope.newOrder = data["xData"];
+                                $scope.refreshData();
+                                ////// Remove Loading
+                                if (pageWrapper.hasClass('page-loading'))
+                                {
+                                    pageWrapper.removeClass('page-loading');
+                                }
+                            } else {
+                                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p >La orden no se generará por los siguientes motivos' + data["message"]+'</p>', {
+                                    type: 'danger',
+                                    delay: 0,
+                                    allow_dismiss: false,
+                                    from: "top",
+                                    align: "center"
+                                });
+                            }
+                        }
+
+                    }).error(function(data, status, headers, config)
+                    {
+                        $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                            type: 'danger',
+                            delay: 0,
+                            allow_dismiss: true,
+                            from: "top",
+                            align: "center"
+                        });
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+                    });
             } else {
-                alert('La orden no se generará por los siguientes motivos <br/>' + data["message"]);
+                ////// Remove Loading
+                if (pageWrapper.hasClass('page-loading'))
+                {
+                    pageWrapper.removeClass('page-loading');
+                }
+                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>' + data["message"] + '</p>', {
+                    type: 'danger',
+                    delay: 0,
+                    allow_dismiss: false,
+                    from: "top",
+                    align: "center"
+                });
             }
         }
-
     }).error(function(data, status, headers, config)
     {
+        $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+            type: 'danger',
+            delay: 0,
+            allow_dismiss: false,
+            from: "top",
+            align: "center"
+        });
         // called asynchronously if an error occurs
         // or server returns response with an error status.
-        alert('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+        console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
     });
 
     //// Set family visibility defaults

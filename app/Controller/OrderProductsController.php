@@ -244,7 +244,7 @@ class OrderProductsController extends AppController
     }
 
     /**
-     * 
+     *
      */
     public function jsCancelOrderProduct()
     {
@@ -256,7 +256,7 @@ class OrderProductsController extends AppController
         $response = array();
 
         try
-        {            
+        {
             $this->OrderProduct->id = $this->request->data["OrderProduct"]["id"];
             $this->OrderProduct->recursive = -1;
             $this->OrderProduct->saveField('status', StatusOfOrderProduct::Inactive);
@@ -266,7 +266,7 @@ class OrderProductsController extends AppController
                 'message' => 'Correcto',
                 'xData' => array()
             );
-            
+
         } catch (Exception $ex)
         {
             $this->log('Error to try update the OrderProduct');
@@ -281,7 +281,7 @@ class OrderProductsController extends AppController
     }
 
     /**
-     * 
+     *
      */
     public function jsfindOrderProduct()
     {
@@ -337,16 +337,47 @@ class OrderProductsController extends AppController
 
         try
         {
-            $this->loadModel('Product');
-            $selectedProduct = $this->Product->read(null, $this->request->data["OrderProduct"]["product_id"]);
+            $pricelistID = null;
+            $productID = null;
+            $orderID = null;
+            if( isset($this->request->data["OrderProduct"]["product_id"])
+                && isset($this->request->data["OrderProduct"]["pricelist_id"])
+                && isset($this->request->data["OrderProduct"]["order_id"])  )
+            {
+                $pricelistID = $this->request->data["OrderProduct"]["pricelist_id"];
+                $productID = $this->request->data["OrderProduct"]["product_id"];
+                $orderID = $this->request->data["OrderProduct"]["order_id"];
 
+            } else
+            {
+                throw new Exception( ''. __('PRICELIST_PRODUCT_ORDER_INCORRECT') );
+            }
+            $this->loadModel('PricelistProduct');
+            $this->PricelistProduct->recursive = 3;
+            $selectedProduct = $this->PricelistProduct->find('all', array(
+                    'conditions' => array(
+                        'PricelistProduct.id >=' => 1,
+                        'Pricelist.id =' => $pricelistID,
+                        'Product.id =' => $productID
+                    )
+            ));
+
+            $this->log('pos selected product');
+            $this->log($selectedProduct);
+            if(empty($selectedProduct))
+            {
+                throw new Exception( ''. __('PRODUCT_NOT_FOUNDED') );
+            }else
+            {
+                $selectedProduct = $selectedProduct[0];
+            }
             ////// first check if product exists
             $orderProductFounded = $this->OrderProduct->find('all', array(
                 'conditions' => array(
                     'OrderProduct.id >=' => 1,
-                    'OrderProduct.product_id =' => $this->request->data["OrderProduct"]["product_id"],
-                    'OrderProduct.order_id =' => $this->request->data["OrderProduct"]["order_id"],
-                    'OrderProduct.status' => array(StatusOfOrderProduct::Active) 
+                    'OrderProduct.product_id =' => $productID,
+                    'OrderProduct.order_id =' => $orderID,
+                    'OrderProduct.status' => array(StatusOfOrderProduct::Active)
                 )
             ));
 
@@ -395,11 +426,11 @@ class OrderProductsController extends AppController
                 $orderProduct["OrderProduct"]["created_by"] = $this->Session->read("Auth.User.id");
                 $orderProduct["OrderProduct"]["updated_by"] = $this->Session->read("Auth.User.id");
                 $orderProduct["OrderProduct"]["status"] = 'active';
-                $orderProduct["OrderProduct"]["order_id"] = $this->request->data["OrderProduct"]["order_id"];
-                $orderProduct["OrderProduct"]["product_id"] = $this->request->data["OrderProduct"]["product_id"];
+                $orderProduct["OrderProduct"]["order_id"] = $orderID;
+                $orderProduct["OrderProduct"]["product_id"] = $productID;
                 $orderProduct["OrderProduct"]["product_qty"] = 1;
                 $orderProduct["OrderProduct"]["product_disc"] = 0;
-                $orderProduct["OrderProduct"]["product_price"] = $selectedProduct["Product"]["unit_price"];
+                $orderProduct["OrderProduct"]["product_price"] = $selectedProduct["PricelistProduct"]["unit_price"];
 
                 $this->OrderProduct->create();
                 if (!$this->OrderProduct->save($orderProduct["OrderProduct"]))
