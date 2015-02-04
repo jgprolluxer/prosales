@@ -118,9 +118,6 @@ class OrderProductBehavior extends ModelBehavior
                     $order["Order"]["disc"] = 0;
                     $order["Order"]["disc_amt"] = 0;
 
-                    $this->log('update total order to save');
-                    $this->log($order["Order"]);
-
                     $OrderModel->recursive = -1;
                     if (!$OrderModel->save($order["Order"]))
                     {

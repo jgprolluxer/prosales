@@ -36,7 +36,7 @@
                 'error' => array(
                     'attributes' => array('wrap' => 'span', 'class' => 'help-block')
                 ),
-        )));
+            )));
         ?>
         <div class="col-md-6">
             <?php
@@ -62,7 +62,7 @@
                 'type' => 'text',
                 'readonly' => 'readonly'
             ));
-            ?>            
+            ?>
             <?php
             echo $this->Form->input('currency_symbol', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_PRICELIST_VIEW_FORM_FIELD_CURRENCY_SYMBOL')),
@@ -78,7 +78,7 @@
                 'type' => 'text',
                 'readonly' => 'readonly'
             ));
-            ?>	
+            ?>
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
@@ -99,7 +99,7 @@
         <ul class="nav nav-tabs" data-toggle="tabs">
             <?php
             $painted = FALSE;
-            if ($this->AclView->hasAccess(array('controller' => 'PricelistProducts', 'action' => 'index')))
+            if ($this->AclView->hasAccess(array('controller' => 'PricelistProducts', 'action' => 'jsindexadmin')))
             {
                 echo '<li class="' . ($painted ? '' : 'active') . '"><a href="#tab_products">'.__('ADMIN_PRICELIST_VIEW_TAB_PRODUCTS').'</a></li>';
                 $painted = TRUE;
@@ -110,20 +110,19 @@
     <!-- END Block Tabs Title -->
     <!-- Tabs Content -->
     <div class="tab-content">
-            <?php
-            $painted = FALSE;
-            if ($this->AclView->hasAccess(array('controller' => 'PricelistProducts', 'action' => 'index')))
-            {
-                echo '<div class="tab-pane ' . ($painted ? '' : 'active') . '" id="tab_products">';
-                echo $this->element('DataTables/pricelist_products');
-                echo '</div>';
-                $painted = TRUE;
-            }
-            ?>
-        </div>
+        <?php
+        $painted = FALSE;
+        if ($this->AclView->hasAccess(array('controller' => 'PricelistProducts', 'action' => 'jsindexadmin')))
+        {
+            echo '<div class="tab-pane ' . ($painted ? '' : 'active') . '" id="tab_products">';
+            echo $this->element('DataTables/pricelist_products');
+            echo '</div>';
+            $painted = TRUE;
+        }
+        ?>
     </div>
-    <!-- END Tabs Content -->
 </div>
+<!-- END Tabs Content -->
 <!-- END Block Tabs -->
 <script type="text/javascript">
     $(document).ready(function () {

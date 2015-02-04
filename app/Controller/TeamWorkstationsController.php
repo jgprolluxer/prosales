@@ -14,7 +14,7 @@ class TeamWorkstationsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+    public $components = array('Paginator', 'Session', 'DataTable', 'Navigation');
 
 /**
  * index method
@@ -123,6 +123,47 @@ class TeamWorkstationsController extends AppController {
 		$this->set('teamWorkstations', $this->Paginator->paginate());
 	}
 
+    /**
+     * @param null $teamID
+     */
+    public function jsindexadmin($teamID = null)
+    {
+        $this->autoRender = false;
+        $this->layout = 'ajax';
+
+        $arrayConditions = array(
+            'TeamWorkstation.id >=' => 1
+        );
+        if(null !== $teamID)
+        {
+            $arrayConditions = array(
+                'TeamWorkstation.id >=' => 1,
+                'Team.id =' => $teamID
+            );
+        }
+
+        $this->paginate = array(
+            'fields' => array(
+                'TeamWorkstation.id',
+                "CONCAT('<a href=\"" . Router::url("/admin/Workstations/view/") . "', Workstation.id, '\">', Workstation.title ,'</a>') as workstationview",
+                "CONCAT('<a href=\"" . Router::url("/admin/TeamWorkstations/view/") . "', TeamWorkstation.id, '\" class=\"btn btn-xs btn-info\">', '<i class=\"fa fa-eye fa-fw\"></i>' ,'</a>') as teamworkstationview",
+            ),
+            'conditions' => $arrayConditions
+        );
+
+        $this->DataTable->fields = array(
+            'TeamWorkstation.id',
+            '0.productview',
+            '0.teamworkstationview',
+        );
+
+        $this->DataTable->filterFields = array(
+            'TeamWorkstation.id',
+        );
+
+        echo json_encode($this->DataTable->getResponse());
+    }
+
 /**
  * admin_view method
  *
@@ -209,4 +250,24 @@ class TeamWorkstationsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+    public function getTeam()
+    {
+        $this->autoRender = false;
+        $this->layout = 'ajax';
+
+        $response = array(
+            'success' => false,
+            'message' => '',
+            'xData' => array()
+        );
+        try{
+            $uLogged = CakeSession::read('Auth.User');
+        }catch(Exception $ex)
+        {
+
+        }
+
+        echo json_encode($response);
+    }
 }

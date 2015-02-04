@@ -36,7 +36,7 @@
                 'error' => array(
                     'attributes' => array('wrap' => 'span', 'class' => 'help-block')
                 ),
-        )));
+            )));
         ?>
         <div class="col-md-6">
             <?php
@@ -54,7 +54,7 @@
                 'type' => 'text',
                 'readonly' => 'readonly',
                 'value' => $this->request->data["Owner"]["title"]
-             ));
+            ));
             ?>
             <?php
             echo $this->Form->input('name', array(
@@ -79,20 +79,20 @@
                 'type' => 'text',
                 'readonly' => 'readonly'
             ));
-            ?>	
+            ?>
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
-            	<?php
-            	echo $this->AclView->link(  __('ADMIN_TEAMS_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'),
-            		array('plugin' => $this->params['plugin'], 
-            			'prefix' => null, 
-            			'admin' => $this->params['admin'], 
-            			'controller' => $this->params['controller'], 
-            			'action' => 'edit', $this->request->data['Team']['id']
-            		),
-            		array('escape' => false, 'class' => array('btn btn-warning')));
-            		?>
+                <?php
+                echo $this->AclView->link(  __('ADMIN_TEAMS_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'),
+                    array('plugin' => $this->params['plugin'],
+                        'prefix' => null,
+                        'admin' => $this->params['admin'],
+                        'controller' => $this->params['controller'],
+                        'action' => 'edit', $this->request->data['Team']['id']
+                    ),
+                    array('escape' => false, 'class' => array('btn btn-warning')));
+                ?>
             </div>
         </div>
         </form>
@@ -101,13 +101,46 @@
     <p class="text-muted"><?php echo __('ADMIN_TEAM_VIEW_BLOCK_CONTENT_FOOTER'); ?></p>
 </div>
 <!-- END Normal Form Block -->
+
+<!-- Block Tabs -->
+<div class="block full">
+    <!-- Block Tabs Title -->
+    <div class="block-title">
+        <ul class="nav nav-tabs" data-toggle="tabs">
+            <?php
+            $painted = FALSE;
+            if ($this->AclView->hasAccess(array('controller' => 'TeamWorkstations', 'action' => 'jsindexadmin')))
+            {
+                echo '<li class="' . ($painted ? '' : 'active') . '"><a href="#tab_products">'.__('ADMIN_TEAMS_VIEW_TAB_WORKSTATIONS').'</a></li>';
+                $painted = TRUE;
+            }
+            ?>
+        </ul>
+    </div>
+    <!-- END Block Tabs Title -->
+    <!-- Tabs Content -->
+    <div class="tab-content">
+        <?php
+        $painted = FALSE;
+        if ($this->AclView->hasAccess(array('controller' => 'TeamWorkstations', 'action' => 'jsindexadmin')))
+        {
+            echo '<div class="tab-pane ' . ($painted ? '' : 'active') . '" id="tab_products">';
+            echo $this->element('DataTables/team_workstations');
+            echo '</div>';
+            $painted = TRUE;
+        }
+        ?>
+    </div>
+</div>
+<!-- END Tabs Content -->
+<!-- END Block Tabs -->
 <script type="text/javascript">
-$(document).ready(function() {
-  $(window).keydown(function(event){
-    if(event.keyCode == 13) {
-      event.preventDefault();
-      return false;
-    }
-  });
-});
+    $(document).ready(function() {
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
 </script>

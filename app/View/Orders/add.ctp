@@ -124,7 +124,10 @@
 			</div>
 			<div class="widget-extra">
 				<h4 class="sub-header">Datos del cliente</h4>
-				<h4 class="sub-header">Datos del pago</h4>
+                <div class="row">
+                    <input type="text" class="col-md-3 form-control" placeholder="Buscar cliente..." />
+                </div>
+                <h4 class="sub-header">Datos del pago</h4>
 			</div>
 		</div>
 	</div>

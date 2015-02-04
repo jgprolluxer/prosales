@@ -362,8 +362,6 @@ class OrderProductsController extends AppController
                     )
             ));
 
-            $this->log('pos selected product');
-            $this->log($selectedProduct);
             if(empty($selectedProduct))
             {
                 throw new Exception( ''. __('PRODUCT_NOT_FOUNDED') );
@@ -431,6 +429,7 @@ class OrderProductsController extends AppController
                 $orderProduct["OrderProduct"]["product_qty"] = 1;
                 $orderProduct["OrderProduct"]["product_disc"] = 0;
                 $orderProduct["OrderProduct"]["product_price"] = $selectedProduct["PricelistProduct"]["unit_price"];
+                $orderProduct["OrderProduct"]["product_tax"] = $selectedProduct["PricelistProduct"]["tax"];
 
                 $this->OrderProduct->create();
                 if (!$this->OrderProduct->save($orderProduct["OrderProduct"]))
