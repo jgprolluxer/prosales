@@ -1223,8 +1223,8 @@ msgstr "Estatus"
 msgid "ADMIN_FAMILY_VIEW_FORM_FIELD_PICTURE"
 msgstr "Imagen"
 
-msgid "ADMIN_FAMILY_VIEW_FORM_BTN_SAVE"
-msgstr "Guardar"
+msgid "ADMIN_FAMILY_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
 
 msgid "ADMIN_FAMILY_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
@@ -1257,15 +1257,94 @@ msgstr "Estatus"
 msgid "FAMILY_VIEW_FORM_FIELD_PICTURE"
 msgstr "Imagen"
 
-msgid "FAMILY_VIEW_FORM_BTN_SAVE"
-msgstr "Guardar"
+msgid "FAMILY_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
 
 msgid "FAMILY_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END VIEW SECTION      ----------
 #
-# Falta adminindex, index de family
+# ----------      INDEX SECTION      ----------
+#
+msgid "FAMILY_INDEX_HEAD_TITLE"
+msgstr "Familia"
+
+msgid "FAMILY_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de Familias"
+
+msgid "FAMILY_INDEX_BLOCK_TITLE"
+msgstr "Lista"
+
+msgid "FAMILY_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "FAMILY_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "FAMILY_INDEX_LIST_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "FAMILY_INDEX_LIST_FIELD_DESCRIPTION"
+msgstr "Descripcion"
+
+msgid "FAMILY_INDEX_LIST_FIELD_PICTURE"
+msgstr "Foto"
+
+msgid "FAMILY_INDEX_LIST_ACTION"
+msgstr "Acción"
+
+msgid "FAMILY_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "FAMILY_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+
+
+#
+# ----------       END INDEX SECTION      ----------
+# ----------      ADMIN INDEX SECTION      ----------
+#
+msgid "ADMIN_FAMILY_INDEX_HEAD_TITLE"
+msgstr "Familia"
+
+msgid "ADMIN_FAMILY_INDEX_HEAD_TITLE_SMALL"
+msgstr "Listado de Familias"
+
+msgid "ADMIN_FAMILY_INDEX_BLOCK_TITLE"
+msgstr "Lista"
+
+msgid "ADMIN_FAMILY_INDEX_BLOCK_CONTENT_BTN_ADD"
+msgstr "Agregar"
+
+msgid "ADMIN_FAMILY_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_FAMILY_INDEX_LIST_FIELD_TITLE"
+msgstr "Titulo"
+
+msgid "ADMIN_FAMILY_INDEX_LIST_FIELD_DESCRIPTION"
+msgstr "Descripcion"
+
+msgid "ADMIN_FAMILY_INDEX_LIST_FIELD_COLOR"
+msgstr "Color"
+
+msgid "ADMIN_FAMILY_INDEX_LIST_FIELD_STATUS"
+msgstr "Estatus"
+
+msgid "ADMIN_FAMILY_INDEX_LIST_FIELD_PICTURE"
+msgstr "Foto"
+
+msgid "ADMIN_FAMILY_INDEX_LIST_ACTION"
+msgstr "Acción"
+
+msgid "ADMIN_FAMILY_INDEX_LIST_ACTIONS"
+msgstr "Acciones"
+
+msgid "ADMIN_FAMILY_INDEX_BLOCK_CONTENT_FOOTER"
+msgstr "Listado"
+# ----------       END ADMIN INDEX SECTION      ----------
+
 # ----------      END FAMILY SECTION      ---------- ###########################
 # ###############################################################################
 # ----------      GROUP SECTION      ---------- ###################################
@@ -2047,7 +2126,7 @@ msgstr "Recuerda revisar todos los campos"
 # ----------      ADMIN ADD SECTION      ----------
 #
 msgid "ADMIN_PRICELIST_ADD_HEAD_TITLE"
-msgstr "Menus"
+msgstr "Lista de Precios"
 
 msgid "ADMIN_PRICELIST_ADD_HEAD_TITLE_SMALL"
 msgstr "Configurar nueva Lista de Precios"
@@ -2079,7 +2158,7 @@ msgstr "Recuerda revisar todos los campos"
 # ----------       ADD SECTION      ----------
 #
 msgid "PRICELIST_ADD_HEAD_TITLE"
-msgstr "Menus"
+msgstr "Lista de Precios"
 
 msgid "PRICELIST_ADD_HEAD_TITLE_SMALL"
 msgstr "Configurar nueva Lista de Precios"
@@ -2108,7 +2187,7 @@ msgstr "Recuerda revisar todos los campos"
 # ----------      ADMIN VIEW SECTION      ----------
 #
 msgid "ADMIN_PRICELIST_VIEW_HEAD_TITLE"
-msgstr "Menus"
+msgstr "Lista de Precios"
 
 msgid "ADMIN_PRICELIST_VIEW_HEAD_TITLE_SMALL"
 msgstr "Ver Lista de Precios"
@@ -2128,8 +2207,8 @@ msgstr "Simbolo"
 msgid "ADMIN_PRICELIST_VIEW_FORM_FIELD_STATUS"
 msgstr "Estatus"
 
-msgid "ADMIN_PRICELIST_VIEW_FORM_BTN_SAVE"
-msgstr "Guardar"
+msgid  "ADMIN_PRICELIST_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
 
 msgid "ADMIN_PRICELIST_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
@@ -2140,7 +2219,7 @@ msgstr "Recuerda revisar todos los campos"
 # ----------       VIEW SECTION      ----------
 #
 msgid "PRICELIST_VIEW_HEAD_TITLE"
-msgstr "Menus"
+msgstr "Lista de Precios"
 
 msgid "PRICELIST_VIEW_HEAD_TITLE_SMALL"
 msgstr "Ver Lista de Precios"
@@ -2157,8 +2236,8 @@ msgstr "Descripcion"
 msgid "PRICELIST_VIEW_FORM_FIELD_CURRENCY_SYMBOL"
 msgstr "Simbolo"
 
-msgid "PRICELIST_VIEW_FORM_BTN_SAVE"
-msgstr "Guardar"
+msgid "PRICELIST_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgstr "Editar"
 
 msgid "PRICELIST_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
@@ -2169,7 +2248,7 @@ msgstr "Recuerda revisar todos los campos"
 # ----------      ADMIN EDIT SECTION      ----------
 #
 msgid "ADMIN_PRICELIST_EDIT_HEAD_TITLE"
-msgstr "Menus"
+msgstr "Lista de Precios"
 
 msgid "ADMIN_PRICELIST_EDIT_HEAD_TITLE_SMALL"
 msgstr "Configurar Lista de Precios"
@@ -2201,7 +2280,7 @@ msgstr "Recuerda revisar todos los campos"
 # ----------      EDIT SECTION      ----------
 #
 msgid "PRICELIST_EDIT_HEAD_TITLE"
-msgstr "Menus"
+msgstr "Lista de Precios"
 
 msgid "PRICELIST_EDIT_HEAD_TITLE_SMALL"
 msgstr "Configurar Lista de Precios"
@@ -2232,8 +2311,14 @@ msgstr "Recuerda revisar todos los campos"
 #
 # ----------      ADMIN INDEX SECTION      ----------
 #
+msgid "ADMIN_PRICELIST_INDEX_LIST_FIELD_ID"
+msgstr "ID"
+
+msgid "ADMIN_PRICELIST_INDEX_HEAD_ID"
+msgstr "ID"
+
 msgid "ADMIN_PRICELIST_INDEX_HEAD_TITLE"
-msgstr "Menus"
+msgstr "Lista de Precios"
 
 msgid "ADMIN_PRICELIST_INDEX_HEAD_TITLE_SMALL"
 msgstr "Configurar Lista de Precios"
@@ -2259,6 +2344,9 @@ msgstr "Estatus"
 msgid "ADMIN_PRICELIST_INDEX_LIST_FIELD_ACTION"
 msgstr "Accion"
 
+msgid "ADMIN_PRICELIST_INDEX_LIST_ACTIONS"
+msgstr "Accion"
+
 msgid "ADMIN_PRICELIST_INDEX_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
@@ -2269,8 +2357,9 @@ msgstr "Productos"
 #
 # ----------      INDEX SECTION      ----------
 #
+
 msgid "PRICELIST_INDEX_HEAD_TITLE"
-msgstr "Menus"
+msgstr "Lista de Precios"
 
 msgid "PRICELIST_INDEX_HEAD_TITLE_SMALL"
 msgstr "Configurar Lista de Precios"
@@ -2291,6 +2380,9 @@ msgid "PRICELIST_INDEX_LIST_FIELD_CURRENCY_SYMBOL"
 msgstr "Simbolo"
 
 msgid "PRICELIST_INDEX_LIST_FIELD_ACTION"
+msgstr "Accion"
+
+msgid "PRICELIST_INDEX_LIST_ACTIONS"
 msgstr "Accion"
 
 msgid "PRICELIST_INDEX_BLOCK_CONTENT_FOOTER"
