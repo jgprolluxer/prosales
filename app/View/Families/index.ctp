@@ -34,7 +34,6 @@
 				<table class="table" id="example-datatable">
 					<thead>
 					<tr>
-						<th><?php echo __('FAMILY_INDEX_LIST_FIELD_ID'); ?></th>
 						<th><?php echo __('FAMILY_INDEX_LIST_FIELD_TITLE'); ?></th>
 						<th><?php echo __('FAMILY_INDEX_LIST_FIELD_DESCRIPTION'); ?></th>
 						<th><?php echo __('FAMILY_INDEX_LIST_FIELD_PICTURE'); ?></th>
@@ -47,7 +46,6 @@
 						{
 							?>
 							<tr>
-							<td><?php echo __($family['Family']['id']); ?></td>
 							<td><?php echo __($family['Family']['title']); ?></td>
 							<td><?php echo __($family['Family']['description']); ?></td>
 							<td><?php echo __($family['Family']['picture']); ?></td>
