@@ -111,6 +111,10 @@ msgstr "<i class='gi gi-shopping_cart'></i> Ordenes"
 msgid "MENU_HEADER_POS_LINK_PRODUCTS"
 msgstr "<i class='gi gi-shopping_bag'></i> Productos"
 
+msgid "MENU_HEADER_POS_LINK_POS_LOGOUT"
+msgstr "<i class='fa fa-power-off'></i> Salir"
+
+
 # ----------      END MENUES SECTION      ---------- ###################################
 # ####################################################################################
 # ----------      ACCOUNT SECTION      ---------- ###################################
@@ -1123,10 +1127,10 @@ msgstr "Descripcion"
 msgid "FAMILY_ADD_FORM_FIELD_PICTURE"
 msgstr "Imagen"
 
-msgid "ADMIN_FAMILY_ADD_FORM_BTN_SAVE"
+msgid "FAMILY_ADD_FORM_BTN_SAVE"
 msgstr "Guardar"
 
-msgid "ADMIN_FAMILY_ADD_BLOCK_CONTENT_FOOTER"
+msgid "FAMILY_ADD_BLOCK_CONTENT_FOOTER"
 msgstr "Recuerda revisar todos los campos"
 
 # ----------      END ADD SECTION      ----------
@@ -1201,7 +1205,7 @@ msgstr "Menus"
 msgid "ADMIN_FAMILY_VIEW_HEAD_TITLE_SMALL"
 msgstr "Ver Familia"
 
-msgid "ADMIN_FAMILY_EDIT_BLOCK_TITLE"
+msgid "ADMIN_FAMILY_VIEW_BLOCK_TITLE"
 msgstr "Definición de Familia"
 
 msgid "ADMIN_FAMILY_VIEW_FORM_FIELD_TITLE"
@@ -1235,7 +1239,7 @@ msgstr "Menus"
 msgid "FAMILY_VIEW_HEAD_TITLE_SMALL"
 msgstr "Ver Familia"
 
-msgid "FAMILY_EDIT_BLOCK_TITLE"
+msgid "FAMILY_VIEW_BLOCK_TITLE"
 msgstr "Definición de Familia"
 
 msgid "FAMILY_VIEW_FORM_FIELD_TITLE"

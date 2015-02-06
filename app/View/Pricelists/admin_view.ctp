@@ -115,7 +115,7 @@
         if ($this->AclView->hasAccess(array('controller' => 'PricelistProducts', 'action' => 'jsindexadmin')))
         {
             echo '<div class="tab-pane ' . ($painted ? '' : 'active') . '" id="tab_products">';
-            echo $this->element('DataTables/pricelist_products');
+            echo $this->element('Datatables/pricelist_products');
             echo '</div>';
             $painted = TRUE;
         }
