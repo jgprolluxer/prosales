@@ -82,7 +82,9 @@
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
-                <button type="submit" class="btn btn-info"><?php echo __('ADMIN_PRICELIST_VIEW_FORM_BTN_SAVE'); ?></button>
+                <?php
+                echo $this->AclView->link(__('ADMIN_PRICELIST_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'edit', $this->request->data['Pricelist']['id']), array('escape' => false, 'class' => array('btn btn-warning')));
+                ?>
             </div>
         </div>
         </form>

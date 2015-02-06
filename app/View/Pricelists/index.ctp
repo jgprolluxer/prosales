@@ -32,7 +32,7 @@
             <table class="table" id="example-datatable">
                 <thead>
                     <tr>
-                        <th><?php echo __('PRICELIST_INDEX_LIST_FIELD_ID'); ?></th>
+                       
                         <th><?php echo __('PRICELIST_INDEX_LIST_FIELD_NAME'); ?></th>
                         <th><?php echo __('PRICELIST_INDEX_LIST_FIELD_CURRENCY'); ?></th>
                         <th><?php echo __('PRICELIST_INDEX_LIST_FIELD_CURRENCY_SYMBOL'); ?></th>
@@ -44,7 +44,7 @@
                     foreach ($pricelists as $idx => $pricelist) {
                         ?>
                         <tr>
-                            <td><?php echo __($pricelist['Pricelist']['id']); ?></td>
+                            
                             <td><?php echo __($pricelist['Pricelist']['name']); ?></td>
                             <td><?php echo __($pricelist['Pricelist']['currency']); ?></td>
                             <td><?php echo __($pricelist['Pricelist']['currency_symbol']); ?></td>
