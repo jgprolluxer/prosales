@@ -124,9 +124,22 @@
 			</div>
 			<div class="widget-extra">
 				<h4 class="sub-header">Datos del cliente</h4>
-                <div class="row">
-                    <input type="text" class="col-md-3 form-control" placeholder="Buscar cliente..." />
-                </div>
+                <form class="form-horizontal form-bordered" onsubmit="return false;">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="text" class="col-md-3 form-control" placeholder="Buscar cliente..." />
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="list-group remove-margin">
+                            <a href="javascript:void(0)" class="list-group-item">
+                                <span class="pull-right"><strong>x</strong></span>
+                                <h4 class="list-group-item-heading remove-margin">Cliente General</h4>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
                 <h4 class="sub-header">Datos del pago</h4>
 			</div>
 		</div>
