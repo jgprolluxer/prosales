@@ -1,9 +1,6 @@
 <!-- Forms General Header -->
 <div class="content-header">
     <div class="header-section">
-        <h1>
-            <i class="gi gi-building"></i><?php echo __('PRODUCT_INDEX_HEAD_TITLE'); ?><br><small><?php echo __('PRODUCT_INDEX_HEAD_TITLE_SMALL'); ?></small>
-        </h1>
         <?php echo $this->MenuBuilder->build('menu-header-pos');?>
     </div>
 </div>

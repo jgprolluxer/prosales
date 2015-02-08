@@ -271,8 +271,9 @@ class PricelistProductsController extends AppController {
 						$this->PricelistProduct->recursive = 3;
 						$arrayConditions = array(
 							'PricelistProduct.id >= ' => 1,
-							'PricelistProduct.id = ' => $pricelistID,
-							'PricelistProduct.status' => array(StatusOfPricelistProduct::Active)
+							'Pricelist.id = ' => $pricelistID,
+							'PricelistProduct.status' => array(StatusOfPricelistProduct::Active),
+                            'Product.status' => array(StatusOfProduct::Active)
 						);
 						$results = $this->PricelistProduct->find('all', array(
 							'conditions' => $arrayConditions
