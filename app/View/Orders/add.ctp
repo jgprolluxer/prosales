@@ -1,4 +1,4 @@
-<section class="row" ng-controller="OrderAddController">
+<section class="row" data-ng-controller="OrderAddController">
 	<!--    <a ng-href="/admin/Users">Users</a>-->
 	<!-- Forms General Header -->
 	<div class="content-header">
@@ -50,9 +50,8 @@
 
 			</div>
 			<div class="block-content">
-
 				<div class="table-responsive">
-					<table class="table" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" >
+					<table class="table" datatable="ng" dt-options="dtOrderProductsOptions" >
 						<thead>
 							<tr>
 								<th>Nombre</th>
@@ -85,9 +84,7 @@
 						</tfoot>
 					</table>
 				</div>
-
 			</div>
-
 			<!-- END Responsive Classes -->
 			<!-- END Responsive Partial Content -->
 		</div>
@@ -123,28 +120,81 @@
 				</div>
 			</div>
 			<div class="widget-extra">
-				<h4 class="sub-header">Datos del cliente</h4>
-                <form class="form-horizontal form-bordered" onsubmit="return false;">
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <input type="text" class="col-md-3 form-control" placeholder="Buscar cliente..." />
+                <h4 class="sub-header">Cliente:</h4>
+                <!-- Advanced Active Theme Color Widget Alternative -->
+                <div class="widget">
+                    <div class="widget-advanced widget-advanced-alt">
+                        <!-- Widget Header -->
+                        <div class="widget-main text-center">
+                            <div class="widget-options-left">
+                                <a href="javascript:void(0);" class="btn btn-xs btn-info" data-toggle="tooltip" title="Asociar" data-ng-click="open()" ><i class="hi hi-plus"></i> Asociar</a>
+                            </div>
+                            <div class="widget-options">
+                                <a href="javascript:void(0);" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Remover" data-ng-click="removeAccount()" ><i class="hi hi-remove"></i> Remover</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="list-group remove-margin">
-                            <a href="javascript:void(0)" class="list-group-item">
-                                <span class="pull-right"><strong>x</strong></span>
-                                <h4 class="list-group-item-heading remove-margin">Cliente General</h4>
-                            </a>
+                        <!-- END Widget Header -->
+                        <!-- Widget Main -->
+                        <div class="widget-main">
+                            <div class="list-group remove-margin">
+                                <a href="javascript:void(0)" class="list-group-item" data-ng-show="account">
+                                    <!-- <span class="pull-right"><strong>160</strong></span>-->
+                                    <h4 class="list-group-item-heading remove-margin"><i class="gi gi-user"></i> {{ account.Account.firstname }}&nbsp;{{ account.Account.lastname }}</h4>
+                                </a>
+                            </div>
                         </div>
+                        <!-- END Widget Main -->
                     </div>
-                </form>
-                <div class="clearfix"></div>
-                <h4 class="sub-header">Datos del pago</h4>
+                </div>
+                <!-- END Advanced Active Theme Color Widget Alternative -->
+                <h4 class="sub-header">Pago:</h4>
 			</div>
 		</div>
 	</div>
+    <script type="text/ng-template" id="AccountModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Clientes</h3>
+        </div>
+        <div class="modal-body">
+            <!-- Responsive Classes -->
+            <div class="block">
+                <div class="block-title">
+                </div>
+                <div class="block-content">
+                    <div class="table-responsive">
+                        <table id="tblAccountModal" class="table" datatable="ng" dt-options="dtAccountModalOptions" >
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Asociar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in items">
+                                <td>{{ item.Account.firstname }} &nbsp; {{ item.Account.lastname }}</td>
+                                <td><a href="" class="btn btn-info btn-xs" ng-click="ok(item)" ><i class="hi hi-ok"></i></a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END Responsive Classes -->
+                <!-- END Responsive Partial Content -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
 </section>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <script type="text/javascript">
 $(document).ready(function ()
 {

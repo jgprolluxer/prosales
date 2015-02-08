@@ -54,7 +54,7 @@
         echo $this->Html->css('/template_assets/css/plugins.css');
         echo $this->Html->css('/template_assets/css/main.css');
         echo $this->Html->css('/template_assets/css/themes.css');
-        echo $this->Html->css('/template_assets/css/themes/coral.css');
+        echo $this->Html->css('/template_assets/css/themes/modern.css');
         ?>
         <!-- Modernizr (browser feature detection library) & Respond.js (Enable responsive CSS code on browsers that don't support it, eg IE8) -->
         <!--<script src="/template_assets/js/vendor/modernizr-2.7.1-respond-1.4.2.min.js"></script>-->
@@ -74,7 +74,7 @@
         echo $this->Html->script("/bower_components/angular-datatables/dist/angular-datatables.min.js");
         echo $this->Html->script("/js/front-app.js");
         ?>
-
+        <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
         <?php
         echo $this->Html->script('/template_assets/plugins/bootstrap/js/bootstrap2-typeahead.min.js');
         ?>

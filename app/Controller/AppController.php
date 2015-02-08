@@ -179,6 +179,15 @@ class AppController extends Controller
 /**
  * Manager Appmenu status
  */
+abstract class StatusOfAccount
+{
+    const Active = "active";
+    const Inactive = "inactive";
+}
+
+/**
+ * Manager Appmenu status
+ */
 abstract class StatusOfAppmenu
 {
     const Active = "active";
