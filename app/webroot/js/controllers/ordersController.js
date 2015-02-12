@@ -485,6 +485,16 @@ angular.module('prosales-app')
             $scope.loadOrderProducts();
         };
 
+        $scope.setTotalChange = function()
+        {
+            var totalReceived = $('#totalReceived').val();
+            if(0 < totalReceived)
+            {
+                totalReceived = parseFloat(totalReceived);
+                $('#totalChange').val(totalReceived - $scope.newOrder.Order.total_amt);
+            }
+        };
+
 
         ////// Load Pricelist
         $scope.enableProcessLoading();

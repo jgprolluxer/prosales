@@ -57,19 +57,6 @@ class Account extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'OrderPayment' => array(
-			'className' => 'OrderPayment',
-			'foreignKey' => 'account_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'Order' => array(
 			'className' => 'Order',
 			'foreignKey' => 'account_id',

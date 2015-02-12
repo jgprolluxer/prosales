@@ -203,7 +203,8 @@ class NotesController extends AppController {
         try {
             $arrayConditions = array();
             $results = array();
-            switch ($this->request->query['format']) {
+            switch ($this->request->query['format'])
+            {
                 case 'addNoteFromAccount':
                     break;
             }
