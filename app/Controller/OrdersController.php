@@ -258,72 +258,122 @@ class OrdersController extends AppController
         return $this->redirect(array('action' => 'index'));
     }
 
-    public function pos($orderID = 0)
-    {
-        $this->set(compact('orderID'));
-    }
-
-    public function addByPOSJS()
+    public function jsOrder()
     {
         Configure::write('debug', 0);
         $this->autoRender = false;
         $this->layout = 'ajax';
 
-        $response = array();
-        try
-        {
-            $this->request->data["Order"]["updated_by"] = $this->Session->read("Auth.User.id");
-            $this->request->data["Order"]["created_by"] = $this->Session->read("Auth.User.id");
-            $this->request->data["Order"]["updated"] = date("Y-m-d H:i:s");
-            $this->request->data["Order"]["created"] = date("Y-m-d H:i:s");
-            $this->request->data["Order"]["type"] = "POS";
-            $this->request->data["Order"]["status"] = StatusOfOrder::Cancelled;
-            $this->request->data["Order"]["folio"] = strtoupper(uniqid("1-"));
-            $this->request->data["Order"]["price"] = 0;
-            $this->request->data["Order"]["total_amt"] = 0;
-            $this->request->data["Order"]["subtotal_amt"] = 0;
-            $this->request->data["Order"]["tax"] = 0;
-            $this->request->data["Order"]["disc"] = 0;
-            $this->request->data["Order"]["disc_desc"] = '-';
-            $this->request->data["Order"]["account_id"] = 0;
-            $this->request->data["Order"]["description"] = '-';
-            $this->request->data["Order"]["saleschannel"] = "POS";
+        $response = array(
+            'success' => true,
+            'message' => 'NOTHING',
+            'xData' => array()
+        );
 
-            $this->Order->recursive = -1;
-            $this->Order->create();
-            if ($this->Order->save($this->request->data))
+        try{
+            if(isset($this->request->query['CRUD_operation']))
             {
-                $response = array(
-                    'success' => true,
-                    'message' => 'Correcto',
-                    'xData' => $this->Order->read(null, $this->Order->getLastInsertID())
-                );
+                $operation = $this->request->query['CRUD_operation'];
             } else
             {
+                throw new Exception( __('ORDER_CONTROLLER') . ' ' . __('CRUD_OPERATION_NOT_SET') );
+            }
 
-                $valErrors = $this->Order->validationErrors;
-                $valMessage = '';
-                foreach ($valErrors as $idx => $valError)
+            switch($operation)
+            {
+                case "CREATE":
                 {
-                    $valMessage .=' ';
-                    if (is_array($valError))
+                    $this->request->data["Order"]["updated_by"] = $this->Session->read("Auth.User.id");
+                    $this->request->data["Order"]["created_by"] = $this->Session->read("Auth.User.id");
+                    $this->request->data["Order"]["updated"] = date("Y-m-d H:i:s");
+                    $this->request->data["Order"]["created"] = date("Y-m-d H:i:s");
+                    $this->request->data["Order"]["type"] = "POS";
+                    $this->request->data["Order"]["status"] = StatusOfOrder::Open;
+                    $this->request->data["Order"]["folio"] = strtoupper(uniqid("1-"));
+                    $this->request->data["Order"]["price"] = 0;
+                    $this->request->data["Order"]["total_amt"] = 0;
+                    $this->request->data["Order"]["subtotal_amt"] = 0;
+                    $this->request->data["Order"]["tax"] = 0;
+                    $this->request->data["Order"]["disc"] = 0;
+                    $this->request->data["Order"]["disc_desc"] = '-';
+                    $this->request->data["Order"]["account_id"] = 0;
+                    $this->request->data["Order"]["description"] = '-';
+                    $this->request->data["Order"]["saleschannel"] = "POS";
+
+                    $this->Order->recursive = -1;
+                    $this->Order->create();
+                    if ($this->Order->save($this->request->data))
                     {
-                        foreach ($valError as $odx => $prop)
-                        {
-                            $valMessage .=  $odx.' '. $prop . ' ';
-                        }
+                        $response = array(
+                            'success' => true,
+                            'message' => 'Correcto',
+                            'xData' => $this->Order->read(null, $this->Order->getLastInsertID())
+                        );
                     } else
                     {
-                        $valMessage .= $idx. ' '.$prop . ' ';
+                        $response = array(
+                            'success' => false,
+                            'message' => json_encode($this->Order->validationErrors),
+                            'xData' => array()
+                        );
                     }
-                }
-                $response = array(
-                    'success' => false,
-                    'message' => $valMessage,
-                    'xData' => array()
-                );
+
+                }break;
+                case "READ":
+                {
+                    if (isset($this->request->query['format']))
+                    {
+                        $format = $this->request->query['format'];
+                        if(isset($this->request->query['orderID']))
+                        {
+                            $orderID = $this->request->query['orderID'];
+                            switch ($format)
+                            {
+                                case 'allByID':
+                                {
+                                    $this->Order->recursive = 1;
+                                    $arrayConditions = array(
+                                        'Order.id = ' => $orderID,
+                                        'Order.status' => array(StatusOfOrder::Cancelled)
+                                    );
+                                    $results = $this->Order->find('all', array(
+                                        'conditions' => $arrayConditions
+                                    ));
+                                    $response = array(
+                                        'success' => true,
+                                        'xData' => $results,
+                                        'message' => 'Correcto'
+                                    );
+                                }break;
+                                case 'byID':
+                                {
+                                    $results = $this->Order->read(null, $orderID);
+                                    $response = array(
+                                        'success' => true,
+                                        'xData' => $results,
+                                        'message' => 'Correcto'
+                                    );
+                                }break;
+                            }
+
+                        } else
+                        {
+                            throw new Exception( __('ORDER_CONTROLLER') . ' ' . __('CRUD_OPERATION_READ_ID_ORDER_NOT_SET') );
+                        }
+                    } else {
+                        throw new Exception(__('ORDER_CONTROLLER') . ' ' . __('CRUD_OPERATION_READ_FORMAT_NOT_SET'));
+                    }
+                }break;
+                case "UPDATE":
+                {
+
+                }break;
+                case "DELETE":
+                {
+
+                }break;
             }
-        } catch (Exception $ex)
+        }catch(Exception $ex)
         {
             $response = array(
                 'success' => false,
@@ -331,11 +381,12 @@ class OrdersController extends AppController
                 'xData' => array()
             );
         }
+
         echo json_encode($response);
     }
 
     /**
-     * 
+     *
      */
     public function jsfindOrder()
     {
@@ -351,23 +402,21 @@ class OrdersController extends AppController
             switch ($this->request->query['format'])
             {
                 case 'POSbyID':
-                    {
-                        $this->Order->recursive = 1;
-                        $arrayConditions = array(
-                            'Order.id = ' => $this->request->query['orderID'],
-                            'Order.status' => array(StatusOfOrder::Cancelled)
-                        );
-                        $results = $this->Order->find('all', array(
-                            'conditions' => $arrayConditions
-                        ));
-                        $response = array(
-                            'success' => true,
-                            'xData' => $results,
-                            'message' => 'Correcto'
-                        );
-                    }
-                    break;
-                default :
+                {
+                    $this->Order->recursive = 1;
+                    $arrayConditions = array(
+                        'Order.id = ' => $this->request->query['orderID'],
+                        'Order.status' => array(StatusOfOrder::Cancelled)
+                    );
+                    $results = $this->Order->find('all', array(
+                        'conditions' => $arrayConditions
+                    ));
+                    $response = array(
+                        'success' => true,
+                        'xData' => $results,
+                        'message' => 'Correcto'
+                    );
+                }
                     break;
             }
         } catch (Exception $ex)

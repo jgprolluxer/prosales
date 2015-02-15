@@ -70,7 +70,7 @@ angular.module('prosales-app')
                 updated: 0,
                 created: 0,
                 type: 0,
-                status: 'cancelled',
+                status: 'open',
                 folio: 0,
                 price: 0,
                 total_amt: 0,
@@ -114,7 +114,7 @@ angular.module('prosales-app')
         {
             $scope.enableProcessLoading();
             //////Load Accounts
-            $http.get("/Accounts/jsfindAccount/?format=allByTeamID&teamID=" + 0).success(function (data)
+            $http.post("/Accounts/jsfindAccount/?format=allByTeamID&teamID=" + 0, null).success(function (data)
             {
                 $scope.disableProcessLoading();
                 if (data)
@@ -181,14 +181,14 @@ angular.module('prosales-app')
             $scope.enableProcessLoading();
             var orderID = $scope.newOrder.Order.id;
             //////Load Refresh
-            $http.get("/Orders/jsfindOrder/?format=POSbyID&orderID=" + orderID).success(function (data)
+            $http.post("/Orders/jsOrder/?CRUD_operation=READ&format=byID&orderID=" + orderID, null).success(function (data)
             {
                 $scope.disableProcessLoading();
                 if (data)
                 {
                     if (data["success"])
                     {
-                        $scope.newOrder = data["xData"]["0"];
+                        $scope.newOrder = data["xData"];
                     } else
                     {
                         alert(data["message"]);
@@ -215,7 +215,7 @@ angular.module('prosales-app')
         {
             $scope.enableProcessLoading();
             var pricelistID = $scope.pricelist.Pricelist.id;
-            $http.get("/PricelistProducts/jsfindPricelistProduct/?format=POStypeahead&pricelistID="+pricelistID+'').success(function (data)
+            $http.post("/PricelistProducts/jsfindPricelistProduct/?format=POStypeahead&pricelistID="+pricelistID+'', null).success(function (data)
             {
                 $scope.disableProcessLoading();
                 if (data)
@@ -279,7 +279,7 @@ angular.module('prosales-app')
         $scope.loadFamilies = function ()
         {
             $scope.enableProcessLoading();
-            $http.get("/Families/jsfindFamily/?format=all").success(function (data)
+            $http.post("/Families/jsfindFamily/?format=all", null).success(function (data)
             {
                 $scope.disableProcessLoading();
                 if (data)
@@ -313,7 +313,7 @@ angular.module('prosales-app')
         $scope.loadProductsbyFam = function (familyID)
         {
             $scope.enableProcessLoading();
-            $http.get("/Products/jsfindProduct/?format=allbyFamily&familyID=" + familyID).success(function (data)
+            $http.post("/Products/jsfindProduct/?format=allbyFamily&familyID=" + familyID, null).success(function (data)
             {
                 $scope.disableProcessLoading();
                 if (data)
@@ -401,7 +401,7 @@ angular.module('prosales-app')
         {
             $scope.enableProcessLoading();
             var OrderID = $scope.newOrder.Order.id;
-            $http.get("/OrderProducts/jsfindOrderProduct/?format=allForPOS&orderID=" + OrderID).success(function (data)
+            $http.post("/OrderProducts/jsfindOrderProduct/?format=allForPOS&orderID=" + OrderID, null).success(function (data)
             {
                 $scope.disableProcessLoading();
                 if (data)
@@ -485,20 +485,10 @@ angular.module('prosales-app')
             $scope.loadOrderProducts();
         };
 
-        $scope.setTotalChange = function()
-        {
-            var totalReceived = $('#totalReceived').val();
-            if(0 < totalReceived)
-            {
-                totalReceived = parseFloat(totalReceived);
-                $('#totalChange').val(totalReceived - $scope.newOrder.Order.total_amt);
-            }
-        };
-
 
         ////// Load Pricelist
         $scope.enableProcessLoading();
-        $http.get("/Workstations/getPricelist/").success(function (data)
+        $http.post("/Workstations/getPricelist/", null).success(function (data)
         {
             $scope.disableProcessLoading();
             if (data)
@@ -509,7 +499,7 @@ angular.module('prosales-app')
 
                     //////Initialize New Order
                     $scope.enableProcessLoading();
-                    $http.post("/Orders/addByPOSJS", $scope.newOrder).success(function (data)
+                    $http.post("/Orders/jsOrder/?CRUD_operation=CREATE", $scope.newOrder).success(function (data)
                     {
                         $scope.disableProcessLoading();
                         if (data)
@@ -519,7 +509,7 @@ angular.module('prosales-app')
                                 $scope.newOrder = data["xData"];
                                 $scope.refreshData();
                             } else {
-                                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p >La orden no se generará por los siguientes motivos' + data["message"]+'</p>', {
+                                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p >La orden no se generará por los siguientes motivos: ' + data["message"]+'</p>', {
                                     type: 'danger',
                                     delay: 0,
                                     allow_dismiss: false,
