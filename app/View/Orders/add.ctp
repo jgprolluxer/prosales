@@ -157,11 +157,9 @@
                     <h4 class="sub-header">Pago:</h4>
                     <!-- Advanced Active Theme Color Widget Alternative -->
                     <div class="widget">
-                        <div class="widget-advanced widget-advanced-alt">
-                            <a href="javascript:void(0);" class="pull-right btn btn-xs btn-info" >
+                            <a href="javascript:void(0);" class="pull-right btn btn-xs btn-info" data-toggle="tooltip" title="Agregar Pago"  >
                                 <i class="hi hi-plus"></i> Agregar Pago
                             </a>
-                        </div>
                     </div>
                     <!-- END Advanced Active Theme Color Widget Alternative -->
                     <h4 class="sub-header">Finalizar:</h4>

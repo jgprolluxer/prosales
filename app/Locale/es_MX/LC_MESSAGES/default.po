@@ -19,6 +19,9 @@ msgstr ""
 #
 # ----------      COMMON SECTION      ---------- ###################################
 #
+msgid "LOADING"
+msgstr "Cargando"
+
 msgid "sales"
 msgstr "Ventas"
 

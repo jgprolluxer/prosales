@@ -1,25 +1,4 @@
 {
-    "LANGUAGE":                                     "Language",
-    "BUTTON_LANG_EN":                               "English",
-    "BUTTON_LANG_DE":                               "German",
-    
-    "MENU_DASHBOARD":                               "Dashboard",
-    "MENU_SOCIALCENTER":                            "Social center",
-    "MENU_ADMINISTRATION":                          "Administration",
-    "MENU_CONFIGURATION":                           "Configuration",
-    
-    "SUBMENU_CHAT":                                 "Chat",
-    "SUBMENU_SERVICEREQUESTS":                      "Service requests",
-    "SUBMENU_PROJECTS":                             "Projects",
-    "SUBMENU_RESOURCES":                            "Resources",
-    "SUBMENU_DPTOS":                                "Work areas",
-    "SUBMENU_WORKSTATIONS":                         "Worstations",
-    "SUBMENU_TEAMS":                                "Teams",
-    "SUBMENU_ARCHIVE":                              "Archive",
-    "SUBMENU_LOVS":                                 "List of values",
-    "SUBMENU_CONFIGS":                              "Configuration",
-    "SUBMENU_GROUPS":                               "Groups",
-    "SUBMENU_USERS":                                "Users",
-    "SUBMENU_ACLS":                                 "Acces control"
-    
+    "LANGUAGE":                                     "Language"
+
 }
