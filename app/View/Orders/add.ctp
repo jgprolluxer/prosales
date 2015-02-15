@@ -72,7 +72,7 @@
                             <td>{{ orderproduct.OrderProduct.product_qty}}</td>
                             <td>${{ orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty }}</td>
                             <td>${{ ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 ) }} </td>
-                            <td>${{ orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )  }}</td>
+                            <td>${{ (orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )).toFixed(2)  }}</td>
                             <td><a href="javascript:void(0);" class="btn btn-warning btn-xs"><i class="gi gi-pencil"></i></a></td>
                             <td><a href="javascript:void(0);" class="btn btn-danger btn-xs" ng-click="deleteOrderProduct(orderproduct.OrderProduct.id)" ><i class="gi gi-bin"></i></a></td>
                         </tr>
