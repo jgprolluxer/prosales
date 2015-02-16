@@ -333,8 +333,7 @@ class OrdersController extends AppController
                                 {
                                     $this->Order->recursive = 1;
                                     $arrayConditions = array(
-                                        'Order.id = ' => $orderID,
-                                        'Order.status' => array(StatusOfOrder::Cancelled)
+                                        'Order.id = ' => $orderID
                                     );
                                     $results = $this->Order->find('all', array(
                                         'conditions' => $arrayConditions
