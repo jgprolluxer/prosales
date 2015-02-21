@@ -205,4 +205,118 @@ class OrderPaymentsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+
+    public function jsOrderPayment()
+    {
+        Configure::write('debug', 0);
+        $this->autoRender = false;
+        $this->layout = 'ajax';
+
+        $response = array(
+            'success' => true,
+            'message' => 'NOTHING',
+            'xData' => array()
+        );
+
+        try{
+            if(isset($this->request->query['CRUD_operation']))
+            {
+                $operation = $this->request->query['CRUD_operation'];
+            } else
+            {
+                throw new Exception( __('ORDER_PAYMENT_CONTROLLER') . ' ' . __('CRUD_OPERATION_NOT_SET') );
+            }
+
+            switch($operation)
+            {
+                case "CREATE":
+                {
+                    $this->request->data["OrderPayment"]["status"] = StatusOfOrderPayment::Applied;
+                    $this->request->data["OrderPayment"]["folio"] = strtoupper(uniqid("1-"));
+
+                    $this->OrderPayment->recursive = -1;
+                    $this->OrderPayment->create();
+                    if ($this->OrderPayment->save($this->request->data))
+                    {
+                        $response = array(
+                            'success' => true,
+                            'message' => 'Correcto',
+                            'xData' => $this->OrderPayment->read(null, $this->OrderPayment->getLastInsertID())
+                        );
+                    } else
+                    {
+                        $response = array(
+                            'success' => false,
+                            'message' => json_encode($this->OrderPayment->validationErrors),
+                            'xData' => array()
+                        );
+                    }
+
+                }break;
+                case "READ":
+                {
+                    if (isset($this->request->query['format']))
+                    {
+                        $format = $this->request->query['format'];
+                        if(isset($this->request->query['orderPaymentID']))
+                        {
+                            $paymentID = $this->request->query['orderPaymentID'];
+                            switch ($format)
+                            {
+                                case 'allByID':
+                                {
+                                    $this->OrderPayment->recursive = 1;
+                                    $arrayConditions = array(
+                                        'Payment.id = ' => $paymentID
+                                    );
+                                    $results = $this->OrderPayment->find('all', array(
+                                        'conditions' => $arrayConditions
+                                    ));
+                                    $response = array(
+                                        'success' => true,
+                                        'xData' => $results,
+                                        'message' => 'Correcto'
+                                    );
+                                }break;
+                                case 'byID':
+                                {
+                                    $results = $this->OrderPayment->read(null, $paymentID);
+                                    $response = array(
+                                        'success' => true,
+                                        'xData' => $results,
+                                        'message' => 'Correcto'
+                                    );
+                                }break;
+                            }
+
+                        } else
+                        {
+                            throw new Exception( __('ORDER_PAYMENT_CONTROLLER') . ' ' . __('CRUD_OPERATION_READ_ID_PAYMENT_NOT_SET') );
+                        }
+                    } else {
+                        throw new Exception(__('ORDER_PAYMENT_CONTROLLER') . ' ' . __('CRUD_OPERATION_READ_FORMAT_NOT_SET'));
+                    }
+                }break;
+                case "UPDATE":
+                {
+
+                }break;
+                case "DELETE":
+                {
+
+                }break;
+            }
+        }catch(Exception $ex)
+        {
+            $response = array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'xData' => array()
+            );
+        }
+
+        echo json_encode($response);
+    }
 }

@@ -72,6 +72,8 @@
         echo $this->Html->script("/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js");
         echo $this->Html->script("/bower_components/datatables/media/js/jquery.dataTables.min.js");
         echo $this->Html->script("/bower_components/angular-datatables/dist/angular-datatables.min.js");
+        echo $this->Html->script("/bower_components/moment/moment.js");
+        echo $this->Html->script("/bower_components/angular-moment/angular-moment.js");
         echo $this->Html->script("/js/front-app.js");
         ?>
         <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>

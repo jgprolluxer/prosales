@@ -475,12 +475,31 @@ abstract class StatusOfOrder
     const Inactive = "inactive";
     const Cancelled = "cancelled";
     const Open = "open";
+    const Closed = "closed";
 
 }
 
 abstract class StatusOfOrderProduct
 {
 
+    const Active = "active";
+    const Inactive = "inactive";
+
+}
+
+abstract class StatusOfOrderPayment
+{
+
+    const Active = "active";
+    const Inactive = "inactive";
+    const Applied = "applied";
+
+}
+
+abstract class StatusOfPayment
+{
+
+    const Applied = "applied";
     const Active = "active";
     const Inactive = "inactive";
 

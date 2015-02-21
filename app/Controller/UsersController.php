@@ -288,8 +288,6 @@ class UsersController extends AppController
                 $this->Session->setFlash(__('Usuario o Contraseña invalidos...'));
             }
         }
-
-        $this->layout = 'login';
     }
 
     public function logout()

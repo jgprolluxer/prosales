@@ -283,13 +283,9 @@ class OrdersController extends AppController
             {
                 case "CREATE":
                 {
-                    $this->request->data["Order"]["updated_by"] = $this->Session->read("Auth.User.id");
-                    $this->request->data["Order"]["created_by"] = $this->Session->read("Auth.User.id");
-                    $this->request->data["Order"]["updated"] = date("Y-m-d H:i:s");
-                    $this->request->data["Order"]["created"] = date("Y-m-d H:i:s");
-                    $this->request->data["Order"]["type"] = "POS";
                     $this->request->data["Order"]["status"] = StatusOfOrder::Open;
                     $this->request->data["Order"]["folio"] = strtoupper(uniqid("1-"));
+                    $this->request->data["Order"]["type"] = "POS";
                     $this->request->data["Order"]["price"] = 0;
                     $this->request->data["Order"]["total_amt"] = 0;
                     $this->request->data["Order"]["subtotal_amt"] = 0;
@@ -365,6 +361,44 @@ class OrdersController extends AppController
                 }break;
                 case "UPDATE":
                 {
+                    if (isset($this->request->query['format']))
+                    {
+                        $format = $this->request->query['format'];
+                        if(isset($this->request->data['Order']['id']))
+                        {
+                            $orderID = $this->request->data['Order']['id'];
+                            switch ($format)
+                            {
+                                case 'CloseOrder':
+                                {
+                                    $this->Order->recursive = 1;
+                                    $this->Order->id = $orderID;
+                                    if( $this->Order->saveField('status', StatusOfOrder::Closed) )
+                                    {
+
+                                        $response = array(
+                                            'success' => true,
+                                            'message' => 'Correcto',
+                                            'xData' => $this->Order->read(null, $orderID)
+                                        );
+                                    }else
+                                    {
+                                        $response = array(
+                                            'success' => false,
+                                            'message' => json_encode($this->Order->validationErrors),
+                                            'xData' => array()
+                                        );
+                                    }
+                                }break;
+                            }
+
+                        } else
+                        {
+                            throw new Exception( __('ORDER_CONTROLLER') . ' ' . __('CRUD_OPERATION_READ_ID_ORDER_NOT_SET') );
+                        }
+                    } else {
+                        throw new Exception(__('ORDER_CONTROLLER') . ' ' . __('CRUD_OPERATION_READ_FORMAT_NOT_SET'));
+                    }
 
                 }break;
                 case "DELETE":
@@ -381,51 +415,6 @@ class OrdersController extends AppController
             );
         }
 
-        echo json_encode($response);
-    }
-
-    /**
-     *
-     */
-    public function jsfindOrder()
-    {
-        Configure::write('debug', 0);
-        $this->autoRender = false;
-        $this->layout = 'ajax';
-
-        $arrayConditions = array();
-        $response = array();
-        $results = array();
-        try
-        {
-            switch ($this->request->query['format'])
-            {
-                case 'POSbyID':
-                {
-                    $this->Order->recursive = 1;
-                    $arrayConditions = array(
-                        'Order.id = ' => $this->request->query['orderID'],
-                        'Order.status' => array(StatusOfOrder::Cancelled)
-                    );
-                    $results = $this->Order->find('all', array(
-                        'conditions' => $arrayConditions
-                    ));
-                    $response = array(
-                        'success' => true,
-                        'xData' => $results,
-                        'message' => 'Correcto'
-                    );
-                }
-                    break;
-            }
-        } catch (Exception $ex)
-        {
-            $response = array(
-                'success' => false,
-                'message' => $ex->getMessage(),
-                'xData' => array()
-            );
-        }
         echo json_encode($response);
     }
 

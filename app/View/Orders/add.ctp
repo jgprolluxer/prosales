@@ -73,8 +73,16 @@
                             <td>${{ orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty }}</td>
                             <td>${{ ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 ) }} </td>
                             <td>${{ (orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )).toFixed(2)  }}</td>
-                            <td><a href="javascript:void(0);" class="btn btn-warning btn-xs"><i class="gi gi-pencil"></i></a></td>
-                            <td><a href="javascript:void(0);" class="btn btn-danger btn-xs" ng-click="deleteOrderProduct(orderproduct.OrderProduct.id)" ><i class="gi gi-bin"></i></a></td>
+                            <td>
+                                <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt || 'closed' == newOrder.Order.status" class="btn btn-warning btn-xs">
+                                    <i class="gi gi-pencil"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt || 'closed' == newOrder.Order.status" class="btn btn-danger btn-xs" ng-click="deleteOrderProduct(orderproduct.OrderProduct.id)" >
+                                    <i class="gi gi-bin"></i>
+                                </a>
+                            </td>
                         </tr>
                         </tbody>
                         <tfoot>
@@ -103,7 +111,7 @@
                     <i class="fa fa-dollar animation-floating"></i>
                 </a>
                 <h4 class="widget-content widget-content-light">Resumen de la orden<br/>Folio:&nbsp;{{newOrder.Order.folio}}</h4>
-                <a href="javascript:void(0)" class="pull-right btn-xs btn btn-danger">
+                <a href="javascript:void(0)" class="pull-right btn-xs btn btn-danger" >
                     Cancelar Orden
                 </a>
             </div>
@@ -129,12 +137,12 @@
                 <div class="widget">
                     <div class="widget-advanced widget-advanced-alt">
                         <!-- Widget Header -->
-                        <div class="widget-main text-center">
-                            <div class="widget-options-left" >
-                                <a href="javascript:void(0);" data-ng-show="!account" class="btn btn-xs btn-info" data-toggle="tooltip" title="Asociar" data-ng-click="open()" ><i class="hi hi-plus"></i> Asociar</a>
+                        <div class="widget-extra-full text-center">
+                            <div class="pull-left" >
+                                <a href="javascript:void(0);" data-ng-disabled="account" class="btn btn-xs btn-info" data-toggle="tooltip" title="Asociar" data-ng-click="open()" ><i class="hi hi-plus"></i> Asociar</a>
                             </div>
-                            <div class="widget-options" >
-                                <a href="javascript:void(0);" data-ng-show="account" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Remover" data-ng-click="removeAccount()" ><i class="hi hi-remove"></i> Remover</a>
+                            <div class="pull-right" >
+                                <a href="javascript:void(0);" data-ng-disabled="!account" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Remover" data-ng-click="removeAccount()" ><i class="hi hi-remove"></i> Remover</a>
                             </div>
                         </div>
                         <!-- END Widget Header -->
@@ -152,17 +160,64 @@
                         <!-- END Widget Main -->
                     </div>
                 </div>
-                <section data-ng-show="account">
+                <section data-ng-disabled="account ">
                     <!-- END Advanced Active Theme Color Widget Alternative -->
                     <h4 class="sub-header">Pago:</h4>
                     <!-- Advanced Active Theme Color Widget Alternative -->
-                    <div class="widget">
-                            <a href="javascript:void(0);" class="pull-right btn btn-xs btn-info" data-toggle="tooltip" title="Agregar Pago"  >
-                                <i class="hi hi-plus"></i> Agregar Pago
+                    <div class="widget-extra-full">
+                        <form ng-submit="addQuickPayment()" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="example-text-input">Recibí:</label>
+                                <div class="col-md-9">
+                                    <input ng-model="pmnt_received" ng-change="calcChange()" ng-disabled="totalPayments >= newOrder.Order.total_amt" type="number" id="txtReceived" name="txtReceived" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <a ng-click="addQuickPayment()" ng-disabled="totalPayments >= newOrder.Order.total_amt" class="pull-right btn btn-xs btn-info">
+                                    <i class="fa fa-plus"></i>Pago Rápido
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- END Advanced Active Theme Color Widget Alternative -->
+                    <!-- Advanced Active Theme Color Widget Alternative -->
+                    <div class="widget-extra-full" style="display: none;">
+                            <a disabled="disabled" href="javascript:void(0);" class="pull-right btn btn-xs btn-info" data-toggle="tooltip" title="Agregar Pago"  >
+                                <i class="hi hi-plus"></i> Agregar Pagos diferidos próximamente
                             </a>
                     </div>
                     <!-- END Advanced Active Theme Color Widget Alternative -->
+                    <!-- Advanced Active Theme Color Widget Alternative -->
+                    <div class="widget-extra-full">
+                        <form onsubmit="return false" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="txtChange">Cambio:</label>
+                                <div class="col-md-9">
+                                    <input ng-model="pmnt_change"  type="number" id="txtChange" name="txtChange" class="form-control" readonly="readonly" >
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- END Advanced Active Theme Color Widget Alternative -->
                     <h4 class="sub-header">Finalizar:</h4>
+                    <!-- Advanced Active Theme Color Widget Alternative -->
+                    <div class="widget">
+                        <div class="widget-advanced widget-advanced-alt">
+                            <!-- Widget Header -->
+                            <div class="widget-main text-center">
+                                <div class="pull-left" >
+                                    <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-click="closeOrder()" ng-disabled="'closed' == newOrder.Order.status || totalPayments >= newOrder.Order.total_amt" >
+                                        <i class="hi hi-check"></i> Cerrar Orden
+                                    </a>
+                                </div>
+                                <div class="pull-right" >
+                                    <a href="javascript:void(0);" ng-disabled="'closed' != newOrder.Order.status" class="btn btn-xs btn-warning">
+                                        <i class="hi hi-remove"></i> Imprimir Ticket
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>

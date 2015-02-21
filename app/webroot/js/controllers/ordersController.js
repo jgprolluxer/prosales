@@ -87,27 +87,135 @@ angular.module('prosales-app')
         ////// Initialize orderproducts
         $scope.orderProducts = [];
 
-        //////Initialize New Order Object
+        //////Initialize New Payment Object
+        $scope.newPayment = {
+        };
+
+        //////Initialize New Order Payment Object
         $scope.newOrderPayment = {
-            OrderPayment: {//id:0,
-                created: 0,
-                updated: 0,
-                created_by: 0,
-                updated_by: 0,
-                account_id: 0,
-                payment_id: 0,
-                type: 0,
-                status: 'active',
-                docnum: 0,
-                docseq: 0,
-                payment_date: 0,
-                amount: 0,
-                total_amt: 0,
-                order_id: 0,
-                bank_name: 0,
-                bank_ref: 0,
-                description: 0
+        };
+
+        $scope.pmnt_received = 0.00;
+        $scope.pmnt_change = 0.00;
+
+        $scope.allowPartialPayd = true;
+        $scope.totalPayments = 0;
+
+        $scope.calcChange = function()
+        {
+            try{
+                parseFloat($scope.pmnt_received);
+
+                $scope.pmnt_change = $scope.pmnt_received - $scope.newOrder.Order.total_amt;
+
+            }catch(e)
+            {
+                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>Ingresar solo numeros en el importe recibido...</p>', {
+                    type: 'warning',
+                    delay: 4,
+                    allow_dismiss: true,
+                    from: "top",
+                    align: "center"
+                });
+                $scope.pmnt_received = 0.00;
             }
+
+        };
+
+        $scope.addQuickPayment = function()
+        {
+            $scope.enableProcessLoading();
+            $scope.allowPartialPayd = false;
+            console.log('adding payment');
+
+            $scope.newPayment = {
+                Payment: {
+                    account_id: $scope.account.Account.id,
+                    type: 'cash',
+                    status: 'applied',
+                    folio: '',
+                    amount: $scope.newOrder.Order.total_amt
+                }
+            };
+            $http.post("/Payments/jsPayment/?CRUD_operation=CREATE", $scope.newPayment).success(function (data)
+            {
+                $scope.disableProcessLoading();
+                if (data)
+                {
+                    if (data["success"])
+                    {
+                        $scope.disableProcessLoading();
+                        $scope.newPayment = data["xData"];
+                        $scope.newOrderPayment = {
+                            OrderPayment: {
+                                order_id: $scope.newOrder.Order.id,
+                                payment_id: $scope.newPayment.Payment.id,
+                                folio: '',
+                                type: 'cash',
+                                status: 'applied',
+                                payment_date: moment().format("YYYY-MM-DD"),
+                                total_amt: $scope.newPayment.Payment.amount
+                            }
+                        };
+                        $http.post("/OrderPayments/jsOrderPayment/?CRUD_operation=CREATE", $scope.newOrderPayment).success(function (data)
+                        {
+                            $scope.disableProcessLoading();
+                            if (data)
+                            {
+                                if (data["success"])
+                                {
+                                    $scope.newOrderPayment = data["xData"];
+                                    $scope.totalPayments = $scope.newOrderPayment.OrderPayment.total_amt;
+                                } else
+                                {
+                                    $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>'+data["message"]+'</p>', {
+                                        type: 'danger',
+                                        delay: 0,
+                                        allow_dismiss: false,
+                                        from: "top",
+                                        align: "center"
+                                    });
+                                }
+                            }
+                        }).error(function(data, status, headers, config)
+                        {
+                            $scope.disableProcessLoading();
+                            $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                                type: 'danger',
+                                delay: 0,
+                                allow_dismiss: false,
+                                from: "top",
+                                align: "center"
+                            });
+                            // called asynchronously if an error occurs
+                            // or server returns response with an error status.
+                            console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+                        });
+                    } else
+                    {
+                        $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>'+data["message"]+'</p>', {
+                            type: 'danger',
+                            delay: 0,
+                            allow_dismiss: false,
+                            from: "top",
+                            align: "center"
+                        });
+                    }
+                }
+            }).error(function(data, status, headers, config)
+            {
+                $scope.disableProcessLoading();
+                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                    type: 'danger',
+                    delay: 0,
+                    allow_dismiss: false,
+                    from: "top",
+                    align: "center"
+                });
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+            });
         };
 
         $scope.loadAccounts = function()
@@ -485,6 +593,46 @@ angular.module('prosales-app')
             $scope.loadOrderProducts();
         };
 
+        $scope.closeOrder = function()
+        {
+            $scope.enableProcessLoading();
+            $http.post("/Orders/jsOrder/?CRUD_operation=UPDATE&format=CloseOrder", $scope.newOrder).success(function (data)
+            {
+                $scope.disableProcessLoading();
+                if (data)
+                {
+                    if (data["success"])
+                    {
+                        ////// reload Data
+                        $scope.refreshData();
+                    } else
+                    {
+                        $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>' + data["message"] + '</p>', {
+                            type: 'warning',
+                            delay: 2000,
+                            allow_dismiss: true,
+                            from: "top",
+                            align: "center"
+                        });
+                    }
+                }
+            }).error(function(data, status, headers, config)
+            {
+                $scope.disableProcessLoading();
+                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                    type: 'danger',
+                    delay: 0,
+                    allow_dismiss: false,
+                    from: "top",
+                    align: "center"
+                });
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+            });
+
+        };
+
 
         ////// Load Pricelist
         $scope.enableProcessLoading();
@@ -601,8 +749,8 @@ angular.module('prosales-app')
 
         $scope.items = items;
         /*$scope.selected = {
-            item: $scope.items[0]
-        };*/
+         item: $scope.items[0]
+         };*/
 
 
         $scope.ok = function (item)
