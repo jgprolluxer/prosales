@@ -142,7 +142,7 @@
                                 <a href="javascript:void(0);" data-ng-disabled="account" class="btn btn-xs btn-info" data-toggle="tooltip" title="Asociar" data-ng-click="open()" ><i class="hi hi-plus"></i> Asociar</a>
                             </div>
                             <div class="pull-right" >
-                                <a href="javascript:void(0);" data-ng-disabled="!account" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Remover" data-ng-click="removeAccount()" ><i class="hi hi-remove"></i> Remover</a>
+                                <a href="javascript:void(0);" data-ng-disabled="!account || totalPayments >= newOrder.Order.total_amt" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Remover" data-ng-click="removeAccount()" ><i class="hi hi-remove"></i> Remover</a>
                             </div>
                         </div>
                         <!-- END Widget Header -->
