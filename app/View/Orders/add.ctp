@@ -206,7 +206,7 @@
                             <!-- Widget Header -->
                             <div class="widget-main text-center">
                                 <div class="pull-left" >
-                                    <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-click="closeOrder()" ng-disabled="'closed' == newOrder.Order.status || totalPayments >= newOrder.Order.total_amt" >
+                                    <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-click="closeOrder()" ng-disabled="'closed' == newOrder.Order.status || !totalPayments >= newOrder.Order.total_amt" >
                                         <i class="hi hi-check"></i> Cerrar Orden
                                     </a>
                                 </div>
