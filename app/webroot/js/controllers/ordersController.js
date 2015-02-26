@@ -65,22 +65,22 @@ angular.module('prosales-app')
         //////Initialize New Order Object
         $scope.newOrder = {
             Order: {
-                updated_by: 0,
-                created_by: 0,
-                updated: 0,
-                created: 0,
-                type: 0,
+                updated_by: "",
+                created_by: "",
+                updated: "",
+                created: "",
+                type: "",
                 status: 'open',
-                folio: 0,
+                folio: "",
                 price: 0,
                 total_amt: 0,
                 subtotal_amt: 0,
                 tax: 0,
                 disc: 0,
-                disc_desc: 0,
+                disc_desc: "",
                 account_id: 0,
-                description: 0,
-                saleschannel: 0
+                description: "",
+                saleschannel: ""
             }
         };
 
@@ -126,8 +126,6 @@ angular.module('prosales-app')
         {
             $scope.enableProcessLoading();
             $scope.allowPartialPayd = false;
-            console.log('adding payment');
-
             $scope.newPayment = {
                 Payment: {
                     account_id: $scope.account.Account.id,
@@ -297,6 +295,8 @@ angular.module('prosales-app')
                     if (data["success"])
                     {
                         $scope.newOrder = data["xData"];
+                        console.log('check folio');
+                        console.log($scope.newOrder);
                     } else
                     {
                         alert(data["message"]);
@@ -593,6 +593,48 @@ angular.module('prosales-app')
             $scope.loadOrderProducts();
         };
 
+        $scope.setAccount = function()
+        {
+            $scope.enableProcessLoading();
+            $scope.newOrder.Order.account_id = $scope.account.Account.id;
+            console.log('setting account');
+            console.log($scope.newOrder);
+            $http.post("/Orders/jsOrder/?CRUD_operation=UPDATE&format=SetAccount", $scope.newOrder).success(function (data)
+            {
+                $scope.disableProcessLoading();
+                if (data)
+                {
+                    if (data["success"])
+                    {
+                        ////// reload Data
+                        $scope.refreshData();
+                    } else
+                    {
+                        $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>' + data["message"] + '</p>', {
+                            type: 'warning',
+                            delay: 0,
+                            allow_dismiss: false,
+                            from: "top",
+                            align: "center"
+                        });
+                    }
+                }
+            }).error(function(data, status, headers, config)
+            {
+                $scope.disableProcessLoading();
+                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                    type: 'danger',
+                    delay: 0,
+                    allow_dismiss: false,
+                    from: "top",
+                    align: "center"
+                });
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+            });
+        };
+
         $scope.closeOrder = function()
         {
             $scope.enableProcessLoading();
@@ -605,6 +647,7 @@ angular.module('prosales-app')
                     {
                         ////// reload Data
                         $scope.refreshData();
+                        $scope.setAccount();
                     } else
                     {
                         $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>' + data["message"] + '</p>', {

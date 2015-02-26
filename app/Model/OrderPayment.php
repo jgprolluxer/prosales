@@ -26,13 +26,6 @@ class OrderPayment extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Account' => array(
-			'className' => 'Account',
-			'foreignKey' => 'account_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
 		'Order' => array(
 			'className' => 'Order',
 			'foreignKey' => 'order_id',

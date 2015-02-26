@@ -258,6 +258,56 @@ class OrdersController extends AppController
         return $this->redirect(array('action' => 'index'));
     }
 
+    public function raiseticket($orderID = null)
+    {
+        $record = array();
+        if(null !== $orderID)
+        {
+            $this->Order->recursive = 2;
+            $order = $this->Order->read(null, $orderID);
+            $orderProduct = $this->Order->OrderProduct->find('all', array(
+                'conditions' => array(
+                    'OrderProduct.id >=' => 1,
+                    'OrderProduct.status' => array(StatusOfOrderProduct::Active),
+                    'OrderProduct.order_id' => $orderID
+                )
+            ));
+            $orderPayment = $this->Order->OrderPayment->find('all', array(
+                'conditions' => array(
+                    'OrderPayment.id >=' => 1,
+                    'OrderPayment.order_id' => $orderID
+                )
+            ));
+        }
+
+        $this->loadModel('User');
+        $this->loadModel('Store');
+        $this->loadModel('Workstation');
+
+        $user = $this->User->read(null, $this->Session->read('Auth.User.id'));
+        $workstation = array();
+        $workstation = $this->Workstation->read(null, $user["Workstation"]["id"]);
+        $store = array();
+        $store = $this->Store->read(null, $workstation["Workstation"]["store_id"]);
+
+        //$this->log('order ticket');
+        //$this->log($order);
+        $this->log('$user');
+        $this->log($user);
+        $this->log('$workstation');
+        $this->log($workstation);
+        $this->log('$store');
+        $this->log($store);
+        $this->log('order Product ticket');
+        $this->log($orderProduct);
+        $this->log('order Payment ticket');
+        $this->log($orderPayment);
+
+        $this->set(compact('order', 'orderProduct', 'orderPayment', 'user', 'workstation', 'store'));
+        $this->layout = 'pdf'; //this will use the pdf.ctp layout
+        $this->render();
+    }
+
     public function jsOrder()
     {
         Configure::write('debug', 0);
@@ -283,18 +333,17 @@ class OrdersController extends AppController
             {
                 case "CREATE":
                 {
+                    $this->request->data["Order"]["updated_by"] = $this->Session->read("Auth.User.id");
+                    $this->request->data["Order"]["created_by"] = $this->Session->read("Auth.User.id");
+                    $this->request->data["Order"]["updated"] = date("Y-m-d H:i:s");
+                    $this->request->data["Order"]["created"] = date("Y-m-d H:i:s");
+                    $this->request->data["Order"]["type"] = "POS";
                     $this->request->data["Order"]["status"] = StatusOfOrder::Open;
                     $this->request->data["Order"]["folio"] = strtoupper(uniqid("1-"));
                     $this->request->data["Order"]["type"] = "POS";
                     $this->request->data["Order"]["price"] = 0;
                     $this->request->data["Order"]["total_amt"] = 0;
                     $this->request->data["Order"]["subtotal_amt"] = 0;
-                    $this->request->data["Order"]["tax"] = 0;
-                    $this->request->data["Order"]["disc"] = 0;
-                    $this->request->data["Order"]["disc_desc"] = '-';
-                    $this->request->data["Order"]["account_id"] = 0;
-                    $this->request->data["Order"]["description"] = '-';
-                    $this->request->data["Order"]["saleschannel"] = "POS";
 
                     $this->Order->recursive = -1;
                     $this->Order->create();
@@ -361,6 +410,8 @@ class OrdersController extends AppController
                 }break;
                 case "UPDATE":
                 {
+                    $this->log('case update');
+                    $this->log($this->request->data['Order']);
                     if (isset($this->request->query['format']))
                     {
                         $format = $this->request->query['format'];
@@ -389,6 +440,30 @@ class OrdersController extends AppController
                                             'xData' => array()
                                         );
                                     }
+                                }break;
+                                case 'SetAccount':
+                                {
+                                    $this->Order->recursive = 1;
+                                    $this->Order->id = $orderID;
+                                    if( $this->Order->saveField('account_id', $this->request->data['Order']['account_id'] ) )
+                                    {
+
+                                        $response = array(
+                                            'success' => true,
+                                            'message' => 'Correcto',
+                                            'xData' => $this->Order->read(null, $orderID)
+                                        );
+                                        $this->log('respose set account');
+                                        $this->log($response);
+                                    }else
+                                    {
+                                        $response = array(
+                                            'success' => false,
+                                            'message' => json_encode($this->Order->validationErrors),
+                                            'xData' => array()
+                                        );
+                                    }
+
                                 }break;
                             }
 

@@ -36,10 +36,10 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_SearchBarCode">
-                    <input type="text" id="productBarcodeSearcher" name="productBarcodeSearcher" placeholder="No busca nada aun..." class="form-control">
+                    <input type="text" ng-disabled="newOrder.Order.total_amt <= totalPayments && totalPayments != 0 " id="productBarcodeSearcher" name="productBarcodeSearcher" placeholder="No busca nada aun..." class="form-control">
                 </div>
                 <div class="tab-pane" id="tab_SearchProductName">
-                    <input type="text" id="productSearcher" name="productSearcher" placeholder="Buscar producto..." class="form-control">
+                    <input type="text" ng-disabled="newOrder.Order.total_amt <= totalPayments && totalPayments != 0 " id="productSearcher" name="productSearcher" placeholder="Buscar producto..." class="form-control">
                 </div>
             </div>
             <!-- END Default Tabs -->
@@ -74,12 +74,12 @@
                             <td>${{ ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 ) }} </td>
                             <td>${{ (orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )).toFixed(2)  }}</td>
                             <td>
-                                <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt || 'closed' == newOrder.Order.status" class="btn btn-warning btn-xs">
+                                <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt && totalPayments != 0  " class="btn btn-warning btn-xs">
                                     <i class="gi gi-pencil"></i>
                                 </a>
                             </td>
                             <td>
-                                <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt || 'closed' == newOrder.Order.status" class="btn btn-danger btn-xs" ng-click="deleteOrderProduct(orderproduct.OrderProduct.id)" >
+                                <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt && totalPayments != 0 " class="btn btn-danger btn-xs" ng-click="deleteOrderProduct(orderproduct.OrderProduct.id)" >
                                     <i class="gi gi-bin"></i>
                                 </a>
                             </td>
@@ -111,7 +111,7 @@
                     <i class="fa fa-dollar animation-floating"></i>
                 </a>
                 <h4 class="widget-content widget-content-light">Resumen de la orden<br/>Folio:&nbsp;{{newOrder.Order.folio}}</h4>
-                <a href="javascript:void(0)" class="pull-right btn-xs btn btn-danger" data-ng-disabled=" totalPayments >= newOrder.Order.total_amt" >
+                <a href="javascript:void(0)" class="pull-right btn-xs btn btn-danger" data-ng-disabled=" totalPayments >= newOrder.Order.total_amt && totalPayments != 0 " >
                     Cancelar Orden
                 </a>
             </div>
@@ -119,13 +119,13 @@
                 <div class="row text-center">
                     <div class="col-xs-6">
                         <h3 class="widget-content-light">
-                            <strong>{{newOrder.Order.total_amt}}</strong><br>
+                            <strong>${{newOrder.Order.total_amt}}</strong><br>
                             <small>Total</small>
                         </h3>
                     </div>
                     <div class="col-xs-6">
                         <h3 class="widget-content-light">
-                            <strong>0</strong><br>
+                            <strong>${{totalPayments}}</strong><br>
                             <small>Pagos</small>
                         </h3>
                     </div>
@@ -160,7 +160,6 @@
                         <!-- END Widget Main -->
                     </div>
                 </div>
-                <section data-ng-disabled="account ">
                     <!-- END Advanced Active Theme Color Widget Alternative -->
                     <h4 class="sub-header">Pago:</h4>
                     <!-- Advanced Active Theme Color Widget Alternative -->
@@ -169,11 +168,11 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="example-text-input">Recibí:</label>
                                 <div class="col-md-9">
-                                    <input ng-model="pmnt_received" ng-change="calcChange()" ng-disabled="totalPayments >= newOrder.Order.total_amt" type="number" id="txtReceived" name="txtReceived" class="form-control">
+                                    <input ng-model="pmnt_received" ng-change="calcChange()" ng-disabled=" !account || totalPayments >= newOrder.Order.total_amt" type="number" id="txtReceived" name="txtReceived" class="form-control">
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <a ng-click="addQuickPayment()" ng-disabled="totalPayments >= newOrder.Order.total_amt" class="pull-right btn btn-xs btn-info">
+                                <a ng-click="addQuickPayment()" ng-disabled=" !account || totalPayments >= newOrder.Order.total_amt" class="pull-right btn btn-xs btn-info">
                                     <i class="fa fa-plus"></i>Pago Rápido
                                 </a>
                             </div>
@@ -206,19 +205,18 @@
                             <!-- Widget Header -->
                             <div class="widget-main text-center">
                                 <div class="pull-left" >
-                                    <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-click="closeOrder()" ng-disabled="'closed' == newOrder.Order.status || !totalPayments >= newOrder.Order.total_amt" >
+                                    <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-click="closeOrder()" ng-disabled=" newOrder.Order.total_amt <= totalPayments && newOrder.Order.total_amt == 0  || 'closed' == newOrder.Order.status " >
                                         <i class="hi hi-check"></i> Cerrar Orden
                                     </a>
                                 </div>
                                 <div class="pull-right" >
-                                    <a href="javascript:void(0);" ng-disabled="'closed' != newOrder.Order.status" class="btn btn-xs btn-warning">
-                                        <i class="hi hi-remove"></i> Imprimir Ticket
+                                    <a href="javascript:void(0);" ng-href="/Orders/raiseticket/{{newOrder.Order.id}}" target="_blank" ng-disabled="'closed' != newOrder.Order.status" class="btn btn-xs btn-success">
+                                        <i class="hi hi-arrow-down"></i> Imprimir Ticket
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
             </div>
         </div>
     </div>
