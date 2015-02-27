@@ -122,6 +122,48 @@ angular.module('prosales-app')
 
         };
 
+        $scope.cancelOrder = function()
+        {
+            if(confirm('Esta seguro de cancelar la orden?'))
+            {
+                $scope.enableProcessLoading();
+                $http.post("/Orders/jsOrder/?CRUD_operation=UPDATE&format=CancelOrder", $scope.newOrder).success(function (data)
+                {
+                    $scope.disableProcessLoading();
+                    if (data)
+                    {
+                        if (data["success"])
+                        {
+                            alert('Orden cancelada con éxito!');
+                            location.reload();
+                        } else
+                        {
+                            $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>'+data["message"]+'</p>', {
+                                type: 'danger',
+                                delay: 6000,
+                                allow_dismiss: true,
+                                from: "top",
+                                align: "center"
+                            });
+                        }
+                    }
+                }).error(function(data, status, headers, config)
+                {
+                    $scope.disableProcessLoading();
+                    $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                        type: 'danger',
+                        delay: 0,
+                        allow_dismiss: false,
+                        from: "top",
+                        align: "center"
+                    });
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+                });
+            }
+        };
+
         $scope.addQuickPayment = function()
         {
             $scope.enableProcessLoading();
@@ -295,8 +337,6 @@ angular.module('prosales-app')
                     if (data["success"])
                     {
                         $scope.newOrder = data["xData"];
-                        console.log('check folio');
-                        console.log($scope.newOrder);
                     } else
                     {
                         alert(data["message"]);

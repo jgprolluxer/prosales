@@ -111,7 +111,7 @@
                     <i class="fa fa-dollar animation-floating"></i>
                 </a>
                 <h4 class="widget-content widget-content-light">Resumen de la orden<br/>Folio:&nbsp;{{newOrder.Order.folio}}</h4>
-                <a href="javascript:void(0)" class="pull-right btn-xs btn btn-danger" data-ng-disabled=" totalPayments >= newOrder.Order.total_amt && totalPayments != 0 " >
+                <a href="javascript:void(0)" ng-click="cancelOrder()" class="pull-right btn-xs btn btn-danger" data-ng-disabled=" totalPayments >= newOrder.Order.total_amt && totalPayments != 0 " >
                     Cancelar Orden
                 </a>
             </div>

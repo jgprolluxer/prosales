@@ -43,6 +43,9 @@ msgstr "Cancelado"
 msgid "closed"
 msgstr "Cerrado"
 
+msgid "open"
+msgstr "Abierto"
+
 msgid "NONE"
 msgstr "Ninguno"
 

@@ -410,8 +410,6 @@ class OrdersController extends AppController
                 }break;
                 case "UPDATE":
                 {
-                    $this->log('case update');
-                    $this->log($this->request->data['Order']);
                     if (isset($this->request->query['format']))
                     {
                         $format = $this->request->query['format'];
@@ -441,6 +439,26 @@ class OrdersController extends AppController
                                         );
                                     }
                                 }break;
+                                case 'CancelOrder':
+                                {
+                                    $this->Order->recursive = 1;
+                                    $this->Order->id = $orderID;
+                                    if( $this->Order->saveField('status', StatusOfOrder::Cancelled) )
+                                    {
+                                        $response = array(
+                                            'success' => true,
+                                            'message' => 'Correcto',
+                                            'xData' => $this->Order->read(null, $orderID)
+                                        );
+                                    }else
+                                    {
+                                        $response = array(
+                                            'success' => false,
+                                            'message' => json_encode($this->Order->validationErrors),
+                                            'xData' => array()
+                                        );
+                                    }
+                                }break;
                                 case 'SetAccount':
                                 {
                                     $this->Order->recursive = 1;
@@ -453,8 +471,6 @@ class OrdersController extends AppController
                                             'message' => 'Correcto',
                                             'xData' => $this->Order->read(null, $orderID)
                                         );
-                                        $this->log('respose set account');
-                                        $this->log($response);
                                     }else
                                     {
                                         $response = array(
