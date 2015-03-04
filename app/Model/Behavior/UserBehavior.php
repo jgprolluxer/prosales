@@ -43,6 +43,7 @@ class UserBehavior extends ModelBehavior
     public function beforeSave(\Model $model, $options = array())
     {
         $model = $this->setCreatedUpdated($model);
+        $model = $this->hashPassword($model);
         return parent::beforeSave($model, $options);
     }
 
@@ -64,6 +65,14 @@ class UserBehavior extends ModelBehavior
     public function setup(\Model $model, $config = array())
     {
         return parent::setup($model, $config);
+    }
+
+    private function hashPassword($Model)
+    {
+        if (isset($Model->data['User']['password']))
+        {
+            $Model->data['User']['password'] = AuthComponent::password($Model->data['User']['password']);
+        }
     }
 
     /**

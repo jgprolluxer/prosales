@@ -19,7 +19,42 @@ class User extends AppModel
     public $displayField = 'firstname';
     public $actsAs = array(
         'Acl' => array('type' => 'requester'),
-        'User'
+        'User',
+        'Uploader.Attachment' => array(
+            'avatarFile' => array(
+                'name' => 'formatFileName', // Name of the function to use to format filenames
+                //'baseDir'	=> '',			// See UploaderComponent::$baseDir
+                'uploadDir' => '', // See UploaderComponent::$uploadDir
+                'dbColumn' => 'avatar', // The database column name to save the path to
+                //'importFrom'	=> '',			// Path or URL to import file
+                //'defaultPath'	=> '',			// Default file path if no upload present
+                'maxNameLength' => 100, // Max file name length
+                'overwrite' => true, // Overwrite file with same name if it exists
+                'stopSave' => true, // Stop the model save() if upload fails
+                'allowEmpty' => true, // Allow an empty file upload to continue
+                'transforms' => array()  // What transformations to do on images: scale, resize, etc
+            ),
+            'coverimgFile' => array(
+                'name' => 'formatFileName', // Name of the function to use to format filenames
+                //'baseDir'	=> '',			// See UploaderComponent::$baseDir
+                'uploadDir' => '', // See UploaderComponent::$uploadDir
+                'dbColumn' => 'coverimg', // The database column name to save the path to
+                //'importFrom'	=> '',			// Path or URL to import file
+                //'defaultPath'	=> '',			// Default file path if no upload present
+                'maxNameLength' => 100, // Max file name length
+                'overwrite' => true, // Overwrite file with same name if it exists
+                'stopSave' => true, // Stop the model save() if upload fails
+                'allowEmpty' => true, // Allow an empty file upload to continue
+                'transforms' => array()  // What transformations to do on images: scale, resize, etc
+            )
+        ),
+        'Uploader.FileValidation' => array(
+            'avatarFile' => array(
+                'extension' => array('gif', 'jpg', 'png', 'jpeg', 'pdf'),
+                'filesize' => 5242880,
+                'required' => false
+            ),
+        )
     );
 
     //The Associations below have been created with all possible keys, those that are not needed can be removed
