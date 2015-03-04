@@ -166,6 +166,17 @@ angular.module('prosales-app')
 
         $scope.addQuickPayment = function()
         {
+            if(0 == $scope.pmnt_received)
+            {
+                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>Favor de agregar un pago mayor a cero!</p>', {
+                    type: 'warning',
+                    delay: 6,
+                    allow_dismiss: true,
+                    from: "top",
+                    align: "center"
+                });
+                return false;
+            }
             $scope.enableProcessLoading();
             $scope.allowPartialPayd = false;
             $scope.newPayment = {
@@ -820,7 +831,7 @@ angular.module('prosales-app')
             })
         ;
 
-    }).controller('AccountModalInstanceCtrl', function ($http, $scope, $modalInstance, items) {
+    }).controller('AccountModalInstanceCtrl', function ($http, $scope, $modalInstance, DTOptionsBuilder, DTColumnDefBuilder, items) {
 
 
         $scope.dtAccountModalOptions = DTOptionsBuilder.newOptions()
