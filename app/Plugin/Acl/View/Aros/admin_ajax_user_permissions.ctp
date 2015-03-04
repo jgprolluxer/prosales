@@ -1,5 +1,9 @@
+<script type="text/javascript">
+    var pageLoading = document.getElementById('page-wrapper');
+    pageLoading.className = "";
+</script>
 <?php
-//echo $this->Html->script('/acl/js/jquery');
+echo $this->Html->script('/acl/js/jquery');
 echo $this->Html->script('/acl/js/acl_plugin');
 
 echo $this->element('design/header');
