@@ -243,7 +243,7 @@ msgstr ""
 #: views/aros/admin_user_permissions.ctp:99
 #: views/elements/design/header.ctp:19
 msgid "Permissions"
-msgstr "Permisos"
+msgstr ""
 
 #: views/aros/admin_ajax_user_permissions.ctp:46
 #: views/aros/admin_user_permissions.ctp:105

@@ -1,6 +1,4 @@
 <?php
-App::uses('AclRouter', 'Acl.Lib');
-
 /* -------------------------------------------------------------------
  * The settings below have to be loaded to make the acl plugin work.
  * -------------------------------------------------------------------
@@ -65,7 +63,7 @@ Configure :: write('acl.user.display_name', "User.username");
 /*
  * Indicates whether the presence of the Acl behavior in the user and role models must be verified when the ACL plugin is accessed
  */
-Configure :: write('acl.check_act_as_requester', false);
+Configure :: write('acl.check_act_as_requester', true);
 
 /*
  * Add the ACL plugin 'locale' folder to your application locales' folders
@@ -76,11 +74,6 @@ App :: build(array('locales' => App :: pluginPath('Acl') . DS . 'locale'));
  * Indicates whether the roles permissions page must load through Ajax
  */
 Configure :: write('acl.gui.roles_permissions.ajax', false);
-
-/*
- * Indicates whether the roles permissions page must load through Ajax
- */
-Configure :: write('acl.gui.permissions_by_role.ajax', false);
 
 /*
  * Indicates whether the users permissions page must load through Ajax

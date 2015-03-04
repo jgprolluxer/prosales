@@ -1,4 +1,3 @@
-
 <?php
 echo '<div class="error_page_message">';
 

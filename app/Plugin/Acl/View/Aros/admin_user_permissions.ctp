@@ -59,11 +59,7 @@ if(isset($users))
     ?>
     <tr>
     	<td class="paging" colspan="<?php echo $column_count ?>">
-    		<?php echo $this->Paginator->prev('<< ' . __d('acl', 'previous'), array(), null, array('class'=>'disabled'));?>
-    	 	|
-    	 	<?php echo $this->Paginator->numbers(array('modulus' => 5, 'first' => 2, 'last' => 2, 'after' => ' ', 'before' => ' '));?>
-    	 	|
-    		<?php echo $this->Paginator->next(__d('acl', 'next') . ' >>', array(), null, array('class' => 'disabled'));?>
+    		<?php echo $this->Paginator->numbers(); ?>
     	</td>
     </tr>
     </table>
@@ -108,7 +104,7 @@ else
 	    echo '<div class="separator"></div>';
     	echo $this->Html->image('/acl/img/design/bulb24.png') . __d('acl', 'This user has specific permissions');
     	echo ' (';
-    	echo $this->Html->link($this->Html->image('/acl/img/design/cross2.png', array('style' => 'vertical-align:middle;')) . ' ' . __d('acl', 'Clear'), '/admin/acl/aros/clear_user_specific_permissions/' . $user[$user_model_name][$user_pk_name], array('confirm' => __d('acl', 'Are you sure you want to clear the permissions specific to this user ?'), 'escape' => false));
+    	echo $this->Html->link($this->Html->image('/acl/img/design/cross2.png') . ' ' . __d('acl', 'Clear'), '/admin/acl/aros/clear_user_specific_permissions/' . $user[$user_model_name][$user_pk_name], array('confirm' => __d('acl', 'Are you sure you want to clear the permissions specific to this user ?'), 'escape' => false));
     	echo ')';
     	echo '<div class="separator"></div>';
 	}
@@ -130,61 +126,57 @@ else
 	$previous_ctrl_name = '';
 	
 	//debug($actions);
-	if(isset($actions['app']) && is_array($actions['app']))
+	
+	foreach($actions['app'] as $controller_name => $ctrl_infos)
 	{
-    	foreach($actions['app'] as $controller_name => $ctrl_infos)
-    	{
-    		if($previous_ctrl_name != $controller_name)
+		if($previous_ctrl_name != $controller_name)
+		{
+			$previous_ctrl_name = $controller_name;
+			
+			$color = (isset($color) && $color == 'color1') ? 'color2' : 'color1';
+		}
+		
+		foreach($ctrl_infos as $ctrl_info)
+		{
+			//debug($ctrl_info);
+			
+    		echo '<tr class="' . $color . '">
+    		';
+    		
+    		echo '<td>' . $controller_name . '->' . $ctrl_info['name'] . '</td>';
+    		
+	    	echo '<td>';
+	    	echo '<span id="right__' . $user[$user_model_name][$user_pk_name] . '_' . $controller_name . '_' . $ctrl_info['name'] . '">';
+        			
+    		if($ctrl_info['permissions'][$user[$user_model_name][$user_pk_name]] == 1)
     		{
-    			$previous_ctrl_name = $controller_name;
-    			
-    			$color = (isset($color) && $color == 'color1') ? 'color2' : 'color1';
+    		    $this->Js->buffer('register_user_toggle_right(true, "' . $this->Html->url('/') . '", "right__' . $user[$user_model_name][$user_pk_name] . '_' . $controller_name . '_' . $ctrl_info['name'] . '", "' . $user[$user_model_name][$user_pk_name] . '", "", "' . $controller_name . '", "' . $ctrl_info['name'] . '")');
+    		    
+    		    echo $this->Html->image('/acl/img/design/tick.png', array('class' => 'pointer'));
+    		}
+    		elseif($ctrl_info['permissions'][$user[$user_model_name][$user_pk_name]] == 0)
+    		{
+    		    $this->Js->buffer('register_user_toggle_right(false, "' . $this->Html->url('/') . '", "right__' . $user[$user_model_name][$user_pk_name] . '_' . $controller_name . '_' . $ctrl_info['name'] . '", "' . $user[$user_model_name][$user_pk_name] . '", "", "' . $controller_name . '", "' . $ctrl_info['name'] . '")');
+    		    
+    			echo $this->Html->image('/acl/img/design/cross.png', array('class' => 'pointer'));
+    		}
+    		elseif($ctrl_info['permissions'][$user[$user_model_name][$user_pk_name]] == -1)
+    		{
+    		    echo $this->Html->image('/acl/img/design/important16.png');
     		}
     		
-    		foreach($ctrl_infos as $ctrl_info)
-    		{
-    			//debug($ctrl_info);
-    			
-        		echo '<tr class="' . $color . '">
-        		';
-        		
-        		echo '<td>' . $controller_name . '->' . $ctrl_info['name'] . '</td>';
-        		
-    	    	echo '<td>';
-    	    	echo '<span id="right__' . $user[$user_model_name][$user_pk_name] . '_' . $controller_name . '_' . $ctrl_info['name'] . '">';
-            			
-        		if($ctrl_info['permissions'][$user[$user_model_name][$user_pk_name]] == 1)
-        		{
-        		    $this->Js->buffer('register_user_toggle_right(true, "' . $this->Html->url('/') . '", "right__' . $user[$user_model_name][$user_pk_name] . '_' . $controller_name . '_' . $ctrl_info['name'] . '", "' . $user[$user_model_name][$user_pk_name] . '", "", "' . $controller_name . '", "' . $ctrl_info['name'] . '")');
-        		    
-        		    echo $this->Html->image('/acl/img/design/tick.png', array('class' => 'pointer'));
-        		}
-        		elseif($ctrl_info['permissions'][$user[$user_model_name][$user_pk_name]] == 0)
-        		{
-        		    $this->Js->buffer('register_user_toggle_right(false, "' . $this->Html->url('/') . '", "right__' . $user[$user_model_name][$user_pk_name] . '_' . $controller_name . '_' . $ctrl_info['name'] . '", "' . $user[$user_model_name][$user_pk_name] . '", "", "' . $controller_name . '", "' . $ctrl_info['name'] . '")');
-        		    
-        			echo $this->Html->image('/acl/img/design/cross.png', array('class' => 'pointer'));
-        		}
-        		elseif($ctrl_info['permissions'][$user[$user_model_name][$user_pk_name]] == -1)
-        		{
-        		    echo $this->Html->image('/acl/img/design/important16.png');
-        		}
-        		
-    	    	echo '</span>';
-    	    	
-    	    	echo ' ';
-    	    	echo $this->Html->image('/acl/img/ajax/waiting16.gif', array('id' => 'right__' . $user[$user_model_name][$user_pk_name] . '_' . $controller_name . '_' . $ctrl_info['name'] . '_spinner', 'style' => 'display:none;'));
-        		
-    	    	echo '</td>';
-    	    	echo '</tr>
-    	    	';
-    		}
-    	}
+	    	echo '</span>';
+	    	
+	    	echo ' ';
+	    	echo $this->Html->image('/acl/img/ajax/waiting16.gif', array('id' => 'right__' . $user[$user_model_name][$user_pk_name] . '_' . $controller_name . '_' . $ctrl_info['name'] . '_spinner', 'style' => 'display:none;'));
+    		
+	    	echo '</td>';
+	    	echo '</tr>
+	    	';
+		}
 	}
 	?>
 	<?php
-	if(isset($actions['plugin']) && is_array($actions['plugin']))
-	{
     	foreach($actions['plugin'] as $plugin_name => $plugin_ctrler_infos)
     	{
     	    echo '<tr class="title"><td colspan="2">' . __d('acl', 'Plugin') . ' ' . $plugin_name . '</td></tr>
@@ -242,8 +234,7 @@ else
     	        }
     	    }
     	}
-	}
-    ?>
+    	?>
 	</table>
     <?php
     echo $this->Html->image('/acl/img/design/tick.png') . ' ' . __d('acl', 'authorized');

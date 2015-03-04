@@ -9,7 +9,7 @@ function init_register_user_controller_toggle_right(app_root_url, user_id, plugi
 	var plugin_param = (plugin == null || plugin == "" || typeof(plugin) == "undefined") ? '' : "/plugin:" + plugin;
 	
 	var url = app_root_url + "admin/acl/aros/get_user_controller_permission/" + user_id + plugin_param + "/controller:" + controller;
-	
+
 	$.ajax({	url: url,
 				dataType: "html", 
 				cache: false,

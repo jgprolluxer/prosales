@@ -1,10 +1,7 @@
 <?php
-/**
- * @property AclReflectorComponent $AclReflector
- */
 class AclManagerComponent extends Component
 {
-    var $components = array('Auth', 'Acl', 'Acl.AclReflector', 'Session');
+    var $components = array('Acl', 'Acl.AclReflector', 'Session');
     
     /**
      * @var AclAppController
@@ -14,7 +11,7 @@ class AclManagerComponent extends Component
 
 	/****************************************************************************************/
     
-    public function initialize(Controller $controller)
+    public function initialize(&$controller)
 	{
 	    $this->controller = $controller;
 	    $this->controllers_hash_file = CACHE . 'persistent' . DS . 'controllers_hashes.txt';
@@ -157,22 +154,19 @@ class AclManagerComponent extends Component
 	 */
 	public function get_stored_controllers_hashes()
 	{
-	    if($this->check_controller_hash_tmp_file())
-	    {
-    	    $file = new File($this->controllers_hash_file);
-    		$file_content = $file->read();
-    		
-    		if(!empty($file_content))
-    		{
-    			$stored_controller_hashes = unserialize($file_content);
-    		}
-    		else
-    		{
-    			$stored_controller_hashes = array();
-    		}
-    		
-    		return $stored_controller_hashes;
-	    }
+	    $file = new File($this->controllers_hash_file);
+		$file_content = $file->read();
+		
+		if(!empty($file_content))
+		{
+			$stored_controller_hashes = unserialize($file_content);
+		}
+		else
+		{
+			$stored_controller_hashes = array();
+		}
+		
+		return $stored_controller_hashes;
 	}
 	
 	/**
@@ -196,56 +190,67 @@ class AclManagerComponent extends Component
 	}
 	
 	/**
-	 * Return ACOs paths that should exist in the ACO datatable but do not exist
+	 * Get a list of plugins, controllers and actions that don't have any corresponding ACO.
+	 * To run faster, the method only checks controllers that have not already been checked or that have been modified.
+	 *
+	 * Depending on the $update_hash_file, the method may return the missing ACOs only once
+	 * (in order to show the alert message only once in the view)
+	 *
+	 * @param boolean $update_hash_file If true, the method update the controller hash file, making the method returning missing ACOs only once
+	 * @return array Array of missing ACO nodes by comparing with each existing plugin, controller and action
 	 */
-	function get_missing_acos()
+	public function get_missing_acos($update_hash_file = true)
 	{
-	    $actions     = $this->AclReflector->get_all_actions();
-        $controllers = $this->AclReflector->get_all_controllers();
-        
-        $actions_aco_paths = array();
-        foreach($actions as $action)
-        {
-            $action_infos = explode('/', $action);
-            $controller = $action_infos[count($action_infos) - 2];
-            
-            if($controller != 'App')
-            {
-                $actions_aco_paths[] = 'controllers/' . $action;
-            }
-        }
-        foreach($controllers as $controller)
-        {
-            if($controller['name'] != 'App')
-            {
-                $actions_aco_paths[] = 'controllers/' . $controller['name'];
-            }
-        }
-        $actions_aco_paths[] = 'controllers';
-        
-        $aco =& $this->Acl->Aco;
-        
-        $acos = $aco->find('all', array('recursive' => -1));
-        
-        $existing_aco_paths = array();
-        foreach($acos as $aco_node)
-        {
-            $path_nodes = $aco->getPath($aco_node['Aco']['id']);
-            $path = '';
-            foreach($path_nodes as $path_node)
-            {
-                $path .= '/' . $path_node['Aco']['alias'];
-            }
-            
-            $path = substr($path, 1);
-            $existing_aco_paths[] = $path;
-        }
-        
-        $missing_acos = array_diff($actions_aco_paths, $existing_aco_paths);
-        
-        return $missing_acos;
+	    if($this->check_controller_hash_tmp_file())
+	    {
+	        $missing_aco_nodes = array();
+	        
+    		$stored_controller_hashes  = $this->get_stored_controllers_hashes();
+    		$current_controller_hashes = $this->get_current_controllers_hashes();
+    		
+    		/*
+    		 * Store current controllers hashes on disk
+    		 */
+    		if($update_hash_file)
+    		{
+        		$file = new File($this->controllers_hash_file);
+        		$file->write(serialize($current_controller_hashes));
+    		}
+    		
+    		/*
+    		 * Check what controllers have changed
+    		 */
+    		$updated_controllers = array_keys(Set :: diff($current_controller_hashes, $stored_controller_hashes));
+    		
+    		if(!empty($updated_controllers))
+    		{
+    			$aco =& $this->Acl->Aco;
+    			
+    			foreach($updated_controllers as $controller_name)
+    			{
+    			    if($controller_name !== 'App')
+    			    {
+        			    $controller_classname = $this->AclReflector->get_controller_classname($controller_name);
+        			    
+        			    $methods = $this->AclReflector->get_controller_actions($controller_classname);
+        			    
+        			    $aco =& $this->Acl->Aco;
+        			    foreach($methods as $method)
+        			    {
+        			        $methodNode = $aco->node('controllers/' . $controller_name . '/' . $method);
+        			        if(empty($methodNode))
+        			        {
+        			            $missing_aco_nodes[] = $controller_name . '/' . $method;
+        			        }
+        			    }
+    			    }
+    			}
+    		}
+    		
+    		return $missing_aco_nodes;
+	    }
 	}
-	
+
 	/**
 	 * Store missing ACOs for all actions in the datasource
 	 * If necessary, it creates actions parent nodes (plugin and controller) as well
@@ -384,114 +389,6 @@ class AclManagerComponent extends Component
 	    
 	    return $log;
 	}
-	
-	public function update_controllers_hash_file()
-	{
-	    $current_controller_hashes = $this->get_current_controllers_hashes();
-	    
-	    $file = new File($this->controllers_hash_file);
-        $file->write(serialize($current_controller_hashes));
-	}
-	
-	public function controller_hash_file_is_out_of_sync()
-	{
-	    if($this->check_controller_hash_tmp_file())
-	    {
-    	    $stored_controller_hashes  = $this->get_stored_controllers_hashes();
-        	$current_controller_hashes = $this->get_current_controllers_hashes();
-        	
-        	/*
-    		 * Check what controllers have changed
-    		 */
-    		$updated_controllers = array_keys(Set :: diff($current_controller_hashes, $stored_controller_hashes));
-    		
-    		return !empty($updated_controllers);
-	    }
-	}
-	
-	public function get_acos_to_prune()
-	{
-	    $actions     = $this->AclReflector->get_all_actions();
-        $controllers = $this->AclReflector->get_all_controllers();
-        $plugins     = $this->AclReflector->get_all_plugins_names();
-        
-        $actions_aco_paths = array();
-        foreach($actions as $action)
-        {
-            $actions_aco_paths[] = 'controllers/' . $action;
-        }
-        foreach($controllers as $controller)
-        {
-            $actions_aco_paths[] = 'controllers/' . $controller['name'];
-        }
-        foreach($plugins as $plugin)
-        {
-            $actions_aco_paths[] = 'controllers/' . $plugin;
-        }
-        $actions_aco_paths[] = 'controllers';
-        
-        $aco =& $this->Acl->Aco;
-        
-        $acos = $aco->find('all', array('recursive' => -1));
-        
-        $existing_aco_paths = array();
-        foreach($acos as $aco_node)
-        {
-            $path_nodes = $aco->getPath($aco_node['Aco']['id']);
-            
-            if(count($path_nodes) > 1 && $path_nodes[0]['Aco']['alias'] == 'controllers')
-            {
-                $path = '';
-                foreach($path_nodes as $path_node)
-                {
-                    $path .= '/' . $path_node['Aco']['alias'];
-                }
-                
-                $path = substr($path, 1);
-                $existing_aco_paths[] = $path;
-            }
-        }
-        
-        $paths_to_prune = array_diff($existing_aco_paths, $actions_aco_paths);
-        
-        return $paths_to_prune;
-	}
-	
-    /**
-    * Remove all ACOs that don't have any corresponding controllers or actions.
-    *
-    * @return array log of removed ACO nodes
-    */
-    public function prune_acos()
-    {
-        $aco =& $this->Acl->Aco;
-        
-        $log = array();
-        
-        $paths_to_prune = $this->get_acos_to_prune();
-        
-        foreach($paths_to_prune as $path_to_prune)
-        {
-            $node = $aco->node($path_to_prune);
-            if(!empty($node))
-            {
-                /*
-                 * First element is the last part in path
-                 * -> we delete it
-                 */
-                if($aco->delete($node[0]['Aco']['id']))
-                {
-                    $log[] = sprintf(__d('acl', "Aco node '%s' has been deleted"), $path_to_prune);
-                }
-                else
-                {
-                    $log[] = '<span class="error">' . sprintf(__d('acl', "Aco node '%s' could not be deleted"), $path_to_prune) . '</span>';
-                }
-            }
-        }
-        
-        return $log;
-    }
 	
 	/**
 	 *
@@ -741,33 +638,4 @@ class AclManagerComponent extends Component
         
         return null; // no parent permission found
 	}
-
-	/**
-	 * Set the permissions of the authenticated user in Session
-	 * The session permissions are then used for instance by the AclHtmlHelper->link() function
-	 */
-	public function set_session_permissions()
-    {
-        if(!$this->Session->check('Alaxos.Acl.permissions'))
-        {
-            $actions = $this->AclReflector->get_all_actions();
-            
-            $user = $this->Auth->user();
-            
-            if(!empty($user))
-            {
-                $user = array(Configure :: read('acl.aro.user.model') => $user);
-                $permissions = array();
-            
-                foreach($actions as $action)
-                {
-                    $aco_path = 'controllers/' . $action;
-                    
-                    $permissions[$aco_path] = $this->Acl->check($user, $aco_path);
-                }
-                
-                $this->Session->write('Alaxos.Acl.permissions', $permissions);
-            }
-        }
-    }
 }

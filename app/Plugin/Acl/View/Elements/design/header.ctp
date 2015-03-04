@@ -1,28 +1,24 @@
-<!-- BEGIN CSS -->    
 <?php
 echo $this->Html->css('/acl/css/acl.css');
 ?>
-<!-- END CSS -->  
-<div class="container-fluid">
-    <!-- BEGIN PAGE HEADER-->
-    <div class="row-fluid">
-        <div class="span12">
-            <!-- BEGIN PAGE TITLE & BREADCRUMB-->			
-            <h3 class="page-title">
-                <?php echo __('Permisos'); ?><small>Permisos de la aplicacion</small>
-            </h3>
-            <ul class="breadcrumb">
-                <li>
-                    <i class="icon-home"></i>
-                    <a href="#">Control de accesos</a> 
-                    <i class="icon-angle-right"></i>
-                </li>
-                <li>
-                    <a href="#">Permisos</a>
-                    <i class="icon-angle-right"></i>
-                </li>
-            </ul>
-            <!-- END PAGE TITLE & BREADCRUMB-->
-        </div>
-    </div>
-    <!-- END PAGE HEADER-->
+<div id="plugin_acl">
+	
+	<?php
+	echo $this->Session->flash('plugin_acl');
+	?>
+	
+	<h1><?php echo __d('acl', 'ACL plugin'); ?></h1>
+	
+	<?php
+
+	if(!isset($no_acl_links))
+	{
+	    $selected = isset($selected) ? $selected : $this->params['controller'];
+    
+        $links = array();
+        $links[] = $this->Html->link(__d('acl', 'Permissions'), '/admin/acl/aros/index', array('class' => ($selected == 'aros' )? 'selected' : null));
+        $links[] = $this->Html->link(__d('acl', 'Actions'), '/admin/acl/acos/index', array('class' => ($selected == 'acos' )? 'selected' : null));
+        
+        echo $this->Html->nestedList($links, array('class' => 'acl_links'));
+	}
+	?>

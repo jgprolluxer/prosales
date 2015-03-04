@@ -61,11 +61,7 @@ foreach($users as $user)
 ?>
 <tr>
 	<td class="paging" colspan="<?php echo $column_count ?>">
-		<?php echo $this->Paginator->prev('<< ' . __d('acl', 'previous'), array(), null, array('class'=>'disabled'));?>
-	 	|
-	 	<?php echo $this->Paginator->numbers(array('modulus' => 5, 'first' => 2, 'last' => 2, 'after' => ' ', 'before' => ' '));?>
-	 	|
-		<?php echo $this->Paginator->next(__d('acl', 'next') . ' >>', array(), null, array('class' => 'disabled'));?>
+		<?php echo $this->Paginator->numbers(); ?>
 	</td>
 </tr>
 </table>

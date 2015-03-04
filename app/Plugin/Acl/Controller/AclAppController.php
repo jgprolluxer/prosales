@@ -4,21 +4,16 @@
  * @author   Nicolas Rod <nico@alaxos.com>
  * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
  * @link     http://www.alaxos.ch
- *
- * @property AclManagerComponent $AclManager
  */
 class AclAppController extends AppController
 {
-    var $components = array('RequestHandler', 'Acl.AclManager', 'Acl.AclReflector');
+    var $components = array('Acl', 'Auth', 'Session', 'Acl.AclManager', 'Acl.AclReflector');
 	
     function beforeFilter()
 	{
-		$this->params['ACTIVE_MENU'] = "#catalogs-nav";
-		$this->params['CURRENT_PAGE'] = "catalog";
 	    parent :: beforeFilter();
 	    
 		$this->_check_config();
-		$this->_check_files_updates();
 	}
     
 	private function _check_config()
@@ -33,21 +28,23 @@ class AclAppController extends AppController
 	    	$this->set('user_pk_name',       $this->_get_user_primary_key_name());
 	    	$this->set('role_fk_name',       $this->_get_role_foreign_key_name());
 	    	
+	    	
+	    	
 	    	$this->_authorize_admins();
 	    	
-//	    	if($this->name != 'Acl'
-//	    		&&
-//	    	   ($this->name != 'Acos' || $this->action != 'admin_build_acl')
-//	    	  )
-//	    	{
-//	    	    $missing_aco_nodes = $this->AclManager->get_missing_acos();
-//
-//		    	if(count($missing_aco_nodes) > 0)
-//	    		{
-//	    		    $this->set('missing_aco_nodes', $missing_aco_nodes);
-//	    		    $this->render('/Acos/admin_acos_missing');
-//	    		}
-//	    	}
+	    	if($this->name != 'Acl'
+	    		&&
+	    	   ($this->name != 'Acos' || $this->action != 'admin_build_acl')
+	    	  )
+	    	{
+	    	    $missing_aco_nodes = $this->AclManager->get_missing_acos();
+	    	    
+		    	if(count($missing_aco_nodes) > 0)
+	    		{
+	    		    $this->set('missing_aco_nodes', $missing_aco_nodes);
+	    		    $this->render('/Acos/admin_acos_missing');
+	    		}
+	    	}
 	    	
 	    	if(Configure :: read('acl.check_act_as_requester'))
 	    	{
@@ -73,50 +70,8 @@ class AclAppController extends AppController
 		}
 		else
 		{
-			$this->Session->setFlash(__d('acl', 'The role model name is unknown. The ACL plugin bootstrap.php file has to be loaded in order to work. (see the README file)'), 'flash_error', null, 'plugin_acl');
+			$this->Session->setFlash(__d('acl', 'The role model name is unknown. The ACL plugin bootstrap.php file has to be loaded in order to work. (see the README file)', true), 'flash_error', null, 'plugin_acl');
 		}
-	}
-	
-	function _check_files_updates()
-	{
-	    if($this->request->params['controller'] != 'acos'
-	        || ($this->request->params['action'] != 'admin_synchronize' &&
-	            $this->request->params['action'] != 'admin_prune_acos' &&
-	            $this->request->params['action'] != 'admin_build_acl'))
-	    {
-    	    if($this->AclManager->controller_hash_file_is_out_of_sync())
-    	    {
-    	        $missing_aco_nodes = $this->AclManager->get_missing_acos();
-    	        $nodes_to_prune    = $this->AclManager->get_acos_to_prune();
-    	        
-    	        $has_updates = false;
-    	        
-    	        if(count($missing_aco_nodes) > 0)
-        		{
-        		    $has_updates = true;
-        		}
-        		
-        		if(count($nodes_to_prune) > 0)
-        		{
-        		    $has_updates = true;
-        		}
-        		
-        		$this->set('nodes_to_prune', $nodes_to_prune);
-        		$this->set('missing_aco_nodes', $missing_aco_nodes);
-        		
-        		if($has_updates)
-        		{
-        		    $this->render('/Acos/admin_has_updates');
-        		    $this->response->send();
-        		    $this->AclManager->update_controllers_hash_file();
-        		    die();
-        		}
-        		else
-        		{
-        		    $this->AclManager->update_controllers_hash_file();
-        		}
-    	    }
-	    }
 	}
 	
 	private function _authorize_admins()
@@ -129,11 +84,7 @@ class AclAppController extends AppController
 	    if(in_array($this->Auth->user($model_role_fk), $authorized_role_ids)
 	       || in_array($this->Auth->user($this->_get_user_primary_key_name()), $authorized_user_ids))
 	    {
-	        // Allow all actions. CakePHP 2.0
-            $this->Auth->allow('*');
-            
-            // Allow all actions. CakePHP 2.1
-            $this->Auth->allow();
+	        $this->Auth->allow('*');
 	    }
 	}
 	

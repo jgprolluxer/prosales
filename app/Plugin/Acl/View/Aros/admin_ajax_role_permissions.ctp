@@ -1,5 +1,5 @@
 <?php
-//echo $this->Html->script('/acl/js/jquery');
+echo $this->Html->script('/acl/js/jquery');
 echo $this->Html->script('/acl/js/acl_plugin');
 
 echo $this->element('design/header');
@@ -56,7 +56,7 @@ foreach($roles as $role)
     	
     	$column_count = 1;
     	
-    	$headers = array(__d('acl', 'action'));
+    	$headers = array(__d('acl', 'action', true));
     	
     	foreach($roles as $role)
     	{

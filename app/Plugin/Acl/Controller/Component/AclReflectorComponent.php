@@ -5,7 +5,7 @@ class AclReflectorComponent extends Component
 
 	/****************************************************************************************/
     
-    public function initialize(Controller $controller)
+    public function initialize(&$controller)
 	{
 	    $this->controller = $controller;
 	}
@@ -76,28 +76,30 @@ class AclReflectorComponent extends Component
 	{
 		$plugin_names = array();
 		
-		$plugin_paths = $this->get_all_plugins_paths();
-		foreach($plugin_paths as $plugin_path)
+		$folder =& new Folder();
+		
+		$folder->cd(APP . 'plugins');
+		$app_plugins = $folder->read();
+		if(!empty($app_plugins))
 		{
-		    $path_parts = explode('/', $plugin_path);
-		    for($i = count($path_parts)-1; $i >= 0; $i--)
-		    {
-		        if(!empty($path_parts[$i]))
-		        {
-		            $plugin_names[] = $path_parts[$i];
-		            break;
-		        }
-		    }
+			$plugin_names = array_merge($plugin_names, $app_plugins[0]);
+		}
+		
+		$folder->cd(ROOT . DS . 'plugins');
+		$root_plugins = $folder->read();
+		if(!empty($root_plugins))
+		{
+			$plugin_names = array_merge($plugin_names, $root_plugins[0]);
 		}
 		
 		return $plugin_names;
 	}
-	public function get_all_plugins_controllers($filter_default_controller = false)
+	public function get_all_plugins_controllers($filter_default_controller = true)
 	{
 		$plugin_paths = $this->get_all_plugins_paths();
 		
 		$plugins_controllers = array();
-		$folder = new Folder();
+		$folder =& new Folder();
 
 		// Loop through the plugins
 		foreach($plugin_paths as $plugin_path)
@@ -122,12 +124,12 @@ class AclReflectorComponent extends Component
 					// Get the controller name
 					$controller_class_name = Inflector::camelize(substr($file, 0, strlen($file) - strlen('.php')));
 					
-					if(!$filter_default_controller || Inflector::camelize($plugin_name) . 'Controller' != $controller_class_name)
+					if(!$filter_default_controller || Inflector::camelize($plugin_name) != $controller_class_name)
 					{
-					    App::uses($controller_class_name, $plugin_name . '.Controller');
-					    
     					if (!preg_match('/^'. Inflector::camelize($plugin_name) . 'App/', $controller_class_name))
     					{
+    					    App::uses($controller_class_name, $plugin_name . '.Controller');
+    					    
     					    $plugins_controllers[] = array('file' => $fileName, 'name' => Inflector::camelize($plugin_name) . "/" . substr($controller_class_name, 0, strlen($controller_class_name) - strlen('Controller')));
     					}
 					}
@@ -139,7 +141,7 @@ class AclReflectorComponent extends Component
 		
 		return $plugins_controllers;
 	}
-	public function get_all_plugins_controllers_actions($filter_default_controller = false)
+	public function get_all_plugins_controllers_actions($filter_default_controller = true)
 	{
 		$plugin_controllers = $this->get_all_plugins_controllers();
 		
@@ -173,7 +175,7 @@ class AclReflectorComponent extends Component
 		$controllers = array();
 		
 		App::uses('Folder', 'Utility');
-		$folder = new Folder();
+		$folder =& new Folder();
 		
 		$didCD = $folder->cd(APP . 'Controller');
 		if(!empty($didCD))
