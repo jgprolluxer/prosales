@@ -1,3 +1,15 @@
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        //$('#page-container').removeClass('sidebar-visible-xs');
+        //$('#page-container').removeClass('sidebar-visible-lg');
+
+        $('#page-container').attr('class', 'sidebar-no-animations');
+        $('header').hide();
+        /* Add placeholder attribute to the search input */
+        $('.dataTables_filter input').attr('placeholder', 'Search');
+    });
+</script>
 <section data-ng-controller="OrderAddController">
 
 <!-- <a ng-href="/admin/Users">Users</a>-->
@@ -229,15 +241,3 @@
     </div>
 </script>
 </section>
-<script type="text/javascript">
-    $(document).ready(function ()
-    {
-        //$('#page-container').removeClass('sidebar-visible-xs');
-        //$('#page-container').removeClass('sidebar-visible-lg');
-
-        $('#page-container').attr('class', 'sidebar-no-animations');
-        $('header').hide();
-        /* Add placeholder attribute to the search input */
-        $('.dataTables_filter input').attr('placeholder', 'Search');
-    });
-</script>

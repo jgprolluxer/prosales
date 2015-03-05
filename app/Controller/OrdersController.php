@@ -29,11 +29,16 @@ class OrdersController extends AppController
      */
     public function index()
     {
-        $this->Order->recursive = 0;
-        $this->set('orders', $this->Paginator->paginate());
+        $this->Order->recursive = 1;
+        $orders = $this->Order->find('all', array(
+            'conditions' => array(
+                'Order.id >=' => 1
+            )
+        ));
+        $this->set('orders', $orders);
 
 
-        $this->loadModel('OrderProduct');
+        /*$this->loadModel('OrderProduct');
         $arrFields = array('Product.name as name', 'sum(OrderProduct.product_price * OrderProduct.product_qty) as total');
         $arrConditions = array(
             'OrderProduct.id >=' => 1,
@@ -50,7 +55,7 @@ class OrdersController extends AppController
         );
 
         $report = $this->OrderProduct->find('all', $arrOptions);
-        $this->set('report', $report);
+        $this->set('report', $report);*/
     }
 
     /**

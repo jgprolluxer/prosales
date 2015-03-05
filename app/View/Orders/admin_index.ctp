@@ -4,20 +4,22 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<th><?php echo $this->Paginator->sort('updated_by'); ?></th>
+			<th><?php echo $this->Paginator->sort('created_by'); ?></th>
+			<th><?php echo $this->Paginator->sort('updated'); ?></th>
+			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('type'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('updated'); ?></th>
-			<th><?php echo $this->Paginator->sort('created_by'); ?></th>
-			<th><?php echo $this->Paginator->sort('updated_by'); ?></th>
+			<th><?php echo $this->Paginator->sort('folio'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('total_amt'); ?></th>
 			<th><?php echo $this->Paginator->sort('subtotal_amt'); ?></th>
-			<th><?php echo $this->Paginator->sort('disc_desc'); ?></th>
 			<th><?php echo $this->Paginator->sort('tax'); ?></th>
 			<th><?php echo $this->Paginator->sort('disc'); ?></th>
+			<th><?php echo $this->Paginator->sort('disc_desc'); ?></th>
 			<th><?php echo $this->Paginator->sort('account_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
+			<th><?php echo $this->Paginator->sort('saleschannel'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -25,22 +27,24 @@
 	<?php foreach ($orders as $order): ?>
 	<tr>
 		<td><?php echo h($order['Order']['id']); ?>&nbsp;</td>
+		<td><?php echo h($order['Order']['updated_by']); ?>&nbsp;</td>
+		<td><?php echo h($order['Order']['created_by']); ?>&nbsp;</td>
+		<td><?php echo h($order['Order']['updated']); ?>&nbsp;</td>
+		<td><?php echo h($order['Order']['created']); ?>&nbsp;</td>
 		<td><?php echo h($order['Order']['type']); ?>&nbsp;</td>
 		<td><?php echo h($order['Order']['status']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['created']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['updated']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['created_by']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['updated_by']); ?>&nbsp;</td>
+		<td><?php echo h($order['Order']['folio']); ?>&nbsp;</td>
 		<td><?php echo h($order['Order']['price']); ?>&nbsp;</td>
 		<td><?php echo h($order['Order']['total_amt']); ?>&nbsp;</td>
 		<td><?php echo h($order['Order']['subtotal_amt']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['disc_desc']); ?>&nbsp;</td>
 		<td><?php echo h($order['Order']['tax']); ?>&nbsp;</td>
 		<td><?php echo h($order['Order']['disc']); ?>&nbsp;</td>
+		<td><?php echo h($order['Order']['disc_desc']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($order['Account']['alias'], array('controller' => 'accounts', 'action' => 'view', $order['Account']['id'])); ?>
 		</td>
 		<td><?php echo h($order['Order']['description']); ?>&nbsp;</td>
+		<td><?php echo h($order['Order']['saleschannel']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $order['Order']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $order['Order']['id'])); ?>

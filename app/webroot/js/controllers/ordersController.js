@@ -135,7 +135,7 @@ angular.module('prosales-app')
                         if (data["success"])
                         {
                             alert('Orden cancelada con éxito!');
-                            location.reload();
+                            window.location.href = qualifyURL("/Orders/");
                         } else
                         {
                             $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>'+data["message"]+'</p>', {

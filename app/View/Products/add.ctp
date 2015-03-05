@@ -1,15 +1,21 @@
-<!-- Forms General Header -->
+<script type="text/javascript">
+$(document).ready(function ()
+{
+    //$('#page-container').removeClass('sidebar-visible-xs');
+    //$('#page-container').removeClass('sidebar-visible-lg');
+
+    $('#page-container').attr('class', 'sidebar-no-animations');
+    $('header').hide();
+    /* Add placeholder attribute to the search input */
+    $('.dataTables_filter input').attr('placeholder', 'Search');
+});
+</script>
+
+<!-- eCommerce Order View Header -->
 <div class="content-header">
-    <div class="header-section">
-        <h1>
-            <i class="fa fa-gift"></i><?php echo __('PRODUCT_ADD_HEAD_TITLE'); ?><br><small><?php echo __('PRODUCT_ADD_HEAD_TITLE_SMALL'); ?></small>
-        </h1>
-    </div>
+    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
 </div>
-<ul class="breadcrumb breadcrumb-top">
-    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
-</ul>
-<!-- END Forms General Header -->
+<!-- END eCommerce Order View Header -->
 <!-- Normal Form Block -->
 <div class="block">
     <!-- Normal Form Title -->
@@ -102,7 +108,7 @@
                         <span></span>
                     </label>
                 </div>
-            </div> 
+            </div>
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">

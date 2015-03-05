@@ -6,6 +6,26 @@
 			<?php echo h($order['Order']['id']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Updated By'); ?></dt>
+		<dd>
+			<?php echo h($order['Order']['updated_by']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Created By'); ?></dt>
+		<dd>
+			<?php echo h($order['Order']['created_by']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Updated'); ?></dt>
+		<dd>
+			<?php echo h($order['Order']['updated']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Created'); ?></dt>
+		<dd>
+			<?php echo h($order['Order']['created']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Type'); ?></dt>
 		<dd>
 			<?php echo h($order['Order']['type']); ?>
@@ -16,29 +36,9 @@
 			<?php echo h($order['Order']['status']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Name'); ?></dt>
+		<dt><?php echo __('Folio'); ?></dt>
 		<dd>
-			<?php echo h($order['Order']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['updated']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created By'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['created_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated By'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['updated_by']); ?>
+			<?php echo h($order['Order']['folio']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Price'); ?></dt>
@@ -56,21 +56,6 @@
 			<?php echo h($order['Order']['subtotal_amt']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Tax Amt'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['tax_amt']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Disc Amt'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['disc_amt']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Disc Desc'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['disc_desc']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Tax'); ?></dt>
 		<dd>
 			<?php echo h($order['Order']['tax']); ?>
@@ -79,6 +64,11 @@
 		<dt><?php echo __('Disc'); ?></dt>
 		<dd>
 			<?php echo h($order['Order']['disc']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Disc Desc'); ?></dt>
+		<dd>
+			<?php echo h($order['Order']['disc_desc']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Account'); ?></dt>
@@ -91,9 +81,9 @@
 			<?php echo h($order['Order']['description']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Owner'); ?></dt>
+		<dt><?php echo __('Saleschannel'); ?></dt>
 		<dd>
-			<?php echo h($order['Order']['owner']); ?>
+			<?php echo h($order['Order']['saleschannel']); ?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -119,53 +109,33 @@
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Type'); ?></th>
-		<th><?php echo __('Status'); ?></th>
-		<th><?php echo __('Docnum'); ?></th>
-		<th><?php echo __('Docseq'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Updated'); ?></th>
 		<th><?php echo __('Created By'); ?></th>
 		<th><?php echo __('Updated By'); ?></th>
-		<th><?php echo __('Payment Date'); ?></th>
-		<th><?php echo __('Due Date'); ?></th>
-		<th><?php echo __('Amount'); ?></th>
-		<th><?php echo __('Total Amt'); ?></th>
-		<th><?php echo __('Subtotal Amt'); ?></th>
-		<th><?php echo __('Tax Amt'); ?></th>
-		<th><?php echo __('Tax'); ?></th>
-		<th><?php echo __('Account Id'); ?></th>
 		<th><?php echo __('Order Id'); ?></th>
-		<th><?php echo __('Bank Name'); ?></th>
-		<th><?php echo __('Bank Ref'); ?></th>
-		<th><?php echo __('Description'); ?></th>
 		<th><?php echo __('Payment Id'); ?></th>
+		<th><?php echo __('Folio'); ?></th>
+		<th><?php echo __('Type'); ?></th>
+		<th><?php echo __('Status'); ?></th>
+		<th><?php echo __('Payment Date'); ?></th>
+		<th><?php echo __('Total Amt'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($order['OrderPayment'] as $orderPayment): ?>
 		<tr>
 			<td><?php echo $orderPayment['id']; ?></td>
-			<td><?php echo $orderPayment['type']; ?></td>
-			<td><?php echo $orderPayment['status']; ?></td>
-			<td><?php echo $orderPayment['docnum']; ?></td>
-			<td><?php echo $orderPayment['docseq']; ?></td>
 			<td><?php echo $orderPayment['created']; ?></td>
 			<td><?php echo $orderPayment['updated']; ?></td>
 			<td><?php echo $orderPayment['created_by']; ?></td>
 			<td><?php echo $orderPayment['updated_by']; ?></td>
-			<td><?php echo $orderPayment['payment_date']; ?></td>
-			<td><?php echo $orderPayment['due_date']; ?></td>
-			<td><?php echo $orderPayment['amount']; ?></td>
-			<td><?php echo $orderPayment['total_amt']; ?></td>
-			<td><?php echo $orderPayment['subtotal_amt']; ?></td>
-			<td><?php echo $orderPayment['tax_amt']; ?></td>
-			<td><?php echo $orderPayment['tax']; ?></td>
-			<td><?php echo $orderPayment['account_id']; ?></td>
 			<td><?php echo $orderPayment['order_id']; ?></td>
-			<td><?php echo $orderPayment['bank_name']; ?></td>
-			<td><?php echo $orderPayment['bank_ref']; ?></td>
-			<td><?php echo $orderPayment['description']; ?></td>
 			<td><?php echo $orderPayment['payment_id']; ?></td>
+			<td><?php echo $orderPayment['folio']; ?></td>
+			<td><?php echo $orderPayment['type']; ?></td>
+			<td><?php echo $orderPayment['status']; ?></td>
+			<td><?php echo $orderPayment['payment_date']; ?></td>
+			<td><?php echo $orderPayment['total_amt']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'order_payments', 'action' => 'view', $orderPayment['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'order_payments', 'action' => 'edit', $orderPayment['id'])); ?>
@@ -192,17 +162,13 @@
 		<th><?php echo __('Updated'); ?></th>
 		<th><?php echo __('Created By'); ?></th>
 		<th><?php echo __('Updated By'); ?></th>
+		<th><?php echo __('Status'); ?></th>
 		<th><?php echo __('Order Id'); ?></th>
 		<th><?php echo __('Product Id'); ?></th>
+		<th><?php echo __('Product Price'); ?></th>
 		<th><?php echo __('Product Qty'); ?></th>
 		<th><?php echo __('Product Disc'); ?></th>
-		<th><?php echo __('Product Price'); ?></th>
-		<th><?php echo __('Stock Chk'); ?></th>
-		<th><?php echo __('Resourcename'); ?></th>
-		<th><?php echo __('Resource Id'); ?></th>
-		<th><?php echo __('Datescheduling'); ?></th>
-		<th><?php echo __('Datescheduling Enddate'); ?></th>
-		<th><?php echo __('Duration'); ?></th>
+		<th><?php echo __('Product Tax'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($order['OrderProduct'] as $orderProduct): ?>
@@ -212,17 +178,13 @@
 			<td><?php echo $orderProduct['updated']; ?></td>
 			<td><?php echo $orderProduct['created_by']; ?></td>
 			<td><?php echo $orderProduct['updated_by']; ?></td>
+			<td><?php echo $orderProduct['status']; ?></td>
 			<td><?php echo $orderProduct['order_id']; ?></td>
 			<td><?php echo $orderProduct['product_id']; ?></td>
+			<td><?php echo $orderProduct['product_price']; ?></td>
 			<td><?php echo $orderProduct['product_qty']; ?></td>
 			<td><?php echo $orderProduct['product_disc']; ?></td>
-			<td><?php echo $orderProduct['product_price']; ?></td>
-			<td><?php echo $orderProduct['stock_chk']; ?></td>
-			<td><?php echo $orderProduct['resourcename']; ?></td>
-			<td><?php echo $orderProduct['resource_id']; ?></td>
-			<td><?php echo $orderProduct['datescheduling']; ?></td>
-			<td><?php echo $orderProduct['datescheduling_enddate']; ?></td>
-			<td><?php echo $orderProduct['duration']; ?></td>
+			<td><?php echo $orderProduct['product_tax']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'order_products', 'action' => 'view', $orderProduct['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'order_products', 'action' => 'edit', $orderProduct['id'])); ?>

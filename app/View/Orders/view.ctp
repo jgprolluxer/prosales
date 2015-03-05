@@ -1,241 +1,251 @@
-<div class="orders view">
-<h2><?php echo __('Order'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Type'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['type']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Status'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['status']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['updated']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created By'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['created_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated By'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['updated_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Price'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['price']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Total Amt'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['total_amt']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Subtotal Amt'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['subtotal_amt']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Tax Amt'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['tax_amt']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Disc Amt'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['disc_amt']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Disc Desc'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['disc_desc']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Tax'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['tax']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Disc'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['disc']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Account'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($order['Account']['alias'], array('controller' => 'accounts', 'action' => 'view', $order['Account']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Description'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Owner'); ?></dt>
-		<dd>
-			<?php echo h($order['Order']['owner']); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Order'), array('action' => 'edit', $order['Order']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Order'), array('action' => 'delete', $order['Order']['id']), array(), __('Are you sure you want to delete # %s?', $order['Order']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Orders'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Order'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Accounts'), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Account'), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Order Payments'), array('controller' => 'order_payments', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Order Payment'), array('controller' => 'order_payments', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Order Products'), array('controller' => 'order_products', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Order Product'), array('controller' => 'order_products', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Order Payments'); ?></h3>
-	<?php if (!empty($order['OrderPayment'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Type'); ?></th>
-		<th><?php echo __('Status'); ?></th>
-		<th><?php echo __('Docnum'); ?></th>
-		<th><?php echo __('Docseq'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Updated'); ?></th>
-		<th><?php echo __('Created By'); ?></th>
-		<th><?php echo __('Updated By'); ?></th>
-		<th><?php echo __('Payment Date'); ?></th>
-		<th><?php echo __('Due Date'); ?></th>
-		<th><?php echo __('Amount'); ?></th>
-		<th><?php echo __('Total Amt'); ?></th>
-		<th><?php echo __('Subtotal Amt'); ?></th>
-		<th><?php echo __('Tax Amt'); ?></th>
-		<th><?php echo __('Tax'); ?></th>
-		<th><?php echo __('Account Id'); ?></th>
-		<th><?php echo __('Order Id'); ?></th>
-		<th><?php echo __('Bank Name'); ?></th>
-		<th><?php echo __('Bank Ref'); ?></th>
-		<th><?php echo __('Description'); ?></th>
-		<th><?php echo __('Payment Id'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($order['OrderPayment'] as $orderPayment): ?>
-		<tr>
-			<td><?php echo $orderPayment['id']; ?></td>
-			<td><?php echo $orderPayment['type']; ?></td>
-			<td><?php echo $orderPayment['status']; ?></td>
-			<td><?php echo $orderPayment['docnum']; ?></td>
-			<td><?php echo $orderPayment['docseq']; ?></td>
-			<td><?php echo $orderPayment['created']; ?></td>
-			<td><?php echo $orderPayment['updated']; ?></td>
-			<td><?php echo $orderPayment['created_by']; ?></td>
-			<td><?php echo $orderPayment['updated_by']; ?></td>
-			<td><?php echo $orderPayment['payment_date']; ?></td>
-			<td><?php echo $orderPayment['due_date']; ?></td>
-			<td><?php echo $orderPayment['amount']; ?></td>
-			<td><?php echo $orderPayment['total_amt']; ?></td>
-			<td><?php echo $orderPayment['subtotal_amt']; ?></td>
-			<td><?php echo $orderPayment['tax_amt']; ?></td>
-			<td><?php echo $orderPayment['tax']; ?></td>
-			<td><?php echo $orderPayment['account_id']; ?></td>
-			<td><?php echo $orderPayment['order_id']; ?></td>
-			<td><?php echo $orderPayment['bank_name']; ?></td>
-			<td><?php echo $orderPayment['bank_ref']; ?></td>
-			<td><?php echo $orderPayment['description']; ?></td>
-			<td><?php echo $orderPayment['payment_id']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'order_payments', 'action' => 'view', $orderPayment['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'order_payments', 'action' => 'edit', $orderPayment['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'order_payments', 'action' => 'delete', $orderPayment['id']), array(), __('Are you sure you want to delete # %s?', $orderPayment['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
+<script type="text/javascript">
+	$(document).ready(function ()
+	{
+		//$('#page-container').removeClass('sidebar-visible-xs');
+		//$('#page-container').removeClass('sidebar-visible-lg');
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Order Payment'), array('controller' => 'order_payments', 'action' => 'add')); ?> </li>
-		</ul>
+		$('#page-container').attr('class', 'sidebar-no-animations');
+		$('header').hide();
+		/* Add placeholder attribute to the search input */
+		$('.dataTables_filter input').attr('placeholder', 'Search');
+	});
+</script>
+<!-- eCommerce Order View Header -->
+<div class="content-header">
+	<?php echo $this->MenuBuilder->build('menu-header-pos');?>
+</div>
+<!-- END eCommerce Order View Header -->
+
+<!-- Order Status -->
+<div class="row text-center">
+	<div class="col-sm-6 col-lg-3">
+		<div class="widget">
+			<div class="widget-extra themed-background-success">
+				<h4 class="widget-content-light"><strong>ORD.685195</strong></h4>
+			</div>
+			<div class="widget-extra-full"><span class="h2 text-success animation-expandOpen">15/10/2014</span></div>
+		</div>
+	</div>
+	<div class="col-sm-6 col-lg-3">
+		<div class="widget">
+			<div class="widget-extra themed-background-success">
+				<h4 class="widget-content-light"><i class="fa fa-paypal"></i> <strong>Payment</strong></h4>
+			</div>
+			<div class="widget-extra-full"><span class="h2 text-success animation-expandOpen"><i class="fa fa-check"></i></span></div>
+		</div>
+	</div>
+	<div class="col-sm-6 col-lg-3">
+		<div class="widget">
+			<div class="widget-extra themed-background-warning">
+				<h4 class="widget-content-light"><i class="fa fa-archive"></i> <strong>Packaging</strong></h4>
+			</div>
+			<div class="widget-extra-full"><span class="h2 text-warning"><i class="fa fa-refresh fa-spin"></i></span></div>
+		</div>
+	</div>
+	<div class="col-sm-6 col-lg-3">
+		<div class="widget">
+			<div class="widget-extra themed-background-muted">
+				<h4 class="widget-content-light"><i class="fa fa-truck"></i> <strong>Delivery</strong></h4>
+			</div>
+			<div class="widget-extra-full"><span class="h2 text-muted animation-pulse"><i class="fa fa-ellipsis-h"></i></span></div>
+		</div>
 	</div>
 </div>
-<div class="related">
-	<h3><?php echo __('Related Order Products'); ?></h3>
-	<?php if (!empty($order['OrderProduct'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Updated'); ?></th>
-		<th><?php echo __('Created By'); ?></th>
-		<th><?php echo __('Updated By'); ?></th>
-		<th><?php echo __('Order Id'); ?></th>
-		<th><?php echo __('Product Id'); ?></th>
-		<th><?php echo __('Product Qty'); ?></th>
-		<th><?php echo __('Product Disc'); ?></th>
-		<th><?php echo __('Product Price'); ?></th>
-		<th><?php echo __('Stock Chk'); ?></th>
-		<th><?php echo __('Resourcename'); ?></th>
-		<th><?php echo __('Resource Id'); ?></th>
-		<th><?php echo __('Datescheduling'); ?></th>
-		<th><?php echo __('Datescheduling Enddate'); ?></th>
-		<th><?php echo __('Duration'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($order['OrderProduct'] as $orderProduct): ?>
-		<tr>
-			<td><?php echo $orderProduct['id']; ?></td>
-			<td><?php echo $orderProduct['created']; ?></td>
-			<td><?php echo $orderProduct['updated']; ?></td>
-			<td><?php echo $orderProduct['created_by']; ?></td>
-			<td><?php echo $orderProduct['updated_by']; ?></td>
-			<td><?php echo $orderProduct['order_id']; ?></td>
-			<td><?php echo $orderProduct['product_id']; ?></td>
-			<td><?php echo $orderProduct['product_qty']; ?></td>
-			<td><?php echo $orderProduct['product_disc']; ?></td>
-			<td><?php echo $orderProduct['product_price']; ?></td>
-			<td><?php echo $orderProduct['stock_chk']; ?></td>
-			<td><?php echo $orderProduct['resourcename']; ?></td>
-			<td><?php echo $orderProduct['resource_id']; ?></td>
-			<td><?php echo $orderProduct['datescheduling']; ?></td>
-			<td><?php echo $orderProduct['datescheduling_enddate']; ?></td>
-			<td><?php echo $orderProduct['duration']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'order_products', 'action' => 'view', $orderProduct['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'order_products', 'action' => 'edit', $orderProduct['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'order_products', 'action' => 'delete', $orderProduct['id']), array(), __('Are you sure you want to delete # %s?', $orderProduct['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
+<!-- END Order Status -->
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Order Product'), array('controller' => 'order_products', 'action' => 'add')); ?> </li>
-		</ul>
+<!-- Products Block -->
+<div class="block">
+	<!-- Products Title -->
+	<div class="block-title">
+		<h2><i class="fa fa-shopping-cart"></i> <strong>Products</strong></h2>
+	</div>
+	<!-- END Products Title -->
+
+	<!-- Products Content -->
+	<div class="table-responsive">
+		<table class="table table-bordered table-vcenter">
+			<thead>
+				<tr>
+					<th class="text-center" style="width: 100px;">ID</th>
+					<th>Product Name</th>
+					<th class="text-center">Stock</th>
+					<th class="text-center">QTY</th>
+					<th class="text-right" style="width: 10%;">UNIT COST</th>
+					<th class="text-right" style="width: 10%;">PRICE</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8715</strong></a></td>
+					<td><a href="page_ecom_product_edit.html">Xbox One</a></td>
+					<td class="text-center"><strong>720</strong></td>
+					<td class="text-center"><strong>1</strong></td>
+					<td class="text-right"><strong>$399,00</strong></td>
+					<td class="text-right"><strong>$399,00</strong></td>
+				</tr>
+				<tr>
+					<td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8726</strong></a></td>
+					<td><a href="page_ecom_product_edit.html">Forza Motorsport 5</a></td>
+					<td class="text-center"><strong>368</strong></td>
+					<td class="text-center"><strong>1</strong></td>
+					<td class="text-right"><strong>$59,00</strong></td>
+					<td class="text-right"><strong>$59,00</strong></td>
+				</tr>
+				<tr>
+					<td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8760</strong></a></td>
+					<td><a href="page_ecom_product_edit.html">Playstation 4</a></td>
+					<td class="text-center"><strong>652</strong></td>
+					<td class="text-center"><strong>1</strong></td>
+					<td class="text-right"><strong>$399,00</strong></td>
+					<td class="text-right"><strong>$399,00</strong></td>
+				</tr>
+				<tr>
+					<td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8728</strong></a></td>
+					<td><a href="page_ecom_product_edit.html">Killzone: Shadow Fall</a></td>
+					<td class="text-center"><strong>368</strong></td>
+					<td class="text-center"><strong>1</strong></td>
+					<td class="text-right"><strong>$59,00</strong></td>
+					<td class="text-right"><strong>$59,00</strong></td>
+				</tr>
+				<tr>
+					<td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8763</strong></a></td>
+					<td><a href="page_ecom_product_edit.html">Little Big Planet 3</a></td>
+					<td class="text-center"><strong>150</strong></td>
+					<td class="text-center"><strong>1</strong></td>
+					<td class="text-right"><strong>$59,00</strong></td>
+					<td class="text-right"><strong>$59,00</strong></td>
+				</tr>
+				<tr>
+					<td colspan="5" class="text-right text-uppercase"><strong>Total Price:</strong></td>
+					<td class="text-right"><strong>$975,00</strong></td>
+				</tr>
+				<tr>
+					<td colspan="5" class="text-right text-uppercase"><strong>Total Paid:</strong></td>
+					<td class="text-right"><strong>$975,00</strong></td>
+				</tr>
+				<tr class="active">
+					<td colspan="5" class="text-right text-uppercase"><strong>Total Due:</strong></td>
+					<td class="text-right"><strong>$0,00</strong></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- END Products Content -->
+</div>
+<!-- END Products Block -->
+
+<!-- Addresses -->
+<div class="row">
+	<div class="col-sm-6">
+		<!-- Billing Address Block -->
+		<div class="block">
+			<!-- Billing Address Title -->
+			<div class="block-title">
+				<h2><i class="fa fa-building-o"></i> <strong>Billing</strong> Address</h2>
+			</div>
+			<!-- END Billing Address Title -->
+
+			<!-- Billing Address Content -->
+			<h4><strong>Jonathan Taylor</strong></h4>
+			<address>
+				Sunset Str 620<br>
+				Melbourne<br>
+				Australia, 21-842<br><br>
+				<i class="fa fa-phone"></i> (999) 852-11111<br>
+				<i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">johnathan.taylor@example.com</a>
+			</address>
+			<!-- END Billing Address Content -->
+		</div>
+		<!-- END Billing Address Block -->
+	</div>
+	<div class="col-sm-6">
+		<!-- Shipping Address Block -->
+		<div class="block">
+			<!-- Shipping Address Title -->
+			<div class="block-title">
+				<h2><i class="fa fa-building-o"></i> <strong>Shipping</strong> Address</h2>
+			</div>
+			<!-- END Shipping Address Title -->
+
+			<!-- Shipping Address Content -->
+			<h4><strong>Harry Burke</strong></h4>
+			<address>
+				Sunset Str 598<br>
+				Melbourne<br>
+				Australia, 21-852<br><br>
+				<i class="fa fa-phone"></i> (999) 852-22222<br>
+				<i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">harry.burke@example.com</a>
+			</address>
+			<!-- END Shipping Address Content -->
+		</div>
+		<!-- END Shipping Address Block -->
 	</div>
 </div>
+<!-- END Addresses -->
+
+<!-- Log Block -->
+<div class="block">
+	<!-- Log Title -->
+	<div class="block-title">
+		<h2><i class="fa fa-file-text-o"></i> <strong>Log</strong> Messages</h2>
+	</div>
+	<!-- END Log Title -->
+
+	<!-- Log Content -->
+	<div class="table-responsive">
+		<table class="table table-bordered table-vcenter">
+			<tbody>
+				<tr>
+					<td>
+						<span class="label label-primary">Order</span>
+					</td>
+					<td class="text-center">October 17, 2014 - 12:00</td>
+					<td><a href="javascript:void(0)">Support</a></td>
+					<td class="text-success"><i class="fa fa-fw fa-check"></i> <strong>Order Completed</strong></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="label label-primary">Order</span>
+					</td>
+					<td class="text-center">October 17, 2014 - 10:15</td>
+					<td><a href="javascript:void(0)">Support</a></td>
+					<td class="text-info"><i class="fa fa-fw fa-info-circle"></i> <strong>Preparing Order</strong></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="label label-success">Payment</span>
+					</td>
+					<td class="text-center">October 16, 2014 - 17:15</td>
+					<td><a href="javascript:void(0)">Harry Burke</a></td>
+					<td class="text-success"><i class="fa fa-fw fa-check"></i> <strong>Payment Completed</strong></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="label label-danger">Email</span>
+					</td>
+					<td class="text-center">October 16, 2014 - 09:10</td>
+					<td><a href="javascript:void(0)">Support</a></td>
+					<td class="text-danger"><i class="fa fa-fw fa-exclamation-triangle"></i> <strong>Missing payment details. Email was sent and awaiting for payment before processing</strong></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="label label-primary">Order</span>
+					</td>
+					<td class="text-center">October 15, 2014 - 12:26</td>
+					<td><a href="javascript:void(0)">Support</a></td>
+					<td><strong>All products are available</strong></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="label label-primary">Order</span>
+					</td>
+					<td class="text-center">October 15, 2014 - 12:15</td>
+					<td><a href="javascript:void(0)">Harry Burke</a></td>
+					<td><strong>Order Submitted</strong></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- END Log Content -->
+</div>
+<!-- END Log Block -->

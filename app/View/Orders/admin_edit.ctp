@@ -4,22 +4,20 @@
 		<legend><?php echo __('Admin Edit Order'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
+		echo $this->Form->input('updated_by');
+		echo $this->Form->input('created_by');
 		echo $this->Form->input('type');
 		echo $this->Form->input('status');
-		echo $this->Form->input('name');
-		echo $this->Form->input('created_by');
-		echo $this->Form->input('updated_by');
+		echo $this->Form->input('folio');
 		echo $this->Form->input('price');
 		echo $this->Form->input('total_amt');
 		echo $this->Form->input('subtotal_amt');
-		echo $this->Form->input('tax_amt');
-		echo $this->Form->input('disc_amt');
-		echo $this->Form->input('disc_desc');
 		echo $this->Form->input('tax');
 		echo $this->Form->input('disc');
+		echo $this->Form->input('disc_desc');
 		echo $this->Form->input('account_id');
 		echo $this->Form->input('description');
-		echo $this->Form->input('owner');
+		echo $this->Form->input('saleschannel');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -1,15 +1,21 @@
-<!-- Forms General Header -->
+<script type="text/javascript">
+$(document).ready(function ()
+{
+    //$('#page-container').removeClass('sidebar-visible-xs');
+    //$('#page-container').removeClass('sidebar-visible-lg');
+
+    $('#page-container').attr('class', 'sidebar-no-animations');
+    $('header').hide();
+    /* Add placeholder attribute to the search input */
+    $('.dataTables_filter input').attr('placeholder', 'Search');
+});
+</script>
+
+<!-- eCommerce Order View Header -->
 <div class="content-header">
-    <div class="header-section">
-        <h1>
-            <i class="fa fa-gift"></i><?php echo __('PRODUCT_VIEW_HEAD_TITLE'); ?><br><small><?php echo __('PRODUCT_VIEW_HEAD_TITLE_SMALL'); ?></small>
-        </h1>
-    </div>
+    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
 </div>
-<ul class="breadcrumb breadcrumb-top">
-    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
-</ul>
-<!-- END Forms General Header -->
+<!-- END eCommerce Order View Header -->
 <!-- Normal Form Block -->
 <div class="block">
     <!-- Normal Form Title -->
@@ -105,14 +111,14 @@
                 'readonly' => 'readonly',
                 'value' => $this->request->data["Product"]["stockcheck"] ? '√' : 'X'
             ));
-            ?> 
+            ?>
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
                 <?php
                 echo $this->AclView->link(  __('PRODUCT_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'),
-                    array('plugin' => $this->params['plugin'], 'prefix' => null, 
-                        'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 
+                    array('plugin' => $this->params['plugin'], 'prefix' => null,
+                        'admin' => $this->params['admin'], 'controller' => $this->params['controller'],
                         'action' => 'edit', $this->request->data['Product']['id']),
                     array('escape' => false, 'class' => array('btn btn-warning')));
                     ?>

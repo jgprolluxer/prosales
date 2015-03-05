@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2015-01-30 12:42-0600\n"
+"PO-Revision-Date: 2015-03-05 16:57-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "Language: es_MX\n"
 
-###### sudo msgfmt -o default.mo default.po
+# ##### sudo msgfmt -o default.mo default.po
 #
 # ----------      COMMON SECTION      ---------- ###################################
 #
@@ -112,14 +112,13 @@ msgid "MENU_HEADER_POS_LINK_POS"
 msgstr "<i class='gi gi-shopping_cart'></i> Punto de Venta"
 
 msgid "MENU_HEADER_POS_LINK_ORDERS"
-msgstr "<i class='gi gi-shopping_cart'></i> Ordenes"
+msgstr "<i class='gi gi-shopping_cart'></i> Ventas"
 
 msgid "MENU_HEADER_POS_LINK_PRODUCTS"
 msgstr "<i class='gi gi-shopping_bag'></i> Productos"
 
 msgid "MENU_HEADER_POS_LINK_POS_LOGOUT"
 msgstr "<i class='fa fa-power-off'></i> Salir"
-
 
 # ----------      END MENUES SECTION      ---------- ###################################
 # ####################################################################################
@@ -1306,7 +1305,6 @@ msgstr "Acciones"
 msgid "FAMILY_INDEX_BLOCK_CONTENT_FOOTER"
 msgstr "Listado"
 
-
 #
 # ----------       END INDEX SECTION      ----------
 # ----------      ADMIN INDEX SECTION      ----------
@@ -1349,8 +1347,8 @@ msgstr "Acciones"
 
 msgid "ADMIN_FAMILY_INDEX_BLOCK_CONTENT_FOOTER"
 msgstr "Listado"
-# ----------       END ADMIN INDEX SECTION      ----------
 
+# ----------       END ADMIN INDEX SECTION      ----------
 # ----------      END FAMILY SECTION      ---------- ###########################
 # ###############################################################################
 # ----------      GROUP SECTION      ---------- ###################################
@@ -2213,7 +2211,7 @@ msgstr "Simbolo"
 msgid "ADMIN_PRICELIST_VIEW_FORM_FIELD_STATUS"
 msgstr "Estatus"
 
-msgid  "ADMIN_PRICELIST_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
+msgid "ADMIN_PRICELIST_VIEW_BLOCK_CONTENT_BTN_GO_EDIT"
 msgstr "Editar"
 
 msgid "ADMIN_PRICELIST_VIEW_BLOCK_CONTENT_FOOTER"
@@ -2363,7 +2361,6 @@ msgstr "Productos"
 #
 # ----------      INDEX SECTION      ----------
 #
-
 msgid "PRICELIST_INDEX_HEAD_TITLE"
 msgstr "Lista de Precios"
 
@@ -2397,7 +2394,7 @@ msgstr "Recuerda revisar todos los campos"
 # ----------      END  INDEX SECTION      ----------
 #
 # ----------      END PRICELIST SECTION      ---------- ##########################
-#################################################################################
+# ################################################################################
 # ----------      PRICELIST_PRODUCT SECTION      ---------- ###################################
 #
 # ----------      ELEMENT INDEX SECTION      ----------

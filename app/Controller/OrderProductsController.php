@@ -369,56 +369,7 @@ class OrderProductsController extends AppController
             {
                 $selectedProduct = $selectedProduct[0];
             }
-            ////// first check if product exists
-            $orderProductFounded = $this->OrderProduct->find('all', array(
-                'conditions' => array(
-                    'OrderProduct.id >=' => 1,
-                    'OrderProduct.product_id =' => $productID,
-                    'OrderProduct.order_id =' => $orderID,
-                    'OrderProduct.status' => array(StatusOfOrderProduct::Active)
-                )
-            ));
 
-            $this->OrderProduct->recursive = -1;
-            if (0 < count($orderProductFounded))
-            {
-                $orderProduct = $orderProductFounded[0];
-                $qty = $orderProduct["OrderProduct"]["product_qty"];
-                $qty ++;
-                $orderProduct["OrderProduct"]["product_qty"] = $qty;
-                if (!$this->OrderProduct->save($orderProduct["OrderProduct"]))
-                {
-                    $valErrors = $this->OrderProduct->validationErrors;
-                    $valMessage = "";
-                    foreach ($valErrors as $valError)
-                    {
-                        $valMessage .=' ';
-                        if (is_array($valError))
-                        {
-                            foreach ($valError as $prop)
-                            {
-                                $valMessage .= $prop . ' ';
-                            }
-                        } else
-                        {
-                            $valMessage .= $prop . ' ';
-                        }
-                    }
-                    $response = array(
-                        'success' => false,
-                        'message' => $valMessage,
-                        'xData' => array()
-                    );
-                } else
-                {
-                    $response = array(
-                        'success' => true,
-                        'message' => 'Correcto',
-                        'xData' => $this->OrderProduct->read(null, $orderProduct["OrderProduct"]["id"])
-                    );
-                }
-            } else
-            {
                 $orderProduct["OrderProduct"]["created"] = date("Y-m-d H:i:s");
                 $orderProduct["OrderProduct"]["updated"] = date("Y-m-d H:i:s");
                 $orderProduct["OrderProduct"]["created_by"] = $this->Session->read("Auth.User.id");
@@ -463,7 +414,6 @@ class OrderProductsController extends AppController
                         'xData' => $this->OrderProduct->read(null, $this->OrderProduct->getLastInsertID())
                     );
                 }
-            }
 
             $response = array(
                 'success' => true,

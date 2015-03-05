@@ -174,7 +174,7 @@ Configure::write('Routing.prefixes', array('admin'));
  *
  */
 	Configure::write('Session', array('defaults' => 'database'));
-	Configure::write('Session.timeout', 60);
+	Configure::write('Session.timeout', 720);
 	Configure::write('Session.checkAgent', false);
 
 /**
@@ -281,4 +281,3 @@ Cache::config('_cake_model_', array(
 
 //Configure::write('Config.language', 'es-MX');
 Configure::write('Config.language', 'es_MX');
-
