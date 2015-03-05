@@ -74,10 +74,23 @@ class AppController extends Controller
         }
         Configure::write('Config.language', $slangConf);
         $this->appLangConf = $slangConf;
+
+
+        try{
+            $relObjType = Inflector::singularize($this->name);
+        }catch(Exception $ex)
+        {
+            $relObjType = "";
+        }
+        $relObjId = isset($this->data[$relObjType]["id"]) ? $this->request->data[$relObjType]["id"] : 0;
+
         $this->set('slangConf', $slangConf);
         $this->set('menu', $this->buildMainMenu());
         $this->set('config', $config);
         $this->set('signedUser', $signedUser);
+
+        $this->set('relObjType', $relObjType);
+        $this->set('relObjId', $relObjId);
 
         //debug($this->params);
     }

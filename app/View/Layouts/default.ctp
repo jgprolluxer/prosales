@@ -280,5 +280,8 @@
         $classMessage = NULL;
         CakeSession::write('Operation', $classMessage);
         ?>
+        <input type="hidden" id = "txt_objectType" value="<?php echo $relObjType ?>" />
+        <input type="hidden" id = "txt_objectID" value="<?php echo $relObjId ?>" />
+
     </body>
 </html>
