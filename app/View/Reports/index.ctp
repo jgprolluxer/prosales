@@ -12,6 +12,7 @@
 	</div>
 </div>
 
+
 <div class="block full">
 	<div class="block-title">
 		<!-- Interactive block controls (initialized in js/app.js -> interactiveBlocks()) -->
@@ -27,15 +28,21 @@
 				<span><?php echo $startDt; ?> - <?php echo $endDt; ?></span> <b class="caret"></b>
 			</a>
 		</div>
-		<ul class="nav nav-tabs" data-toggle="tabs">
-			<li class="active"><a href="#reportOrderAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_ORDER'); ?></a></li>
-			<li><a href="#reportProductAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_PRODUCT'); ?></a></li>
-		</ul>
 	</div>
-	<div class="tab-content">
-		<div class="tab-pane active" id="reportOrderAnalytic"><i class="fa fa-spinner fa-spin fa-4x "></i></div>
-		<div class="tab-pane" id="reportProductAnalytic"><i class="fa fa-spinner fa-spin fa-4x "></i></div>
-	</div>
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked" data-toggle="tabs">
+                <li class="active"><a href="#reportOrderAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_ORDER'); ?></a></li>
+                <li><a href="#reportProductAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_PRODUCT'); ?></a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+           <div class="tab-content">
+              <div class="tab-pane active" id="reportOrderAnalytic"><i class="fa fa-spinner fa-spin fa-4x "></i></div>
+              <div class="tab-pane" id="reportProductAnalytic"><i class="fa fa-spinner fa-spin fa-4x "></i></div>
+          </div>
+      </div>
+  </div>
 </div>
 <script type="text/javascript">
 $(document).ready(function ()
