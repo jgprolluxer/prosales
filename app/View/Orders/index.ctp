@@ -55,7 +55,18 @@ $(document).ready(function ()
 		{
 			?>
 			<tr>
-				<td class="text-center"><?php echo $order["Order"]["folio"]; ?></td>
+				<td class="text-center">
+						<?php
+						echo $this->AclView->link($order["Order"]["folio"],
+						array('plugin' => $this->params['plugin'],
+						'prefix' => null,
+						'admin' => $this->params['admin'],
+						'controller' => $this->params['controller'],
+						'action' => 'view', $order["Order"]["id"]
+					),
+					array('escape' => false, 'class' => array('')));
+					?>
+				</td>
 				<td class="text-center"><?php echo $order["Account"]["firstname"] . " " . $order["Account"]["lastname"]; ?></td>
 				<td class="text-center">$<?php echo $order["Order"]["total_amt"]; ?></td>
 				<td class="text-center"><?php echo __($order["Order"]["status"]); ?></td>

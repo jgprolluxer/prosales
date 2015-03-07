@@ -118,10 +118,10 @@
                         <!-- Widget Header -->
                         <div class="widget-extra-full text-center">
                             <div class="pull-left" >
-                                <a href="javascript:void(0);" data-ng-disabled="account" class="btn btn-xs btn-info" data-toggle="tooltip" title="Asociar" data-ng-click="open()" ><i class="hi hi-plus"></i> Asociar</a>
+                                <a href="javascript:void(0);" data-ng-disabled="account" class="btn btn-xs btn-info" data-ng-click="open()" ><i class="hi hi-plus"></i> Asociar</a>
                             </div>
                             <div class="pull-right" >
-                                <a href="javascript:void(0);" data-ng-disabled="!account || totalPayments >= newOrder.Order.total_amt" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Remover" data-ng-click="removeAccount()" ><i class="hi hi-remove"></i> Remover</a>
+                                <a href="javascript:void(0);" data-ng-disabled="!account || totalPayments >= newOrder.Order.total_amt" class="btn btn-xs btn-warning" data-ng-click="removeAccount()" ><i class="hi hi-remove"></i> Remover</a>
                             </div>
                         </div>
                         <!-- END Widget Header -->
@@ -160,7 +160,7 @@
                 <!-- END Advanced Active Theme Color Widget Alternative -->
                 <!-- Advanced Active Theme Color Widget Alternative -->
                 <div class="widget-extra-full" style="display: none;">
-                    <a disabled="disabled" href="javascript:void(0);" class="pull-right btn btn-xs btn-info" data-toggle="tooltip" title="Agregar Pago"  >
+                    <a disabled="disabled" href="javascript:void(0);" class="pull-right btn btn-xs btn-info" >
                         <i class="hi hi-plus"></i> Agregar Pagos diferidos próximamente
                     </a>
                 </div>

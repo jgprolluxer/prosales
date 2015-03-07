@@ -92,30 +92,6 @@
 					<td class="text-right"><strong>$59,00</strong></td>
 				</tr>
 				<tr>
-					<td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8760</strong></a></td>
-					<td><a href="page_ecom_product_edit.html">Playstation 4</a></td>
-					<td class="text-center"><strong>652</strong></td>
-					<td class="text-center"><strong>1</strong></td>
-					<td class="text-right"><strong>$399,00</strong></td>
-					<td class="text-right"><strong>$399,00</strong></td>
-				</tr>
-				<tr>
-					<td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8728</strong></a></td>
-					<td><a href="page_ecom_product_edit.html">Killzone: Shadow Fall</a></td>
-					<td class="text-center"><strong>368</strong></td>
-					<td class="text-center"><strong>1</strong></td>
-					<td class="text-right"><strong>$59,00</strong></td>
-					<td class="text-right"><strong>$59,00</strong></td>
-				</tr>
-				<tr>
-					<td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8763</strong></a></td>
-					<td><a href="page_ecom_product_edit.html">Little Big Planet 3</a></td>
-					<td class="text-center"><strong>150</strong></td>
-					<td class="text-center"><strong>1</strong></td>
-					<td class="text-right"><strong>$59,00</strong></td>
-					<td class="text-right"><strong>$59,00</strong></td>
-				</tr>
-				<tr>
 					<td colspan="5" class="text-right text-uppercase"><strong>Total Price:</strong></td>
 					<td class="text-right"><strong>$975,00</strong></td>
 				</tr>

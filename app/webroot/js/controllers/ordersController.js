@@ -1,6 +1,6 @@
 
 angular.module('prosales-app')
-    .controller('OrderAddController', function ($scope, $http, DTOptionsBuilder, DTColumnDefBuilder, $modal, $log)
+    .controller('OrderAddController', function ($scope, $http, $location, DTOptionsBuilder, DTColumnDefBuilder, $modal, $log)
     {
 
         /**
@@ -135,6 +135,8 @@ angular.module('prosales-app')
                         if (data["success"])
                         {
                             alert('Orden cancelada con éxito!');
+                            //$location.path(qualifyURL("/Orders/"));
+                            //$scope.$apply();
                             window.location.href = qualifyURL("/Orders/");
                         } else
                         {
@@ -170,7 +172,7 @@ angular.module('prosales-app')
             {
                 $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>Favor de agregar un pago mayor a cero!</p>', {
                     type: 'warning',
-                    delay: 6,
+                    delay: 6000,
                     allow_dismiss: true,
                     from: "top",
                     align: "center"
