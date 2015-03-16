@@ -32,14 +32,22 @@
     <div class="row">
         <div class="col-md-3">
             <ul class="nav nav-pills nav-stacked" data-toggle="tabs">
-                <li class="active"><a href="#reportOrderAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_ORDER'); ?></a></li>
+                <li class="active"><a href="#tabreportOrderAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_ORDER'); ?></a></li>
                 <li><a href="#reportProductAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_PRODUCT'); ?></a></li>
             </ul>
         </div>
         <div class="col-md-9">
            <div class="tab-content">
-              <div class="tab-pane active" id="reportOrderAnalytic"><i class="fa fa-spinner fa-spin fa-4x "></i></div>
-              <div class="tab-pane" id="reportProductAnalytic"><i class="fa fa-spinner fa-spin fa-4x "></i></div>
+              <div class="tab-pane active" id="tabreportOrderAnalytic">
+                <div id="reportOrderAnalytic">
+                </div>
+                <div id="totalOrderByDate">
+                </div>
+            </div>
+              <div class="tab-pane" id="reportProductAnalytic">
+                <div id="totalOrderByProduct">
+                </div>
+              </div>
           </div>
       </div>
   </div>
@@ -59,17 +67,18 @@ $(document).ready(function ()
     {
     	format: 'YYYY-MM-DD',
     	ranges: {
-    		'Today': [moment(), moment()],
-    		'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-    		'Last 7 Days': [moment().subtract('days', 6), moment()],
-    		'Last 30 Days': [moment().subtract('days', 29), moment()],
-    		'This Month': [moment().startOf('month'), moment().endOf('month')],
-    		'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+    		'Hoy': [moment(), moment()],
+    		'Ayer': [moment().subtract('days', 1), moment().subtract('days', 1)],
+    		'Ultimos 7 dias': [moment().subtract('days', 6), moment()],
+    		'Ultimos 30 dias': [moment().subtract('days', 29), moment()],
+    		'Este Mes': [moment().startOf('month'), moment().endOf('month')],
+    		'Pasado Mes': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
     	},
     	startDate: moment().subtract('days', 29),
     	endDate: moment()
     },
-    function(start, end) {
+    function(start, end)
+    {
     	$('#reportrange span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
     });
     $('#reportrange').on('apply.daterangepicker', function(ev, picker)
@@ -92,6 +101,8 @@ function feedReports(startDate, endDate)
 		{
 			var xData = data["xData"];
 			handlePieOrderByStatusChart(xData["OrderByStatus"]);
+            handleTotalOrderByDate(xData["TotalOrderByDate"])
+            handleOrdersByProducts(xData["OrderByProducts"]);
 		},
 		error: function (data)
 		{
@@ -104,6 +115,63 @@ function feedReports(startDate, endDate)
 function handleBarOrderByDate()
 {
 	
+}
+
+function handleTotalOrderByDate( xData )
+{
+
+    $('#totalOrderByDate').highcharts({
+        chart: {
+            type: 'column'
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'Ventas por día'
+        },
+        subtitle: {
+            text: 'subtitle ventas:'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Ventas $'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Ventas: $ <b>{point.y:.1f}</b>'
+        },
+        series: [{
+            name: 'Population',
+            data: xData,
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                format: '{point.y:.1f}', // one decimal
+                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
 }
 
 function handlePieOrderByStatusChart(xData)
@@ -158,6 +226,63 @@ function handlePieOrderByStatusChart(xData)
     		data: xData
     	}]
     });
+};
+
+function handleOrdersByProducts( xData )
+{
+    $('#totalOrderByProduct').highcharts({
+        chart: {
+            type: 'column'
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'Ventas por producto'
+        },
+        subtitle: {
+            text: 'subtitle ventas:'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Ventas $'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Ventas: $ <b>{point.y:.1f}</b>'
+        },
+        series: [{
+            name: 'Population',
+            data: xData,
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                format: '{point.y:.1f}', // one decimal
+                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
+
 };
 
 </script>

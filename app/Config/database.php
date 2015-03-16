@@ -62,6 +62,17 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
+		'host' => 'localhost',
+		'port' => 3306,
+		'login' => 'admin',
+		'password' => 'admin',
+		'database' => 'prosales-db',
+		'prefix' => '',
+		'encoding' => 'utf8',
+	);
+	/*public $default = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
 		'host' => '104.239.163.170',
 		'port' => 3306,
 		'login' => 'admin',
@@ -69,7 +80,7 @@ class DATABASE_CONFIG {
 		'database' => 'prosales-db',
 		'prefix' => '',
 		'encoding' => 'utf8',
-	);
+	);*/
 
 	/*public $test = array(
 		'datasource' => 'Database/Mysql',

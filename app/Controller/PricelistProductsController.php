@@ -22,8 +22,16 @@ class PricelistProductsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->PricelistProduct->recursive = 0;
-		$this->set('pricelistProducts', $this->Paginator->paginate());
+		$this->PricelistProduct->recursive = 1;
+		$pricelistID = $this->getPricelistID();
+		$this->log('pricelistID');
+		$this->log($pricelistID);
+		$pricelistProducts = $this->PricelistProduct->find('all', array(
+			'conditions' => array(
+				'PricelistProduct.pricelist_id =' => $pricelistID
+			)
+		));
+		$this->set('pricelistProducts', $pricelistProducts);
 	}
 
 /**
@@ -251,6 +259,62 @@ class PricelistProductsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
+
+	private function getPricelistID()
+	{
+
+		try{
+			$uLogged = CakeSession::read('Auth.User');
+			if(isset($uLogged["Workstation"]["pricelist_id"]))
+			{
+				if(null !== $uLogged["Workstation"]["pricelist_id"] && 0 !== $uLogged["Workstation"]["pricelist_id"])
+				{
+					$this->loadModel('Pricelist');
+					$pricelist = $this->Pricelist->read(null, $uLogged["Workstation"]["pricelist_id"]);
+					if(StatusOfPricelist::Active == $pricelist["Pricelist"]["status"])
+					{
+						return $pricelist["Pricelist"]["id"];
+					} else
+					{
+						return 0;
+					}
+
+				} else
+				{
+					if(null !== $uLogged["Workstation"]["store_id"] && 0 !== $uLogged["Workstation"]["store_id"])
+					{
+						$this->loadModel('Store');
+						$store = $this->Store->read(null, $uLogged["Workstation"]["store_id"]);
+
+						if(null !== $store["Store"]["pricelist_id"] && 0 !== $store["Store"]["pricelist_id"] )
+						{
+							$this->loadModel('Pricelist');
+							$pricelist = $this->Pricelist->read(null, $store["Store"]["pricelist_id"]);
+
+							if(StatusOfPricelist::Active == $pricelist["Pricelist"]["status"])
+							{
+								return $pricelist["Pricelist"]["id"];
+							} else
+							{
+								return 0;
+							}
+
+						} else
+						{
+							return 0;
+						}
+
+					} else
+					{
+						return 0;
+					}
+				}
+			}
+		}catch(Exception $ex)
+		{
+			return 0;
+		}
+	}
 
 	public function jsfindPricelistProduct()
 	{

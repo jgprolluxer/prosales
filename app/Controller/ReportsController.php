@@ -92,7 +92,100 @@ public function getReports()
 		$xData["OrderByStatus"] = $rOrder;
 
 
+		$orders = $this->Order->find('all', array(
+			'fields' => array(
+				'DATE_FORMAT(Order.created,"%Y/%m/%d") created',
+				'IFNULL(SUM(Order.total_amt),0) total'
+			),
+			'conditions' => array(
+				'Order.status' => array(StatusOfOrder::Closed),
+				'Order.created >=' => $startDt,
+				'Order.created <=' => $endDt
+			),
+			'group' => array('DATE_FORMAT(Order.created,"%Y/%m/%d")')
+		));
+		$rOrder = array();
+		foreach ($orders as $key => $order)
+		{
+			$rOrder[$key] = array(__($order["0"]["created"]), intval($order["0"]["total"]) );
+		}
+		$xData["TotalOrderByDate"] = $rOrder;
 
+
+		$orders = $this->Order->find('all', array(
+            'joins' => array(
+                array('table' => 'users',
+                    'alias' => 'User',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'User.id = Order.created_by'
+                    )
+                ),
+                array('table' => 'workstations',
+                    'alias' => 'Workstation',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'Workstation.id = User.workstation_id'
+                    )
+                ),
+            ),
+			'fields' => array(
+				"CONCAT( User.firstname, ' ', User.lastname, '-', Workstation.title, ' ', Workstation.employeenumber ) as salesman",
+				'IFNULL(SUM(Order.total_amt),0) total'
+			),
+			'conditions' => array(
+				'Order.status' => array(StatusOfOrder::Closed),
+				'Order.created >=' => $startDt,
+				'Order.created <=' => $endDt
+			),
+			'group' => array('Order.created_by')
+		));
+		$rOrder = array();
+		foreach ($orders as $key => $order)
+		{
+			$rOrder[$key] = array(__($order["0"]["salesman"]), intval($order["0"]["total"]) );
+		}
+		$xData["OrderBySalesman"] = $rOrder;
+
+////////////
+//////////// Products report
+
+		$orders = $this->Order->find('all', array(
+            'joins' => array(
+                array('table' => 'order_products',
+                    'alias' => 'OrderProduct',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'OrderProduct.order_id = Order.id'
+                    )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'Product.id = OrderProduct.product_id'
+                    )
+                ),
+            ),
+			'fields' => array(
+				'Product.name',
+				'IFNULL(SUM(Order.total_amt),0) total'
+			),
+			'conditions' => array(
+				'Order.created >=' => $startDt,
+				'Order.created <=' => $endDt
+			),
+			'group' => array('Product.name')
+		));
+		$rOrder = array();
+		foreach ($orders as $key => $order)
+		{
+			$rOrder[$key] = array(__($order["Product"]["name"]), intval($order["0"]["total"]) );
+		}
+		$xData["OrderByProducts"] = $rOrder;
+
+		$this->log('Order product report');
+		$this->log($xData["OrderByProducts"]);
 
 		$response = array(
 			'success' => true,

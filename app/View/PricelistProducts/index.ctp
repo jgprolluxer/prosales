@@ -1,80 +1,95 @@
-<div class="pricelistProducts index">
-	<h2><?php echo __('Pricelist Products'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+<script type="text/javascript">
+$(document).ready(function ()
+{
+    //$('#page-container').removeClass('sidebar-visible-xs');
+    //$('#page-container').removeClass('sidebar-visible-lg');
+
+    $('#page-container').attr('class', 'sidebar-no-animations');
+    $('header').hide();
+    /* Add placeholder attribute to the search input */
+    $('.dataTables_filter input').attr('placeholder', 'Search');
+});
+</script>
+
+<!-- eCommerce Order View Header -->
+<div class="content-header">
+    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+</div>
+<!-- END eCommerce Order View Header -->
+
+<!-- All Orders Block -->
+<div class="block full">
+	<!-- All Orders Title -->
+	<div class="block-title">
+		<div class="block-options pull-right">
+			<?php
+			echo $this->AclView->link(  '<i class="fa fa-plus"></i> '.__('Agregar productos'),
+			array('plugin' => $this->params['plugin'],
+			'prefix' => null,
+			'admin' => $this->params['admin'],
+			'controller' => $this->params['controller'],
+			'action' => 'add'
+		),
+		array('escape' => false, 'class' => array('btn btn-info')));
+		?>
+	</div>
+	<h2>Productos</h2>
+</div>
+<!-- END All Orders Title -->
+
+<!-- All Orders Content -->
+<table id="example-datatable" class="table table-bordered table-striped table-vcenter">
 	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('updated'); ?></th>
-			<th><?php echo $this->Paginator->sort('updated_by'); ?></th>
-			<th><?php echo $this->Paginator->sort('created_by'); ?></th>
-			<th><?php echo $this->Paginator->sort('pricelist_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('product_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('unit_price'); ?></th>
-			<th><?php echo $this->Paginator->sort('tax'); ?></th>
-			<th><?php echo $this->Paginator->sort('priceinpoints'); ?></th>
-			<th><?php echo $this->Paginator->sort('startdt'); ?></th>
-			<th><?php echo $this->Paginator->sort('enddt'); ?></th>
-			<th><?php echo $this->Paginator->sort('disc_percent'); ?></th>
-			<th><?php echo $this->Paginator->sort('disc_startdt'); ?></th>
-			<th><?php echo $this->Paginator->sort('disc_enddt'); ?></th>
-			<th><?php echo $this->Paginator->sort('maxdisc_percent'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
+		<tr>
+			<th class="text-center">Nombre</th>
+			<th class="text-center">Precio</th>
+			<th class="text-center">Impuesto %</th>
+			<th class="text-center">Inicio</th>
+			<th class="text-center">Fin</th>
+			<th class="text-center">Acciones</th>
+		</tr>
 	</thead>
 	<tbody>
-	<?php foreach ($pricelistProducts as $pricelistProduct): ?>
-	<tr>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['id']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['created']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['updated']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['updated_by']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['created_by']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($pricelistProduct['Pricelist']['name'], array('controller' => 'pricelists', 'action' => 'view', $pricelistProduct['Pricelist']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($pricelistProduct['Product']['name'], array('controller' => 'products', 'action' => 'view', $pricelistProduct['Product']['id'])); ?>
-		</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['unit_price']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['tax']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['priceinpoints']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['startdt']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['enddt']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['disc_percent']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['disc_startdt']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['disc_enddt']); ?>&nbsp;</td>
-		<td><?php echo h($pricelistProduct['PricelistProduct']['maxdisc_percent']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $pricelistProduct['PricelistProduct']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $pricelistProduct['PricelistProduct']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $pricelistProduct['PricelistProduct']['id']), array(), __('Are you sure you want to delete # %s?', $pricelistProduct['PricelistProduct']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+		<?php
+		foreach($pricelistProducts as $idx => $pricelistProduct)
+		{
+			?>
+			<tr>
+				<td class="text-center"><?php echo $pricelistProduct["Product"]["name"]; ?></td>
+				<td class="text-center">$<?php echo $pricelistProduct["PricelistProduct"]["unit_price"]; ?></td>
+				<td class="text-center"><?php echo $pricelistProduct["PricelistProduct"]["tax"]; ?></td>
+				<td class="text-center"><?php echo $pricelistProduct["PricelistProduct"]["startdt"]; ?></td>
+				<td class="text-center"><?php echo $pricelistProduct["PricelistProduct"]["enddt"]; ?></td>
+				<td class="text-center">
+					<div class="btn-group btn-group-xs">
+						<?php
+						echo $this->AclView->link(  '<i class="fa fa-eye"></i>'.__(''),
+						array('plugin' => $this->params['plugin'],
+						'prefix' => null,
+						'admin' => $this->params['admin'],
+						'controller' => $this->params['controller'],
+						'action' => 'view', $pricelistProduct["PricelistProduct"]["id"]
+					),
+					array('escape' => false, 'class' => array('btn btn-info')));
+					?>
+				</div>
+			</td>
+		</tr>
+		<?php
+	}
 	?>
-	</div>
+</tbody>
+</table>
+<!-- END All Orders Content -->
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Pricelist Product'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Pricelists'), array('controller' => 'pricelists', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Pricelist'), array('controller' => 'pricelists', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Products'), array('controller' => 'products', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Product'), array('controller' => 'products', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<!-- END All Orders Block -->
+<?php
+echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
+?>
+<!-- Load and execute javascript code used only in this page -->
+
+<script type="text/javascript">
+$(function() {
+	TablesDatatables.init();
+});
+</script>

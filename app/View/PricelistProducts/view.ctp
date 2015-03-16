@@ -1,3 +1,22 @@
+<script type="text/javascript">
+$(document).ready(function ()
+{
+    //$('#page-container').removeClass('sidebar-visible-xs');
+    //$('#page-container').removeClass('sidebar-visible-lg');
+
+    $('#page-container').attr('class', 'sidebar-no-animations');
+    $('header').hide();
+    /* Add placeholder attribute to the search input */
+    $('.dataTables_filter input').attr('placeholder', 'Search');
+});
+</script>
+
+<!-- eCommerce Order View Header -->
+<div class="content-header">
+    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+</div>
+<!-- END eCommerce Order View Header -->
+
 <div class="pricelistProducts view">
 <h2><?php echo __('Pricelist Product'); ?></h2>
 	<dl>
