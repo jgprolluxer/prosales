@@ -203,10 +203,63 @@ class NotesController extends AppController {
         try {
             $arrayConditions = array();
             $results = array();
-            switch ($this->request->query['format'])
-            {
+            switch ($this->request->query['format']) {
                 case 'addNoteFromAccount':
+                    $this->Note->save($this->request->query['noteValue']);
                     break;
+            }
+        } catch (Exception $ex) {
+            $response = array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'xData' => array()
+            );
+        }
+        echo json_encode($response);
+    }
+
+    public function jsNote() {
+        Configure::write('debug', 0);
+        $this->autoRender = false;
+        $this->layout = 'ajax';
+
+        $response = array(
+            'success' => true,
+            'message' => 'NOTHING',
+            'xData' => array()
+        );
+
+        $this->log("el note", "debug"); // app/tmp/logs/debug.log
+        $this->log($this->request->data, "debug");
+
+
+        $this->log("los parametros en get", "debug");
+        $this->log($this->request->query, "debug");
+
+        try {
+            if (isset($this->request->query['CRUD_operation'])) {
+                $operation = $this->request->query['CRUD_operation'];
+            } else {
+                throw new Exception(__('NOTE_CONTROLLER') . ' ' . __('CRUD_OPERATION_NOT_SET'));
+            }
+            switch ($operation) {
+                case "CREATE":
+                    $this->Note->recursive = -1;
+                    $this->Note->create();
+                    if ($this->Note->save($this->request->data)) {
+                        $response = array(
+                            'success' => true,
+                            'message' => 'Correcto',
+                            'xData' => $this->Note->read(null, $this->Note->getLastInsertID())
+                        );
+                    } else {
+                        $response = array(
+                            'success' => false,
+                            'message' => json_encode($this->Note->validationErrors),
+                            'xData' => array()
+                        );
+                    }
+                    break;                
             }
         } catch (Exception $ex) {
             $response = array(

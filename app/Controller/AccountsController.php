@@ -40,6 +40,35 @@ class AccountsController extends AppController {
         $options = array('conditions' => array('Account.' . $this->Account->primaryKey => $id));
         $this->request->data = $this->Account->find('first', $options);
         $this->set('account', $this->Account->find('first', $options));
+        
+        $this->loadModel('Note');
+        $this->Note->recursive = 1;
+        $notes = $this->Note->find('all', array(
+            'conditions' => array(
+                'Note.id >=' => 1,
+                'Note.objectType =' => 'Account',
+                'Note.objectid =' => $id
+            ),
+            'order' => array('created desc')
+        ));
+        
+        $this->loadModel('Order');
+        $orders = $this->Order->find('all', array(
+			'fields' => array(
+				'IFNULL(SUM(Order.account_id),0) total'
+			),
+			'conditions' => array(
+				'Order.account_id =' => $id,
+                                'Order.status =' => 'closed'
+			)
+		));
+        
+        $sumOrd = $orders['0']['0']['total'];
+        
+        $this->log("Orders ", "debug");
+        $this->log($this->request->data['Team']['name'], "debug");
+        
+        $this->set(compact('notes', 'sumOrd'));
     }
 
     /**
