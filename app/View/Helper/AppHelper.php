@@ -159,6 +159,31 @@ class AppHelper extends Helper
         $modal .= '<!-- END asociateUserModal -->';
         return ($modal);
     }
+    
+    function drawAccountAddressAdd() {
+
+        $modal = '';
+        $modal .= '';
+        $modal .= '<!-- asociateUserModal -->';
+        $modal .= '<div id="addAccountAddress" class="modal animation-hatch" tabindex="-1" role="dialog" aria-hidden="true">';
+        $modal .= '    <div class="modal-dialog">';
+        $modal .= '        <div class="modal-content">';
+        $modal .= '            <div class="modal-header">';
+        $modal .= '                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
+        $modal .= '                <h3 class="modal-title">Domicilio</h3>';
+        $modal .= '            </div>';
+        $modal .= '            <div class="modal-body">';
+        $modal .= $this->_View->element("Dialogs/accountaddress_add");
+        $modal .= '            </div>';
+        $modal .= '            <div class="modal-footer">';
+        $modal .= '                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>';
+        $modal .= '            </div>';
+        $modal .= '        </div>';
+        $modal .= '    </div>';
+        $modal .= '</div>';
+        $modal .= '<!-- END asociateUserModal -->';
+        return ($modal);
+    }
 
     function no2word($numero)
     {
