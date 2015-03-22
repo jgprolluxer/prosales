@@ -30,7 +30,7 @@ $(document).ready(function ()
 			'controller' => $this->params['controller'],
 			'action' => 'add'
 		),
-		array('escape' => false, 'class' => array('btn btn-info')));
+		array('escape' => false, 'class' => array('btn btn-info', 'animation-tossing', 'themed-background-spring')));
 		?>
 	</div>
 	<h2>Ventas</h2>
@@ -38,6 +38,7 @@ $(document).ready(function ()
 <!-- END All Orders Title -->
 
 <!-- All Orders Content -->
+<div class="table-responsive">
 <table id="example-datatable" class="table table-bordered table-striped table-vcenter">
 	<thead>
 		<tr>
@@ -91,6 +92,7 @@ $(document).ready(function ()
 	?>
 </tbody>
 </table>
+</div>
 <!-- END All Orders Content -->
 </div>
 <!-- END All Orders Block -->
