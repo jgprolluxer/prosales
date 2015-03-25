@@ -1,15 +1,26 @@
-<!-- Forms General Header -->
+<script type="text/javascript">
+$(document).ready(function ()
+{
+    //$('#page-container').removeClass('sidebar-visible-xs');
+    //$('#page-container').removeClass('sidebar-visible-lg');
+
+    $('#page-container').attr('class', 'sidebar-no-animations');
+    $('header').hide();
+    /* Add placeholder attribute to the search input */
+    $('.dataTables_filter input').attr('placeholder', 'Search');
+});
+</script>
+
+<!-- eCommerce Order View Header -->
 <div class="content-header">
-    <div class="header-section">
-        <h1>
-            <i class="gi gi-group"></i><?php echo __('PRICELIST_VIEW_HEAD_TITLE'); ?><br><small><?php echo __('PRICELIST_VIEW_HEAD_TITLE_SMALL'); ?></small>
-        </h1>
-    </div>
+    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
 </div>
+<!-- END eCommerce Order View Header -->
+
 <ul class="breadcrumb breadcrumb-top">
     <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
 </ul>
-<!-- END Forms General Header -->
+
 <!-- Normal Form Block -->
 <div class="block">
     <!-- Normal Form Title -->
@@ -95,3 +106,35 @@
         });
     });
 </script>
+<!-- Block Tabs -->
+<div class="block full">
+    <!-- Block Tabs Title -->
+    <div class="block-title">
+        <ul class="nav nav-tabs" data-toggle="tabs">
+            <?php
+            $painted = FALSE;
+            if ($this->AclView->hasAccess(array('controller' => 'PricelistProducts', 'action' => 'jsindexadmin')))
+            {
+                echo '<li class="' . ($painted ? '' : 'active') . '"><a href="#tab_products">'.__('ADMIN_PRICELIST_VIEW_TAB_PRODUCTS').'</a></li>';
+                $painted = TRUE;
+            }
+            ?>
+        </ul>
+    </div>
+    <!-- END Block Tabs Title -->
+    <!-- Tabs Content -->
+    <div class="tab-content">
+        <?php
+        $painted = FALSE;
+        if ($this->AclView->hasAccess(array('controller' => 'PricelistProducts', 'action' => 'jsindexadmin')))
+        {
+            echo '<div class="tab-pane ' . ($painted ? '' : 'active') . '" id="tab_products">';
+            echo $this->element('Datatables/pricelist_products');
+            echo '</div>';
+            $painted = TRUE;
+        }
+        ?>
+    </div>
+</div>
+<!-- END Tabs Content -->
+

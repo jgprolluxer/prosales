@@ -16,6 +16,11 @@ $(document).ready(function ()
     <?php echo $this->MenuBuilder->build('menu-header-pos');?>
 </div>
 <!-- END eCommerce Order View Header -->
+
+
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
 <!-- Normal Form Block -->
 <div class="block">
     <!-- Normal Form Title -->
@@ -88,14 +93,6 @@ $(document).ready(function ()
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRODUCT_EDIT_FORM_FIELD_DESCRIPTION')),
                 'class' => 'form-control',
                 'type' => 'textarea'
-            ));
-            ?>
-            <?php
-            echo $this->Form->input('status', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRODUCT_EDIT_FORM_FIELD_STATUS')),
-                'class' => 'form-control',
-                'type' => 'select',
-                'options' => $lovProductStatus
             ));
             ?>
             <div class="form-group">

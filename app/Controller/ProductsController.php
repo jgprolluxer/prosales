@@ -22,7 +22,7 @@ class ProductsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Product->recursive = 0;
+		$this->Product->recursive = 1;
 		$this->set('products', $this->Paginator->paginate());
 	}
 

@@ -14,7 +14,7 @@ class AclController extends AclAppController {
 	{
 	    parent :: beforeFilter();
 	    
-		$this->Auth->allow('*');
+		//$this->Auth->allow('*');
 	}
 	
 	

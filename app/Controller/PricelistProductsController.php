@@ -23,15 +23,65 @@ class PricelistProductsController extends AppController {
  */
 	public function index() {
 		$this->PricelistProduct->recursive = 1;
-		$pricelistID = $this->getPricelistID();
+		$daPriceListID = $this->getPricelistID();
 		$this->log('pricelistID');
-		$this->log($pricelistID);
+		$this->log($daPriceListID);
 		$pricelistProducts = $this->PricelistProduct->find('all', array(
 			'conditions' => array(
-				'PricelistProduct.pricelist_id =' => $pricelistID
+				'PricelistProduct.pricelist_id =' => $daPriceListID
 			)
 		));
 		$this->set('pricelistProducts', $pricelistProducts);
+	}
+
+
+	public function jsindex($pricelistID = null)
+	{
+		$this->autoRender = false;
+		$this->layout = 'ajax';
+
+		$arrayConditions = array(
+			'PricelistProduct.id >=' => 1
+		);
+		if(null !== $pricelistID)
+		{
+			$arrayConditions = array(
+				'PricelistProduct.id >=' => 1,
+				'Pricelist.id =' => $pricelistID
+			);
+		}
+
+		$this->paginate = array(
+			'fields' => array(
+				'PricelistProduct.id',
+				"CONCAT('<a href=\"" . Router::url("/Products/view/") . "', Product.id, '\">', Product.name ,'</a>') as productview",
+				'PricelistProduct.startdt',
+				'PricelistProduct.enddt',
+				'PricelistProduct.tax',
+				"CONCAT('<a href=\"" . Router::url("/PricelistProducts/view/") . "', PricelistProduct.id, '\" class=\"btn btn-xs btn-info\">', '<i class=\"fa fa-eye fa-fw\"></i>' ,'</a>') as pricelistview",
+			),
+			'conditions' => $arrayConditions
+		);
+
+		$this->DataTable->fields = array(
+			'PricelistProduct.id',
+			'0.productview',
+			'PricelistProduct.startdt',
+			'PricelistProduct.enddt',
+			'PricelistProduct.tax',
+			'0.pricelistview',
+		);
+
+		$this->DataTable->filterFields = array(
+			'PricelistProduct.id',
+			'Product.name',
+			'PricelistProduct.startdt',
+			'PricelistProduct.enddt',
+			'PricelistProduct.tax',
+			'PricelistProduct.tax',
+		);
+
+		echo json_encode($this->DataTable->getResponse());
 	}
 
 /**
@@ -46,7 +96,7 @@ class PricelistProductsController extends AppController {
 			throw new NotFoundException(__('Invalid pricelist product'));
 		}
 		$options = array('conditions' => array('PricelistProduct.' . $this->PricelistProduct->primaryKey => $id));
-		$this->set('pricelistProduct', $this->PricelistProduct->find('first', $options));
+		$this->request->data = $this->PricelistProduct->find('first', $options);
 	}
 
 /**
@@ -54,7 +104,11 @@ class PricelistProductsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($pricelistID = null) {
+		if(!$pricelistID)
+		{
+			throw new NotFoundException(__('Invalid pricelist'));
+		}
 		if ($this->request->is('post')) {
 			$this->PricelistProduct->create();
 			if ($this->PricelistProduct->save($this->request->data)) {
@@ -64,7 +118,7 @@ class PricelistProductsController extends AppController {
 				$this->Session->setFlash(__('The pricelist product could not be saved. Please, try again.'));
 			}
 		}
-		$pricelists = $this->PricelistProduct->Pricelist->find('list');
+		$pricelists = $this->PricelistProduct->Pricelist->read(null, $pricelistID);
 		$products = $this->PricelistProduct->Product->find('list');
 		$this->set(compact('pricelists', 'products'));
 	}
@@ -259,62 +313,6 @@ class PricelistProductsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-
-	private function getPricelistID()
-	{
-
-		try{
-			$uLogged = CakeSession::read('Auth.User');
-			if(isset($uLogged["Workstation"]["pricelist_id"]))
-			{
-				if(null !== $uLogged["Workstation"]["pricelist_id"] && 0 !== $uLogged["Workstation"]["pricelist_id"])
-				{
-					$this->loadModel('Pricelist');
-					$pricelist = $this->Pricelist->read(null, $uLogged["Workstation"]["pricelist_id"]);
-					if(StatusOfPricelist::Active == $pricelist["Pricelist"]["status"])
-					{
-						return $pricelist["Pricelist"]["id"];
-					} else
-					{
-						return 0;
-					}
-
-				} else
-				{
-					if(null !== $uLogged["Workstation"]["store_id"] && 0 !== $uLogged["Workstation"]["store_id"])
-					{
-						$this->loadModel('Store');
-						$store = $this->Store->read(null, $uLogged["Workstation"]["store_id"]);
-
-						if(null !== $store["Store"]["pricelist_id"] && 0 !== $store["Store"]["pricelist_id"] )
-						{
-							$this->loadModel('Pricelist');
-							$pricelist = $this->Pricelist->read(null, $store["Store"]["pricelist_id"]);
-
-							if(StatusOfPricelist::Active == $pricelist["Pricelist"]["status"])
-							{
-								return $pricelist["Pricelist"]["id"];
-							} else
-							{
-								return 0;
-							}
-
-						} else
-						{
-							return 0;
-						}
-
-					} else
-					{
-						return 0;
-					}
-				}
-			}
-		}catch(Exception $ex)
-		{
-			return 0;
-		}
-	}
 
 	public function jsfindPricelistProduct()
 	{

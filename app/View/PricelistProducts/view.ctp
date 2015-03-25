@@ -17,101 +17,139 @@ $(document).ready(function ()
 </div>
 <!-- END eCommerce Order View Header -->
 
-<div class="pricelistProducts view">
-<h2><?php echo __('Pricelist Product'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['updated']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated By'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['updated_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created By'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['created_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Pricelist'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($pricelistProduct['Pricelist']['name'], array('controller' => 'pricelists', 'action' => 'view', $pricelistProduct['Pricelist']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Product'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($pricelistProduct['Product']['name'], array('controller' => 'products', 'action' => 'view', $pricelistProduct['Product']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Unit Price'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['unit_price']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Tax'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['tax']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Priceinpoints'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['priceinpoints']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Startdt'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['startdt']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Enddt'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['enddt']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Disc Percent'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['disc_percent']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Disc Startdt'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['disc_startdt']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Disc Enddt'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['disc_enddt']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Maxdisc Percent'); ?></dt>
-		<dd>
-			<?php echo h($pricelistProduct['PricelistProduct']['maxdisc_percent']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- Normal Form Block -->
+<div class="block">
+    <!-- Normal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('Editar producto de la lista de precios');?></h2>
+    </div>
+    <!-- END Normal Form Title -->
+    <div class="block-content">
+        <!-- User Assist Content -->
+        <?php
+        echo $this->Form->create('PricelistProduct', array(
+            'onsubmit' => 'return false;',
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+            )));
+        ?>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('pricelist_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Lista de precios')),
+                'class' => 'form-control',
+                'type' => 'hidden',
+                'readonly' => 'readonly',
+                'value' => $this->request->data["Pricelist"]["id"]
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('pricelistName', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Lista de precios')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly',
+                'value' => $this->request->data["Pricelist"]["name"]
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('product_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Producto')),
+                'class' => 'form-control',
+                'type' => 'hidden',
+                'readonly' => 'readonly',
+                'value' => $this->request->data["Product"]["id"]
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('productName', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Producto')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly',
+                'value' => $this->request->data["Product"]["name"]
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('unit_price', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Precio unitario')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('tax', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('% Impuesto')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+         </div>
+         <div class="col-md-6">
+            <?php
+            echo $this->Form->input('startdt', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Fecha de inicio')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('enddt', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Fecha de fin')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+                <?php
+                echo $this->AclView->link(  __('Editar'),
+                    array('plugin' => $this->params['plugin'], 'prefix' => null,
+                        'admin' => $this->params['admin'], 'controller' => $this->params['controller'],
+                        'action' => 'edit', $this->request->data['PricelistProduct']['id']),
+                    array('escape' => false, 'class' => array('btn btn-warning')));
+                    ?>
+            </div>
+        </div>
+        </form>
+        <!-- END User Assist Content -->
+    </div>
+    <p class="text-muted"><?php echo __('Recuerde revisar todos los campos');?></p>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Pricelist Product'), array('action' => 'edit', $pricelistProduct['PricelistProduct']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Pricelist Product'), array('action' => 'delete', $pricelistProduct['PricelistProduct']['id']), array(), __('Are you sure you want to delete # %s?', $pricelistProduct['PricelistProduct']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Pricelist Products'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Pricelist Product'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Pricelists'), array('controller' => 'pricelists', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Pricelist'), array('controller' => 'pricelists', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Products'), array('controller' => 'products', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Product'), array('controller' => 'products', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<!-- END Normal Form Block -->
+<script type="text/javascript">
+/**
+*Prevent hit submit form
+*/
+$(document).ready(function()
+{
+  $(window).keydown(function(event)
+  {
+    if(event.keyCode == 13)
+    {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>

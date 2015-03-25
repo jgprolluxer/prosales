@@ -4,8 +4,7 @@
     array(
         'plugin' => $this->params['plugin'], 'prefix' => null,
         'admin' => $this->params['admin'], 'controller' => 'PricelistProducts',
-        'action' => 'add',
-        $this->request->data['Pricelist']['id']
+        'action' => 'add'
     ),
     array('escape' => false, 'class' => array('btn btn-info'))
 );
@@ -31,7 +30,7 @@
 <script type="text/javascript">
 $(document).ready(function()
 {
-    var url = qualifyURL("/PricelistProducts/jsindex/<?php echo $this->request->data['Pricelist']['id']; ?>/");
+    var url = qualifyURL("/PricelistProducts/jsindexadmin/<?php echo $this->request->data['Pricelist']['id']; ?>/");
     /* Initialize Bootstrap Datatables Integration */
     App.datatables();
 

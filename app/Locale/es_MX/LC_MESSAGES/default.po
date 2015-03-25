@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2015-03-05 16:57-0600\n"
+"PO-Revision-Date: 2015-03-25 12:03-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -114,8 +114,14 @@ msgstr "<i class='gi gi-shopping_cart'></i> Punto de Venta"
 msgid "MENU_HEADER_POS_LINK_ORDERS"
 msgstr "<i class='gi gi-shopping_cart'></i> Ventas"
 
+msgid "MENU_HEADER_POS_LINK_MY_PRODUCTS"
+msgstr "<i class='gi gi-shopping_bag'></i> Mis Productos"
+
 msgid "MENU_HEADER_POS_LINK_PRODUCTS"
 msgstr "<i class='gi gi-shopping_bag'></i> Productos"
+
+msgid "MENU_HEADER_POS_LINK_PRICELISTS"
+msgstr "<i class='gi gi-list'></i> Listas de precios"
 
 msgid "MENU_HEADER_POS_LINK_POS_LOGOUT"
 msgstr "<i class='fa fa-power-off'></i> Salir"

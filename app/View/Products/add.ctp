@@ -16,6 +16,11 @@ $(document).ready(function ()
     <?php echo $this->MenuBuilder->build('menu-header-pos');?>
 </div>
 <!-- END eCommerce Order View Header -->
+
+
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
 <!-- Normal Form Block -->
 <div class="block">
     <!-- Normal Form Title -->

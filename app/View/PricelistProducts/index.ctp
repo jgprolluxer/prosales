@@ -17,79 +17,73 @@ $(document).ready(function ()
 </div>
 <!-- END eCommerce Order View Header -->
 
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+
 <!-- All Orders Block -->
 <div class="block full">
 	<!-- All Orders Title -->
 	<div class="block-title">
 		<div class="block-options pull-right">
-			<?php
-			echo $this->AclView->link(  '<i class="fa fa-plus"></i> '.__('Agregar productos'),
-			array('plugin' => $this->params['plugin'],
-			'prefix' => null,
-			'admin' => $this->params['admin'],
-			'controller' => $this->params['controller'],
-			'action' => 'add'
-		),
-		array('escape' => false, 'class' => array('btn btn-info')));
-		?>
+		</div>
+		<h2>Productos</h2>
 	</div>
-	<h2>Productos</h2>
-</div>
-<!-- END All Orders Title -->
+	<!-- END All Orders Title -->
 
-<!-- All Orders Content -->
-<table id="example-datatable" class="table table-bordered table-striped table-vcenter">
-	<thead>
-		<tr>
-			<th class="text-center">Nombre</th>
-			<th class="text-center">Precio</th>
-			<th class="text-center">Impuesto %</th>
-			<th class="text-center">Inicio</th>
-			<th class="text-center">Fin</th>
-			<th class="text-center">Acciones</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php
-		foreach($pricelistProducts as $idx => $pricelistProduct)
-		{
-			?>
+	<!-- All Orders Content -->
+	<table id="example-datatable" class="table table-bordered table-striped table-vcenter">
+		<thead>
 			<tr>
-				<td class="text-center"><?php echo $pricelistProduct["Product"]["name"]; ?></td>
-				<td class="text-center">$<?php echo $pricelistProduct["PricelistProduct"]["unit_price"]; ?></td>
-				<td class="text-center"><?php echo $pricelistProduct["PricelistProduct"]["tax"]; ?></td>
-				<td class="text-center"><?php echo $pricelistProduct["PricelistProduct"]["startdt"]; ?></td>
-				<td class="text-center"><?php echo $pricelistProduct["PricelistProduct"]["enddt"]; ?></td>
-				<td class="text-center">
-					<div class="btn-group btn-group-xs">
-						<?php
-						echo $this->AclView->link(  '<i class="fa fa-eye"></i>'.__(''),
-						array('plugin' => $this->params['plugin'],
-						'prefix' => null,
-						'admin' => $this->params['admin'],
-						'controller' => $this->params['controller'],
-						'action' => 'view', $pricelistProduct["PricelistProduct"]["id"]
-					),
-					array('escape' => false, 'class' => array('btn btn-info')));
-					?>
-				</div>
-			</td>
-		</tr>
-		<?php
-	}
+				<th class="text-center">Nombre</th>
+				<th class="text-center">Precio</th>
+				<th class="text-center">Impuesto %</th>
+				<th class="text-center">Inicio</th>
+				<th class="text-center">Fin</th>
+				<th class="text-center">Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+			foreach($pricelistProducts as $idx => $pricelistProduct)
+			{
+				?>
+				<tr>
+					<td class="text-center"><?php echo $pricelistProduct["Product"]["name"]; ?></td>
+					<td class="text-center">$<?php echo $pricelistProduct["PricelistProduct"]["unit_price"]; ?></td>
+					<td class="text-center"><?php echo $pricelistProduct["PricelistProduct"]["tax"]; ?></td>
+					<td class="text-center"><?php echo $pricelistProduct["PricelistProduct"]["startdt"]; ?></td>
+					<td class="text-center"><?php echo $pricelistProduct["PricelistProduct"]["enddt"]; ?></td>
+					<td class="text-center">
+						<div class="btn-group btn-group-xs">
+							<?php
+							echo $this->AclView->link(  '<i class="fa fa-eye"></i>'.__(''),
+								array('plugin' => $this->params['plugin'],
+									'prefix' => null,
+									'admin' => $this->params['admin'],
+									'controller' => 'Products', // harcoded products controller to view product
+									'action' => 'view', $pricelistProduct["Product"]["id"]
+									),
+								array('escape' => false, 'class' => array('btn btn-info')));
+								?>
+							</div>
+						</td>
+					</tr>
+					<?php
+				}
+				?>
+			</tbody>
+		</table>
+		<!-- END All Orders Content -->
+	</div>
+	<!-- END All Orders Block -->
+	<?php
+	echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
 	?>
-</tbody>
-</table>
-<!-- END All Orders Content -->
-</div>
-<!-- END All Orders Block -->
-<?php
-echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
-?>
-<!-- Load and execute javascript code used only in this page -->
+	<!-- Load and execute javascript code used only in this page -->
 
-<script type="text/javascript">
-$(function() {
-	TablesDatatables.init();
-});
-</script>
+	<script type="text/javascript">
+	$(function() {
+		TablesDatatables.init();
+	});
+	</script>

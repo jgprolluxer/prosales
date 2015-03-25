@@ -17,6 +17,10 @@ $(document).ready(function ()
 </div>
 <!-- END eCommerce Order View Header -->
 
+
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
 <!-- Interactive Block -->
 <div class="block">
     <!-- Interactive Title -->
