@@ -49,7 +49,6 @@ class AppController extends Controller
     );
     public $helpers = array('Html', 'Form', 'Session', 'AclView', 'Jquery', 'Navigation', 'Taskflow', 'MenuBuilder.MenuBuilder');
     public $appLangConf = 'es_MX';
-    public $pricelistID = 0;
 
     public function beforeRender()
     {
@@ -92,7 +91,7 @@ class AppController extends Controller
         $this->set('relObjType', $relObjType);
         $this->set('relObjId', $relObjId);
 
-        //debug($this->params);
+        $this->set('pricelistID', $this->getPricelistID());
     }
 
     public function beforeFilter()
@@ -185,7 +184,7 @@ class AppController extends Controller
         return $appMenu;
     }
 
-    public function getPricelistID()
+    private function getPricelistID()
     {
 
         try{

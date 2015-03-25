@@ -23,7 +23,7 @@ $(document).ready(function ()
 	<div class="block-title">
 		<div class="block-options pull-right">
 			<?php
-			echo $this->AclView->link(  '<i class="fa fa-plus"></i> '.__('Punto de venta'),
+			echo $this->AclView->link(  '<i class="fa fa-plus"></i> '.__('Nueva venta rapida'),
 			array('plugin' => $this->params['plugin'],
 			'prefix' => null,
 			'admin' => $this->params['admin'],

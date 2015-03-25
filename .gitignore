@@ -79,3 +79,5 @@ app/tmp/cache/persistent/controllers_hashes.txt
 app/tmp/logs/error.log
 
 app/tmp/logs/debug.log
+
+app/Config/database.php
