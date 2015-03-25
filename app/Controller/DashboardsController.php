@@ -37,7 +37,49 @@ class DashboardsController extends AppController {
             ),
             'group' => array('Order.created')
         ));
-        debug($salesToday);
+        $totalSaleToday = 0;
+        foreach ($salesToday as $key => $saleToday)
+        {
+            $totalSaleToday += $saleToday["0"]["total"];
+        }
+
+        $salesToday = $this->Order->find('all', array(
+            'fields' => array(
+                'Order.created',
+                'IFNULL(SUM(Order.total_amt),0) total'
+            ),
+            'conditions' => array(
+                'Order.status' => array(StatusOfOrder::Open),
+                'Order.created >=' => $toDay . ' 00:00:00',
+                'Order.created <=' => $toDay . ' 23:59:59'
+            ),
+            'group' => array('Order.created')
+        ));
+        $totalOpenSaleToday = 0;
+        foreach ($salesToday as $key => $saleToday)
+        {
+            $totalOpenSaleToday += $saleToday["0"]["total"];
+        }
+
+        $salesToday = $this->Order->find('all', array(
+            'fields' => array(
+                'Order.created',
+                'IFNULL(SUM(Order.total_amt),0) total'
+            ),
+            'conditions' => array(
+                'Order.status' => array(StatusOfOrder::Cancelled),
+                'Order.created >=' => $toDay . ' 00:00:00',
+                'Order.created <=' => $toDay . ' 23:59:59'
+            ),
+            'group' => array('Order.created')
+        ));
+        $totalCancelledSaleToday = 0;
+        foreach ($salesToday as $key => $saleToday)
+        {
+            $totalCancelledSaleToday += $saleToday["0"]["total"];
+        }        
+
+        $this->set(compact('totalSaleToday', 'totalOpenSaleToday', 'totalCancelledSaleToday'));
     }
 
     public function beforeFilter() {

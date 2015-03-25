@@ -22,17 +22,49 @@ $(document).ready(function ()
 </ul>
 <!-- Normal Form Block -->
 <div class="row">
-    <!-- Widget -->
-    <a href="/Orders" class="widget widget-hover-effect1">
-        <div class="widget-simple">
-            <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
-                <i class="gi gi-usd"></i>
+    <div class="col-md-3">
+        <!-- Widget -->
+        <a href="/Orders" class="widget widget-hover-effect1">
+            <div class="widget-simple">
+                <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
+                    <i class="gi gi-usd"></i>
+                </div>
+                <h3 class="widget-content text-right animation-pullDown">
+                    <strong>$</strong><?php echo $totalSaleToday; ?><br>
+                    <small>Ventas el día de hoy</small>
+                </h3>
             </div>
-            <h3 class="widget-content text-right animation-pullDown">
-                <strong>$</strong><br>
-                <small>Ventas el día de hoy</small>
-            </h3>
-        </div>
-    </a>
-    <!-- END Widget -->
+        </a>
+        <!-- END Widget -->
+    </div>
+    <div class="col-md-3">
+        <!-- Widget -->
+        <a href="/Orders" class="widget widget-hover-effect1">
+            <div class="widget-simple">
+                <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
+                    <i class="gi gi-usd"></i>
+                </div>
+                <h3 class="widget-content text-right animation-pullDown">
+                    <strong>$</strong><?php echo $totalOpenSaleToday; ?><br>
+                    <small>Ventas no cerradas hoy</small>
+                </h3>
+            </div>
+        </a>
+        <!-- END Widget -->
+    </div>
+    <div class="col-md-3">
+        <!-- Widget -->
+        <a href="/Orders" class="widget widget-hover-effect1">
+            <div class="widget-simple">
+                <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
+                    <i class="gi gi-usd"></i>
+                </div>
+                <h3 class="widget-content text-right animation-pullDown">
+                    <strong>$</strong><?php echo $totalCancelledSaleToday; ?><br>
+                    <small>Ventas canceladas hoy</small>
+                </h3>
+            </div>
+        </a>
+        <!-- END Widget -->
+    </div>
 </div>
