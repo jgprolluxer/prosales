@@ -1,8 +1,12 @@
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
-<script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
-<script type="text/javascript" src="/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+<?php 
+echo $this->Html->script("/bower_components/moment/min/moment.min.js");
+echo $this->Html->script("/bower_components/bootstrap-daterangepicker/daterangepicker.js");
+
+echo $this->Html->css('/bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css');
+
+echo $this->Html->script("/js/plugins/highcharts/highcharts.js");
+echo $this->Html->script("/js/plugins/highcharts/modules/exporting.js");
+?>
 <input type="hidden" id="rptStartDT" value="<?php echo $startDt; ?>">
 <input type="hidden" id="rptEndDT" value="<?php echo $endDt; ?>">
 <!-- Forms General Header -->
@@ -29,6 +33,7 @@
 			</a>
 		</div>
 	</div>
+    <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-3">
             <ul class="nav nav-pills nav-stacked" data-toggle="tabs">

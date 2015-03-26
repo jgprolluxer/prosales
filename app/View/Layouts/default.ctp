@@ -74,8 +74,8 @@
         echo $this->Html->script("/bower_components/moment/moment.js");
         echo $this->Html->script("/bower_components/angular-moment/angular-moment.js");
         echo $this->Html->script("/js/front-app.js");
+        echo $this->Html->script("/js/ui-bootstrap-tpls-0.12.0.js");
         ?>
-        <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
         <?php
         echo $this->Html->script('/template_assets/plugins/bootstrap/js/bootstrap2-typeahead.min.js');
         ?>

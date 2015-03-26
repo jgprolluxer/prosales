@@ -31,7 +31,7 @@ $(document).ready(function ()
                 </div>
                 <h3 class="widget-content text-right animation-pullDown">
                     <strong>$</strong><?php echo $totalSaleToday; ?><br>
-                    <small>Ventas el día de hoy</small>
+                    <small>Ventas cerradas hoy</small>
                 </h3>
             </div>
         </a>
@@ -46,7 +46,7 @@ $(document).ready(function ()
                 </div>
                 <h3 class="widget-content text-right animation-pullDown">
                     <strong>$</strong><?php echo $totalOpenSaleToday; ?><br>
-                    <small>Ventas no cerradas hoy</small>
+                    <small>Ventas abiertas hoy</small>
                 </h3>
             </div>
         </a>
