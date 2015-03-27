@@ -73,9 +73,9 @@
         echo $this->Html->script("/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js");
         echo $this->Html->script("/bower_components/angular-datatables/dist/angular-datatables.min.js");
         echo $this->Html->script("/bower_components/angular-moment/angular-moment.js");
-        echo $this->Html->script("/bower_components/angular-animate/angular-animate.min.js");
-        echo $this->Html->script("/bower_components/angular-strap/dist/my-angular-strap.min.js");
-        echo $this->Html->script("/bower_components/angular-strap/dist/my-angular-strap.tpl.min.js");
+        //echo $this->Html->script("/bower_components/angular-animate/angular-animate.min.js");
+        //echo $this->Html->script("/bower_components/angular-strap/dist/my-angular-strap.min.js");
+        //echo $this->Html->script("/bower_components/angular-strap/dist/my-angular-strap.tpl.min.js");
         echo $this->Html->script("/js/ui-bootstrap-tpls-0.12.0.js");
         echo $this->Html->script("/js/front-app.js");
         ?>

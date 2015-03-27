@@ -1,6 +1,6 @@
 angular.module('prosales-app',
     [
-    'mgcrea.ngStrap',
+    //'mgcrea.ngStrap',
     'ngRoute',
     'pascalprecht.translate',
     'datatables',
