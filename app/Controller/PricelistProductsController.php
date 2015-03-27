@@ -313,57 +313,68 @@ class PricelistProductsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-
-	public function jsfindPricelistProduct()
+	public function jsPricelistProduct()
 	{
-		Configure::write('debug', 0);
-		$this->autoRender = false;
-		$this->layout = 'ajax';
+        Configure::write('debug', 0);
+        $this->autoRender = false;
+        $this->layout = 'ajax';
 
-		$arrayConditions = array();
-		$response = array();
-		$results = array();
-		try
-		{
-			switch ($this->request->query['format'])
-			{
-				case 'POStypeahead':
-					{
-						$pricelistID = $this->request->query['pricelistID'];
+        $response = array(
+            'success' => true,
+            'message' => 'NOTHING',
+            'xData' => array()
+        );
+
+        try {
+            if (isset($this->request->query['CRUD_operation'])) {
+                $operation = $this->request->query['CRUD_operation'];
+            } else {
+                throw new Exception(__('PRICELISTPRODUCT_CONTROLLER') . ' ' . __('CRUD_OPERATION_NOT_SET'));
+            }
+            switch ($operation)
+            {
+                case "CREATE":
+                    break;
+                case "READ":
 						$this->PricelistProduct->recursive = 3;
-						$arrayConditions = array(
-							'PricelistProduct.id >= ' => 1,
-							'Pricelist.id = ' => $pricelistID,
-							'PricelistProduct.status' => array(StatusOfPricelistProduct::Active),
-                            'Product.status' => array(StatusOfProduct::Active)
-						);
+						$_conditions = array();
+						if(isset($this->request->data["conditions"]))
+						{
+							$_conditions = $this->request->data["conditions"];
+						}
+						$arrayConditions = array();
+
+						foreach ($_conditions as $key => $_condition)
+						{
+							$arrayConditions += array($_condition["condField"] => $_condition["condValue"]);
+						}
+						$this->log('arrayConditions');
+						$this->log($arrayConditions);
+
 						$results = $this->PricelistProduct->find('all', array(
 							'conditions' => $arrayConditions
 						));
-						foreach ($results as $key => $value)
-						{
-							$rd[$key]["id"] = $value["Product"]["id"];
-							$rd[$key]["value"] = $value["Product"]["name"];
-						}
 						$response = array(
 							'success' => true,
-							'xData' => $rd,
+							'xData' => $results,
 							'message' => 'Correcto'
 						);
-					}
-					break;
-				default :
-					break;
-			}
-		} catch (Exception $ex)
-		{
-			$response = array(
-				'success' => false,
-				'message' => $ex->getMessage(),
-				'xData' => array()
-			);
-		}
-		echo json_encode($response);
+                	break;
+                case "UPDATE":
+                	break;
+                case "DELETE":
+                	break;
+            }
+        } catch (Exception $ex)
+        {
+            $response = array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'xData' => array()
+            );
+        }
+        echo json_encode($response);
+
 	}
 
 	private function getPricelistID()

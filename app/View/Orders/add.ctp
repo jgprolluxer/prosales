@@ -22,22 +22,6 @@
 <!-- END Forms General Header -->
 <div class="row">
     <div class="col-md-8">
-        <div id="icon-gen" class="block full">
-            <!-- Default Tabs -->
-            <ul class="nav nav-tabs push" data-toggle="tabs">
-                <li class="active"><a href="#tab_SearchBarCode">Código de barras</a></li>
-                <li><a href="#tab_SearchProductName">Nombre de producto</a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="tab_SearchBarCode">
-                    <input type="text" ng-disabled="newOrder.Order.total_amt <= totalPayments && totalPayments != 0 " id="productBarcodeSearcher" name="productBarcodeSearcher" placeholder="No busca nada aun..." class="form-control">
-                </div>
-                <div class="tab-pane" id="tab_SearchProductName">
-                    <input type="text" ng-disabled="newOrder.Order.total_amt <= totalPayments && totalPayments != 0 " id="productSearcher" name="productSearcher" placeholder="Buscar producto..." class="form-control">
-                </div>
-            </div>
-            <!-- END Default Tabs -->
-        </div>
         <!-- Products Block -->
         <div class="block">
             <!-- Products Title -->
@@ -47,6 +31,27 @@
             <!-- END Products Title -->
             <!-- Products Content -->
             <div class="table-responsive">
+                <div id="icon-gen" class="block full">
+                    <!-- Default Tabs -->
+                    <ul class="nav nav-tabs push" data-toggle="tabs">
+                        <li class="active"><a href="#tab_SearchBarCode">Código de barras</a></li>
+                        <li><a href="#tab_SearchProductName">Nombre de producto</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_SearchBarCode">
+                            <input type="text" ng-disabled="newOrder.Order.total_amt <= totalPayments && totalPayments != 0 " id="productBarcodeSearcher" name="productBarcodeSearcher" placeholder="No busca nada aun..." class="form-control">
+                        </div>
+                        <div class="tab-pane" id="tab_SearchProductName">
+<!-- angularstrap -->
+<!-- <input type="text" class="form-control" ng-model="selectedProduct"  data-animation="am-flip-x" ng-options="sproduct.Product.name as sproduct.Product.name for sproduct in loadProductNames($viewValue)" id="productSearcher" placeholder="Nombre del producto..." bs-typeahead> -->
+<!-- uibootstrap -->
+<input type="text" class="form-control" ng-model="selectedProduct"  data-animation="am-flip-x" typeahead-on-select="processSelectedProduct($item)" typeahead="sproduct.Product.name as sproduct.Product.name for sproduct in loadProductNames($viewValue)" id="productSearcher" placeholder="Nombre del producto..." >
+
+
+                        </div>
+                    </div>
+                    <!-- END Default Tabs -->
+                </div>
                 <table class="table table-bordered table-vcenter" datatable="ng" dt-options="dtOrderProductsOptions" >
                     <thead>
                     <tr>

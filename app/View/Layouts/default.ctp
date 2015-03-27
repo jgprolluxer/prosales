@@ -64,20 +64,20 @@
         <?php
         echo $this->Html->script("/template_assets/js/vendor/modernizr-2.7.1-respond-1.4.2.min.js");
         echo $this->Html->script("/template_assets/js/vendor/jquery-1.11.1.min.js");
+        echo $this->Html->script("/bower_components/datatables/media/js/jquery.dataTables.min.js");
+        echo $this->Html->script("/bower_components/moment/moment.js");
         echo $this->Html->script("/bower_components/angular/angular.js");
         echo $this->Html->script("/bower_components/angular-route/angular-route.js");
         echo $this->Html->script("/bower_components/angular-translate/angular-translate.js");
         echo $this->Html->script("/bower_components/angular-translate-loader-url/angular-translate-loader-url.js");
         echo $this->Html->script("/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js");
-        echo $this->Html->script("/bower_components/datatables/media/js/jquery.dataTables.min.js");
         echo $this->Html->script("/bower_components/angular-datatables/dist/angular-datatables.min.js");
-        echo $this->Html->script("/bower_components/moment/moment.js");
         echo $this->Html->script("/bower_components/angular-moment/angular-moment.js");
-        echo $this->Html->script("/js/front-app.js");
+        echo $this->Html->script("/bower_components/angular-animate/angular-animate.min.js");
+        echo $this->Html->script("/bower_components/angular-strap/dist/my-angular-strap.min.js");
+        echo $this->Html->script("/bower_components/angular-strap/dist/my-angular-strap.tpl.min.js");
         echo $this->Html->script("/js/ui-bootstrap-tpls-0.12.0.js");
-        ?>
-        <?php
-        echo $this->Html->script('/template_assets/plugins/bootstrap/js/bootstrap2-typeahead.min.js');
+        echo $this->Html->script("/js/front-app.js");
         ?>
         <style type="text/css">
             div.required label:after {

@@ -60,7 +60,11 @@ angular.module('prosales-app')
         $scope.accounts = null;
 
         ////// Initialize pricelist
-        $scope.pricelist = {};
+        $scope.pricelist = {
+            Pricelist : {
+                id : 0
+            }
+        };
 
         //////Initialize New Order Object
         $scope.newOrder = {
@@ -370,70 +374,21 @@ angular.module('prosales-app')
                 console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
             });
         };
-
+        $scope.selectedProduct = "";
         //////Load typeahead products to product searcher control
-        $scope.loadProductNames = function ()
+        $scope.loadProductNames = function( sexpr )
         {
-            $scope.enableProcessLoading();
-            var pricelistID = $scope.pricelist.Pricelist.id;
-            $http.post("/PricelistProducts/jsfindPricelistProduct/?format=POStypeahead&pricelistID="+pricelistID+'', null).success(function (data)
+            var _conditions = [
+            { condField : "PricelistProduct.id >= " , condValue : 1 },
+            { condField : "Pricelist.id = " , condValue : $scope.pricelist.Pricelist.id },
+            { condField : "PricelistProduct.status" , condValue : 'active' },
+            { condField : "Product.status" , condValue : 'active' },
+            { condField : "Product.name LIKE" , condValue : '%'+sexpr+'%' }
+            ];
+            return $http.post('/PricelistProducts/jsPricelistProduct/?CRUD_operation=READ', {conditions:_conditions})
+            .then(function(res)
             {
-                $scope.disableProcessLoading();
-                if (data)
-                {
-                    if (data["success"])
-                    {
-                        var products;
-                        var map;
-                        var selectedProduct;
-                        $('#productSearcher').typeahead({
-                            source: function (query, process) {
-                                products = [];
-                                map = {};
-                                $.each(data["xData"], function (i, product) {
-                                    map[product.value] = product;
-                                    products.push(product.value);
-                                });
-                                process(products);
-                            }
-                            ,
-                            updater: function (item) {
-                                selectedProduct = map[item].id;
-                                $scope.enableProcessLoading();
-                                $scope.processSelectedProduct(selectedProduct);
-                                return item;
-                            },
-                            matcher: function (item) {
-                                if (item.toLowerCase().indexOf(this.query.trim().toLowerCase()) !== -1) {
-                                    return true;
-                                }
-                            },
-                            sorter: function (items) {
-                                return items.sort();
-                            },
-                            highlighter: function (item) {
-                                var regex = new RegExp('(' + this.query + ')', 'gi');
-                                return item.replace(regex, "<strong>$1</strong>");
-                            }
-                        });
-                    } else
-                    {
-                        alert(data["message"]);
-                    }
-                }
-            }).error(function(data, status, headers, config)
-            {
-                $scope.disableProcessLoading();
-                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
-                    type: 'danger',
-                    delay: 0,
-                    allow_dismiss: false,
-                    from: "top",
-                    align: "center"
-                });
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+                return res.data["xData"];
             });
         };
 
@@ -503,12 +458,12 @@ angular.module('prosales-app')
         };
 
         //////Add new product to order
-        $scope.processSelectedProduct = function (productID)
+        $scope.processSelectedProduct = function (selectedProduct)
         {
             $scope.enableProcessLoading();
             var orderProduct = {
                 OrderProduct: {
-                    product_id:     productID,
+                    product_id:     selectedProduct.Product.id,
                     order_id:       $scope.newOrder.Order.id,
                     pricelist_id:   $scope.pricelist.Pricelist.id
                 }
@@ -638,8 +593,6 @@ angular.module('prosales-app')
         {
             ////// load accounts
             $scope.loadAccounts();
-            ////// load products
-            $scope.loadProductNames();
             ////// load Order
             $scope.refreshOrder();
             ////// load products
