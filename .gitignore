@@ -81,3 +81,5 @@ app/tmp/logs/error.log
 app/tmp/logs/debug.log
 
 app/Config/database.php
+
+app/Config/database.php
