@@ -3,8 +3,7 @@ $(document).ready(function ()
 {
     //$('#page-container').removeClass('sidebar-visible-xs');
     //$('#page-container').removeClass('sidebar-visible-lg');
-
-    $('#page-container').attr('class', 'sidebar-no-animations');
+    $('#page-container').attr('class', 'sidebar-no-animations footer-fixed');
     $('header').hide();
     /* Add placeholder attribute to the search input */
     $('.dataTables_filter input').attr('placeholder', 'Search');
@@ -13,10 +12,11 @@ $(document).ready(function ()
 
 <!-- eCommerce Order View Header -->
 <div class="content-header">
-    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+    <div class="header-section">
+        <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+    </div>
 </div>
 <!-- END eCommerce Order View Header -->
-
 <ul class="breadcrumb breadcrumb-top">
     <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
 </ul>
@@ -25,14 +25,12 @@ $(document).ready(function ()
 <div class="row">
     <div class="col-md-8">
         <!-- Products Block -->
-        <div class="block">
+        <div class="block full">
             <!-- Products Title -->
             <div class="block-title">
                 <h2><i class="fa fa-shopping-cart"></i> <strong>Productos</strong></h2>
             </div>
             <!-- END Products Title -->
-            <!-- Products Content -->
-            <div class="table-responsive">
                 <div id="icon-gen" class="block full">
                     <!-- Default Tabs -->
                     <ul class="nav nav-tabs push" data-toggle="tabs">
@@ -54,6 +52,8 @@ $(document).ready(function ()
                     </div>
                     <!-- END Default Tabs -->
                 </div>
+            <!-- Products Content -->
+            <div class="table-responsive">
                 <table class="table table-bordered table-vcenter" datatable="ng" dt-options="dtOrderProductsOptions" >
                     <thead>
                     <tr>
@@ -206,9 +206,6 @@ $(document).ready(function ()
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="jumbotron"></div>
 </div>
 <script type="text/ng-template" id="AccountModalContent.html">
     <div class="modal-header">

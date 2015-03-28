@@ -4,7 +4,7 @@ $(document).ready(function ()
     //$('#page-container').removeClass('sidebar-visible-xs');
     //$('#page-container').removeClass('sidebar-visible-lg');
 
-    $('#page-container').attr('class', 'sidebar-no-animations');
+    $('#page-container').attr('class', 'sidebar-no-animations footer-fixed');
     $('header').hide();
     /* Add placeholder attribute to the search input */
     $('.dataTables_filter input').attr('placeholder', 'Search');
@@ -13,10 +13,11 @@ $(document).ready(function ()
 
 <!-- eCommerce Order View Header -->
 <div class="content-header">
-    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+	<div class="header-section">
+    	<?php echo $this->MenuBuilder->build('menu-header-pos');?>
+	</div>
 </div>
 <!-- END eCommerce Order View Header -->
-
 <ul class="breadcrumb breadcrumb-top">
     <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
 </ul>
@@ -24,18 +25,36 @@ $(document).ready(function ()
 <div class="row text-center">
 	<div class="col-sm-6 col-lg-3">
 		<div class="widget">
-			<div class="widget-extra themed-background-success">
+			<div class="widget-extra themed-background-info">
 				<h4 class="widget-content-light"><strong><?php echo $order["Order"]["folio"] ?></strong></h4>
 			</div>
-			<div class="widget-extra-full"><span class="h2 text-success animation-expandOpen"><?php echo $order["Order"]["created"];?></span></div>
+			<div class="widget-extra-full"><span class="h2 text-info animation-expandOpen"><?php echo $order["Order"]["created"];?></span></div>
 		</div>
 	</div>
 	<div class="col-sm-6 col-lg-3">
 		<div class="widget">
-			<div class="widget-extra themed-background-success">
+			<div class="widget-extra themed-background-info">
 				<h4 class="widget-content-light"><i class="fa fa-paypal"></i> <strong>Total</strong></h4>
 			</div>
-			<div class="widget-extra-full"><span class="h2 text-success animation-expandOpen"> $<?php echo $order["Order"]["total_amt"];?></span></div>
+			<div class="widget-extra-full"><span class="h2 text-info animation-expandOpen"> <?php echo "$".$order["Order"]["total_amt"];?></span></div>
+		</div>
+	</div>
+	<div class="col-sm-6 col-lg-3">
+		<div class="widget">
+			<div class="widget-extra themed-background-info">
+				<h4 class="widget-content-light"><i class="fa fa-status"></i> <strong>Estado</strong></h4>
+			</div>
+			<div class="widget-extra-full"><span class="h2 text-info animation-expandOpen"> <?php echo __($order["Order"]["status"]);?></span></div>
+		</div>
+	</div>
+	<div class="col-sm-6 col-lg-3">
+		<div class="widget">
+			<div class="widget-extra themed-background-info">
+				<h4 class="widget-content-light"><i class="fa fa-actions"></i> <strong>Acciones</strong></h4>
+			</div>
+			<div class="widget-extra-full">
+				<a href="javascript:;" class="btn btn-warning" ><?php echo __('Modificar'); ?></a>
+			</div>
 		</div>
 	</div>
 </div>
@@ -65,8 +84,9 @@ $(document).ready(function ()
 				<?php
 				foreach($order["OrderProduct"] as $orderProduct)
 				{
+//(product_price * qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )).toFixed(2)
 					$subtotal = $orderProduct["product_price"] * $orderProduct["product_qty"];
-					$total = ( $subtotal * $orderProduct["product_tax"] ) / 100;
+					$total = $subtotal + ( $subtotal * $orderProduct["product_tax"] ) / 100;
 					?>
 					<tr>
 						<td><?php echo $orderProduct["Product"]["name"]; ?></td>
@@ -200,5 +220,3 @@ $(document).ready(function ()
 	<!-- END Log Content -->
 </div>
 <!-- END Log Block -->
-<?php debug($order); ?>
-

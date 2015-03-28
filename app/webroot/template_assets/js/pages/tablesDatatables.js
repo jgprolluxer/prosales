@@ -14,7 +14,7 @@ var TablesDatatables = function() {
             /* Initialize Datatables */
             $('#example-datatable').dataTable({
                 columnDefs: [ ],
-                pageLength: 4,
+                pageLength: 8,
                 lengthMenu: [[4, 8, 10, 20, 30, 50, 80, 100, -1], [4, 8, 10, 20, 30, 50, 80, 100, 'All']]
             });
 

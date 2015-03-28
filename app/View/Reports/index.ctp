@@ -4,7 +4,7 @@ $(document).ready(function ()
     //$('#page-container').removeClass('sidebar-visible-xs');
     //$('#page-container').removeClass('sidebar-visible-lg');
 
-    $('#page-container').attr('class', 'sidebar-no-animations');
+    $('#page-container').attr('class', 'sidebar-no-animations footer-fixed');
     $('header').hide();
     /* Add placeholder attribute to the search input */
     $('.dataTables_filter input').attr('placeholder', 'Search');
@@ -13,7 +13,9 @@ $(document).ready(function ()
 
 <!-- eCommerce Order View Header -->
 <div class="content-header">
-    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+    <div class="header-section">
+        <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+    </div>
 </div>
 <!-- END eCommerce Order View Header -->
 
@@ -32,54 +34,52 @@ echo $this->Html->script("/js/plugins/highcharts/modules/exporting.js");
 <input type="hidden" id="rptStartDT" value="<?php echo $startDt; ?>">
 <input type="hidden" id="rptEndDT" value="<?php echo $endDt; ?>">
 
-<div class="block full">
-	<div class="block-title">
-		<!-- Interactive block controls (initialized in js/app.js -> interactiveBlocks()) -->
-		<div class="block-options pull-right">
-			<a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content">
-				<i class="fa fa-arrows-v"></i>
-			</a>
-			<a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen">
-				<i class="fa fa-desktop"></i>
-			</a>
-			<a class="btn btn-alt btn-sm btn-primary" id="reportrange">
-				<i class="fa fa-calendar fa-lg"></i>
-				<span><?php echo $startDt; ?> - <?php echo $endDt; ?></span> <b class="caret"></b>
-			</a>
-		</div>
-	</div>
-    <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-3">
+
+<div class="row">
+    <div class="col-sm-4 col-lg-3">
+        <div class="block full">
+            <div class="block-title">
+                <h2><?php echo __('Categorías'); ?></h2>
+            </div>
             <ul class="nav nav-pills nav-stacked" data-toggle="tabs">
-                <li class="active"><a href="#tabreportOrderAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_ORDER'); ?></a></li>
-                <li><a href="#reportProductAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_PRODUCT'); ?></a></li>
+                <li class="active">
+                    <a href="#tabreportOrderAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_ORDER'); ?></a>
+                </li>
+                <li>
+                    <a href="#reportProductAnalytic"><?php echo __('REPORT_INDEX_TAB_TITLE_CAT_PRODUCT'); ?></a>
+                </li>
             </ul>
         </div>
-        <div class="col-md-9">
-           <div class="tab-content">
-              <div class="tab-pane active" id="tabreportOrderAnalytic">
-                <div id="reportOrderAnalytic">
+    </div>
+    <div class="col-sm-8 col-lg-9">
+        <div class="block">
+            <div class="block-title">
+                <h2>Detalle</h2>
+            </div>
+                <div class="block full">
+                    <a class="btn btn-alt btn-sm btn-primary" id="reportrange">
+                        <i class="fa fa-calendar fa-lg"></i>
+                        <span><?php echo $startDt; ?> - <?php echo $endDt; ?></span> <b class="caret"></b>
+                    </a>
                 </div>
-                <div id="totalOrderByDate">
+            <div class="table-responsive">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tabreportOrderAnalytic">
+                        <div id="reportOrderAnalytic"></div>
+                        <div id="totalOrderByDate"></div>
+                    </div>
+                    <div class="tab-pane" id="reportProductAnalytic">
+                        <div id="totalOrderByProduct"></div>
+                    </div>
                 </div>
             </div>
-              <div class="tab-pane" id="reportProductAnalytic">
-                <div id="totalOrderByProduct">
-                </div>
-              </div>
-          </div>
-      </div>
-  </div>
+        </div>
+    </div>
 </div>
+
 <script type="text/javascript">
 $(document).ready(function ()
 {
-    //$('#page-container').removeClass('sidebar-visible-xs');
-    //$('#page-container').removeClass('sidebar-visible-lg');
-
-    $('#page-container').attr('class', 'sidebar-no-animations');
-    $('header').hide();
 
     feedReports($('#rptStartDT').val(), $('#rptEndDT').val());
 
@@ -123,13 +123,13 @@ function feedReports(startDate, endDate)
 			handlePieOrderByStatusChart(xData["OrderByStatus"]);
             handleTotalOrderByDate(xData["TotalOrderByDate"])
             handleOrdersByProducts(xData["OrderByProducts"]);
-		},
-		error: function (data)
-		{
-			alert('Sorry vato, ocurrio un error');
-			console.log(data);
-		}
-	});
+        },
+        error: function (data)
+        {
+           alert('Sorry vato, ocurrio un error');
+           console.log(data);
+       }
+   });
 }
 
 function handleBarOrderByDate()
