@@ -1,24 +1,26 @@
 <script type="text/javascript">
-    $(document).ready(function ()
-    {
-        //$('#page-container').removeClass('sidebar-visible-xs');
-        //$('#page-container').removeClass('sidebar-visible-lg');
+$(document).ready(function ()
+{
+    //$('#page-container').removeClass('sidebar-visible-xs');
+    //$('#page-container').removeClass('sidebar-visible-lg');
 
-        $('#page-container').attr('class', 'sidebar-no-animations');
-        $('header').hide();
-        /* Add placeholder attribute to the search input */
-        $('.dataTables_filter input').attr('placeholder', 'Search');
-    });
+    $('#page-container').attr('class', 'sidebar-no-animations');
+    $('header').hide();
+    /* Add placeholder attribute to the search input */
+    $('.dataTables_filter input').attr('placeholder', 'Search');
+});
 </script>
-<section data-ng-controller="OrderAddController">
 
-<!-- <a ng-href="/admin/Users">Users</a>-->
-<!-- Forms General Header -->
+<!-- eCommerce Order View Header -->
 <div class="content-header">
-    <div class="header-section">
-        <?php echo $this->MenuBuilder->build('menu-header-pos');?>
-    </div>
+    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
 </div>
+<!-- END eCommerce Order View Header -->
+
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<section data-ng-controller="OrderAddController">
 <!-- END Forms General Header -->
 <div class="row">
     <div class="col-md-8">

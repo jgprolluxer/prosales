@@ -1,53 +1,41 @@
 <script type="text/javascript">
-	$(document).ready(function ()
-	{
-		//$('#page-container').removeClass('sidebar-visible-xs');
-		//$('#page-container').removeClass('sidebar-visible-lg');
+$(document).ready(function ()
+{
+    //$('#page-container').removeClass('sidebar-visible-xs');
+    //$('#page-container').removeClass('sidebar-visible-lg');
 
-		$('#page-container').attr('class', 'sidebar-no-animations');
-		$('header').hide();
-		/* Add placeholder attribute to the search input */
-		$('.dataTables_filter input').attr('placeholder', 'Search');
-	});
+    $('#page-container').attr('class', 'sidebar-no-animations');
+    $('header').hide();
+    /* Add placeholder attribute to the search input */
+    $('.dataTables_filter input').attr('placeholder', 'Search');
+});
 </script>
+
 <!-- eCommerce Order View Header -->
 <div class="content-header">
-	<?php echo $this->MenuBuilder->build('menu-header-pos');?>
+    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
 </div>
 <!-- END eCommerce Order View Header -->
 
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
 <!-- Order Status -->
 <div class="row text-center">
 	<div class="col-sm-6 col-lg-3">
 		<div class="widget">
 			<div class="widget-extra themed-background-success">
-				<h4 class="widget-content-light"><strong>ORD.685195</strong></h4>
+				<h4 class="widget-content-light"><strong><?php echo $order["Order"]["folio"] ?></strong></h4>
 			</div>
-			<div class="widget-extra-full"><span class="h2 text-success animation-expandOpen">15/10/2014</span></div>
+			<div class="widget-extra-full"><span class="h2 text-success animation-expandOpen"><?php echo $order["Order"]["created"];?></span></div>
 		</div>
 	</div>
 	<div class="col-sm-6 col-lg-3">
 		<div class="widget">
 			<div class="widget-extra themed-background-success">
-				<h4 class="widget-content-light"><i class="fa fa-paypal"></i> <strong>Payment</strong></h4>
+				<h4 class="widget-content-light"><i class="fa fa-paypal"></i> <strong>Total</strong></h4>
 			</div>
-			<div class="widget-extra-full"><span class="h2 text-success animation-expandOpen"><i class="fa fa-check"></i></span></div>
-		</div>
-	</div>
-	<div class="col-sm-6 col-lg-3">
-		<div class="widget">
-			<div class="widget-extra themed-background-warning">
-				<h4 class="widget-content-light"><i class="fa fa-archive"></i> <strong>Packaging</strong></h4>
-			</div>
-			<div class="widget-extra-full"><span class="h2 text-warning"><i class="fa fa-refresh fa-spin"></i></span></div>
-		</div>
-	</div>
-	<div class="col-sm-6 col-lg-3">
-		<div class="widget">
-			<div class="widget-extra themed-background-muted">
-				<h4 class="widget-content-light"><i class="fa fa-truck"></i> <strong>Delivery</strong></h4>
-			</div>
-			<div class="widget-extra-full"><span class="h2 text-muted animation-pulse"><i class="fa fa-ellipsis-h"></i></span></div>
+			<div class="widget-extra-full"><span class="h2 text-success animation-expandOpen"> $<?php echo $order["Order"]["total_amt"];?></span></div>
 		</div>
 	</div>
 </div>
@@ -66,43 +54,30 @@
 		<table class="table table-bordered table-vcenter">
 			<thead>
 				<tr>
-					<th class="text-center" style="width: 100px;">ID</th>
-					<th>Product Name</th>
-					<th class="text-center">Stock</th>
-					<th class="text-center">QTY</th>
-					<th class="text-right" style="width: 10%;">UNIT COST</th>
-					<th class="text-right" style="width: 10%;">PRICE</th>
+					<th><?php echo __('Nombre'); ?></th>
+					<th><?php echo __('Precio'); ?></th>
+					<th><?php echo __('Cantidad'); ?></th>
+					<th><?php echo __('Iva'); ?></th>
+					<th><?php echo __('Total'); ?></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8715</strong></a></td>
-					<td><a href="page_ecom_product_edit.html">Xbox One</a></td>
-					<td class="text-center"><strong>720</strong></td>
-					<td class="text-center"><strong>1</strong></td>
-					<td class="text-right"><strong>$399,00</strong></td>
-					<td class="text-right"><strong>$399,00</strong></td>
-				</tr>
-				<tr>
-					<td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8726</strong></a></td>
-					<td><a href="page_ecom_product_edit.html">Forza Motorsport 5</a></td>
-					<td class="text-center"><strong>368</strong></td>
-					<td class="text-center"><strong>1</strong></td>
-					<td class="text-right"><strong>$59,00</strong></td>
-					<td class="text-right"><strong>$59,00</strong></td>
-				</tr>
-				<tr>
-					<td colspan="5" class="text-right text-uppercase"><strong>Total Price:</strong></td>
-					<td class="text-right"><strong>$975,00</strong></td>
-				</tr>
-				<tr>
-					<td colspan="5" class="text-right text-uppercase"><strong>Total Paid:</strong></td>
-					<td class="text-right"><strong>$975,00</strong></td>
-				</tr>
-				<tr class="active">
-					<td colspan="5" class="text-right text-uppercase"><strong>Total Due:</strong></td>
-					<td class="text-right"><strong>$0,00</strong></td>
-				</tr>
+				<?php
+				foreach($order["OrderProduct"] as $orderProduct)
+				{
+					$subtotal = $orderProduct["product_price"] * $orderProduct["product_qty"];
+					$total = ( $subtotal * $orderProduct["product_tax"] ) / 100;
+					?>
+					<tr>
+						<td><?php echo $orderProduct["Product"]["name"]; ?></td>
+						<td><?php echo $orderProduct["product_price"]; ?></td>
+						<td><?php echo $orderProduct["product_qty"]; ?></td>
+						<td><?php echo $orderProduct["product_tax"]; ?></td>
+						<td><?php echo $total; ?></td>
+					</tr>
+					<?php
+				}
+				?>
 			</tbody>
 		</table>
 	</div>
@@ -225,3 +200,5 @@
 	<!-- END Log Content -->
 </div>
 <!-- END Log Block -->
+<?php debug($order); ?>
+

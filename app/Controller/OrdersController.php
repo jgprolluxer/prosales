@@ -71,6 +71,7 @@ class OrdersController extends AppController
         {
             throw new NotFoundException(__('Invalid order'));
         }
+        $this->Order->recursive = 2;
         $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
         $this->request->data = $this->Order->find('first', $options);
         $this->set('order', $this->Order->find('first', $options));
