@@ -68,7 +68,34 @@ class UsersController extends AppController
             }
         }
         $groups = $this->User->Group->find('list');
-        $workstations = $this->User->Workstation->find('list');
+        $works = $this->User->find('all', array(
+            'fields' => array(
+                'User.workstation_id'
+            )
+        ));
+
+        $worksID = array();
+        foreach ($works as $key => $work)
+        {
+            $worksID[$work["User"]["workstation_id"]] = $work["User"]["workstation_id"];
+        }
+
+        $lworkstations = $this->User->Workstation->find('all', array(
+            'fields' => array(
+                'Workstation.id',
+                "CONCAT( Workstation.title, ' ', Workstation.employeenumber ) as value"
+            ),
+            'conditions' => array(
+                'NOT' => array(
+                    'Workstation.id' => $worksID
+                )
+            )
+        ));
+        $workstations = array();
+        foreach ($lworkstations as $key => $lworkstation)
+        {
+            $workstations[$lworkstation["Workstation"]["id"]] = $lworkstation["0"]["value"];
+        }
         $this->set(compact('groups', 'workstations'));
     }
 
@@ -101,7 +128,34 @@ class UsersController extends AppController
             $this->request->data = $this->User->find('first', $options);
         }
         $groups = $this->User->Group->find('list');
-        $workstations = $this->User->Workstation->find('list');
+        $works = $this->User->find('all', array(
+            'fields' => array(
+                'User.workstation_id'
+            )
+        ));
+
+        $worksID = array();
+        foreach ($works as $key => $work)
+        {
+            $worksID[$work["User"]["workstation_id"]] = $work["User"]["workstation_id"];
+        }
+
+        $lworkstations = $this->User->Workstation->find('all', array(
+            'fields' => array(
+                'Workstation.id',
+                "CONCAT( Workstation.title, ' ', Workstation.employeenumber ) as value"
+            ),
+            'conditions' => array(
+                'NOT' => array(
+                    'Workstation.id' => $worksID
+                )
+            )
+        ));
+        $workstations = array();
+        foreach ($lworkstations as $key => $lworkstation)
+        {
+            $workstations[$lworkstation["Workstation"]["id"]] = $lworkstation["0"]["value"];
+        }
         $this->set(compact('groups', 'workstations'));
     }
 
@@ -179,7 +233,34 @@ class UsersController extends AppController
             }
         }
         $groups = $this->User->Group->find('list');
-        $workstations = $this->User->Workstation->find('list');
+        $works = $this->User->find('all', array(
+            'fields' => array(
+                'User.workstation_id'
+            )
+        ));
+
+        $worksID = array();
+        foreach ($works as $key => $work)
+        {
+            $worksID[$work["User"]["workstation_id"]] = $work["User"]["workstation_id"];
+        }
+
+        $lworkstations = $this->User->Workstation->find('all', array(
+            'fields' => array(
+                'Workstation.id',
+                "CONCAT( Workstation.title, ' ', Workstation.employeenumber ) as value"
+            ),
+            'conditions' => array(
+                'NOT' => array(
+                    'Workstation.id' => $worksID
+                )
+            )
+        ));
+        $workstations = array();
+        foreach ($lworkstations as $key => $lworkstation)
+        {
+            $workstations[$lworkstation["Workstation"]["id"]] = $lworkstation["0"]["value"];
+        }
         $this->set(compact('groups', 'workstations'));
     }
 
@@ -198,6 +279,8 @@ class UsersController extends AppController
         }
         if ($this->request->is(array('post', 'put')))
         {
+            $this->log('edit user');
+            $this->log($this->request->data);
             if ($this->User->save($this->request->data))
             {
                 $this->Session->setFlash(__('The user has been saved.'));
@@ -211,7 +294,35 @@ class UsersController extends AppController
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
-        $workstations = $this->User->Workstation->find('list');
+        $groups = $this->User->Group->find('list');
+        $works = $this->User->find('all', array(
+            'fields' => array(
+                'User.workstation_id'
+            )
+        ));
+
+        $worksID = array();
+        foreach ($works as $key => $work)
+        {
+            $worksID[$work["User"]["workstation_id"]] = $work["User"]["workstation_id"];
+        }
+
+        $lworkstations = $this->User->Workstation->find('all', array(
+            'fields' => array(
+                'Workstation.id',
+                "CONCAT( Workstation.title, ' ', Workstation.employeenumber ) as value"
+            ),
+            'conditions' => array(
+                'NOT' => array(
+                    'Workstation.id' => $worksID
+                )
+            )
+        ));
+        $workstations = array();
+        foreach ($lworkstations as $key => $lworkstation)
+        {
+            $workstations[$lworkstation["Workstation"]["id"]] = $lworkstation["0"]["value"];
+        }
         $this->set(compact('groups', 'workstations'));
     }
 

@@ -111,7 +111,8 @@ public function getReports()
 		}
 		$xData["TotalOrderByDate"] = $rOrder;
 
-
+////// Sales man reports
+		/*
 		$orders = $this->Order->find('all', array(
             'joins' => array(
                 array('table' => 'users',
@@ -130,7 +131,8 @@ public function getReports()
                 ),
             ),
 			'fields' => array(
-				"CONCAT( User.firstname, ' ', User.lastname, '-', Workstation.title, ' ', Workstation.employeenumber ) as salesman",
+				'DATE_FORMAT(Order.created,"%Y/%m/%d") created',
+				"CONCAT( User.firstname, ' ', User.lastname, ' - ', Workstation.title, ' ', Workstation.employeenumber ) as salesman",
 				'IFNULL(SUM(Order.total_amt),0) total'
 			),
 			'conditions' => array(
@@ -138,14 +140,24 @@ public function getReports()
 				'Order.created >=' => $startDt,
 				'Order.created <=' => $endDt
 			),
-			'group' => array('Order.created_by')
+			'group' => array(
+				'Order.created',
+				"Order.created_by",
+			)
 		));
-		$rOrder = array();
-		foreach ($orders as $key => $order)
+		$lastCategory = "";
+		$catogories = array();
+		foreach ($order as $key => $category)
 		{
-			$rOrder[$key] = array(__($order["0"]["salesman"]), intval($order["0"]["total"]) );
+			if($lastCategory !== $category["0"]["created"])
+			{
+				$catogories += $category["0"]["created"];
+			}
 		}
-		$xData["OrderBySalesman"] = $rOrder;
+		*/
+		//$this->log('salesManReport');
+		//$this->log($orders);
+
 
 ////////////
 //////////// Products report
@@ -183,9 +195,6 @@ public function getReports()
 			$rOrder[$key] = array(__($order["Product"]["name"]), intval($order["0"]["total"]) );
 		}
 		$xData["OrderByProducts"] = $rOrder;
-
-		$this->log('Order product report');
-		$this->log($xData["OrderByProducts"]);
 
 		$response = array(
 			'success' => true,

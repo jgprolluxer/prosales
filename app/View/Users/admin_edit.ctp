@@ -65,13 +65,6 @@
                 'type' => 'text'
             ));
             ?>
-            <?php
-            echo $this->Form->input('password', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_USER_EDIT_FORM_FIELD_PASSWORD')),
-                'class' => 'form-control',
-                'type' => 'text'
-            ));
-            ?>
         </div>
         <div class="col-md-6">
             <?php
@@ -82,7 +75,15 @@
             ));
             ?>
             <?php
-            echo $this->Form->input('workstation', array(
+            echo $this->Form->input('group_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Grupo')),
+                'class' => 'form-control',
+                'type' => 'select',
+                'options' => $groups
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('workstation_id', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_USER_EDIT_FORM_FIELD_WORKSTATION')),
                 'class' => 'form-control',
                 'type' => 'select',
@@ -92,7 +93,7 @@
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
-                <button type="submit" class="btn btn-info"><?php echo __('ADMIN_USER_EDIT_FORM_BTN_SAVE'); ?></button>
+                <button type="submit" class="btn btn-info"><?php echo __('Guardar'); ?></button>
             </div>
         </div>
     </div>

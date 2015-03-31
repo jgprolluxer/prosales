@@ -49,7 +49,7 @@
             ?>
             <?php
             echo $this->Form->input('firstname', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_USER_VIEW_FORM_FIELD_FIRSTNAME')),
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Nombres')),
                 'class' => 'form-control',
                 'type' => 'text',
                 'readonly' => 'readonly'
@@ -57,7 +57,7 @@
             ?>
             <?php
             echo $this->Form->input('lastname', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_USER_VIEW_FORM_FIELD_FIRSTNAME')),
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Apellidos')),
                 'class' => 'form-control',
                 'type' => 'text',
                 'readonly' => 'readonly'
@@ -65,7 +65,7 @@
             ?>
             <?php
             echo $this->Form->input('username', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_USER_VIEW_FORM_FIELD_FIRSTNAME')),
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Usuario')),
                 'class' => 'form-control',
                 'type' => 'text',
                 'readonly' => 'readonly'
@@ -75,7 +75,7 @@
         <div class="col-md-6">
             <?php
             echo $this->Form->input('email', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_USER_VIEW_FORM_FIELD_FIRSTNAME')),
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Contraseña')),
                 'class' => 'form-control',
                 'type' => 'text',
                 'readonly' => 'readonly'
@@ -83,7 +83,7 @@
             ?>
             <?php
             echo $this->Form->input('workstation_id', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_USER_VIEW_FORM_FIELD_FIRSTNAME')),
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Puesto de trabajo ID')),
                 'class' => 'form-control',
                 'type' => 'text',
                 'readonly' => 'readonly'

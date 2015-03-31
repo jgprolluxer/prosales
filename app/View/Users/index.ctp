@@ -52,7 +52,7 @@
                             <td><?php echo __($user['User']['firstname']); ?></td>
                             <td><?php echo __($user['User']['lastname']); ?></td>
                             <td><?php echo __($user['User']['email']); ?></td>
-                            <td><?php echo __($user['User']['workstation_id']); ?></td>
+                            <td><?php echo __($user['Workstation']['title']) . ' ' . __($user["Workstation"]["employeenumber"]); ?></td>
                             <td>
                                 <?php
                                 echo $this->AclView->link(__('<i class="fa fa-eye fa-fw"></i>'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'view', $user['User']['id']), array('escape' => false, 'class' => array('btn btn-xs btn-info')));

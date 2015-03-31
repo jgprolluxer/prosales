@@ -72,22 +72,6 @@ echo $this->Html->script("/template_assets/plugins/bootstrap-fileupload/bootstra
                 'type' => 'text'
             ));
             ?>
-            <?php
-            echo $this->Form->input('workstation', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Puesto de trabajo')),
-                'class' => 'form-control',
-                'type' => 'select',
-                'options' => $workstations
-            ));
-            ?>
-            <?php
-            echo $this->Form->input('group', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Grupo')),
-                'class' => 'form-control',
-                'type' => 'select',
-                'options' => $groups
-            ));
-            ?>
         </div>
         <div class="row">
             <div class="col-md-6">
