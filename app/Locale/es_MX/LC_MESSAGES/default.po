@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2015-03-25 12:03-0600\n"
+"PO-Revision-Date: 2015-04-05 16:45-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -2790,13 +2790,16 @@ msgstr "Revisión"
 # ----------      REPORT SECTION      ---------- ###################################
 #
 msgid "REPORT_INDEX_TAB_TITLE_CAT_ORDER"
-msgstr "Análisis de Ordenes"
+msgstr "Análisis de Ventas"
 
 msgid "REPORTS_CAT_ORDER_REPORT_BY_STATUS_TITLE"
 msgstr "Reporte de Ordenes por estado"
 
 msgid "REPORT_INDEX_TAB_TITLE_CAT_PRODUCT"
 msgstr "Análisis de Productos"
+
+msgid "REPORT_INDEX_TAB_TITLE_CAT_SALESMAN"
+msgstr "Análisis de Vendedor"
 
 msgid "REPORT_TITLE"
 msgstr "titulo de reporte"

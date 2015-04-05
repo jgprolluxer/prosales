@@ -112,7 +112,7 @@ public function getReports()
 		$xData["TotalOrderByDate"] = $rOrder;
 
 ////// Sales man reports
-		/*
+		
 		$orders = $this->Order->find('all', array(
             'joins' => array(
                 array('table' => 'users',
@@ -131,7 +131,6 @@ public function getReports()
                 ),
             ),
 			'fields' => array(
-				'DATE_FORMAT(Order.created,"%Y/%m/%d") created',
 				"CONCAT( User.firstname, ' ', User.lastname, ' - ', Workstation.title, ' ', Workstation.employeenumber ) as salesman",
 				'IFNULL(SUM(Order.total_amt),0) total'
 			),
@@ -141,23 +140,15 @@ public function getReports()
 				'Order.created <=' => $endDt
 			),
 			'group' => array(
-				'Order.created',
 				"Order.created_by",
 			)
 		));
-		$lastCategory = "";
-		$catogories = array();
-		foreach ($order as $key => $category)
+		$rOrder = array();
+		foreach ($orders as $key => $order)
 		{
-			if($lastCategory !== $category["0"]["created"])
-			{
-				$catogories += $category["0"]["created"];
-			}
+			$rOrder[$key] = array(__($order["0"]["salesman"]), intval($order["0"]["total"]) );
 		}
-		*/
-		//$this->log('salesManReport');
-		//$this->log($orders);
-
+		$xData["OrderBySalesMan"] = $rOrder;
 
 ////////////
 //////////// Products report
