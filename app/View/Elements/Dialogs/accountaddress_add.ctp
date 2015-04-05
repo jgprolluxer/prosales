@@ -12,6 +12,7 @@
         <?php
         echo $this->Form->create('Address', array(
             'class' => 'form-horizontal',
+            'id' => 'addressForm',
             'type' => 'file',
             'inputDefaults' => array(
                 'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
@@ -22,6 +23,14 @@
                     'attributes' => array('wrap' => 'span', 'class' => 'help-block')
                 ),
         )));
+        ?>
+        <?php
+        echo $this->Form->input('account_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Account_ID')),
+                'class' => 'form-control',
+                'type' => 'hidden',
+                'value' => $relObjId
+            ));
         ?>
         <div class="col-md-10">
             <?php
@@ -73,10 +82,25 @@
                 'type' => 'text'
             ));
             ?>
+            <?php
+            echo $this->Form->input('billing', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Dirección de Facturación')),
+                'class' => 'form-control',
+                'type' => 'checkbox'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('delivery', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Dirección de Entrega')),
+                'class' => 'form-control',
+                'type' => 'checkbox'
+            ));
+            ?>
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
-                <button type="submit" class="btn btn-info"><?php echo __('ACCOUNT_ADD_FORM_BTN_SAVE'); ?></button>
+                <a href="javascript:saveAddress();" class="btn btn-success"><?php echo __('ACCOUNT_ADD_FORM_BTN_SAVE'); ?></a>
+                <a href="javascript:;" class="btn btn-info"><?php echo __('Buscar'); ?></a>
             </div>
         </div>
     </div>
