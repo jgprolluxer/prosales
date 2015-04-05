@@ -215,10 +215,9 @@ $(document).ready(function ()
     </div>
     <div class="modal-body">
         <!-- Products Block -->
-        <div class="block">
+        <div class="block full">
             <!-- Products Title -->
             <div class="block-title">
-                <h2><i class="fa fa-shopping-cart"></i> <strong>Clientes</strong></h2>
             </div>
             <!-- END Products Title -->
 

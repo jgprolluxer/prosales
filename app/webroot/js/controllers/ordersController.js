@@ -332,7 +332,7 @@ angular.module('prosales-app')
                 $scope.account = selectedItem;
             }, function ()
             {
-                $log.info('Modal dismissed at: ' + new Date());
+                //$log.info('Modal dismissed at: ' + new Date());
             });
         };
 
@@ -807,7 +807,17 @@ angular.module('prosales-app')
             .withOption('bFilter', false)
             .withOption('bPaginate', false)
             .withOption('oLanguage', {
-                "sInfo": "<strong>_START_</strong>-<strong>_END_</strong> en un total de <strong>_TOTAL_</strong>"
+
+            "sLengthMenu": "_MENU_ registros por pagina",
+            "oPaginate": {
+                "sPrevious": "",
+                "sNext": ""
+            },
+            "sSearch": "Buscar : ",
+            "sEmptyTable": "No se encontraron registros...",
+            "sInfo": "Mostrando registros _START_ a _END_",
+            "sInfoFiltered": "(filtrados en un total de _MAX_)"
+                //"sInfo": "<strong>_START_</strong>-<strong>_END_</strong> en un total de <strong>_TOTAL_</strong>"
             })
         ;
 
@@ -815,12 +825,22 @@ angular.module('prosales-app')
 
 
         $scope.dtAccountModalOptions = DTOptionsBuilder.newOptions()
-            .withOption('bFilter', false)
-            .withOption('bPaginate', false)
+            //.withOption('bFilter', false)
+            //.withOption('bPaginate', false)
             .withDOM("<'row'<'col-sm-6 col-xs-5'l><'col-sm-6 col-xs-7'f>r>t<'row'<'col-sm-5 hidden-xs'i><'col-sm-7 col-xs-12 clearfix'p>>")
             .withPaginationType("bootstrap")
             .withOption('oLanguage', {
-                "sInfo": "<strong>_START_</strong>-<strong>_END_</strong> en un total de <strong>_TOTAL_</strong>"
+
+            "sLengthMenu": "_MENU_ registros por pagina",
+            "oPaginate": {
+                "sPrevious": "",
+                "sNext": ""
+            },
+            "sSearch": "Buscar : ",
+            "sEmptyTable": "No se encontraron registros...",
+            "sInfo": "Mostrando registros _START_ a _END_",
+            "sInfoFiltered": "(filtrados en un total de _MAX_)"
+                //"sInfo": "<strong>_START_</strong>-<strong>_END_</strong> en un total de <strong>_TOTAL_</strong>"
             })
         ;
         $scope.items = items;
