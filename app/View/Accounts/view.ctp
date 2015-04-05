@@ -235,50 +235,44 @@ $(document).ready(function ()
 
             <!-- Customer Addresses Content -->
             <div class="row">
-                <div class="col-lg-6">
-                    <!-- Billing Address Block -->
-                    <div class="block">
-                        <!-- Billing Address Title -->
-                        <div class="block-title">
-                            <h2>Billing Address</h2>
+            
+                <?php
+                //$addressType == "";
+                foreach ($addresses as $address)
+                {?>
+                    <div class="col-lg-6">
+                        <div class="block">
+                            <div class="block-title">
+                            <?php
+                                if($address["Address"]["billing"] == "1")
+                                {
+                                    echo "<h2>Billing Address</h2>";
+                                }
+                                else if($address["Address"]["delivery"] == "1")
+                                {
+                                    echo "<h2>Shipping Address</h2>";
+                                }
+                                else
+                                {
+                                    echo "<h2>Address</h2>";
+                                }
+                            ?>
+                            </div>
+                            <address id="dataAddress">
+                                <i class="fa fa-home"></i>
+                                <?php echo $address["Address"]["street"]; ?>, No. 
+                                <?php echo $address["Address"]["street_no"]; ?><br>
+                                <?php echo $address["Address"]["suburb"]; ?><br>
+                                <?php echo $address["Address"]["city"]; ?>, 
+                                <?php echo $address["Address"]["state"]; ?><br><br>
+                                <!--<i class="fa fa-phone"></i> (81) 8352-1111<br>
+                                <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">hugoruiz@prollux.com</a>-->
+                            </address>
                         </div>
-                        <!-- END Billing Address Title -->
-
-                        <!-- Billing Address Content -->
-                        <h4><strong>Jonathan Taylor</strong></h4>
-                        <address>
-                            Sunset Str 620<br>
-                            Melbourne<br>
-                            Australia, 21-842<br><br>
-                            <i class="fa fa-phone"></i> (999) 852-11111<br>
-                            <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">johnathan.taylor@example.com</a>
-                        </address>
-                        <!-- END Billing Address Content -->
                     </div>
-                    <!-- END Billing Address Block -->
-                </div>
-                <div class="col-lg-6">
-                    <!-- Shipping Address Block -->
-                    <div class="block">
-                        <!-- Shipping Address Title -->
-                        <div class="block-title">
-                            <h2>Shipping Address</h2>
-                        </div>
-                        <!-- END Shipping Address Title -->
-
-                        <!-- Shipping Address Content -->
-                        <h4><strong>Harry Burke</strong></h4>
-                        <address>
-                            Sunset Str 598<br>
-                            Melbourne<br>
-                            Australia, 21-852<br><br>
-                            <i class="fa fa-phone"></i> (999) 852-22222<br>
-                            <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">harry.burke@example.com</a>
-                        </address>
-                        <!-- END Shipping Address Content -->
-                    </div>
-                    <!-- END Shipping Address Block -->
-                </div>
+                <?php 
+                }
+                ?>
             </div>
             <!-- END Customer Addresses Content -->
         </div>
@@ -320,23 +314,7 @@ $(document).ready(function ()
     <div class="row">
         <?php echo $this->App->drawAccountAddressAdd(); ?> 
     </div>
-</div>        
-<?php
-echo $this->Form->input('id', array(
-    'label' => array('class' => 'col-md-4 control-label', 'text' => __('ACCOUNT_VIEW_FORM_FIELD_ID')),
-    'class' => 'form-control',
-    'type' => 'hidden',
-    'readonly' => 'readonly'
-));
-?>
-<?php
-echo $this->Form->input('orders', array(
-    'label' => array('class' => 'col-md-4 control-label', 'text' => __('ADMIN_REPORT_ADD_FORM_FIELD_STATUS')),
-    'class' => 'form-control',
-    'type' => 'hidden',
-    'value' => $sumOrd
-));
-?>
+</div>
 </div>
 <!-- END Normal Form Block -->
 <script type="text/javascript">
@@ -352,7 +330,8 @@ echo $this->Form->input('orders', array(
 
 
     $("#addNote").click(function() {
-        saveNote();
+        if($("#private-note").val() != "")
+            saveNote();
     });
 
     function saveNote()
@@ -374,7 +353,6 @@ echo $this->Form->input('orders', array(
             url: qualifyURL("/Notes/jsNote/?CRUD_operation=CREATE&format="),
             data: newNote, // el note que acabas de crear
             dataType: 'json', // Tipo json
-            async: false,
             success: function(data)
             {
                 $("#private-note").val('');
@@ -392,25 +370,24 @@ echo $this->Form->input('orders', array(
         });
 
     }
-    /*
-     var newNote = {
-     Note: {
-     title: '',
-     description: '',
-     objectType: '',
-     objectId: ''
-     }
-     };
-     
-     newNote.Note.title = 'From account';
-     newNote.Note.description = $('#noteDescription').val();
-     
-     
-     $.ajax();
-     
-     
-     if ($this->Order->save($this->request->data))
-     EN ORDERSCONTROLLER
-     
-     */
+    
+    function saveAddress()
+    {
+        var input = $("#addressForm").serialize();
+        console.log("INPUT:" + input);
+        $.ajax({
+            type: "POST", // Tipo post 
+            url: qualifyURL("/Addresses/jsAddress/?CRUD_operation=CREATE&format="),
+            data: input, // el input que acabas de crear
+            dataType: 'json', // Tipo json
+            success: function(data)
+            {
+                console.log(data);
+            },
+            error: function(xhr, textStatus, errorThrown)
+            {
+                alert("Ocurrió un error inesperado al guardar la direccion " + textStatus);
+            }
+        });
+    }    
 </script>
