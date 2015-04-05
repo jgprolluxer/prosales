@@ -391,6 +391,31 @@ angular.module('prosales-app')
                 return res.data["xData"];
             });
         };
+        $scope.codeSearcher = '';
+        $scope.loadProductCode = function(  )
+        {
+            var _conditions = [
+            { condField : "PricelistProduct.id >= " , condValue : 1 },
+            { condField : "Pricelist.id = " , condValue : $scope.pricelist.Pricelist.id },
+            { condField : "PricelistProduct.status" , condValue : 'active' },
+            { condField : "Product.status" , condValue : 'active' },
+            { condField : "Product.partnumber =" , condValue : $scope.codeSearcher }
+            ];
+            return $http.post('/PricelistProducts/jsPricelistProduct/?CRUD_operation=READ', {conditions:_conditions})
+            .then(function(res)
+            {
+                $scope.codeSearcher = '';
+                var processed = false;
+                angular.forEach(res.data["xData"], function(value, key)
+                {
+                    if(!processed)
+                    {
+                        $scope.processSelectedProduct(value);
+                        processed = true;
+                    }
+                });
+            });
+        };
 
         $scope.loadFamilies = function ()
         {

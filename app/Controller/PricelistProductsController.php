@@ -342,15 +342,13 @@ class PricelistProductsController extends AppController {
 						{
 							$_conditions = $this->request->data["conditions"];
 						}
-						$arrayConditions = array();
 
+						$arrayConditions = array();
 						foreach ($_conditions as $key => $_condition)
 						{
 							$arrayConditions += array($_condition["condField"] => $_condition["condValue"]);
 						}
-						$this->log('arrayConditions');
-						$this->log($arrayConditions);
-
+						
 						$results = $this->PricelistProduct->find('all', array(
 							'conditions' => $arrayConditions
 						));

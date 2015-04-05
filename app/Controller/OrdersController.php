@@ -127,6 +127,12 @@ class OrdersController extends AppController
         {
             $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
             $this->request->data = $this->Order->find('first', $options);
+            if(StatusOfOrder::Closed == $this->request->data["Order"]["status"] )
+            {
+                $this->Session->write('Operation', 'warning');
+                $this->Session->setFlash(__('La orden que intenta modificar se encuentra cerrada'));
+                return $this->redirect(array('action' => 'index'));
+            }
         }
         $accounts = $this->Order->Account->find('list');
         $this->set(compact('accounts'));

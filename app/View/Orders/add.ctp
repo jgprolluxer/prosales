@@ -39,7 +39,9 @@ $(document).ready(function ()
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_SearchBarCode">
-                            <input type="text" ng-disabled="newOrder.Order.total_amt <= totalPayments && totalPayments != 0 " id="productBarcodeSearcher" name="productBarcodeSearcher" placeholder="No busca nada aun..." class="form-control">
+                            <form ng-submit="loadProductCode()">
+                            <input type="text" ng-model="codeSearcher" ng-disabled="newOrder.Order.total_amt <= totalPayments && totalPayments != 0 " id="productBarcodeSearcher" name="productBarcodeSearcher" placeholder="Código de barras..." class="form-control">
+                            </form>
                         </div>
                         <div class="tab-pane" id="tab_SearchProductName">
 <!-- angularstrap -->
