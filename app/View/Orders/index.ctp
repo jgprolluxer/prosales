@@ -27,12 +27,22 @@ $(document).ready(function ()
 	<div class="block-title">
 		<div class="block-options pull-right">
 			<?php
-			echo $this->AclView->link(  '<i class="fa fa-plus"></i> '.__('Nueva venta rapida'),
+			echo $this->AclView->link(  '<i class="fa fa-plus"></i> '.__('Nueva Venta'),
 			array('plugin' => $this->params['plugin'],
 			'prefix' => null,
 			'admin' => $this->params['admin'],
 			'controller' => $this->params['controller'],
 			'action' => 'add'
+		),
+		array('escape' => false, 'class' => array('btn btn-info', 'animation-tossing', 'themed-background-spring')));
+		?>
+			<?php
+			echo $this->AclView->link(  ''.__('Venta Rápida'),
+			array('plugin' => $this->params['plugin'],
+			'prefix' => null,
+			'admin' => $this->params['admin'],
+			'controller' => $this->params['controller'],
+			'action' => 'pos'
 		),
 		array('escape' => false, 'class' => array('btn btn-info', 'animation-tossing', 'themed-background-spring')));
 		?>

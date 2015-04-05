@@ -101,6 +101,29 @@ class OrdersController extends AppController
     }
 
     /**
+     * pos method
+     *
+     * @return void
+     */
+    public function pos()
+    {
+        if ($this->request->is('post'))
+        {
+            $this->Order->create();
+            if ($this->Order->save($this->request->data))
+            {
+                $this->Session->setFlash(__('The order has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            } else
+            {
+                $this->Session->setFlash(__('The order could not be saved. Please, try again.'));
+            }
+        }
+        $accounts = $this->Order->Account->find('list');
+        $this->set(compact('accounts'));
+    }
+
+    /**
      * edit method
      *
      * @throws NotFoundException
