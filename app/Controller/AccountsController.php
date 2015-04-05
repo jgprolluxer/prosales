@@ -63,12 +63,21 @@ class AccountsController extends AppController {
 			)
 		));
         
+        $this->loadModel('Address');
+        $addresses = $this->Address->find('all', array(
+			'conditions' => array(
+				'Address.account_id =' => $id
+			)
+		));
+        
         $sumOrd = $orders['0']['0']['total'];
         
-        $this->log("Orders ", "debug");
-        $this->log($this->request->data['Team']['name'], "debug");
+        $this->log("el address ", "debug");
+        $this->log($addresses, "debug");
         
-        $this->set(compact('notes', 'sumOrd'));
+        
+        
+        $this->set(compact('notes', 'sumOrd','addresses'));
     }
 
     /**

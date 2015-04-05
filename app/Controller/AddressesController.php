@@ -189,4 +189,57 @@ class AddressesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        
+        public function jsAddress() {
+        Configure::write('debug', 0);
+        $this->autoRender = false;
+        $this->layout = 'ajax';
+
+        $response = array(
+            'success' => true,
+            'message' => 'NOTHING',
+            'xData' => array()
+        );
+
+        $this->log("el address", "debug"); // app/tmp/logs/debug.log
+        $this->log($this->request->data, "debug");
+
+
+        $this->log("los parametros en get", "debug");
+        $this->log($this->request->query, "debug");
+
+        try {
+            if (isset($this->request->query['CRUD_operation'])) {
+                $operation = $this->request->query['CRUD_operation'];
+            } else {
+                throw new Exception(__('ADDRESS_CONTROLLER') . ' ' . __('CRUD_OPERATION_NOT_SET'));
+            }
+            switch ($operation) {
+                case "CREATE":
+                    $this->Address->recursive = -1;
+                    $this->Address->create();
+                    if ($this->Address->save($this->request->data)) {
+                        $response = array(
+                            'success' => true,
+                            'message' => 'Correcto',
+                            'xData' => $this->Address->read(null, $this->Address->getLastInsertID())
+                        );
+                    } else {
+                        $response = array(
+                            'success' => false,
+                            'message' => json_encode($this->Address->validationErrors),
+                            'xData' => array()
+                        );
+                    }
+                    break;                
+            }
+        } catch (Exception $ex) {
+            $response = array(
+                'success' => false,
+                'message' => $ex->getMessage(),
+                'xData' => array()
+            );
+        }
+        echo json_encode($response);
+    }
 }
