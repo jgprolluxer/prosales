@@ -165,7 +165,7 @@ class AppHelper extends Helper
         $modal = '';
         $modal .= '';
         $modal .= '<!-- asociateUserModal -->';
-        $modal .= '<div id="addAccountAddress" class="modal animation-hatch" tabindex="-1" role="dialog" aria-hidden="true">';
+        $modal .= '<div id="addAccountAddress" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">';
         $modal .= '    <div class="modal-dialog">';
         $modal .= '        <div class="modal-content">';
         $modal .= '            <div class="modal-header">';
