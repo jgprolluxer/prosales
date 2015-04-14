@@ -221,7 +221,7 @@ $(document).ready(function ()
         <div class="block">
             <!-- Customer Addresses Title -->
             <div class="block-title">
-                <h2><i class="fa fa-building-o"></i> <strong>Customer</strong> Addresses (2)</h2>
+                <h2><i class="fa fa-building-o"></i> <strong>Addresses</strong></h2>
                 <div class="block-options pull-right">
                     <a id="addAddress" href="" class="label label-success"><strong>Agregar Dirección</strong></a>
                 </div>
