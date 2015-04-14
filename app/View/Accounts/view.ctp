@@ -13,21 +13,16 @@ $(document).ready(function ()
 
 <!-- eCommerce Order View Header -->
 <div class="content-header">
-    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+        <div class="header-section">
+            <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+        </div>
 </div>
 <!-- END eCommerce Order View Header -->
 
 <ul class="breadcrumb breadcrumb-top">
     <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
-</ul>k -->
+</ul>
 
-<!-- Normal Form Title -->
-<div class="block-title">
-    <div class="block-options pull-right">
-        <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
-        <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
-    </div>
-</div>
 <!-- END Normal Form Title -->
 <div class="row">
     <div class="col-lg-4">
