@@ -74,7 +74,7 @@ $(document).ready(function ()
         <div class="block">
             <!-- Quick Stats Title -->
             <div class="block-title">
-                <h2><i class="fa fa-line-chart"></i> <strong>Quick</strong> Stats</h2>
+                <h2><i class="fa fa-line-chart"></i> <strong>Estadísticas</strong></h2>
             </div>
             <!-- END Quick Stats Title -->
 
@@ -95,11 +95,11 @@ $(document).ready(function ()
                         <i class="fa fa-usd"></i>
                     </div>
                     <h4 class="text-left text-success">
-                        <strong>$ 2.125,00</strong><br><small>Orders Value</small>
+                        <strong>$ <?php echo $totOrd ?></strong><br><small>Valor total de Ordenes</small>
                     </h4>
                 </div>
             </a>
-            <a href="javascript:void(0)" class="widget widget-hover-effect2 themed-background-muted-light">
+            <!--<a href="javascript:void(0)" class="widget widget-hover-effect2 themed-background-muted-light">
                 <div class="widget-simple">
                     <div class="widget-icon pull-right themed-background-warning">
                         <i class="fa fa-shopping-cart"></i>
@@ -138,7 +138,7 @@ $(document).ready(function ()
                         <strong>2</strong><br><small>Tickets</small>
                     </h4>
                 </div>
-            </a>
+            </a>-->
             <!-- END Quick Stats Content -->
         </div>
         <!-- END Quick Stats Block -->
@@ -149,14 +149,63 @@ $(document).ready(function ()
             <!-- Orders Title -->
             <div class="block-title">
                 <div class="block-options pull-right">
-                    <span class="label label-success"><strong>$ 2125,00</strong></span>
+                    <span class="label label-success"><strong>$ <?php echo $totOrd ?></strong></span>
                 </div>
-                <h2><i class="fa fa-truck"></i> <strong>Orders</strong> (4)</h2>
+                <h2><i class="fa fa-truck"></i> <strong>Ordenes</strong></h2>
             </div>
             <!-- END Orders Title -->
 
+            <div class="block-content">
+                <div class="table-responsive">
+                    <table class="table table-striped table-vcenter table-bordered" id="example-datatable">
+                        <thead>
+                            <tr>
+                                <th># Folio</th>
+                                <th>Precio</th>
+                                <th>Status</th>
+                                <th>Fecha</th>
+                                <th>Ver</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($ordersList as $idx => $order) {
+                                ?>
+                                <tr>
+                                    <td><?php echo __('<a>'.$order['Order']['folio'].'</a>'); ?></td>
+                                    <td><?php echo __('<strong>$ '.$order['Order']['price'].'</strong>'); ?></td>
+                                    <td><?php
+                                        if($order['Order']['status'] == "closed")
+                                        {
+                                            echo __('<span class="label label-success">'.$order['Order']['status'].'</label>');
+                                        }
+                                        else if($order['Order']['status'] == "open")
+                                        {
+                                            echo __('<span class="label label-info">'.$order['Order']['status'].'</label>');
+                                        }
+                                        else
+                                        {
+                                            echo __('<span class="label label-danger">'.$order['Order']['status'].'</label>');
+                                        }
+                                        
+                                        ?></td>
+                                    <td><?php echo __($order['Order']['created']); ?></td>
+                                    <td class="text-center">
+                                        <?php
+                                        echo $this->AclView->link(__('<i class="fa fa-eye fa-fw"></i>'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'view', $order['Order']['id']), array('escape' => false, 'class' => array('btn btn-xs btn-info')));
+                                        ?>
+                                    </td>
+                                </tr>
+                                <?php
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
             <!-- Orders Content -->
-            <table class="table table-bordered table-striped table-vcenter">
+            <!--<table class="table table-bordered table-striped table-vcenter">
                 <tbody>
                     <tr>
                         <td class="text-center" style="width: 100px;"><a href="page_ecom_order_view.html"><strong>ORD.685199</strong></a></td>
@@ -215,13 +264,13 @@ $(document).ready(function ()
                         </td>
                     </tr>
                 </tbody>
-            </table>
+            </table>-->
             <!-- END Orders Content -->
         </div>
         <div class="block">
             <!-- Customer Addresses Title -->
             <div class="block-title">
-                <h2><i class="fa fa-building-o"></i> <strong>Addresses</strong></h2>
+                <h2><i class="fa fa-building-o"></i> <strong>Domicilios</strong></h2>
                 <div class="block-options pull-right">
                     <a id="addAddress" href="" class="label label-success"><strong>Agregar Dirección</strong></a>
                 </div>
@@ -241,15 +290,15 @@ $(document).ready(function ()
                             <?php
                                 if($address["Address"]["billing"] == "1")
                                 {
-                                    echo "<h2>Billing Address</h2>";
+                                    echo "<h2>Domicilio de Facturación</h2>";
                                 }
                                 else if($address["Address"]["delivery"] == "1")
                                 {
-                                    echo "<h2>Shipping Address</h2>";
+                                    echo "<h2>Domicilio de Entregas</h2>";
                                 }
                                 else
                                 {
-                                    echo "<h2>Address</h2>";
+                                    echo "<h2>Domicilio General</h2>";
                                 }
                             ?>
                             </div>
@@ -274,21 +323,21 @@ $(document).ready(function ()
         <div class="block full">
             <!-- Private Notes Title -->
             <div class="block-title">
-                <h2><i class="fa fa-file-text-o"></i> <strong>Private</strong> Notes</h2>
+                <h2><i class="fa fa-file-text-o"></i> <strong>Notas</strong> Privadas</h2>
             </div>
             <!-- END Private Notes Title -->
 
             <!-- Private Notes Content -->
             <form action="page_ecom_customer_view.html" method="post" onsubmit="return false;">
                 <textarea id="private-note" name="private-note" class="form-control" rows="4" placeholder="Your note.."></textarea>
-                <button type="submit" class="btn btn-sm btn-primary" id="addNote"><i class="fa fa-plus"></i> Add Note</button>
+                <button type="submit" class="btn btn-sm btn-primary" id="addNote"><i class="fa fa-plus"></i> Agregar Nota</button>
             </form>
             <!-- END Private Notes Content -->
         </div>
         <div class="block full">
             <!-- Private Notes Title -->
             <div class="block-title">
-                <h2><i class="fa fa-file-text-o"></i> <strong>Past</strong> Notes</h2>
+                <h2><i class="fa fa-file-text-o"></i> <strong>Historial</strong> de Notas</h2>
             </div>
             <!-- END Private Notes Title -->
 
@@ -311,6 +360,9 @@ $(document).ready(function ()
     </div>
 </div>
 </div>
+<?php
+echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
+?>
 <!-- END Normal Form Block -->
 <script type="text/javascript">
     $(document).ready(function()
@@ -384,5 +436,9 @@ $(document).ready(function ()
                 alert("Ocurrió un error inesperado al guardar la direccion " + textStatus);
             }
         });
-    }    
+    }
+    
+    $(function() {
+		TablesDatatables.init();
+	});
 </script>

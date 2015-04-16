@@ -99,7 +99,7 @@
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
-                <a href="javascript:saveAddress();" class="btn btn-success"><?php echo __('ACCOUNT_ADD_FORM_BTN_SAVE'); ?></a>
+                <a href="javascript:saveAddress();" class="btn btn-success" data-dismiss="modal"><?php echo __('ACCOUNT_ADD_FORM_BTN_SAVE'); ?></a>
                 <a href="javascript:;" class="btn btn-info"><?php echo __('Buscar'); ?></a>
             </div>
         </div>

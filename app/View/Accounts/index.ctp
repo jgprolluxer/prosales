@@ -13,7 +13,9 @@ $(document).ready(function ()
 
 <!-- eCommerce Order View Header -->
 <div class="content-header">
-    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+    <div class="header-section">
+        <?php echo $this->MenuBuilder->build('menu-header-pos'); ?>
+    </div>
 </div>
 <!-- END eCommerce Order View Header -->
 
