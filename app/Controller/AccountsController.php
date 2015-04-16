@@ -63,6 +63,16 @@ class AccountsController extends AppController {
 			)
 		));
         
+        $totalPrice = $this->Order->find('all', array(
+			'fields' => array(
+				'IFNULL(SUM(Order.total_amt),0) suma'
+			),
+			'conditions' => array(
+				'Order.account_id =' => $id,
+                                'Order.status =' => 'closed'
+			)
+		));
+        
         $this->loadModel('Address');
         $addresses = $this->Address->find('all', array(
 			'conditions' => array(
@@ -70,14 +80,21 @@ class AccountsController extends AppController {
 			)
 		));
         
+        $ordersList = $this->Order->find('all', array(
+			'conditions' => array(
+				'Order.account_id =' => $id
+			)
+		));
+        
         $sumOrd = $orders['0']['0']['total'];
+        $totOrd = $totalPrice['0']['0']['suma'];
         
-        $this->log("el address ", "debug");
-        $this->log($addresses, "debug");
+        $this->log("el total ", "debug");
+        $this->log($totOrd, "debug");
         
         
         
-        $this->set(compact('notes', 'sumOrd','addresses'));
+        $this->set(compact('notes', 'sumOrd','addresses', 'totOrd', 'ordersList'));
     }
 
     /**
