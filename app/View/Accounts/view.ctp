@@ -149,7 +149,7 @@ $(document).ready(function ()
             <!-- Orders Title -->
             <div class="block-title">
                 <div class="block-options pull-right">
-                    <span class="label label-success"><strong>$ <?php echo $totOrd ?></strong></span>
+                    <span class="label label-info"><strong>$ <?php echo $totOrd ?></strong></span>
                 </div>
                 <h2><i class="fa fa-truck"></i> <strong>Ordenes</strong></h2>
             </div>
@@ -272,7 +272,9 @@ $(document).ready(function ()
             <div class="block-title">
                 <h2><i class="fa fa-building-o"></i> <strong>Domicilios</strong></h2>
                 <div class="block-options pull-right">
-                    <a id="addAddress" href="" class="label label-success"><strong>Agregar Dirección</strong></a>
+                    <a id="addAddress" href="" class="label label-success animation-tossing">
+                        <i class="fa fa-plus"></i> <strong>Agregar Dirección</strong>
+                    </a>
                 </div>
             </div>
             <!-- END Customer Addresses Title -->
@@ -328,9 +330,11 @@ $(document).ready(function ()
             <!-- END Private Notes Title -->
 
             <!-- Private Notes Content -->
-            <form action="page_ecom_customer_view.html" method="post" onsubmit="return false;">
+            <form method="post" onsubmit="return false;">
                 <textarea id="private-note" name="private-note" class="form-control" rows="4" placeholder="Your note.."></textarea>
-                <button type="submit" class="btn btn-sm btn-primary" id="addNote"><i class="fa fa-plus"></i> Agregar Nota</button>
+                <a href="javascript:void(0);" class="btn btn-sm btn-info" id="addNote">
+                    <i class="fa fa-plus"></i> Agregar Nota
+                </a>
             </form>
             <!-- END Private Notes Content -->
         </div>
