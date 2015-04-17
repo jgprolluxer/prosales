@@ -34,7 +34,7 @@ $(document).ready(function ()
 	<div class="col-sm-6 col-lg-3">
 		<div class="widget">
 			<div class="widget-extra themed-background-info">
-				<h4 class="widget-content-light"><strong>Total</strong></h4>
+				<h4 class="widget-content-light"><strong><?php echo __('Total');?></strong></h4>
 			</div>
 			<div class="widget-extra-full"><span class="h2 text-info animation-expandOpen"> <?php echo "$".$order["Order"]["total_amt"];?></span></div>
 		</div>
@@ -42,7 +42,7 @@ $(document).ready(function ()
 	<div class="col-sm-6 col-lg-3">
 		<div class="widget">
 			<div class="widget-extra themed-background-info">
-				<h4 class="widget-content-light"><i class="fa fa-status"></i> <strong>Estado</strong></h4>
+				<h4 class="widget-content-light"><i class="fa fa-status"></i> <strong><?php echo __('Estado'); ?></strong></h4>
 			</div>
 			<div class="widget-extra-full"><span class="h2 text-info animation-expandOpen"> <?php echo __($order["Order"]["status"]);?></span></div>
 		</div>
@@ -50,30 +50,12 @@ $(document).ready(function ()
 	<div class="col-sm-6 col-lg-3">
 		<div class="widget">
 			<div class="widget-extra themed-background-info">
-				<h4 class="widget-content-light"><i class="fa fa-actions"></i> <strong>Acciones</strong></h4>
+				<h4 class="widget-content-light"><i class="fa fa-status"></i> <strong><?php echo $order["User"]["Workstation"]["title"]. $order["User"]["Workstation"]["employeenumber"];?></strong></h4>
 			</div>
 			<div class="widget-extra-full">
-				<?php
-				$disabledEditing = false;
-				if(StatusOfOrder::Closed == $order["Order"]["status"] )
-				{
-					$disabledEditing = true;
-				}
-				?>
-
-						<?php
-						echo $this->AclView->link(  '<i class="fa fa-pencil"></i> '.__('Modificar'),
-						array('plugin' => $this->params['plugin'],
-						'prefix' => null,
-						'admin' => $this->params['admin'],
-						'controller' => $this->params['controller'],
-						'action' => 'edit', $order["Order"]["id"]
-					),
-					array('escape' => false,
-						'class' => array('btn btn-warning animation-expandOpen'),
-						'disabled' => $disabledEditing
-						));
-					?>
+				<span class="h2 text-info animation-expandOpen">
+					<?php echo $order["User"]["firstname"] . ' ' . $order["User"]["lastname"] ;?>
+				</span>
 			</div>
 		</div>
 	</div>
@@ -84,7 +66,21 @@ $(document).ready(function ()
 <div class="block">
 	<!-- Products Title -->
 	<div class="block-title">
-		<h2><i class="fa fa-shopping-cart"></i> <strong>Products</strong></h2>
+		<h2><?php  echo __('Productos'); ?></h2>
+		<div class="block-options pull-right">
+			<?php
+
+				if(StatusOfOrder::Closed !== $order["Order"]["status"] && StatusOfOrder::Cancelled !== $order["Order"]["status"] )
+				{ 
+					?>
+						<a href="javascript:void(0);" class="btn btn-info" >
+							<?php echo '<i class="fa fa-plus"></i> '. __('Agregar productos'); ?>
+						</a>
+					<?php
+
+				}
+			?>
+		</div>
 	</div>
 	<!-- END Products Title -->
 
@@ -102,6 +98,10 @@ $(document).ready(function ()
 			</thead>
 			<tbody>
 				<?php
+				if(empty($order["OrderProduct"]))
+				{
+					echo '<tr><td colspan="5" class="text-center">'. __('No hay productos en la orden') . '</td></tr>';
+				}
 				foreach($order["OrderProduct"] as $orderProduct)
 				{
 //(product_price * qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )).toFixed(2)
@@ -133,6 +133,19 @@ $(document).ready(function ()
 			<!-- Billing Address Title -->
 			<div class="block-title">
 				<h2><i class="fa fa-building-o"></i> <?php echo __('Cliente'); ?></h2>
+				<div class="block-options pull-right">
+			<?php
+
+				if(StatusOfOrder::Closed !== $order["Order"]["status"] && StatusOfOrder::Cancelled !== $order["Order"]["status"] )
+				{ 
+					?>
+					<a href="javascript:void(0);" class="btn btn-info" >
+						<?php echo '<i class="gi gi-transfer"></i> '. __('Cambiar Cliente'); ?>
+					</a>
+					<?php
+				}
+			?>
+				</div>
 			</div>
 			<!-- END Billing Address Title -->
 			<?php
@@ -185,19 +198,23 @@ $(document).ready(function ()
 		<div class="block">
 			<!-- Shipping Address Title -->
 			<div class="block-title">
-				<h2><i class="fa fa-building-o"></i> <strong>Shipping</strong> Address</h2>
+				<h2><i class="fa fa-building-o"></i> <?php echo __('Direcciones');?></h2>
 			</div>
 			<!-- END Shipping Address Title -->
 
 			<!-- Shipping Address Content -->
-			<h4><strong>Harry Burke</strong></h4>
-			<address>
-				Sunset Str 598<br>
-				Melbourne<br>
-				Australia, 21-852<br><br>
-				<i class="fa fa-phone"></i> (999) 852-22222<br>
-				<i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">harry.burke@example.com</a>
-			</address>
+			<?php 
+			if( !empty($order["Account"]["Address"]) )
+			{
+				?>
+				<address>
+					<?php echo $order["Account"]["Address"][0]["street"]; ?>  <?php echo $order["Account"]["Address"][0]["street_no"] ?>, <?php echo $order["Account"]["Address"][0]["suburb"]; ?><br>
+					<?php echo $order["Account"]["Address"][0]["city"]; ?>, <?php echo $order["Account"]["Address"][0]["state"]; ?><br>
+					<?php echo $order["Account"]["Address"][0]["country"]; ?><br>
+				</address>
+				<?php
+			}
+			?>
 			<!-- END Shipping Address Content -->
 		</div>
 		<!-- END Shipping Address Block -->
@@ -210,6 +227,19 @@ $(document).ready(function ()
 	<!-- Log Title -->
 	<div class="block-title">
 		<h2><i class="fa fa-file-text-o"></i> <?php echo __('Pagos asociados'); ?></h2>
+		<div class="block-options pull-right">
+			<?php
+
+				if(StatusOfOrder::Closed !== $order["Order"]["status"] && StatusOfOrder::Cancelled !== $order["Order"]["status"] )
+				{ 
+					?>
+					<a href="javascript:void(0);" class="btn btn-info" >
+						<?php echo '<i class="fa fa-plus"></i> '. __('Agregar pago'); ?>
+					</a>
+					<?php
+				}
+			?>
+		</div>
 	</div>
 	<!-- END Log Title -->
 
@@ -238,7 +268,7 @@ $(document).ready(function ()
 						</td>
 						<td class="text-center"><?php echo $orderPayment["created"]; ?></td>
 						<td><?php echo '$'.$orderPayment["total_amt"]; ?></td>
-						<td class="text-success"><i class="fa fa-fw fa-check"></i> <strong><?php echo __('Payment ') . $orderPayment["status"] ?></strong></td>
+						<td class="text-success"><i class="fa fa-fw fa-check"></i> <strong><?php echo __('Pago ') . __($orderPayment["status"]) ?></strong></td>
 					</tr>
 					<?php
 				}

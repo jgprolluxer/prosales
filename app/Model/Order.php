@@ -35,6 +35,13 @@ class Order extends AppModel
             'conditions' => '',
             'fields' => '',
             'order' => ''
+        ),
+        'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'created_by',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
         )
     );
 
