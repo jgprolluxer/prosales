@@ -112,7 +112,7 @@ public function getReports()
 		$xData["TotalOrderByDate"] = $rOrder;
 
 ////// Sales man reports
-		
+		/*
 		$orders = $this->Order->find('all', array(
             'joins' => array(
                 array('table' => 'users',
@@ -148,7 +148,7 @@ public function getReports()
 		{
 			$rOrder[$key] = array(__($order["0"]["salesman"]), intval($order["0"]["total"]) );
 		}
-		$xData["OrderBySalesMan"] = $rOrder;
+		$xData["OrderBySalesMan"] = $rOrder;*/
 
 ////////////
 //////////// Products report
