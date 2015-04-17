@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2013-03-19 17:10+0000\n"
-"PO-Revision-Date: 2015-04-06 20:32-0600\n"
+"PO-Revision-Date: 2015-04-16 19:28-0600\n"
 "Last-Translator: hugo <hruiz.it@live.com.mx>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -72,6 +72,15 @@ msgstr "El registro no pudo ser guardado"
 
 msgid "applied"
 msgstr "Aplicado"
+
+msgid "male"
+msgstr "Hombre"
+
+msgid "female"
+msgstr "Mujer"
+
+msgid "minorist"
+msgstr "Minorista"
 
 #
 # ----------      END COMMON SECTION      ---------- ###############################
