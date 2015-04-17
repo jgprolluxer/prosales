@@ -32,7 +32,7 @@
                 'value' => $relObjId
             ));
         ?>
-        <div class="col-md-10">
+        <div class="col-md-6">
             <?php
             echo $this->Form->input('street', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('Calle')),
@@ -68,6 +68,8 @@
                 'type' => 'text'
             ));
             ?>
+        </div>
+        <div class="col-md-6">
             <?php
             echo $this->Form->input('zip', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('Código Postal')),
@@ -100,7 +102,7 @@
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
                 <a href="javascript:saveAddress();" class="btn btn-success" data-dismiss="modal"><?php echo __('ACCOUNT_ADD_FORM_BTN_SAVE'); ?></a>
-                <a href="javascript:;" class="btn btn-info"><?php echo __('Buscar'); ?></a>
+                <!-- <a href="javascript:;" class="btn btn-info"><?php //echo __('Buscar'); ?></a> -->
             </div>
         </div>
     </div>

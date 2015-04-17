@@ -272,7 +272,7 @@ $(document).ready(function ()
             <div class="block-title">
                 <h2><i class="fa fa-building-o"></i> <strong>Domicilios</strong></h2>
                 <div class="block-options pull-right">
-                    <a id="addAddress" href="" class="label label-success animation-tossing">
+                    <a id="addAddress" href="" class="label label-success animation-pulse">
                         <i class="fa fa-plus"></i> <strong>Agregar Dirección</strong>
                     </a>
                 </div>
@@ -371,11 +371,6 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
 <script type="text/javascript">
     $(document).ready(function()
     {
-        //$('#page-container').removeClass('sidebar-visible-xs');
-        //$('#page-container').removeClass('sidebar-visible-lg');
-
-        $('#page-container').attr('class', 'sidebar-no-animations');
-        $('header').hide();
         $("#addAddress").click(function(){ $("#addAccountAddress").modal() });
     });
 
