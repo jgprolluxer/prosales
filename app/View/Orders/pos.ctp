@@ -47,7 +47,7 @@ $(document).ready(function ()
 <!-- angularstrap -->
 <!-- <input type="text" class="form-control" ng-model="selectedProduct"  data-animation="am-flip-x" ng-options="sproduct.Product.name as sproduct.Product.name for sproduct in loadProductNames($viewValue)" id="productSearcher" placeholder="Nombre del producto..." bs-typeahead> -->
 <!-- uibootstrap -->
-<input type="text" class="form-control" ng-model="selectedProduct"  data-animation="am-flip-x" typeahead-on-select="processSelectedProduct($item)" typeahead="sproduct.Product.name as sproduct.Product.name for sproduct in loadProductNames($viewValue)" id="productSearcher" placeholder="Nombre del producto..." >
+<input type="text" class="form-control" ng-model="selectedProduct"  data-animation="am-flip-x" ng-disabled="newOrder.Order.total_amt <= totalPayments && totalPayments != 0 " typeahead-on-select="processSelectedProduct($item)" typeahead="sproduct.Product.name as sproduct.Product.name for sproduct in loadProductNames($viewValue)" id="productSearcher" placeholder="Nombre del producto..." >
 
 
                         </div>
