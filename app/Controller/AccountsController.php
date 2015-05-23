@@ -88,6 +88,7 @@ class AccountsController extends AppController {
         
         $sumOrd = $orders['0']['0']['total'];
         $totOrd = $totalPrice['0']['0']['suma'];
+        $totOrd = number_format($totOrd,2,".",","); 
         
         $this->log("el total ", "debug");
         $this->log($totOrd, "debug");
