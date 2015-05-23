@@ -145,7 +145,7 @@ $(document).ready(function ()
     </div>
     <div class="col-lg-8">
         <!-- Orders Block -->
-        <div class="block">
+        <div class="block full">
             <!-- Orders Title -->
             <div class="block-title">
                 <div class="block-options pull-right">
@@ -267,7 +267,7 @@ $(document).ready(function ()
             </table>-->
             <!-- END Orders Content -->
         </div>
-        <div class="block">
+        <div class="block full">
             <!-- Customer Addresses Title -->
             <div class="block-title">
                 <h2><i class="fa fa-building-o"></i> <strong>Domicilios</strong></h2>
