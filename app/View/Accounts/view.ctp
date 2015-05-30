@@ -284,6 +284,7 @@ $(document).ready(function ()
             
                 <?php
                 //$addressType == "";
+                $count = 1;
                 foreach ($addresses as $address)
                 {?>
                     <div class="col-lg-6">
@@ -303,20 +304,26 @@ $(document).ready(function ()
                                     echo "<h2>Domicilio General</h2>";
                                 }
                             ?>
+                                <div class="block-options pull-right">
+                                    <a id="mapView<?php echo $count; ?>" href="" class="btn btn-info btn-xs mapView" mapID="<?php echo $count; ?>">
+                                        <i class="fa fa-eye"></i> <strong>Ver Mapa</strong>
+                                    </a>
+                                </div>
                             </div>
                             <address id="dataAddress">
                                 <i class="fa fa-home"></i>
-                                <?php echo $address["Address"]["street"]; ?>, No. 
-                                <?php echo $address["Address"]["street_no"]; ?><br>
-                                <?php echo $address["Address"]["suburb"]; ?><br>
-                                <?php echo $address["Address"]["city"]; ?>, 
-                                <?php echo $address["Address"]["state"]; ?><br><br>
+                                <span id="strAddress<?php echo $count; ?>"><?php echo $address["Address"]["street"]; ?></span>, No. 
+                                <span id="numAddress<?php echo $count; ?>"><?php echo $address["Address"]["street_no"]; ?></span><br>
+                                <span id="subAddress<?php echo $count; ?>"><?php echo $address["Address"]["suburb"]; ?></span><br>
+                                <span id="citAddress<?php echo $count; ?>"><?php echo $address["Address"]["city"]; ?></span>, 
+                                <span id="staAddress<?php echo $count; ?>"><?php echo $address["Address"]["state"]; ?></span><br><br>
                                 <!--<i class="fa fa-phone"></i> (81) 8352-1111<br>
                                 <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">hugoruiz@prollux.com</a>-->
                             </address>
                         </div>
                     </div>
                 <?php 
+                $count++;
                 }
                 ?>
             </div>
@@ -361,6 +368,7 @@ $(document).ready(function ()
     </div>
     <div class="row">
         <?php echo $this->App->drawAccountAddressAdd(); ?> 
+        <?php echo $this->App->drawAccountMapView(); ?> 
     </div>
 </div>
 </div>
@@ -368,10 +376,15 @@ $(document).ready(function ()
 echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
 ?>
 <!-- END Normal Form Block -->
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="/template_assets/plugins/gmaps/gmaps.js"></script>
+<script src="/template_assets/js/helpers/gmaps.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function()
     {
-        $("#addAddress").click(function(){ $("#addAccountAddress").modal() });
+        $("#addAddress").click(function(){ $("#addAccountAddress").modal(); });
+        $(".mapView").click(function(){ loadModalMap(this); });        
+        getYouCurrentLocation();
     });
 
 
@@ -435,6 +448,12 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
                 alert("Ocurrió un error inesperado al guardar la direccion " + textStatus);
             }
         });
+    }
+    
+    function loadModalMap(obj)
+    {
+        $("#mapViewModal").modal();
+        searchInGMaps($(obj).attr('mapID'));
     }
     
     $(function() {
