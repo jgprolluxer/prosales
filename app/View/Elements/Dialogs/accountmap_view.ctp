@@ -1,8 +1,7 @@
 <!-- Interactive Block -->
 <div class="block">
     <div class="block-content">    
-        <div id="gmap" style="height: 550px;"></div>
-        <!--<iframe src="" width="100%" height="450" frameborder="0" style="border:0" id="mapFrame"></iframe>        -->
+        <div id="gmap"></div>
     </div>
 </div>
 
@@ -122,5 +121,13 @@
            
            $("#gmap").css("height","500px");
            $("#gmap").css("width","516px");
+           google.maps.event.trigger(gmap, "resize");    
+    }
+    
+    function destroyGmap()
+    {
+        var container = $("#gmap").parent();
+        $("#gmap").remove();
+        container.append('<div id="gmap"></div>');
     }
 </script>
