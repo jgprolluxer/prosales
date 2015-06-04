@@ -376,15 +376,18 @@ $(document).ready(function ()
 echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
 ?>
 <!-- END Normal Form Block -->
-<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script src="/template_assets/plugins/gmaps/gmaps.js"></script>
+
+<script src="//maps.google.com/maps/api/js?sensor=true"></script>
 <script src="/template_assets/js/helpers/gmaps.min.js"></script>
+<script src="/template_assets/plugins/gmaps/gmaps.js"></script>
+
+
 <script type="text/javascript">
     $(document).ready(function()
     {
         $("#addAddress").click(function(){ $("#addAccountAddress").modal(); });
-        $(".mapView").click(function(){ loadModalMap(this); });        
-        getYouCurrentLocation();
+        $(".mapView").click(function(){ loadModalMap(this); });
+        //getYouCurrentLocation();
     });
 
 
@@ -454,6 +457,7 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
     {
         $("#mapViewModal").modal();
         searchInGMaps($(obj).attr('mapID'));
+        google.maps.event.trigger(gmap, "resize");
     }
     
     $(function() {
