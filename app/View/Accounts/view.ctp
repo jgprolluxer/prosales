@@ -327,6 +327,21 @@ $(document).ready(function ()
                 }
                 ?>
             </div>
+            <div class="row" id="gmapContainer" style="display:none">
+                <div class="col-lg-12">
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2>Mapa Seleccionado</h2>
+                                <div class="block-options pull-right">
+                                    <a id="closeMap" href="" class="" style="color:gray">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="gmap"></div>
+                        </div>
+                    </div>
+            </div>
             <!-- END Customer Addresses Content -->
         </div>
         <div class="block full">
@@ -368,7 +383,7 @@ $(document).ready(function ()
     </div>
     <div class="row">
         <?php echo $this->App->drawAccountAddressAdd(); ?> 
-        <?php echo $this->App->drawAccountMapView(); ?> 
+        <?php //echo $this->App->drawAccountMapView(); ?> 
     </div>
 </div>
 </div>
@@ -386,7 +401,9 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
     $(document).ready(function()
     {
         $("#addAddress").click(function(){ $("#addAccountAddress").modal(); });
+        $("#saveAddress").click(function(){ saveAddress(); });
         $(".mapView").click(function(){ loadModalMap(this); });
+        $("#closeMap").click(function(){ $("#gmapContainer").fadeOut(500); });
         //getYouCurrentLocation();
     });
 
@@ -455,12 +472,70 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
     
     function loadModalMap(obj)
     {
-        $("#mapViewModal").modal();
+        //$("#mapViewModal").modal();
         searchInGMaps($(obj).attr('mapID'));
         google.maps.event.trigger(gmap, "resize");
     }
     
     $(function() {
-		TablesDatatables.init();
+            TablesDatatables.init();
 	});
+        
+    function searchInGMaps(addressID)
+    {
+        var key = "AIzaSyCRb9Wxzl1l8omtJELsQrRvKZ5d4bgdz3A";
+        var pluginUrl = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=";
+        
+        var number = $("#numAddress" + addressID).text();
+        var street = $("#strAddress" + addressID).text();
+        var suburb = $("#subAddress" + addressID).text();
+        var city = $("#citAddress" + addressID).text();
+        var state = $("#staAddress" + addressID).text();
+        
+        params = number + "+" + street.replace(" ","+") + ",+" + suburb.replace(" ","+") + ",+" + city.replace(" ","+") + ",+" + state.replace(" ","+") + "&key=" + key;
+        
+        
+        //alert(pluginUrl + params);
+        $.ajax({
+            url: pluginUrl + params,
+            dataType: "json",
+            success: function(data)
+            {
+                var latitude = data.results[0].geometry.location.lat;
+                var longitude = data.results[0].geometry.location.lng;
+                loadMap(latitude, longitude);
+                
+            },
+            error: function (data) 
+            {
+                alert("error 0: " + data);
+            }
+        });
+    }
+    
+    function loadMap(lat, lng)
+    {        
+        $("#gmapContainer").fadeIn(500);
+         new GMaps({
+               div: '#gmap',
+               lat: lat,
+               lng: lng,
+               zoom: 14,
+               disableDefaultUI: true,
+               scrollwheel: true
+           }).addMarkers([
+               {
+                   lat: lat,
+                   lng: lng,
+                   title: 'Find Us',
+                   infoWindow: {content: '<strong>Company Address &amp; Info</strong>'},
+                   animation: google.maps.Animation.DROP
+               }
+           ]);    
+           
+           $("#gmap").css("height","350px");
+           $("#gmap").css("width","80%");
+           $("#gmap").css("margin", "0 auto");
+           $("html, body").animate({ scrollTop: $('#gmapContainer').offset().top }, 1000);
+    }
 </script>
