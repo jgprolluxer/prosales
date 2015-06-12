@@ -280,11 +280,9 @@ $(document).ready(function ()
             <!-- END Customer Addresses Title -->
 
             <!-- Customer Addresses Content -->
-            <div class="row">
+            <div class="row" id="addressesArea">
             
                 <?php
-                //$addressType == "";
-                $count = 1;
                 foreach ($addresses as $address)
                 {?>
                     <div class="col-lg-6">
@@ -305,25 +303,24 @@ $(document).ready(function ()
                                 }
                             ?>
                                 <div class="block-options pull-right">
-                                    <a id="mapView<?php echo $count; ?>" href="" class="btn btn-info btn-xs mapView" mapID="<?php echo $count; ?>">
+                                    <a id="mapView<?php echo $address["Address"]["id"] ?>" href="" class="btn btn-info btn-xs mapView" mapID="<?php echo $address["Address"]["id"] ?>">
                                         <i class="fa fa-eye"></i> <strong>Ver Mapa</strong>
                                     </a>
                                 </div>
                             </div>
                             <address id="dataAddress">
                                 <i class="fa fa-home"></i>
-                                <span id="strAddress<?php echo $count; ?>"><?php echo $address["Address"]["street"]; ?></span>, No. 
-                                <span id="numAddress<?php echo $count; ?>"><?php echo $address["Address"]["street_no"]; ?></span><br>
-                                <span id="subAddress<?php echo $count; ?>"><?php echo $address["Address"]["suburb"]; ?></span><br>
-                                <span id="citAddress<?php echo $count; ?>"><?php echo $address["Address"]["city"]; ?></span>, 
-                                <span id="staAddress<?php echo $count; ?>"><?php echo $address["Address"]["state"]; ?></span><br><br>
+                                <span id="strAddress<?php echo $address["Address"]["id"] ?>"><?php echo $address["Address"]["street"]; ?></span>, No. 
+                                <span id="numAddress<?php echo $address["Address"]["id"] ?>"><?php echo $address["Address"]["street_no"]; ?></span><br>
+                                <span id="subAddress<?php echo $address["Address"]["id"] ?>"><?php echo $address["Address"]["suburb"]; ?></span><br>
+                                <span id="citAddress<?php echo $address["Address"]["id"] ?>"><?php echo $address["Address"]["city"]; ?></span>, 
+                                <span id="staAddress<?php echo $address["Address"]["id"] ?>"><?php echo $address["Address"]["state"]; ?></span><br><br>
                                 <!--<i class="fa fa-phone"></i> (81) 8352-1111<br>
                                 <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">hugoruiz@prollux.com</a>-->
                             </address>
                         </div>
                     </div>
                 <?php 
-                $count++;
                 }
                 ?>
             </div>
@@ -462,6 +459,7 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
             success: function(data)
             {
                 console.log(data);
+                loadNewAddress(data.xData);
             },
             error: function(xhr, textStatus, errorThrown)
             {
@@ -474,7 +472,7 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
     {
         //$("#mapViewModal").modal();
         searchInGMaps($(obj).attr('mapID'));
-        google.maps.event.trigger(gmap, "resize");
+        //google.maps.event.trigger(gmap, "resize");
     }
     
     $(function() {
@@ -537,5 +535,32 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
            $("#gmap").css("width","80%");
            $("#gmap").css("margin", "0 auto");
            $("html, body").animate({ scrollTop: $('#gmapContainer').offset().top }, 1000);
+    }
+
+    function loadNewAddress(obj){
+        var newAddress = 
+            '<div class="col-lg-6">' +
+                '<div class="block">' +
+                    '<div class="block-title">' +
+                       '<h2>Domicilio de Facturación</h2>' +
+                        '<div class="block-options pull-right">' +
+                            '<a id="mapView' + obj.Address.id + '" href="" class="btn btn-info btn-xs mapView" mapID="' + obj.Address.id + '">' +
+                                '<i class="fa fa-eye"></i> <strong>Ver Mapa</strong>' +
+                            '</a>' +
+                        '</div>' +
+                    '</div>' +
+                    '<address id="dataAddress">' +
+                        '<i class="fa fa-home"></i>' +
+                        '<span id="strAddress' + obj.Address.id + '">' + obj.Address.street + '</span>, No. ' +
+                        '<span id="numAddress' + obj.Address.id + '">' + obj.Address.street_no + '</span><br>' +
+                        '<span id="subAddress' + obj.Address.id + '">' + obj.Address.suburb + '</span><br>' +
+                        '<span id="citAddress' + obj.Address.id + '">' + obj.Address.city + '</span>, ' +
+                        '<span id="staAddress' + obj.Address.id + '">' + obj.Address.state + '</span><br><br>' +
+                    '</address>' +
+                '</div>' +
+            '</div>';
+        $("#addressesArea").append(newAddress);        
+        $(".mapView").click(function(){ loadModalMap(this); });
+        //$("#mapView" + obj.Address.id).click(function(){ loadModalMap(this); });
     }
 </script>
