@@ -61,7 +61,6 @@ $(document).ready(function ()
 	</div>
 </div>
 <!-- END Order Status -->
-
 <!-- Products Block -->
 <div class="block">
 	<!-- Products Title -->
@@ -83,7 +82,6 @@ $(document).ready(function ()
 		</div>
 	</div>
 	<!-- END Products Title -->
-
 	<!-- Products Content -->
 	<div class="table-responsive">
 		<table class="table table-bordered table-vcenter">
