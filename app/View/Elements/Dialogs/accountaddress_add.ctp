@@ -33,41 +33,62 @@
             ));
         ?>
         <div class="col-md-6">
-            <?php
-            echo $this->Form->input('street', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Calle')),
-                'class' => 'form-control',
-                'type' => 'text'
-            ));
-            ?>
-            <?php
-            echo $this->Form->input('street_no', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Número')),
-                'class' => 'form-control',
-                'type' => 'text'
-            ));
-            ?>
-            <?php
-            echo $this->Form->input('suburb', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Colonia')),
-                'class' => 'form-control',
-                'type' => 'text'
-            ));
-            ?>
-            <?php
-            echo $this->Form->input('city', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Ciudad')),
-                'class' => 'form-control',
-                'type' => 'text'
-            ));
-            ?>
-            <?php
-            echo $this->Form->input('state', array(
-                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Estado')),
-                'class' => 'form-control',
-                'type' => 'text'
-            ));
-            ?>
+
+            <div id="streetInput">
+                <?php
+                echo $this->Form->input('street', array(
+                    'label' => array('class' => 'col-md-4 control-label', 'text' => __('Calle')),
+                    'class' => 'form-control',
+                    'type' => 'text'
+                ));
+                ?>
+                <div id="streetError" class="help-block animation-slideDown" style="display:none">Favor de introducir calle</div>
+            </div>
+
+            <div id="streetNoInput">
+                <?php
+                echo $this->Form->input('street_no', array(
+                    'label' => array('class' => 'col-md-4 control-label', 'text' => __('Número')),
+                    'class' => 'form-control',
+                    'type' => 'text'
+                ));
+                ?>
+                <div id="streetNoError" class="help-block animation-slideDown" style="display:none">Favor de introducir número de calle</div>
+            </div>
+
+            <div id="suburbInput">
+                <?php
+                echo $this->Form->input('suburb', array(
+                    'label' => array('class' => 'col-md-4 control-label', 'text' => __('Colonia')),
+                    'class' => 'form-control',
+                    'type' => 'text'
+                ));
+                ?>
+                <div id="suburbError" class="help-block animation-slideDown" style="display:none">Favor de introducir colonia</div>
+            </div>
+
+            <div id="cityInput">
+                <?php
+                echo $this->Form->input('city', array(
+                    'label' => array('class' => 'col-md-4 control-label', 'text' => __('Ciudad')),
+                    'class' => 'form-control',
+                    'type' => 'text'
+                ));
+                ?>
+                <div id="cityError" class="help-block animation-slideDown" style="display:none">Favor de introducir ciudad</div>
+            </div>
+
+            <div id="stateInput">
+                <?php
+                echo $this->Form->input('state', array(
+                    'label' => array('class' => 'col-md-4 control-label', 'text' => __('Estado')),
+                    'class' => 'form-control',
+                    'type' => 'text'
+                ));
+                ?>
+                <div id="stateError" class="help-block animation-slideDown" style="display:none">Favor de introducir estado</div>
+            </div>
+
         </div>
         <div class="col-md-6">
             <?php
@@ -101,10 +122,61 @@
         </div>
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
-                <a href="" class="btn btn-success" data-dismiss="modal" id="saveAddress"><?php echo __('ACCOUNT_ADD_FORM_BTN_SAVE'); ?></a>
-                <!--<a href="javascript:saveAddress();" class="btn btn-success" data-dismiss="modal"></a>-->
-                <!-- <a href="javascript:;" class="btn btn-info"><?php //echo __('Buscar'); ?></a> -->
+                <a href="" class="btn btn-success" id="saveAddress" onclick="clickSaveAddress();"><?php echo __('ACCOUNT_ADD_FORM_BTN_SAVE'); ?></a>
+                <a href="" class="btn btn-info" id="searchAddress">Buscar</a>
             </div>
         </div>
+        <!--<legend><i class="fa fa-angle-right"></i> Tags Input</legend>-->
     </div>
 </div>
+<script type="text/javascript">
+        function validateFields(){
+            var flag = 0;
+            if($("#AddressStreet").val() == "") {
+                $("#streetInput").addClass("error");
+                $("#streetError").addClass("empty");
+                $("#AddressStreet").focus();
+                flag = 1;
+            }
+            if($("#AddressStreetNo").val() == "") {
+                $("#streetNoInput").addClass("error");
+                $("#streetNoError").addClass("empty");
+                $("#AddressStreetNo").focus();
+                flag = 1;
+            }
+            if($("#AddressSuburb").val() == "") {
+                $("#suburbInput").addClass("error");
+                $("#suburbError").addClass("empty");
+                $("#AddressSuburb").focus();
+                flag = 1;
+            }
+            if($("#AddressCity").val() == "") {
+                $("#cityInput").addClass("error");
+                $("#cityError").addClass("empty");
+                $("#AddressCity").focus();
+                flag = 1;
+            }
+            if($("#AddressState").val() == "") {
+                $("#stateInput").addClass("error");
+                $("#stateError").addClass("empty");
+                $("#AddressState").focus();
+                flag = 1;
+            }
+            /*if(!($("#AddressBilling").is(":checked")) && !($("#AddressDelivery").is(":checked"))) {
+                $("#checkError").addClass("empty");
+                $("#AddressBilling").focus();
+                flag = 1;
+            }*/
+            
+            $(".empty").css('margin-top','-10px');
+            $(".empty").css('text-align','right');
+            $(".empty").css('font-size','10px');
+            $(".error").addClass("has-error");
+            $(".empty").show();
+
+            if(flag == 1)
+                return false
+            else
+                return true;             
+        }
+    </script>
