@@ -401,8 +401,11 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
 <script type="text/javascript">
     $(document).ready(function()
     {
-        $("#addAddress").click(function(){ $("#addAccountAddress").modal(); });
-        $("#saveAddress").click(function(){ saveAddress(); });
+        $("#addAddress").click(function(){ 
+            $("#addAccountAddress").modal();
+            $(".empty").hide();
+            $(".error").removeClass("has-error");
+        });        
         $(".mapView").click(function(){ loadModalMap(this); });
         $("#closeMap").click(function(){ $("#gmapContainer").fadeOut(500); });
         //getYouCurrentLocation();
@@ -413,6 +416,12 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
         if($("#private-note").val() != "")
             saveNote();
     });
+
+    function clickSaveAddress()
+    {
+        if(validateFields())
+            saveAddress();
+    }
 
     function saveNote()
     {
