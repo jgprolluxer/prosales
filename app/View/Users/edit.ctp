@@ -1,17 +1,33 @@
+<script type="text/javascript">
+$(document).ready(function ()
+{
+    //$('#page-container').removeClass('sidebar-visible-xs');
+    //$('#page-container').removeClass('sidebar-visible-lg');
+
+    $('#page-container').attr('class', 'sidebar-no-animations footer-fixed');
+    $('header').hide();
+    /* Add placeholder attribute to the search input */
+    $('.dataTables_filter input').attr('placeholder', 'Search');
+});
+</script>
+
+<!-- eCommerce Order View Header -->
+<div class="content-header">
+    <div class="header-section">
+        <?php echo $this->MenuBuilder->build('menu-header-pos'); ?>
+    </div>
+</div>
+<!-- END eCommerce Order View Header -->
+
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- Interactive Block -->
 <?php
 echo $this->Html->css('/template_assets/plugins/bootstrap-fileupload/bootstrap-fileupload.css');
 echo $this->Html->script("/template_assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js");
 ?>
-<div class="content-header">
-    <div class="header-section">
-        <h1>
-            <i class="fa fa-user fa-fw"></i><?php echo __('USER_EDIT_HEAD_TITLE'); ?><br><small><?php echo __('USER_EDIT_HEAD_TITLE_SMALL'); ?></small>
-        </h1>
-    </div>
-</div>
-<ul class="breadcrumb breadcrumb-top">
-    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
-</ul>
+
 <!-- END Forms General Header -->
 <!-- Normal Form Block -->
 <div class="block">
