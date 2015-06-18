@@ -26,29 +26,19 @@ $(document).ready(function ()
 	<!-- All Orders Title -->
 	<div class="block-title">
 		<div class="block-options pull-right">
-<!-- 			echo $this->AclView->link(  '<i class="fa fa-plus"></i> '.__('Nueva Venta'),
-			array('plugin' => $this->params['plugin'],
-			'prefix' => null,
-			'admin' => $this->params['admin'],
-			'controller' => $this->params['controller'],
-			'action' => 'add'
-		),
-		array('escape' => false, 'class' => array('btn btn-info', 'animation-tossing', 'themed-background-spring')));
- -->
-	</div>
-	<h2>Ventas</h2>
-</div>
-<!-- END All Orders Title -->
-			<?php
-			echo $this->AclView->link(  '<i class="fa fa-plus"></i> '.__('Venta'),
+<?php 			echo $this->AclView->link(  '<i class="fa fa-plus"></i> '.__('Venta'),
 			array('plugin' => $this->params['plugin'],
 			'prefix' => null,
 			'admin' => $this->params['admin'],
 			'controller' => $this->params['controller'],
 			'action' => 'pos'
 		),
-		array('escape' => false, 'class' => array('btn btn-info', 'animation-tossing', 'themed-background-spring')));
-		?>
+		array('escape' => false, 'class' => array('btn btn-info', 'themed-background-spring')));
+?>
+	</div>
+	<h2>Ventas</h2>
+</div>
+<!-- END All Orders Title -->
 <!-- All Orders Content -->
 <div class="table-responsive">
 <table id="example-datatable" class="table table-bordered table-striped table-vcenter">

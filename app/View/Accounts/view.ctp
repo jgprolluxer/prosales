@@ -172,7 +172,11 @@ $(document).ready(function ()
                             foreach ($ordersList as $idx => $order) {
                                 ?>
                                 <tr>
-                                    <td><?php echo __('<a>'.$order['Order']['folio'].'</a>'); ?></td>
+                                    <td>
+                                        <?php
+                                        echo $this->Html->link(__($order['Order']['folio']), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => 'Order', 'action' => 'view', $order['Order']['id']), array('escape' => false, 'class' => array('')));
+                                        ?>
+                                    </td>
                                     <td><?php echo __('<strong>$ '.$order['Order']['price'].'</strong>'); ?></td>
                                     <td><?php
                                         if($order['Order']['status'] == "closed")
@@ -192,7 +196,7 @@ $(document).ready(function ()
                                     <td><?php echo __($order['Order']['created']); ?></td>
                                     <td class="text-center">
                                         <?php
-                                        echo $this->AclView->link(__('<i class="fa fa-eye fa-fw"></i>'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'view', $order['Order']['id']), array('escape' => false, 'class' => array('btn btn-xs btn-info')));
+                                        echo $this->Html->link(__('<i class="fa fa-eye fa-fw"></i>'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => 'Order', 'action' => 'view', $order['Order']['id']), array('escape' => false, 'class' => array('btn btn-xs btn-info')));
                                         ?>
                                     </td>
                                 </tr>
