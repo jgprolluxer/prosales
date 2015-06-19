@@ -123,7 +123,7 @@
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
                 <a href="" class="btn btn-success" id="saveAddress" onclick="clickSaveAddress();"><?php echo __('ACCOUNT_ADD_FORM_BTN_SAVE'); ?></a>
-                <a href="" class="btn btn-info" id="searchAddress">Buscar</a>
+                <a href="" class="btn btn-info" id="searchAddress" onclick="clickSearchAddress();">Buscar</a>
             </div>
         </div>
         <!--<legend><i class="fa fa-angle-right"></i> Tags Input</legend>-->
@@ -178,5 +178,52 @@
                 return false
             else
                 return true;             
+        }
+
+        function clickSearchAddress()
+        {
+            var key = "AIzaSyCRb9Wxzl1l8omtJELsQrRvKZ5d4bgdz3A";
+            var pluginUrl = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=";
+            var params = "";
+            
+            var number = $("#AddressStreetNo").val();
+            var street = $("#AddressStreet").val();
+            var suburb = $("#AddressSuburb").val();
+            var city = $("#AddressCity").val();
+            var state = $("#AddressState").val();
+            var zip = $("#AddressZip").val();
+            var country = $("#AddressCountry").val();
+            
+            if(number != "")
+                params += "+" + number;
+            if(street != "")
+                params += "+" + street;
+            if(suburb != "")
+                params += "+" + suburb;
+            if(city != "")
+                params += "+" + city;
+            if(state != "")
+                params += "+" + state;
+            if(zip != "")
+                params += "+" + zip;
+            if(country != "")
+                params += "+" + country;
+                                
+            $.ajax({
+                url: pluginUrl + params,
+                dataType: "json",
+                success: function(data)
+                {
+                    var addressesList = data.results
+                    $(addressesList).each( function(i,address) { 
+                        console.log(address.formatted_address);
+                    });
+                    
+                },
+                error: function (data) 
+                {
+                    alert("error 0: " + data);
+                }
+            });
         }
     </script>
