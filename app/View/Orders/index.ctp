@@ -27,7 +27,7 @@ $(document).ready(function ()
 	<div class="block-title">
 		<div class="block-options pull-right">
 			<?php
-			echo $this->Html->link(  '<i class="fa fa-plus"></i> '.__('Ordenes de servicio'),
+			echo $this->Html->link(  '<i class="fa fa-list"></i> '.__('Ordenes de servicio'),
 						array('plugin' => $this->params['plugin'],
 						'prefix' => null,
 						'admin' => $this->params['admin'],
