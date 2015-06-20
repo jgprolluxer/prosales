@@ -10,17 +10,13 @@ $(document).ready(function ()
     $('.dataTables_filter input').attr('placeholder', 'Search');
 });
 </script>
-
-<ul class="breadcrumb breadcrumb-top">
-    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
-</ul>
 <!-- All Orders Block -->
-<div class="block full">
+<div class="block full" >
 	<!-- All Orders Title -->
-	<div class="block-title">
+	<div class="block-title"  >
 		<div class="block-options pull-right">
 	    			<?php
-			echo $this->Html->link(  '<i class="fa fa-plus"></i> '.__('Atrás'),
+			echo $this->Html->link(  '<i class="fa fa-reply"></i> '.__('Atrás'),
 						array('plugin' => $this->params['plugin'],
 						'prefix' => null,
 						'admin' => $this->params['admin'],
@@ -38,6 +34,7 @@ foreach($orders as $oIDX => $order)
 {
     
     $theOrder = $order["Order"];
+    $theAccount = $order["Account"];
     $datetime1 = new DateTime($theOrder["created"]);
     $datetime2 = new DateTime();
     //$totalDiff = $datetime1->diff($datetime2)->format("%d Días, %h Horas and %i Minutos");
@@ -53,34 +50,33 @@ foreach($orders as $oIDX => $order)
     
     ?>
 
-    <div class="block full">
-        <div class="block-title">
-
+    <div class="block full" style="margin:0px !important; padding:0px !important; margin-top:1px!important; border:2px solid #dbe1e8;" >
+        <div class="block-title" style="margin:0px !important; padding:0px !important;" >
             <?php
                 if($minuteDiff > 8)
                 {
                     echo '<div class="test-circle themed-border-fire themed-background-fire" style="max-width:10px; max-height:10px;" ></div>';
-                    echo '<h2 class="text-danger" style="margin:0px !important; padding:0px !important" >'.$theOrder["folio"].'</h2>';
+                    echo '<h2 class="text-danger" style="margin:0px !important; padding:0px !important;" >'.$theOrder["folio"].'</h2>';
                 } elseif($minuteDiff >= 4 && $minuteDiff <= 8 )
                 {
                     echo '<div class="test-circle themed-border-autumn themed-background-autumn" style="max-width:10px; max-height:10px;" ></div>';
-                    echo '<h2 class="text-warning" style="margin:0px !important; padding:0px !important" >'.$theOrder["folio"].'</h2>';
+                    echo '<h2 class="text-warning" style="margin:0px !important; padding:0px !important;" >'.$theOrder["folio"].'</h2>';
                 } else {
                     echo '<div class="test-circle themed-border-spring themed-background-spring" style="max-width:10px; max-height:10px;" ></div>';
-                    echo '<h2 class="text-success" style="margin:0px !important; padding:0px !important" >'.$theOrder["folio"].'</h2>';
+                    echo '<h2 class="text-success" style="margin:0px !important; padding:0px !important;" >'.$theOrder["folio"].'</h2>';
                 }
-                
+                echo  '&nbsp;&nbsp;<strong>' . $theAccount["firstname"] . ' ' . $theAccount["lastname"] . '</strong>&nbsp;&nbsp;';
                 ?>
-            <?php echo __('Para entregar en :    '); ?>
-            <?php echo '----    Creada el :  ' . $theOrder["created"] . '  ---- Son las:  ' . date("Y-m-d H:i:s") . '  Hace:  ' . $totalDiff; ?>
+            <?php echo __('Para entregar en : &nbsp;&nbsp;'); ?>
+            <?php echo '---- &nbsp;&nbsp; Creada el :  ' . $theOrder["created"] . '&nbsp;&nbsp; Hace: &nbsp;&nbsp;' . $totalDiff; ?>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped table-vcenter" style="margin:0px !important; padding:0px !important" >
+            <table class="table table-striped table-vcenter" style="margin:0px !important; padding:0px !important;" >
                 <thead>
                     <tr>
-                        <th class="text-center" style="margin:0px !important; padding:0px !important" ><?php echo __('Cantidad'); ?></th>
-                        <th class="text-center" style="margin:0px !important; padding:0px !important" ><?php echo __('Producto'); ?></th>
-                        <th class="text-center" style="margin:0px !important; padding:0px !important" ><?php echo __('Ingredientes'); ?></th>
+                        <th class="text-center" style="margin:0px !important; padding:0px !important;" ><?php echo __('Cantidad'); ?></th>
+                        <th class="text-center" style="margin:0px !important; padding:0px !important;" ><?php echo __('Producto'); ?></th>
+                        <th class="text-center" style="margin:0px !important; padding:0px !important;" ><?php echo __('Ingredientes'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,9 +85,9 @@ foreach($orders as $oIDX => $order)
                     {
                         ?>
                             <tr>
-                                <td class="text-center" style="margin:0px !important; padding:0px !important" ><?php echo $orderProduct["product_qty"] ?></td>
-                                <td class="text-center" style="margin:0px !important; padding:0px !important" ><?php echo $orderProduct["Product"]["name"] ?></td>
-                                <td class="text-center" style="margin:0px !important; padding:0px !important" >
+                                <td class="text-center" style="margin:0px !important; padding:0px !important;" ><?php echo $orderProduct["product_qty"] ?></td>
+                                <td class="text-center" style="margin:0px !important; padding:0px !important;" ><?php echo $orderProduct["Product"]["name"] ?></td>
+                                <td class="text-center" style="margin:0px !important; padding:0px !important;" >
                                     <a href="javascript:void(0);"><i class="fa fa-pencil text-danger"></i>Third item</a>
                                     <a href="javascript:void(0);"><i class="fa fa-pencil text-success"></i>Sublist</a>
                                 </td>

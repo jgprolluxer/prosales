@@ -296,7 +296,7 @@ class OrdersController extends AppController
     
     public function serviceorders()
     {
-    	$startDt = date("Y-m-d H:i:s", strtotime("-30 minutes"));
+    	$startDt = date("Y-m-d H:i:s", strtotime("-40 minutes"));
     	$endDt = date("Y-m-d H:i:s");
         $orders = $this->Order->find('all', array(
             'recursive' => 2,
