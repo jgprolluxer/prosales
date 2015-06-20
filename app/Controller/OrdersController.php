@@ -293,6 +293,19 @@ class OrdersController extends AppController
         }
         return $this->redirect(array('action' => 'index'));
     }
+    
+    public function serviceorders()
+    {
+        $this->Order->recursive = 2;
+        $orders = $this->Order->find('all', array(
+            'conditions' => array(
+                'Order.id >=' => 1
+            ),
+            'order' => array('Order.created DESC')
+        ));
+        $this->set('orders', $orders);
+        
+    }
 
     public function raiseticket($orderID = null)
     {
