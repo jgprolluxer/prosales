@@ -296,12 +296,19 @@ class OrdersController extends AppController
     
     public function serviceorders()
     {
-        $this->Order->recursive = 2;
+    	$startDt = date("Y-m-d H:i:s", strtotime("-30 minutes"));
+    	$endDt = date("Y-m-d H:i:s");
         $orders = $this->Order->find('all', array(
+            'recursive' => 2,
             'conditions' => array(
-                'Order.id >=' => 1
+                'Order.id >=' => 1,
+				'Order.status' => array(StatusOfOrder::Closed),
+				'Order.created >=' => $startDt,
+				'Order.created <=' => $endDt
             ),
-            'order' => array('Order.created DESC')
+            'order' => array(
+                'Order.created DESC'
+                )
         ));
         $this->set('orders', $orders);
         
