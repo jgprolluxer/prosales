@@ -1,25 +1,3 @@
-<script type="text/javascript">
-$(document).ready(function ()
-{
-    //$('#page-container').removeClass('sidebar-visible-xs');
-    //$('#page-container').removeClass('sidebar-visible-lg');
-
-    $('#page-container').attr('class', 'sidebar-no-animations footer-fixed');
-    $('header').hide();
-    /* Add placeholder attribute to the search input */
-    $('.dataTables_filter input').attr('placeholder', 'Search');
-});
-</script>
-
-<!-- eCommerce Order View Header -->
-<div class="content-header">
-    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
-</div>
-<!-- END eCommerce Order View Header -->
-
-<ul class="breadcrumb breadcrumb-top">
-    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
-</ul>
 <div class="supplies index">
 	<h2><?php echo __('Supplies'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -32,9 +10,8 @@ $(document).ready(function ()
 			<th><?php echo $this->Paginator->sort('updated_by'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('uom'); ?></th>
 			<th><?php echo $this->Paginator->sort('type'); ?></th>
-			<th><?php echo $this->Paginator->sort('description'); ?></th>
+			<th><?php echo $this->Paginator->sort('uom'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -48,9 +25,8 @@ $(document).ready(function ()
 		<td><?php echo h($supply['Supply']['updated_by']); ?>&nbsp;</td>
 		<td><?php echo h($supply['Supply']['status']); ?>&nbsp;</td>
 		<td><?php echo h($supply['Supply']['name']); ?>&nbsp;</td>
-		<td><?php echo h($supply['Supply']['uom']); ?>&nbsp;</td>
 		<td><?php echo h($supply['Supply']['type']); ?>&nbsp;</td>
-		<td><?php echo h($supply['Supply']['description']); ?>&nbsp;</td>
+		<td><?php echo h($supply['Supply']['uom']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $supply['Supply']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $supply['Supply']['id'])); ?>

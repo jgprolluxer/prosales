@@ -1,25 +1,3 @@
-<script type="text/javascript">
-$(document).ready(function ()
-{
-    //$('#page-container').removeClass('sidebar-visible-xs');
-    //$('#page-container').removeClass('sidebar-visible-lg');
-
-    $('#page-container').attr('class', 'sidebar-no-animations footer-fixed');
-    $('header').hide();
-    /* Add placeholder attribute to the search input */
-    $('.dataTables_filter input').attr('placeholder', 'Search');
-});
-</script>
-
-<!-- eCommerce Order View Header -->
-<div class="content-header">
-    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
-</div>
-<!-- END eCommerce Order View Header -->
-
-<ul class="breadcrumb breadcrumb-top">
-    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
-</ul>
 <div class="supplies view">
 <h2><?php echo __('Supply'); ?></h2>
 	<dl>
@@ -58,19 +36,14 @@ $(document).ready(function ()
 			<?php echo h($supply['Supply']['name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Uom'); ?></dt>
-		<dd>
-			<?php echo h($supply['Supply']['uom']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Type'); ?></dt>
 		<dd>
 			<?php echo h($supply['Supply']['type']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Description'); ?></dt>
+		<dt><?php echo __('Uom'); ?></dt>
 		<dd>
-			<?php echo h($supply['Supply']['description']); ?>
+			<?php echo h($supply['Supply']['uom']); ?>
 			&nbsp;
 		</dd>
 	</dl>
