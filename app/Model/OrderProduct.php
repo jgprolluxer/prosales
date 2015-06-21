@@ -46,4 +46,25 @@ class OrderProduct extends AppModel
         )
     );
 
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'OrderProductSupply' => array(
+			'className' => 'OrderProductSupply',
+			'foreignKey' => 'order_product_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
 }
