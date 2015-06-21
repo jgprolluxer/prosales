@@ -129,6 +129,15 @@
         <!--<legend><i class="fa fa-angle-right"></i> Tags Input</legend>-->
     </div>
 </div>
+
+<div class="block full" id="addressContent" style="display:none;">
+    <div class="block-title">
+        <h2>Búsqueda de Domicilio</h2>
+    </div>
+    <div class="block-content" id="addressesList">        
+    </div>
+</div>
+
 <script type="text/javascript">
         function validateFields(){
             var flag = 0;
@@ -184,7 +193,7 @@
         {
             var key = "AIzaSyCRb9Wxzl1l8omtJELsQrRvKZ5d4bgdz3A";
             var pluginUrl = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=";
-            var params = "";
+            var params = "", newAddress = "";
             
             var number = $("#AddressStreetNo").val();
             var street = $("#AddressStreet").val();
@@ -217,6 +226,24 @@
                     var addressesList = data.results
                     $(addressesList).each( function(i,address) { 
                         console.log(address.formatted_address);
+
+                        $("#addressContent").show();
+                        newAddress = '<div number="' + address.address_components[0].long_name + '" street="' + address.address_components[1].long_name + '" suburb="' + address.address_components[2].long_name + '" city="' + address.address_components[3].long_name + '" state="' + address.address_components[4].long_name + '" country="' + address.address_components[5].long_name + '" href="" class="list-group-item" style="cursor:default">' +
+                                            '<span class="badge btn-success addressElement" style="cursor:pointer"><i class="fa fa-check"></i></span>'+
+                                            '<p class="list-group-item-text">' + address.formatted_address + '</p>' +
+                                        '</div>';
+                        $("#addressesList").append(newAddress);
+                    });
+                    $(".addressElement").click(function() {
+                        //Se llenan los campos del address con el seleccionado
+                        $("#AddressStreetNo").val($(this).parent().attr("number"));
+                        $("#AddressStreet").val($(this).parent().attr("street"));
+                        $("#AddressSuburb").val($(this).parent().attr("suburb"));
+                        $("#AddressCity").val($(this).parent().attr("city"));
+                        $("#AddressState").val($(this).parent().attr("state"));
+                        $("#AddressCountry").val($(this).parent().attr("country"));
+                        $("#AddressDelivery").prop("checked", true);
+                        saveAddress();
                     });
                     
                 },
