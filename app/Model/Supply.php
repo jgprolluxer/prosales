@@ -1,12 +1,10 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * ProductSupply Model
+ * Supply Model
  *
- * @property Product $Product
- * @property Supply $Supply
  */
-class ProductSupply extends AppModel {
+class Supply extends AppModel {
 
 /**
  * Validation rules
@@ -14,7 +12,7 @@ class ProductSupply extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'product_id' => array(
+		'created_by' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -24,7 +22,7 @@ class ProductSupply extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'uomqty' => array(
+		'updated_by' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -34,9 +32,9 @@ class ProductSupply extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'supply_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'status' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -44,29 +42,25 @@ class ProductSupply extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'Product' => array(
-			'className' => 'Product',
-			'foreignKey' => 'product_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+		'name' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		),
-		'Supply' => array(
-			'className' => 'Supply',
-			'foreignKey' => 'supply_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
+		'uom' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 	);
 }

@@ -4,8 +4,8 @@
 		<legend><?php echo __('Add Product Supply'); ?></legend>
 	<?php
 		echo $this->Form->input('product_id');
-		echo $this->Form->input('amount_uom');
-		echo $this->Form->input('product_supplyid');
+		echo $this->Form->input('uomqty');
+		echo $this->Form->input('supply_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

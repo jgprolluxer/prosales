@@ -5,8 +5,8 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('product_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('amount_uom'); ?></th>
-			<th><?php echo $this->Paginator->sort('product_supplyid'); ?></th>
+			<th><?php echo $this->Paginator->sort('uomqty'); ?></th>
+			<th><?php echo $this->Paginator->sort('supply_id'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -17,8 +17,8 @@
 		<td>
 			<?php echo $this->Html->link($productSupply['Product']['name'], array('controller' => 'products', 'action' => 'view', $productSupply['Product']['id'])); ?>
 		</td>
-		<td><?php echo h($productSupply['ProductSupply']['amount_uom']); ?>&nbsp;</td>
-		<td><?php echo h($productSupply['ProductSupply']['product_supplyid']); ?>&nbsp;</td>
+		<td><?php echo h($productSupply['ProductSupply']['uomqty']); ?>&nbsp;</td>
+		<td><?php echo h($productSupply['ProductSupply']['supply_id']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $productSupply['ProductSupply']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $productSupply['ProductSupply']['id'])); ?>

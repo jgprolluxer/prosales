@@ -11,14 +11,14 @@
 			<?php echo $this->Html->link($productSupply['Product']['name'], array('controller' => 'products', 'action' => 'view', $productSupply['Product']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Amount Uom'); ?></dt>
+		<dt><?php echo __('Uomqty'); ?></dt>
 		<dd>
-			<?php echo h($productSupply['ProductSupply']['amount_uom']); ?>
+			<?php echo h($productSupply['ProductSupply']['uomqty']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Product Supplyid'); ?></dt>
+		<dt><?php echo __('Supply Id'); ?></dt>
 		<dd>
-			<?php echo h($productSupply['ProductSupply']['product_supplyid']); ?>
+			<?php echo h($productSupply['ProductSupply']['supply_id']); ?>
 			&nbsp;
 		</dd>
 	</dl>

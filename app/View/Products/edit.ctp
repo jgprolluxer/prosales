@@ -51,6 +51,13 @@ $(document).ready(function ()
         ?>
         <div class="col-md-6">
             <?php
+            echo $this->Form->input('id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ID')),
+                'class' => 'form-control',
+                'type' => 'hidden'
+            ));
+            ?>
+            <?php
             echo $this->Form->input('name', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('PRODUCT_EDIT_FORM_FIELD_NAME')),
                 'class' => 'form-control',
