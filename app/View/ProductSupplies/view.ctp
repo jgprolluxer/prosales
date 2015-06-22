@@ -38,9 +38,9 @@ $(document).ready(function ()
 			<?php echo h($productSupply['ProductSupply']['uomqty']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Supply Id'); ?></dt>
+		<dt><?php echo __('Supply'); ?></dt>
 		<dd>
-			<?php echo h($productSupply['ProductSupply']['supply_id']); ?>
+			<?php echo $this->Html->link($productSupply['Supply']['name'], array('controller' => 'supplies', 'action' => 'view', $productSupply['Supply']['id'])); ?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -54,5 +54,7 @@ $(document).ready(function ()
 		<li><?php echo $this->Html->link(__('New Product Supply'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Products'), array('controller' => 'products', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Product'), array('controller' => 'products', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Supplies'), array('controller' => 'supplies', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Supply'), array('controller' => 'supplies', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

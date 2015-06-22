@@ -56,7 +56,8 @@ class ProductSuppliesController extends AppController {
 			}
 		}
 		$products = $this->ProductSupply->Product->find('list');
-		$this->set(compact('products'));
+		$supplies = $this->ProductSupply->Supply->find('list');
+		$this->set(compact('products', 'supplies'));
 	}
 
 /**
@@ -82,7 +83,8 @@ class ProductSuppliesController extends AppController {
 			$this->request->data = $this->ProductSupply->find('first', $options);
 		}
 		$products = $this->ProductSupply->Product->find('list');
-		$this->set(compact('products'));
+		$supplies = $this->ProductSupply->Supply->find('list');
+		$this->set(compact('products', 'supplies'));
 	}
 
 /**
