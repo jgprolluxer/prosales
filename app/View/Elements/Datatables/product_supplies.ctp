@@ -3,9 +3,9 @@
     echo $this->AclView->link(  __('Agregar'),
     array(
         'plugin' => $this->params['plugin'], 'prefix' => null,
-        'admin' => $this->params['admin'], 'controller' => 'PricelistProducts',
+        'admin' => $this->params['admin'], 'controller' => 'ProductSupplies',
         'action' => 'add',
-        $this->request->data['Pricelist']['id']
+        $this->request->data['Product']['id']
     ),
     array('escape' => false, 'class' => array('btn btn-info'))
 );
@@ -18,6 +18,7 @@
                 <th><?php echo __('ID'); ?></th>
                 <th><?php echo __('Nombre'); ?></th>
                 <th><?php echo __('UOM'); ?></th>
+                <th><?php echo __('Acciones'); ?></th>
             </tr>
         </thead>
         <tbody>

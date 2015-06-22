@@ -26,7 +26,22 @@ $(document).ready(function ()
 		<legend><?php echo __('Edit Product Supply'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('product_id');
+		
+            echo $this->Form->input('product_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('ProductID')),
+                'class' => 'form-control',
+                'type' => 'hidden',
+                'readonly' => 'readonly',
+                'value' => $products["Product"]["id"]
+            ));
+            echo $this->Form->input('productname', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Producto')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly',
+                'value' => $products["Product"]["name"]
+            ));
+
 		echo $this->Form->input('uomqty');
 		echo $this->Form->input('supply_id');
 	?>

@@ -34,18 +34,23 @@ class ProductSuppliesController extends AppController {
 		$arrayConditions = array(
 			'ProductSupply.id >=' => 1
 		);
-		if(null !== $pricelistID)
+		
+		if(null !== $productID)
 		{
 			$arrayConditions = array(
 				'ProductSupply.id >=' => 1,
 				'Product.id =' => $productID
+			);
+		} else {
+			$arrayConditions = array(
+				'ProductSupply.id >=' => 1
 			);
 		}
 
 		$this->paginate = array(
 			'fields' => array(
 				'ProductSupply.id',
-				'ProductSupply.name',
+				'Supply.name',
 				'ProductSupply.uomqty',
 				"CONCAT('<a href=\"" . Router::url("/ProductSupplies/view/") . "', ProductSupply.id, '\" class=\"btn btn-xs btn-info\">', '<i class=\"fa fa-eye fa-fw\"></i>' ,'</a>') as supplyview",
 			),
@@ -54,14 +59,14 @@ class ProductSuppliesController extends AppController {
 
 		$this->DataTable->fields = array(
 			'ProductSupply.id',
-			'ProductSupply.name',
+			'Supply.name',
 			'ProductSupply.uomqty',
 			'0.supplyview',
 		);
 
 		$this->DataTable->filterFields = array(
 			'ProductSupply.id',
-			'ProductSupply.name',
+			'Supply.name',
 			'ProductSupply.uomqty',
 		);
 
@@ -88,7 +93,12 @@ class ProductSuppliesController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($productID = null)
+	{
+		if(!$productID)
+		{
+			throw new NotFoundException(__('Invalid product'));
+		}
 		if ($this->request->is('post')) {
 			$this->ProductSupply->create();
 			if ($this->ProductSupply->save($this->request->data)) {
@@ -98,7 +108,7 @@ class ProductSuppliesController extends AppController {
 				$this->Session->setFlash(__('The product supply could not be saved. Please, try again.'));
 			}
 		}
-		$products = $this->ProductSupply->Product->find('list');
+		$products = $this->ProductSupply->Product->read(null, $productID);
 		$supplies = $this->ProductSupply->Supply->find('list');
 		$this->set(compact('products', 'supplies'));
 	}
@@ -110,7 +120,8 @@ class ProductSuppliesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null)
+	{
 		if (!$this->ProductSupply->exists($id)) {
 			throw new NotFoundException(__('Invalid product supply'));
 		}
@@ -125,7 +136,7 @@ class ProductSuppliesController extends AppController {
 			$options = array('conditions' => array('ProductSupply.' . $this->ProductSupply->primaryKey => $id));
 			$this->request->data = $this->ProductSupply->find('first', $options);
 		}
-		$products = $this->ProductSupply->Product->find('list');
+		$products = $this->ProductSupply->Product->read(null, $this->request->data["Product"]["id"]);
 		$supplies = $this->ProductSupply->Supply->find('list');
 		$this->set(compact('products', 'supplies'));
 	}
