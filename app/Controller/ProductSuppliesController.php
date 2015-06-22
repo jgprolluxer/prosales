@@ -13,7 +13,7 @@ class ProductSuppliesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Session', 'DataTable', 'Navigation');
 
 /**
  * index method
@@ -23,6 +23,49 @@ class ProductSuppliesController extends AppController {
 	public function index() {
 		$this->ProductSupply->recursive = 0;
 		$this->set('productSupplies', $this->Paginator->paginate());
+	}
+
+
+	public function jsindex($productID = null)
+	{
+		$this->autoRender = false;
+		$this->layout = 'ajax';
+
+		$arrayConditions = array(
+			'ProductSupply.id >=' => 1
+		);
+		if(null !== $pricelistID)
+		{
+			$arrayConditions = array(
+				'ProductSupply.id >=' => 1,
+				'Product.id =' => $productID
+			);
+		}
+
+		$this->paginate = array(
+			'fields' => array(
+				'ProductSupply.id',
+				'ProductSupply.name',
+				'ProductSupply.uomqty',
+				"CONCAT('<a href=\"" . Router::url("/ProductSupplies/view/") . "', ProductSupply.id, '\" class=\"btn btn-xs btn-info\">', '<i class=\"fa fa-eye fa-fw\"></i>' ,'</a>') as supplyview",
+			),
+			'conditions' => $arrayConditions
+		);
+
+		$this->DataTable->fields = array(
+			'ProductSupply.id',
+			'ProductSupply.name',
+			'ProductSupply.uomqty',
+			'0.supplyview',
+		);
+
+		$this->DataTable->filterFields = array(
+			'ProductSupply.id',
+			'ProductSupply.name',
+			'ProductSupply.uomqty',
+		);
+
+		echo json_encode($this->DataTable->getResponse());
 	}
 
 /**
