@@ -141,6 +141,27 @@ msgstr "<i class='gi gi-list'></i> Listas de precios"
 msgid "MENU_HEADER_POS_LINK_POS_LOGOUT"
 msgstr "<i class='fa fa-power-off'></i> Salir"
 
+msgid "MENU_HEADER_POS_LINK_PRODUCTS_SUPPLIES"
+msgstr "<i class='fa fa-gift'></i> Insumos - Productos"
+
+msgid "MENU_HEADER_POS_LINK_SUPPLIES"
+msgstr "<i class='fa fa-gift'></i> Insumos"
+
+msgid "MENU_HEADER_POS_LINK_WORKSTATIONS"
+msgstr "<i class='fa fa-suitcase'></i> Puestos de trabajo"
+
+msgid "MENU_HEADER_POS_LINK_STORES"
+msgstr "<i class='fa fa-building'></i> Sucursales"
+
+msgid "MENU_HEADER_POS_LINK_USERS"
+msgstr "<i class='fa fa-user'></i> Usuarios"
+
+msgid "MENU_HEADER_POS_LINK_GROUPS"
+msgstr "<i class='fa fa-group'></i> Grupos"
+
+msgid "MENU_HEADER_POS_LINK_LOVS"
+msgstr "<i class='fa fa-list'></i> Listas de Valores"
+
 # ----------      END MENUES SECTION      ---------- ###################################
 # ####################################################################################
 # ----------      ACCOUNT SECTION      ---------- ###################################
