@@ -113,7 +113,7 @@ $(document).ready(function ()
         <div class="form-group form-actions">
             <div class="col-sm-9 col-sm-offset-3">
                 <?php
-                echo $this->AclView->link(  __('STORE_VIEW_BLOCK_CONTENT_BTN_GO_EDIT'),
+                echo $this->AclView->link(  __('Editar'),
                     array('plugin' => $this->params['plugin'], 'prefix' => null, 
                         'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 
                         'action' => 'edit', $this->request->data['Store']['id']),
