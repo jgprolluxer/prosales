@@ -162,6 +162,9 @@ msgstr "<i class='fa fa-group'></i> Grupos"
 msgid "MENU_HEADER_POS_LINK_LOVS"
 msgstr "<i class='fa fa-list'></i> Listas de Valores"
 
+msgid "MENU_HEADER_POS_LINK_CONFIG"
+msgstr "<i class='fa fa-gear'></i> Configuración"
+
 # ----------      END MENUES SECTION      ---------- ###################################
 # ####################################################################################
 # ----------      ACCOUNT SECTION      ---------- ###################################

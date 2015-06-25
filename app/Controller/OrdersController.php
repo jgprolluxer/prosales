@@ -339,16 +339,18 @@ class OrdersController extends AppController
         $this->loadModel('User');
         $this->loadModel('Store');
         $this->loadModel('Workstation');
+        $this->loadModel('Config');
 
         $user = $this->User->read(null, $this->Session->read('Auth.User.id'));
         $workstation = array();
         $workstation = $this->Workstation->read(null, $user["Workstation"]["id"]);
         $store = array();
         $store = $this->Store->read(null, $workstation["Workstation"]["store_id"]);
+        $config = $this->Config->read(null, 1);
 
         //$this->log('order ticket');
         //$this->log($order);
-        $this->log('$user');
+        /*$this->log('$user');
         $this->log($user);
         $this->log('$workstation');
         $this->log($workstation);
@@ -357,9 +359,9 @@ class OrdersController extends AppController
         $this->log('order Product ticket');
         $this->log($orderProduct);
         $this->log('order Payment ticket');
-        $this->log($orderPayment);
+        $this->log($orderPayment);*/
 
-        $this->set(compact('order', 'orderProduct', 'orderPayment', 'user', 'workstation', 'store'));
+        $this->set(compact('order', 'orderProduct', 'orderPayment', 'user', 'workstation', 'store', 'config'));
         $this->layout = 'pdf'; //this will use the pdf.ctp layout
         $this->render();
     }
@@ -544,7 +546,25 @@ class OrdersController extends AppController
                             throw new Exception( __('ORDER_CONTROLLER') . ' ' . __('CRUD_OPERATION_READ_ID_ORDER_NOT_SET') );
                         }
                     } else {
-                        throw new Exception(__('ORDER_CONTROLLER') . ' ' . __('CRUD_OPERATION_READ_FORMAT_NOT_SET'));
+                        
+                        $this->Order->recursive = -1;
+                        $this->Order->id = $this->request->data['Order']['id'];
+                        if( $this->Order->save($this->request->data['Order'] ) )
+                        {
+
+                            $response = array(
+                                'success' => true,
+                                'message' => 'Correcto',
+                                'xData' => $this->Order->read(null, $orderID)
+                            );
+                        }else
+                        {
+                            $response = array(
+                                'success' => false,
+                                'message' => json_encode($this->Order->validationErrors),
+                                'xData' => array()
+                            );
+                        }
                     }
 
                 }break;

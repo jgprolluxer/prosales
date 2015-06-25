@@ -57,6 +57,104 @@ $(document).ready(function ()
 				</table>
 			</div>
 		</div>
+		<div class="block">
+			<div class="block-title">
+				<h2><i class="fa fa-building-o"></i> <?php echo __('Información del cliente'); ?></h2>
+			</div>
+			<div class="row">
+				<div class="block full">
+					<!-- Billing Address Title -->
+					<div class="block-title">
+						<h2><i class="fa fa-building-o"></i> <?php echo __('Cliente'); ?></h2>
+						<div class="block-options pull-right">
+							<?php
+
+							if(StatusOfOrder::Closed !== $order["Order"]["status"] && StatusOfOrder::Cancelled !== $order["Order"]["status"] )
+							{ 
+								?>
+								<a href="javascript:void(0);" class="btn btn-info" >
+									<?php echo '<i class="gi gi-transfer"></i> '. __('Cambiar Cliente'); ?>
+								</a>
+								<?php
+							}
+							?>
+						</div>
+					</div>
+					<!-- END Billing Address Title -->
+					<?php
+					if(!$order["Account"]["id"])
+					{
+						?>
+						<span class="label label-warning"><?php echo __('Cliente no asignado'); ?></span>
+						<?php
+					} else {
+						?>
+						<!-- Customer Info -->
+						<div class="block-section text-center">
+							<h3>
+								<strong><?php echo __($order['Account']['firstname']); ?> <?php echo __($order['Account']['lastname']); ?></strong><br><small></small>
+							</h3>
+						</div>
+						<table class="table table-borderless table-striped table-vcenter">
+							<tbody>
+								<tr>
+									<td class="text-right" style="width: 50%;"><strong><?php echo __('ACCOUNT_VIEW_FORM_FIELD_ALIAS'); ?></strong></td>
+									<td><?php echo __($order['Account']['alias']); ?></td>
+								</tr>
+								<tr>
+									<td class="text-right"><strong><?php echo __('ACCOUNT_VIEW_FORM_FIELD_BIRTHDATE'); ?></strong></td>
+									<td><?php echo __($order['Account']['birthdate']); ?></td>
+								</tr>
+								<tr>
+									<td class="text-right"><strong><?php echo __('ACCOUNT_VIEW_FORM_FIELD_SEX'); ?></strong></td>
+									<td><?php echo __($order['Account']['sex']); ?></td>
+								</tr>
+								<tr>
+									<td class="text-right"><strong><?php echo __('ACCOUNT_VIEW_FORM_FIELD_MODE'); ?></strong></td>
+									<td><?php echo __($order['Account']['mode']); ?></td>
+								</tr>
+								<tr>
+									<td class="text-right"><strong><?php echo __('ACCOUNT_VIEW_FORM_FIELD_TYPE'); ?></strong></td>
+									<td><?php echo __($order['Account']['type']); ?></td>
+								</tr>
+							</tbody>
+						</table>
+						<!-- END Customer Info -->
+						<?php
+					}
+					?>
+				</div>
+				
+				
+				<div class="col-lg-6">
+					<!-- Shipping Address Block -->
+					<div class="block">
+						<!-- Shipping Address Title -->
+						<div class="block-title">
+							<h2><i class="fa fa-building-o"></i> <?php echo __('Direcciones');?></h2>
+						</div>
+						<!-- END Shipping Address Title -->
+
+						<!-- Shipping Address Content -->
+						<?php 
+						if( !empty($order["Account"]["Address"]) )
+						{
+							?>
+							<address>
+								<?php echo $order["Account"]["Address"][0]["street"]; ?>  <?php echo $order["Account"]["Address"][0]["street_no"] ?>, <?php echo $order["Account"]["Address"][0]["suburb"]; ?><br>
+								<?php echo $order["Account"]["Address"][0]["city"]; ?>, <?php echo $order["Account"]["Address"][0]["state"]; ?><br>
+								<?php echo $order["Account"]["Address"][0]["country"]; ?><br>
+							</address>
+							<?php
+						}
+						?>
+						<!-- END Shipping Address Content -->
+					</div>
+					<!-- END Shipping Address Block -->
+				</div>
+			</div>
+		</div>
+		
 	</div>
 	<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 		<div class="block">
@@ -165,103 +263,6 @@ $(document).ready(function ()
 			<!-- END Log Content -->
 		</div>
 		<!-- END Log Block -->
-		<div class="block">
-			<div class="block-title">
-				<h2><i class="fa fa-building-o"></i> <?php __('Información del cliente'); ?></h2>
-			</div>
-			<div class="row">
-				<div class="block full">
-					<!-- Billing Address Title -->
-					<div class="block-title">
-						<h2><i class="fa fa-building-o"></i> <?php echo __('Cliente'); ?></h2>
-						<div class="block-options pull-right">
-							<?php
-
-							if(StatusOfOrder::Closed !== $order["Order"]["status"] && StatusOfOrder::Cancelled !== $order["Order"]["status"] )
-							{ 
-								?>
-								<a href="javascript:void(0);" class="btn btn-info" >
-									<?php echo '<i class="gi gi-transfer"></i> '. __('Cambiar Cliente'); ?>
-								</a>
-								<?php
-							}
-							?>
-						</div>
-					</div>
-					<!-- END Billing Address Title -->
-					<?php
-					if(!$order["Account"]["id"])
-					{
-						?>
-						<span class="label label-warning"><?php echo __('Cliente no asignado'); ?></span>
-						<?php
-					} else {
-						?>
-						<!-- Customer Info -->
-						<div class="block-section text-center">
-							<h3>
-								<strong><?php echo __($order['Account']['firstname']); ?> <?php echo __($order['Account']['lastname']); ?></strong><br><small></small>
-							</h3>
-						</div>
-						<table class="table table-borderless table-striped table-vcenter">
-							<tbody>
-								<tr>
-									<td class="text-right" style="width: 50%;"><strong><?php echo __('ACCOUNT_VIEW_FORM_FIELD_ALIAS'); ?></strong></td>
-									<td><?php echo __($order['Account']['alias']); ?></td>
-								</tr>
-								<tr>
-									<td class="text-right"><strong><?php echo __('ACCOUNT_VIEW_FORM_FIELD_BIRTHDATE'); ?></strong></td>
-									<td><?php echo __($order['Account']['birthdate']); ?></td>
-								</tr>
-								<tr>
-									<td class="text-right"><strong><?php echo __('ACCOUNT_VIEW_FORM_FIELD_SEX'); ?></strong></td>
-									<td><?php echo __($order['Account']['sex']); ?></td>
-								</tr>
-								<tr>
-									<td class="text-right"><strong><?php echo __('ACCOUNT_VIEW_FORM_FIELD_MODE'); ?></strong></td>
-									<td><?php echo __($order['Account']['mode']); ?></td>
-								</tr>
-								<tr>
-									<td class="text-right"><strong><?php echo __('ACCOUNT_VIEW_FORM_FIELD_TYPE'); ?></strong></td>
-									<td><?php echo __($order['Account']['type']); ?></td>
-								</tr>
-							</tbody>
-						</table>
-						<!-- END Customer Info -->
-						<?php
-					}
-					?>
-				</div>
-				
-				
-				<div class="col-lg-6">
-					<!-- Shipping Address Block -->
-					<div class="block">
-						<!-- Shipping Address Title -->
-						<div class="block-title">
-							<h2><i class="fa fa-building-o"></i> <?php echo __('Direcciones');?></h2>
-						</div>
-						<!-- END Shipping Address Title -->
-
-						<!-- Shipping Address Content -->
-						<?php 
-						if( !empty($order["Account"]["Address"]) )
-						{
-							?>
-							<address>
-								<?php echo $order["Account"]["Address"][0]["street"]; ?>  <?php echo $order["Account"]["Address"][0]["street_no"] ?>, <?php echo $order["Account"]["Address"][0]["suburb"]; ?><br>
-								<?php echo $order["Account"]["Address"][0]["city"]; ?>, <?php echo $order["Account"]["Address"][0]["state"]; ?><br>
-								<?php echo $order["Account"]["Address"][0]["country"]; ?><br>
-							</address>
-							<?php
-						}
-						?>
-						<!-- END Shipping Address Content -->
-					</div>
-					<!-- END Shipping Address Block -->
-				</div>
-			</div>
-		</div>
 		<div class="block full">
 			<div class="block-title">
 				<h2><i class="fa fa-file-text-o"></i> <?php echo __('Notas');?></h2>

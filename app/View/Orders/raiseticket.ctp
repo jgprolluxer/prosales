@@ -114,11 +114,13 @@ if(isset($store["Store"]["cover"]))
     $urlImage = "<img src='".$store["Store"]["cover"]."' />";
 }
 
+$companyName = $config["Config"]["usercompanyname"];
+
 // Table with rowspans and THEAD
 $tbl = <<<EOD
 <table>
 <tr><td align="center" colspan="2">{$$urlImage}</td></tr>
-<tr><td align="center" colspan="2"><h2>Monster Tortas</h2></td></tr>
+<tr><td align="center" colspan="2"><h2>{$companyName}</h2></td></tr>
 <tr><td align="center" colspan="2">&nbsp;</td></tr>
 <tr><td width="30%"><b>Cliente:</b></td><td>{$order["Account"]["firstname"]} {$order["Account"]["lastname"]}</td></tr>
 <tr><td width="30%"><b>Sucursal:</b></td><td>{$store["Store"]["name"]}</td></tr>

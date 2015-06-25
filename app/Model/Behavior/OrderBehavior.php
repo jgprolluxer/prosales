@@ -1,6 +1,8 @@
 <?php
 
 App::uses('ModelBehavior', 'Model');
+App::import('Model', 'OrderPayment');
+App::import('Model', 'Payment');
 
 class OrderBehavior extends ModelBehavior
 {
@@ -43,6 +45,7 @@ class OrderBehavior extends ModelBehavior
     public function beforeSave(\Model $model, $options = array())
     {
         $model = $this->setCreatedUpdated($model);
+        $model = $this->validateCancelOrder($model);
         return parent::beforeSave($model, $options);
     }
 
@@ -64,6 +67,21 @@ class OrderBehavior extends ModelBehavior
     public function setup(\Model $model, $config = array())
     {
         return parent::setup($model, $config);
+    }
+    
+    private function validateCancelOrder($Model)
+    {
+        //$this->log('ESTADO DE LA ORDEN AL TRATAR DE CANCELAR EL PAGO');
+        //$this->log($Model->data['Order']['status']);
+        if('cancelled' == $Model->data['Order']['status'] && 0 < $Model->data['Order']['total_amt'])
+        {
+            $this->OrderPayment->recursive = -1;
+            if( !$this->OrderPayment->updateAll( array('OrderPayment.order_id' => $Model->data['Order']["id"]),array('OrderPayment.status =' => 'cancelled')) )
+            {
+                $this->log('NO SE PUDIERON ACTUALIZARLOSPAGOS A CANCELADOS');
+            }
+        }
+        return $Model;
     }
 
     /**

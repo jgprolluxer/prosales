@@ -1,3 +1,25 @@
+<script type="text/javascript">
+$(document).ready(function ()
+{
+    //$('#page-container').removeClass('sidebar-visible-xs');
+    //$('#page-container').removeClass('sidebar-visible-lg');
+
+    $('#page-container').attr('class', 'sidebar-no-animations footer-fixed');
+    $('header').hide();
+    /* Add placeholder attribute to the search input */
+    $('.dataTables_filter input').attr('placeholder', 'Search');
+});
+</script>
+
+<!-- eCommerce Order View Header -->
+<div class="content-header">
+    <?php echo $this->MenuBuilder->build('menu-header-pos');?>
+</div>
+<!-- END eCommerce Order View Header -->
+
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
 <div class="configs index">
 	<h2><?php echo __('Configs'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -13,10 +35,9 @@
 			<th><?php echo $this->Paginator->sort('active_flg'); ?></th>
 			<th><?php echo $this->Paginator->sort('timezone'); ?></th>
 			<th><?php echo $this->Paginator->sort('logo'); ?></th>
-			<th><?php echo $this->Paginator->sort('address'); ?></th>
-			<th><?php echo $this->Paginator->sort('phone'); ?></th>
 			<th><?php echo $this->Paginator->sort('website'); ?></th>
 			<th><?php echo $this->Paginator->sort('copyright'); ?></th>
+			<th><?php echo $this->Paginator->sort('usercompanyname'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -33,10 +54,9 @@
 		<td><?php echo h($config['Config']['active_flg']); ?>&nbsp;</td>
 		<td><?php echo h($config['Config']['timezone']); ?>&nbsp;</td>
 		<td><?php echo h($config['Config']['logo']); ?>&nbsp;</td>
-		<td><?php echo h($config['Config']['address']); ?>&nbsp;</td>
-		<td><?php echo h($config['Config']['phone']); ?>&nbsp;</td>
 		<td><?php echo h($config['Config']['website']); ?>&nbsp;</td>
 		<td><?php echo h($config['Config']['copyright']); ?>&nbsp;</td>
+		<td><?php echo h($config['Config']['usercompanyname']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $config['Config']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $config['Config']['id'])); ?>

@@ -2,32 +2,6 @@
 angular.module('prosales-app')
     .controller('OrderAddController', function ($scope, $http, $location, DTOptionsBuilder, DTColumnDefBuilder, $modal, $log)
     {
-
-        /**
-         * Add Loading
-         */
-        $scope.enableProcessLoading = function()
-        {
-            var pageWrapper = $('#page-wrapper');
-            if (pageWrapper.hasClass('page-loading'))
-            {
-            }else{
-                pageWrapper.addClass('page-loading');
-            }
-        };
-
-        /**
-         * remove Loading
-         */
-        $scope.disableProcessLoading = function()
-        {
-            var pageWrapper = $('#page-wrapper');
-            if (pageWrapper.hasClass('page-loading'))
-            {
-                pageWrapper.removeClass('page-loading');
-            }
-
-        };
         $scope.activeStyles = [
             'themed-background-default',
             'themed-background-night',
@@ -84,7 +58,8 @@ angular.module('prosales-app')
                 disc_desc: "",
                 account_id: 0,
                 description: "",
-                saleschannel: ""
+                saleschannel: "",
+                payment_received_amt: 0
             }
         };
 
@@ -99,41 +74,17 @@ angular.module('prosales-app')
         $scope.newOrderPayment = {
         };
 
-        $scope.pmnt_received = 0.00;
         $scope.pmnt_change = 0.00;
 
         $scope.allowPartialPayd = true;
         $scope.totalPayments = 0;
 
-        $scope.calcChange = function()
-        {
-            try{
-                parseFloat($scope.pmnt_received);
-
-                $scope.pmnt_change = $scope.pmnt_received - $scope.newOrder.Order.total_amt;
-
-            }catch(e)
-            {
-                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>Ingresar solo numeros en el importe recibido...</p>', {
-                    type: 'warning',
-                    delay: 4,
-                    allow_dismiss: true,
-                    from: "top",
-                    align: "center"
-                });
-                $scope.pmnt_received = 0.00;
-            }
-
-        };
-
         $scope.cancelOrder = function()
         {
             if(confirm('Esta seguro de cancelar la orden?'))
             {
-                $scope.enableProcessLoading();
                 $http.post("/Orders/jsOrder/?CRUD_operation=UPDATE&format=CancelOrder", $scope.newOrder).success(function (data)
                 {
-                    $scope.disableProcessLoading();
                     if (data)
                     {
                         if (data["success"])
@@ -155,7 +106,6 @@ angular.module('prosales-app')
                     }
                 }).error(function(data, status, headers, config)
                 {
-                    $scope.disableProcessLoading();
                     $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                         type: 'danger',
                         delay: 0,
@@ -172,9 +122,12 @@ angular.module('prosales-app')
 
         $scope.addQuickPayment = function()
         {
-            if(0 == $scope.pmnt_received)
+            console.log($scope.newOrder.Order.payment_received_amt);
+            console.log($scope.newOrder.Order.total_amt);
+            console.log($scope.newOrder.Order.payment_received_amt < $scope.newOrder.Order.total_amt);
+            if($scope.newOrder.Order.payment_received_amt < $scope.newOrder.Order.total_amt)
             {
-                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>Favor de agregar un pago mayor a cero!</p>', {
+                $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>Favor de agregar un pago que cubra el total de la orden!</p>', {
                     type: 'warning',
                     delay: 6000,
                     allow_dismiss: true,
@@ -183,7 +136,6 @@ angular.module('prosales-app')
                 });
                 return false;
             }
-            $scope.enableProcessLoading();
             $scope.allowPartialPayd = false;
             $scope.newPayment = {
                 Payment: {
@@ -196,12 +148,10 @@ angular.module('prosales-app')
             };
             $http.post("/Payments/jsPayment/?CRUD_operation=CREATE", $scope.newPayment).success(function (data)
             {
-                $scope.disableProcessLoading();
                 if (data)
                 {
                     if (data["success"])
                     {
-                        $scope.disableProcessLoading();
                         $scope.newPayment = data["xData"];
                         $scope.newOrderPayment = {
                             OrderPayment: {
@@ -216,13 +166,45 @@ angular.module('prosales-app')
                         };
                         $http.post("/OrderPayments/jsOrderPayment/?CRUD_operation=CREATE", $scope.newOrderPayment).success(function (data)
                         {
-                            $scope.disableProcessLoading();
                             if (data)
                             {
                                 if (data["success"])
                                 {
                                     $scope.newOrderPayment = data["xData"];
                                     $scope.totalPayments = $scope.newOrderPayment.OrderPayment.total_amt;
+                                    
+                                        $http.post("/Orders/jsOrder/?CRUD_operation=UPDATE", $scope.newOrder).success(function (data)
+                                        {
+                                            if (data)
+                                            {
+                                                if (data["success"])
+                                                {
+                                                    ////// reload Data
+                                                    $scope.refreshData();
+                                                } else
+                                                {
+                                                    $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>' + data["message"] + '</p>', {
+                                                        type: 'warning',
+                                                        delay: 0,
+                                                        allow_dismiss: false,
+                                                        from: "top",
+                                                        align: "center"
+                                                    });
+                                                }
+                                            }
+                                        }).error(function(data, status, headers, config)
+                                        {
+                                            $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
+                                                type: 'danger',
+                                                delay: 0,
+                                                allow_dismiss: false,
+                                                from: "top",
+                                                align: "center"
+                                            });
+                                            // called asynchronously if an error occurs
+                                            // or server returns response with an error status.
+                                            console.log('Error interno! estado: ' + status + ' Datos :: '+JSON.stringify(data));
+                                        });
                                 } else
                                 {
                                     $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p>'+data["message"]+'</p>', {
@@ -236,7 +218,6 @@ angular.module('prosales-app')
                             }
                         }).error(function(data, status, headers, config)
                         {
-                            $scope.disableProcessLoading();
                             $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                                 type: 'danger',
                                 delay: 0,
@@ -261,7 +242,6 @@ angular.module('prosales-app')
                 }
             }).error(function(data, status, headers, config)
             {
-                $scope.disableProcessLoading();
                 $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                     type: 'danger',
                     delay: 0,
@@ -277,11 +257,9 @@ angular.module('prosales-app')
 
         $scope.loadAccounts = function()
         {
-            $scope.enableProcessLoading();
             //////Load Accounts
             $http.post("/Accounts/jsfindAccount/?format=allByTeamID&teamID=" + 0, null).success(function (data)
             {
-                $scope.disableProcessLoading();
                 if (data)
                 {
                     if (data["success"])
@@ -300,7 +278,6 @@ angular.module('prosales-app')
                 }
             }).error(function(data, status, headers, config)
             {
-                $scope.disableProcessLoading();
                 $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                     type: 'danger',
                     delay: 0,
@@ -343,12 +320,10 @@ angular.module('prosales-app')
 
         $scope.refreshOrder = function ()
         {
-            $scope.enableProcessLoading();
             var orderID = $scope.newOrder.Order.id;
             //////Load Refresh
             $http.post("/Orders/jsOrder/?CRUD_operation=READ&format=byID&orderID=" + orderID, null).success(function (data)
             {
-                $scope.disableProcessLoading();
                 if (data)
                 {
                     if (data["success"])
@@ -361,7 +336,6 @@ angular.module('prosales-app')
                 }
             }).error(function(data, status, headers, config)
             {
-                $scope.disableProcessLoading();
                 $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                     type: 'danger',
                     delay: 0,
@@ -419,10 +393,8 @@ angular.module('prosales-app')
 
         $scope.loadFamilies = function ()
         {
-            $scope.enableProcessLoading();
             $http.post("/Families/jsfindFamily/?format=all", null).success(function (data)
             {
-                $scope.disableProcessLoading();
                 if (data)
                 {
                     if (data["success"])
@@ -436,7 +408,6 @@ angular.module('prosales-app')
                 }
             }).error(function(data, status, headers, config)
             {
-                $scope.disableProcessLoading();
                 $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                     type: 'danger',
                     delay: 0,
@@ -453,10 +424,8 @@ angular.module('prosales-app')
 
         $scope.loadProductsbyFam = function (familyID)
         {
-            $scope.enableProcessLoading();
             $http.post("/Products/jsfindProduct/?format=allbyFamily&familyID=" + familyID, null).success(function (data)
             {
-                $scope.disableProcessLoading();
                 if (data)
                 {
                     if (data["success"])
@@ -468,7 +437,6 @@ angular.module('prosales-app')
                 }
             }).error(function(data, status, headers, config)
             {
-                $scope.disableProcessLoading();
                 $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                     type: 'danger',
                     delay: 0,
@@ -485,7 +453,6 @@ angular.module('prosales-app')
         //////Add new product to order
         $scope.processSelectedProduct = function (selectedProduct)
         {
-            $scope.enableProcessLoading();
             var orderProduct = {
                 OrderProduct: {
                     product_id:     selectedProduct.Product.id,
@@ -495,7 +462,6 @@ angular.module('prosales-app')
             };
             $http.post("/OrderProducts/addFromPOSByJs", orderProduct).success(function (data)
             {
-                $scope.disableProcessLoading();
                 if (data)
                 {
                     if (data["success"])
@@ -524,7 +490,6 @@ angular.module('prosales-app')
 
             }).error(function(data, status, headers, config)
             {
-                $scope.disableProcessLoading();
                 $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                     type: 'danger',
                     delay: 0,
@@ -540,11 +505,9 @@ angular.module('prosales-app')
 
         $scope.loadOrderProducts = function ()
         {
-            $scope.enableProcessLoading();
             var OrderID = $scope.newOrder.Order.id;
             $http.post("/OrderProducts/jsfindOrderProduct/?format=allForPOS&orderID=" + OrderID, null).success(function (data)
             {
-                $scope.disableProcessLoading();
                 if (data)
                 {
                     if (data["success"])
@@ -556,7 +519,6 @@ angular.module('prosales-app')
                 }
             }).error(function(data, status, headers, config)
             {
-                $scope.disableProcessLoading();
                 $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                     type: 'danger',
                     delay: 0,
@@ -572,7 +534,6 @@ angular.module('prosales-app')
 
         $scope.deleteOrderProduct = function (orderProductID)
         {
-            $scope.enableProcessLoading();
             var orderProduct = {
                 OrderProduct: {
                     id: orderProductID
@@ -580,7 +541,6 @@ angular.module('prosales-app')
             };
             $http.post("/OrderProducts/jsCancelOrderProduct", orderProduct).success(function (data)
             {
-                $scope.disableProcessLoading();
                 if (data)
                 {
                     if (data["success"])
@@ -600,7 +560,6 @@ angular.module('prosales-app')
                 }
             }).error(function(data, status, headers, config)
             {
-                $scope.disableProcessLoading();
                 $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                     type: 'danger',
                     delay: 0,
@@ -626,13 +585,9 @@ angular.module('prosales-app')
 
         $scope.setAccount = function()
         {
-            $scope.enableProcessLoading();
             $scope.newOrder.Order.account_id = $scope.account.Account.id;
-            console.log('setting account');
-            console.log($scope.newOrder);
             $http.post("/Orders/jsOrder/?CRUD_operation=UPDATE&format=SetAccount", $scope.newOrder).success(function (data)
             {
-                $scope.disableProcessLoading();
                 if (data)
                 {
                     if (data["success"])
@@ -652,7 +607,6 @@ angular.module('prosales-app')
                 }
             }).error(function(data, status, headers, config)
             {
-                $scope.disableProcessLoading();
                 $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                     type: 'danger',
                     delay: 0,
@@ -668,10 +622,8 @@ angular.module('prosales-app')
 
         $scope.closeOrder = function()
         {
-            $scope.enableProcessLoading();
             $http.post("/Orders/jsOrder/?CRUD_operation=UPDATE&format=CloseOrder", $scope.newOrder).success(function (data)
             {
-                $scope.disableProcessLoading();
                 if (data)
                 {
                     if (data["success"])
@@ -692,7 +644,6 @@ angular.module('prosales-app')
                 }
             }).error(function(data, status, headers, config)
             {
-                $scope.disableProcessLoading();
                 $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                     type: 'danger',
                     delay: 0,
@@ -709,10 +660,8 @@ angular.module('prosales-app')
 
 
         ////// Load Pricelist
-        $scope.enableProcessLoading();
         $http.post("/Workstations/getPricelist/", null).success(function (data)
         {
-            $scope.disableProcessLoading();
             if (data)
             {
                 if (data["success"])
@@ -720,10 +669,8 @@ angular.module('prosales-app')
                     $scope.pricelist = data["xData"];
 
                     //////Initialize New Order
-                    $scope.enableProcessLoading();
                     $http.post("/Orders/jsOrder/?CRUD_operation=CREATE", $scope.newOrder).success(function (data)
                     {
-                        $scope.disableProcessLoading();
                         if (data)
                         {
                             if (data["success"])
@@ -743,7 +690,6 @@ angular.module('prosales-app')
 
                     }).error(function(data, status, headers, config)
                     {
-                        $scope.disableProcessLoading();
                         $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                             type: 'danger',
                             delay: 0,
@@ -767,7 +713,6 @@ angular.module('prosales-app')
             }
         }).error(function(data, status, headers, config)
         {
-            $scope.disableProcessLoading();
             $.bootstrapGrowl('<i class="fa fa-exclamation-circle"></i><p translate="DANGER_INTERNAL_ERROR"></p>', {
                 type: 'danger',
                 delay: 0,

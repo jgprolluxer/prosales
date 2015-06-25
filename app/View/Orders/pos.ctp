@@ -99,7 +99,7 @@ $(document).ready(function ()
                     <i class="fa fa-dollar animation-floating"></i>
                 </a>
                 <h4 class="widget-content widget-content-light">Resumen de la orden<br/>Folio:&nbsp;{{newOrder.Order.folio}}</h4>
-                <a href="javascript:void(0)" ng-click="cancelOrder()" class="pull-right btn-xs btn btn-danger" data-ng-disabled=" totalPayments >= newOrder.Order.total_amt && totalPayments != 0 " >
+                <a href="javascript:void(0)" ng-click="cancelOrder()" class="pull-right btn-xs btn btn-danger" >
                     Cancelar Orden
                 </a>
             </div>
@@ -155,8 +155,8 @@ $(document).ready(function ()
                     <form ng-submit="addQuickPayment()" class="form-horizontal">
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="example-text-input">Recibí:</label>
-                            <div class="col-md-9">
-                                <input ng-model="pmnt_received" ng-change="calcChange()" ng-disabled=" !account || totalPayments >= newOrder.Order.total_amt" type="number" id="txtReceived" name="txtReceived" class="form-control">
+                            <div class="col-md-9" >
+                                <input ng-if="account || totalPayments < newOrder.Order.total_amt" ng-init = "newOrder.Order.payment_received_amt = 0" ng-model="newOrder.Order.payment_received_amt" ng-change="calcChange()"  type="number" id="txtReceived" name="txtReceived" class="form-control">
                             </div>
                         </div>
                         <div class="form-actions">
@@ -180,7 +180,7 @@ $(document).ready(function ()
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="txtChange">Cambio:</label>
                             <div class="col-md-9">
-                                <input ng-model="pmnt_change"  type="number" id="txtChange" name="txtChange" class="form-control" readonly="readonly" >
+                                <label ng-if="0 < newOrder.Order.total_amt && newOrder.Order.payment_received_amt !== 0 ">{{ (newOrder.Order.payment_received_amt - newOrder.Order.total_amt ).toFixed(2) }}</label>
                             </div>
                         </div>
                     </form>
@@ -201,6 +201,7 @@ $(document).ready(function ()
                                 <a href="javascript:void(0);" ng-href="/Orders/raiseticket/{{newOrder.Order.id}}" target="_blank" ng-disabled="'closed' != newOrder.Order.status" class="btn btn-xs btn-success">
                                     <i class="hi hi-arrow-down"></i> Imprimir Ticket
                                 </a>
+                                {{newOrder.Order.payment_received_amt}}
                             </div>
                         </div>
                     </div>

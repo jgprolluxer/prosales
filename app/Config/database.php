@@ -77,11 +77,11 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '104.239.163.170',
+		'host' => '104.218.12.141',
 		'port' => 3306,
-		'login' => 'admin',
-		'password' => 'fmTfAx29QnDQTXrf',
-		'database' => 'prosales-db',
+		'login' => 'aquaserv_prollux',
+		'password' => 'pr011ux3r2015',
+		'database' => 'aquaserv_prosales-db',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
