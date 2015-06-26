@@ -112,43 +112,41 @@ public function getReports()
 		$xData["TotalOrderByDate"] = $rOrder;
 
 ////// Sales man reports
-		/*
-		$orders = $this->Order->find('all', array(
-            'joins' => array(
-                array('table' => 'users',
-                    'alias' => 'User',
-                    'type' => 'inner',
-                    'conditions' => array(
-                        'User.id = Order.created_by'
-                    )
-                ),
-                array('table' => 'workstations',
-                    'alias' => 'Workstation',
-                    'type' => 'inner',
-                    'conditions' => array(
-                        'Workstation.id = User.workstation_id'
-                    )
-                ),
-            ),
-			'fields' => array(
-				"CONCAT( User.firstname, ' ', User.lastname, ' - ', Workstation.title, ' ', Workstation.employeenumber ) as salesman",
-				'IFNULL(SUM(Order.total_amt),0) total'
-			),
-			'conditions' => array(
-				'Order.status' => array(StatusOfOrder::Closed),
-				'Order.created >=' => $startDt,
-				'Order.created <=' => $endDt
-			),
-			'group' => array(
-				"Order.created_by",
-			)
-		));
-		$rOrder = array();
-		foreach ($orders as $key => $order)
-		{
-			$rOrder[$key] = array(__($order["0"]["salesman"]), intval($order["0"]["total"]) );
+		try{
+			
+			$orders = $this->Order->find('all', array(
+	            'joins' => array(
+	                array('table' => 'workstations',
+	                    'alias' => 'Workstation',
+	                    'type' => 'inner',
+	                    'conditions' => array(
+	                        'Workstation.id = User.workstation_id'
+	                    )
+	                ),
+	            ),
+				'fields' => array(
+					'DATE_FORMAT(Order.created, "%Y-%m-%d") AS x__created ',
+					"CONCAT(User.firstname, ' ', Workstation.title, ' ', Workstation.employeenumber) AS z__salesman",
+					'IFNULL(SUM(Order.total_amt),0) AS y__total'
+				),
+				'conditions' => array(
+					'Order.status' => array(StatusOfOrder::Closed),
+					'Order.created >=' => $startDt,
+					'Order.created <=' => $endDt
+				),
+				'group' => array(
+					'DATE_FORMAT(Order.created, "%Y-%m-%d")',
+					"CONCAT(User.firstname, ' ', Workstation.title, ' ', Workstation.employeenumber)"
+				)
+			));
+			
+			$xData["OrderBySalesMan"] = $orders;
+			
+		}catch(Exception $ex){
+			
+			$this->log('ERROR: SALESMANREPORT');
+			$this->log($ex->getMessage());
 		}
-		$xData["OrderBySalesMan"] = $rOrder;*/
 
 ////////////
 //////////// Products report
