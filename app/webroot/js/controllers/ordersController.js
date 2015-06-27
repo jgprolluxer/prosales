@@ -1,5 +1,77 @@
 
 angular.module('prosales-app')
+    .controller('OrderPOSController', function ($scope, $http, $location, $log)
+    {
+        
+        $scope.dropdown = [
+          {
+            "text": "<i class=\"fa fa-download\"></i>&nbsp;Another action",
+            "href": "#anotherAction"
+          },
+          {
+            "text": "<i class=\"fa fa-globe\"></i>&nbsp;Display an alert",
+            "click": "$alert(\"Holy guacamole!\")"
+          },
+          {
+            "text": "<i class=\"fa fa-external-link\"></i>&nbsp;External link",
+            "href": "/auth/facebook",
+            "target": "_self"
+          },
+          {
+            "divider": true
+          },
+          {
+            "text": "Separated link",
+            "href": "#separatedLink"
+          }
+        ];
+        
+        $scope.find = function(id)
+        {
+            console.log('elID');
+            console.log(id);
+            
+        };
+/*
+$http.get('//' + $location.host() + '/Orders/api/' + $stateParams.id).success(function(data)
+{
+
+});
+*/
+
+/*
+$http({
+	url: '//' + $location.host() + '/Orders/api/' + $object.id,
+	method: "PUT",
+	data: 'body=' + JSON.stringify({Reportchart:$object}),
+	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+}).success(function (data, status, headers, config) {
+	if(data.Reportchart.type != 'success'){
+		var myAlert = $alert({title: 'Error', 
+			content:  $filter('translate')(data.Reportchart.message),
+			placement: 'top-right', 
+			type: 'danger',
+			duration: 5,
+			show: true});
+	}
+	else {
+		var myAlert = $alert({title:  $filter('translate')(data.Reportchart.message),
+			content: '', 
+			placement: 'top-right', 
+			type: 'success',
+			duration: 5,
+			show: true});
+	}		
+	if(data.Reportchart.type != 'success'){
+		alert( $filter('translate')('Reportchart could not be updated.'));
+	}
+}).error(function (data, status, headers, config) {
+	alert(status + ' ' + data);
+});
+*/
+        
+    });
+angular.module('prosales-app')
     .controller('OrderAddController', function ($scope, $http, $location, DTOptionsBuilder, DTColumnDefBuilder, $modal, $log)
     {
         $scope.activeStyles = [

@@ -1,12 +1,11 @@
 angular.module('prosales-app',
     [
-    //'mgcrea.ngStrap',
-    'ngRoute',
-    'pascalprecht.translate',
-    'datatables',
-    'ui.bootstrap',
-    'angularMoment'
-    ])
+        'mgcrea.ngStrap',
+        'ngAnimate',
+        'ngRoute',
+        'pascalprecht.translate',
+        'angularMoment'
+        ])
         .factory('languageConfigStorage', function ()
         {
             var STORAGE_ID = 'languageProSales-app';

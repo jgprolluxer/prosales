@@ -20,230 +20,207 @@ $(document).ready(function ()
 <ul class="breadcrumb breadcrumb-top">
     <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
 </ul>
-<section data-ng-controller="OrderAddController">
-<!-- END Forms General Header -->
-<div class="row">
-    <div class="col-md-8">
-        <!-- Products Block -->
-        <div class="block full">
-            <!-- Products Title -->
-            <div class="block-title">
-                <h2><i class="fa fa-shopping-cart"></i> <strong>Productos</strong></h2>
-            </div>
-            <!-- END Products Title -->
-                <div id="icon-gen" class="block full">
-                    <!-- Default Tabs -->
-                    <ul class="nav nav-tabs push" data-toggle="tabs">
-                        <li class="active"><a href="#tab_SearchBarCode">Código de barras</a></li>
-                        <li><a href="#tab_SearchProductName">Nombre de producto</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab_SearchBarCode">
-                            <form ng-submit="loadProductCode()">
-                            <input type="text" ng-model="codeSearcher" ng-disabled="newOrder.Order.total_amt <= totalPayments && totalPayments != 0 " id="productBarcodeSearcher" name="productBarcodeSearcher" placeholder="Código de barras..." class="form-control">
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="tab_SearchProductName">
-<!-- angularstrap -->
-<!-- <input type="text" class="form-control" ng-model="selectedProduct"  data-animation="am-flip-x" ng-options="sproduct.Product.name as sproduct.Product.name for sproduct in loadProductNames($viewValue)" id="productSearcher" placeholder="Nombre del producto..." bs-typeahead> -->
-<!-- uibootstrap -->
-<input type="text" class="form-control" ng-model="selectedProduct"  data-animation="am-flip-x" ng-disabled="newOrder.Order.total_amt <= totalPayments && totalPayments != 0 " typeahead-on-select="processSelectedProduct($item)" typeahead="sproduct.Product.name as sproduct.Product.name for sproduct in loadProductNames($viewValue)" id="productSearcher" placeholder="Nombre del producto..." >
-
-
-                        </div>
-                    </div>
-                    <!-- END Default Tabs -->
+<section ng-controller="OrderPOSController" ng-init="find(<?php echo $id; ?>)">
+    
+    <!-- Customer Content -->
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <!-- Customer Info Block -->
+            <div class="block">
+                <!-- Customer Info Title -->
+                <div class="block-title">
+                    <h2><i class="fa fa-file-o"></i> <?php echo __('Venta'); ?></h2>
                 </div>
-            <!-- Products Content -->
-            <div class="table-responsive">
-                <table class="table table-bordered table-vcenter" datatable="ng" dt-options="dtOrderProductsOptions" >
-                    <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
-                        <th>Impuesto</th>
-                        <th>Total</th>
-                        <th>Acciones</th>
-                    </tr>
-                    </thead>
+                <!-- END Customer Info Title -->
+
+                <!-- Customer Info -->
+                <div class="block-section text-center">
+                    <h3>
+                        <strong>Jonathan Taylor</strong><br><small></small>
+                    </h3>
+                </div>
+                <table class="table table-borderless table-striped table-vcenter">
                     <tbody>
-                    <tr ng-repeat="orderproduct in orderProducts">
-                        <td>{{ orderproduct.Product.name}}</td>
-                        <td>${{ orderproduct.OrderProduct.product_price}}</td>
-                        <td>{{ orderproduct.OrderProduct.product_qty}}</td>
-                        <td>${{ orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty }}</td>
-                        <td>${{ ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 ) }} </td>
-                        <td>${{ (orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )).toFixed(2)  }}</td>
-                        <td>
-                            <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt && totalPayments != 0  " class="btn btn-warning btn-xs">
-                                <i class="gi gi-pencil"></i>
-                            </a>
-                            <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt && totalPayments != 0 " class="btn btn-danger btn-xs" ng-click="deleteOrderProduct(orderproduct.OrderProduct.id)" >
-                                <i class="gi gi-bin"></i>
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="text-right" style="width: 50%;"><strong>Social Title</strong></td>
+                            <td>Mr.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right"><strong>Registrations</strong></td>
+                            <td><span class="label label-primary">Newsletter</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-right"><strong>Status</strong></td>
+                            <td><span class="label label-success"><i class="fa fa-check"></i> Active</span></td>
+                        </tr>
                     </tbody>
                 </table>
+                <!-- END Customer Info -->
             </div>
-            <!-- END Products Content -->
-        </div>
-        <!-- END Products Block -->
-    </div>
-    <div class="col-md-4">
-        <div class="widget" >
-            <div class="widget-simple themed-background-dark">
-                <a href="javascript:void(0)" class="widget-icon pull-left themed-background">
-                    <i class="fa fa-dollar animation-floating"></i>
-                </a>
-                <h4 class="widget-content widget-content-light">Resumen de la orden<br/>Folio:&nbsp;{{newOrder.Order.folio}}</h4>
-                <a href="javascript:void(0)" ng-click="cancelOrder()" class="pull-right btn-xs btn btn-danger" >
-                    Cancelar Orden
-                </a>
-            </div>
-            <div class="widget-extra themed-background">
-                <div class="row text-center">
-                    <div class="col-xs-6">
-                        <h3 class="widget-content-light">
-                            <strong>${{newOrder.Order.total_amt}}</strong><br>
-                            <small>Total</small>
-                        </h3>
-                    </div>
-                    <div class="col-xs-6">
-                        <h3 class="widget-content-light">
-                            <strong>${{totalPayments}}</strong><br>
-                            <small>Pagos</small>
-                        </h3>
-                    </div>
+            <!-- END Customer Info Block -->
+            <!-- Customer Info Block -->
+            <div class="block">
+                <!-- Customer Info Title -->
+                <div class="block-title">
+                    <h2><i class="fa fa-file-o"></i> <strong>Customer</strong> Info</h2>
                 </div>
-            </div>
-            <div class="widget-extra">
-                <h4 class="sub-header">Cliente:</h4>
-                <!-- Advanced Active Theme Color Widget Alternative -->
-                <div class="widget">
-                    <div class="widget-advanced widget-advanced-alt">
-                        <!-- Widget Header -->
-                        <div class="widget-extra-full text-center">
-                            <div class="pull-left" >
-                                <a href="javascript:void(0);" data-ng-disabled="account" class="btn btn-xs btn-info" data-ng-click="open()" ><i class="hi hi-plus"></i> Asociar</a>
-                            </div>
-                            <div class="pull-right" >
-                                <a href="javascript:void(0);" data-ng-disabled="!account || totalPayments >= newOrder.Order.total_amt" class="btn btn-xs btn-warning" data-ng-click="removeAccount()" ><i class="hi hi-remove"></i> Remover</a>
-                            </div>
-                        </div>
-                        <!-- END Widget Header -->
-                        <!-- Widget Main -->
-                        <div class="widget-main">
-                            <div class="list-group remove-margin">
-                                <a href="javascript:void(0)" class="list-group-item" data-ng-show="account">
-                                    <!-- <span class="pull-right"><strong>160</strong></span>-->
-                                    <h4 class="list-group-item-heading remove-margin">
-                                        <i class="gi gi-user"></i> {{ account.Account.firstname }}&nbsp;{{ account.Account.lastname }}
-                                    </h4>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- END Widget Main -->
-                    </div>
-                </div>
-                <!-- END Advanced Active Theme Color Widget Alternative -->
-                <h4 class="sub-header">Pago:</h4>
-                <!-- Advanced Active Theme Color Widget Alternative -->
-                <div class="widget-extra-full">
-                    <form ng-submit="addQuickPayment()" class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-md-3 control-label" for="example-text-input">Recibí:</label>
-                            <div class="col-md-9" >
-                                <input ng-if="account || totalPayments < newOrder.Order.total_amt" ng-init = "newOrder.Order.payment_received_amt = 0" ng-model="newOrder.Order.payment_received_amt" ng-change="calcChange()"  type="number" id="txtReceived" name="txtReceived" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <a ng-click="addQuickPayment()" ng-disabled=" !account || totalPayments >= newOrder.Order.total_amt" class="pull-right btn btn-xs btn-info">
-                                <i class="fa fa-plus"></i>Pago Rápido
-                            </a>
-                        </div>
-                    </form>
-                </div>
-                <!-- END Advanced Active Theme Color Widget Alternative -->
-                <!-- Advanced Active Theme Color Widget Alternative -->
-                <div class="widget-extra-full" style="display: none;">
-                    <a disabled="disabled" href="javascript:void(0);" class="pull-right btn btn-xs btn-info" >
-                        <i class="hi hi-plus"></i> Agregar Pagos diferidos próximamente
-                    </a>
-                </div>
-                <!-- END Advanced Active Theme Color Widget Alternative -->
-                <!-- Advanced Active Theme Color Widget Alternative -->
-                <div class="widget-extra-full">
-                    <form onsubmit="return false" class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-md-3 control-label" for="txtChange">Cambio:</label>
-                            <div class="col-md-9">
-                                <label ng-if="0 < newOrder.Order.total_amt && newOrder.Order.payment_received_amt !== 0 ">{{ (newOrder.Order.payment_received_amt - newOrder.Order.total_amt ).toFixed(2) }}</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!-- END Advanced Active Theme Color Widget Alternative -->
-                <h4 class="sub-header">Finalizar:</h4>
-                <!-- Advanced Active Theme Color Widget Alternative -->
-                <div class="widget">
-                    <div class="widget-advanced widget-advanced-alt">
-                        <!-- Widget Header -->
-                        <div class="widget-main text-center">
-                            <div class="pull-left" >
-                                <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-click="closeOrder()" ng-disabled=" 0 == totalPayments || 'closed' == newOrder.Order.status " >
-                                    <i class="hi hi-check"></i> Cerrar Orden
-                                </a>
-                            </div>
-                            <div class="pull-right" >
-                                <a href="javascript:void(0);" ng-href="/Orders/raiseticket/{{newOrder.Order.id}}" target="_blank" ng-disabled="'closed' != newOrder.Order.status" class="btn btn-xs btn-success">
-                                    <i class="hi hi-arrow-down"></i> Imprimir Ticket
-                                </a>
-                                {{newOrder.Order.payment_received_amt}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script type="text/ng-template" id="AccountModalContent.html">
-    <div class="modal-header">
-        <h3 class="modal-title">Clientes</h3>
-    </div>
-    <div class="modal-body">
-        <!-- Products Block -->
-        <div class="block full">
-            <!-- Products Title -->
-            <div class="block-title">
-            </div>
-            <!-- END Products Title -->
+                <!-- END Customer Info Title -->
 
-            <!-- Products Content -->
-            <div class="table-responsive">
-                <table id="tblAccountModal" class="table table-bordered table-vcenter" class="table" datatable="ng" dt-options="dtAccountModalOptions" >
-                    <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Asociar</th>
-                    </tr>
-                    </thead>
+                <!-- Customer Info -->
+                <div class="block-section text-center">
+                    <h3>
+                        <strong>Jonathan Taylor</strong><br><small></small>
+                    </h3>
+                </div>
+                <table class="table table-borderless table-striped table-vcenter">
                     <tbody>
-                    <tr ng-repeat="item in items">
-                        <td>{{ item.Account.firstname }} &nbsp; {{ item.Account.lastname }}</td>
-                        <td><a href="javascript:void(0);" class="btn btn-info btn-xs" ng-click="ok(item)" ><i class="hi hi-ok"></i></a></td>
-                    </tr>
+                        <tr>
+                            <td class="text-right" style="width: 50%;"><strong>Social Title</strong></td>
+                            <td>Mr.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right"><strong>Birthdate</strong></td>
+                            <td>November 20, 1984</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right"><strong>Registration</strong></td>
+                            <td>15/10/2014 - 12:25</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right"><strong>Last Visit</strong></td>
+                            <td>06/11/2014 - 09:41</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right"><strong>Language</strong></td>
+                            <td>English (UK)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right"><strong>Registrations</strong></td>
+                            <td><span class="label label-primary">Newsletter</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-right"><strong>Status</strong></td>
+                            <td><span class="label label-success"><i class="fa fa-check"></i> Active</span></td>
+                        </tr>
                     </tbody>
                 </table>
+                <!-- END Customer Info -->
             </div>
-            <!-- END Products Content -->
+            <!-- END Customer Info Block -->
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <!-- Products in Cart Block -->
+            <div class="block">
+                <!-- Products in Cart Title -->
+                <div class="block-title">
+                    <div class="block-options pull-right">
+                        <span class="label label-success"><strong>$ 517,00</strong></span>
+                    </div>
+                    <h2><i class="fa fa-shopping-cart"></i> <strong>Products</strong> in Cart (3)</h2>
+                </div>
+                <!-- END Products in Cart Title -->
+
+                <!-- Products in Cart Content -->
+                <table class="table table-bordered table-striped table-vcenter">
+                    <tbody>
+                        <tr>
+                            <td class="text-center" style="width: 100px;"><a href="page_ecom_product_edit.html"><strong>PID.8715</strong></a></td>
+                            <td class="hidden-xs" style="width: 15%;"><a href="page_ecom_product_edit.html">Product #98</a></td>
+                            <td class="text-right hidden-xs" style="width: 10%;"><strong>$399,00</strong></td>
+                            <td><span class="label label-success">Available (479)</span></td>
+                            <td class="text-center" style="width: 70px;">
+                                <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8725</strong></a></td>
+                            <td class="hidden-xs"><a href="page_ecom_product_edit.html">Product #98</a></td>
+                            <td class="text-right hidden-xs"><strong>$59,00</strong></td>
+                            <td><span class="label label-success">Available (163)</span></td>
+                            <td class="text-center">
+                                <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8798</strong></a></td>
+                            <td class="hidden-xs"><a href="page_ecom_product_edit.html">Product #98</a></td>
+                            <td class="text-right hidden-xs"><strong>$59,00</strong></td>
+                            <td><span class="label label-danger">Out of Stock</span></td>
+                            <td class="text-center">
+                                <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- END Products in Cart Content -->
+            </div>
+            <!-- END Products in Cart Block -->
+
+            <!-- Customer Addresses Block -->
+            <div class="block">
+                <!-- Customer Addresses Title -->
+                <div class="block-title">
+                    <h2><i class="fa fa-building-o"></i> <strong>Customer</strong> Addresses (2)</h2>
+                </div>
+                <!-- END Customer Addresses Title -->
+
+                <!-- Customer Addresses Content -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- Billing Address Block -->
+                        <div class="block">
+                            <!-- Billing Address Title -->
+                            <div class="block-title">
+                                <h2>Billing Address</h2>
+                            </div>
+                            <!-- END Billing Address Title -->
+
+                            <!-- Billing Address Content -->
+                            <h4><strong>Jonathan Taylor</strong></h4>
+                            <address>
+                                Sunset Str 620<br>
+                                Melbourne<br>
+                                Australia, 21-842<br><br>
+                                <i class="fa fa-phone"></i> (999) 852-11111<br>
+                                <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">johnathan.taylor@example.com</a>
+                            </address>
+                            <!-- END Billing Address Content -->
+                        </div>
+                        <!-- END Billing Address Block -->
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Shipping Address Block -->
+                        <div class="block">
+                            <!-- Shipping Address Title -->
+                            <div class="block-title">
+                                <h2>Shipping Address</h2>
+                            </div>
+                            <!-- END Shipping Address Title -->
+
+                            <!-- Shipping Address Content -->
+                            <h4><strong>Harry Burke</strong></h4>
+                            <address>
+                                Sunset Str 598<br>
+                                Melbourne<br>
+                                Australia, 21-852<br><br>
+                                <i class="fa fa-phone"></i> (999) 852-22222<br>
+                                <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">harry.burke@example.com</a>
+                            </address>
+                            <!-- END Shipping Address Content -->
+                        </div>
+                        <!-- END Shipping Address Block -->
+                    </div>
+                </div>
+                <!-- END Customer Addresses Content -->
+            </div>
+            <!-- END Customer Addresses Block -->
         </div>
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
-    </div>
-</script>
+    <!-- END Customer Content -->
+    <button class="btn btn-primary" type="button" data-title="{{'elTitulo'}}" bs-tooltip>Click</button>
+    <button type="button" class="btn btn-lg btn-primary" data-animation="am-flip-x" bs-dropdown="dropdown" aria-haspopup="true" aria-expanded="false">
+        Click to toggle dropdown
+        <small>(using an object)</small>
+    </button>
+
 </section>

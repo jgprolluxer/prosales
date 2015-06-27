@@ -173,6 +173,7 @@ public function getReports()
 				'IFNULL(SUM(Order.total_amt),0) total'
 			),
 			'conditions' => array(
+					'Order.status' => array(StatusOfOrder::Closed),
 				'Order.created >=' => $startDt,
 				'Order.created <=' => $endDt
 			),

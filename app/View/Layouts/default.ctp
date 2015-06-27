@@ -54,6 +54,8 @@
         echo $this->Html->css('/template_assets/css/plugins.css');
         echo $this->Html->css('/template_assets/css/main.css');
         echo $this->Html->css('/template_assets/css/themes.css');
+        
+        echo $this->Html->css('/bower_components/angular-motion/dist/angular-motion.min.css');
         ?>
         <!-- Modernizr (browser feature detection library) & Respond.js (Enable responsive CSS code on browsers that don't support it, eg IE8) -->
         <!--<script src="/template_assets/js/vendor/modernizr-2.7.1-respond-1.4.2.min.js"></script>-->
@@ -67,6 +69,9 @@
         echo $this->Html->script("/bower_components/datatables/media/js/jquery.dataTables.min.js");
         echo $this->Html->script("/bower_components/moment/moment.js");
         echo $this->Html->script("/bower_components/angular/angular.js");
+        echo $this->Html->script("/bower_components/angular-animate/angular-animate.min.js");
+        echo $this->Html->script("/bower_components/angular-strap/dist/angular-strap.min.js");
+        echo $this->Html->script("/bower_components/angular-strap/dist/angular-strap.tpl.min.js");
         echo $this->Html->script("/bower_components/angular-route/angular-route.js");
         echo $this->Html->script("/bower_components/angular-translate/angular-translate.js");
         echo $this->Html->script("/bower_components/angular-translate-loader-url/angular-translate-loader-url.js");
