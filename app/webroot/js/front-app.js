@@ -45,5 +45,33 @@ angular.module('prosales-app',
             $rootScope.$on('$routeChangeSuccess', function ()
             {
             });
-        });
+        }).factory('uniqueID', [
+function()
+{
+	var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+	charSetSize , charCount,
+	charSetSize = charSet.length;
+
+	function generateRandomId()
+	{
+		var id = '';
+		for (var i = 1; i <= charCount; i++) {
+			var randPos = Math.floor(Math.random() * charSetSize);
+			id += charSet[randPos];
+		}
+		return "1-" + id;
+	}
+
+	function generate(sCount)
+	{
+		charCount = sCount || 10;
+		return generateRandomId();
+	}
+	return {
+		getID : function(sCount)
+		{
+			return generate(sCount);
+		}
+	};
+}]);
 

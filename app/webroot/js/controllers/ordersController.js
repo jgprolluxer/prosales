@@ -1,74 +1,135 @@
 
 angular.module('prosales-app')
-    .controller('OrderPOSController', function ($scope, $http, $location, $log)
+    .controller('OrderPOSController', function ($scope, $http, $location, $log, uniqueID, $alert)
     {
-        
-        $scope.dropdown = [
-          {
-            "text": "<i class=\"fa fa-download\"></i>&nbsp;Another action",
-            "href": "#anotherAction"
-          },
-          {
-            "text": "<i class=\"fa fa-globe\"></i>&nbsp;Display an alert",
-            "click": "$alert(\"Holy guacamole!\")"
-          },
-          {
-            "text": "<i class=\"fa fa-external-link\"></i>&nbsp;External link",
-            "href": "/auth/facebook",
-            "target": "_self"
-          },
-          {
-            "divider": true
-          },
-          {
-            "text": "Separated link",
-            "href": "#separatedLink"
-          }
-        ];
-        
-        $scope.find = function(id)
-        {
-            console.log('elID');
-            console.log(id);
-            
+        //////Initialize New Order Object
+        $scope.order = {
+            Order: {
+                type: "POS",
+                status: 'open',
+                folio: uniqueID.getID(12),
+                price: 0,
+                total_amt: 0,
+                subtotal_amt: 0,
+                tax: 0,
+                disc: 0,
+                disc_desc: "",
+                account_id: 0,
+                description: "POS",
+                saleschannel: "POS",
+                payment_received_amt: 0
+            }
         };
-/*
-$http.get('//' + $location.host() + '/Orders/api/' + $stateParams.id).success(function(data)
-{
+        
+        ////// Initialize pricelist
+        $scope.pricelist = {
+            Pricelist : {
+                id : 0
+            }
+        };
+        
+        $scope.selectedAccount = {};
+        
+        $scope.init = function($id)
+        {
+            
+                $http.get('/Workstations/getPricelist/').success(function(data)
+                {
+                    if (data["success"])
+                    {
+                        $scope.pricelist = data["xData"];
+                        console.log('pricelist');
+                        console.log($scope.pricelist);
+                        
+                        $scope.find($id);
+                    } else {
+                        var myAlert = $alert({
+                            title: 'No hay lista de precios asignada a su puesto, no puede continuar!',
+      						content: '', 
+      						placement: 'top-right', 
+      						type: 'warning',
+      						duration: 8*8000,
+      						show: true,
+      						container: '.header-section'
+                        });
+                    }
+                });
+        };
+        
+        $scope.find = function($id)
+        {
+            if($id)
+            {
+                $http.get('//' + $location.host() + '/Orders/api/' + $id).success(function(data)
+                {
+                    if(data["success"]){
+                        $scope.order = data["xData"];
+                    } else {
+                        
+                        var myAlert = $alert({
+                            title: data["message"],
+      						content: '', 
+      						placement: 'top-right', 
+      						type: 'warning',
+      						duration: 8*8000,
+      						show: true,
+      						container: '.header-section'
+                        });
+                    }
+                });
+            } else {
+                $http({
+                	url: '//' + $location.host() + '/Orders/api/',
+                	method: "POST",
+                	data: {
+                	    body: $scope.order
+                	}
+                }).success(function (data, status, headers, config)
+                {
+                    if(data["success"])
+                    {
+                        var myAlert = $alert({
+                            title: 'Nueva venta inicializada!',
+      						content: '', 
+      						placement: 'top-right', 
+      						type: 'success',
+      						duration: 6,
+      						show: true,
+      						container: '.header-section'
+                        });
+                        $scope.order = data["xData"];
+                    } else {
+                        var myAlert = $alert({
+                            title: data["message"],
+      						content: '', 
+      						placement: 'top-right', 
+      						type: 'warning',
+      						duration: 6,
+      						show: true,
+      						container: '.header-section'
+                        });
+                    }
+                    
+                }).error(function (data, status, headers, config)
+                {
+                	alert(status + ' ' + data);
+                });
+            }
+        };
+        
+        $scope.person = {};
+  $scope.people = [
+    { name: 'Adam',      email: 'adam@email.com',      age: 10 },
+    { name: 'Amalie',    email: 'amalie@email.com',    age: 12 },
+    { name: 'Wladimir',  email: 'wladimir@email.com',  age: 30 },
+    { name: 'Samantha',  email: 'samantha@email.com',  age: 31 },
+    { name: 'Estefanía', email: 'estefanía@email.com', age: 16 },
+    { name: 'Natasha',   email: 'natasha@email.com',   age: 54 },
+    { name: 'Nicole',    email: 'nicole@email.com',    age: 43 },
+    { name: 'Adrian',    email: 'adrian@email.com',    age: 21 }
+  ];  
 
-});
-*/
 
-/*
-$http({
-	url: '//' + $location.host() + '/Orders/api/' + $object.id,
-	method: "PUT",
-	data: 'body=' + JSON.stringify({Reportchart:$object}),
-	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-}).success(function (data, status, headers, config) {
-	if(data.Reportchart.type != 'success'){
-		var myAlert = $alert({title: 'Error', 
-			content:  $filter('translate')(data.Reportchart.message),
-			placement: 'top-right', 
-			type: 'danger',
-			duration: 5,
-			show: true});
-	}
-	else {
-		var myAlert = $alert({title:  $filter('translate')(data.Reportchart.message),
-			content: '', 
-			placement: 'top-right', 
-			type: 'success',
-			duration: 5,
-			show: true});
-	}		
-	if(data.Reportchart.type != 'success'){
-		alert( $filter('translate')('Reportchart could not be updated.'));
-	}
-}).error(function (data, status, headers, config) {
-	alert(status + ' ' + data);
-});
-*/
         
     });
 angular.module('prosales-app')
