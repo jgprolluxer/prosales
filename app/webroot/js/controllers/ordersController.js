@@ -129,19 +129,14 @@ angular.module('prosales-app')
             }
         };
         
-        $scope.person = {};
-  $scope.people = [
-    { name: 'Adam',      email: 'adam@email.com',      age: 10 },
-    { name: 'Amalie',    email: 'amalie@email.com',    age: 12 },
-    { name: 'Wladimir',  email: 'wladimir@email.com',  age: 30 },
-    { name: 'Samantha',  email: 'samantha@email.com',  age: 31 },
-    { name: 'Estefanía', email: 'estefanía@email.com', age: 16 },
-    { name: 'Natasha',   email: 'natasha@email.com',   age: 54 },
-    { name: 'Nicole',    email: 'nicole@email.com',    age: 43 },
-    { name: 'Adrian',    email: 'adrian@email.com',    age: 21 }
-  ];  
-
-
+$scope.selectedAccount = "";
+$scope.accounts = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
+$scope.$watch('selectedAccount', function(newValue, oldValue)
+{
+  $log.info('account changed');
+  $log.info($scope.selectedAccount);
+  $log.info($scope.order.Order.status);
+});
         
     });
 angular.module('prosales-app')

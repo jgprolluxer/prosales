@@ -65,18 +65,7 @@ $(document).ready(function ()
                 <!-- END Customer Info Title -->
                 <div class="block-section text-center">
                     
-                  <h3>Select2 theme</h3>
-                  <p>Selected: {{person.selected}}</p>
-                  <ui-select ng-model="person.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;">
-                    <ui-select-match placeholder="Select a person in the list or search his name/age...">{{$select.selected.name}}</ui-select-match>
-                    <ui-select-choices repeat="person in people | propsFilter: {name: $select.search, age: $select.search}">
-                      <div ng-bind-html="person.name "></div>
-                      <small>
-                        email: {{person.email}}
-                        age: <span ng-bind-html="''+person.age "></span>
-                      </small>
-                    </ui-select-choices>
-                  </ui-select>
+                    <input type="text" class="form-control" ng-model="selectedAccount" data-animation="am-flip-x"  bs-options="account for account in accounts" placeholder="Enter Account" bs-typeahead>
                     
                 </div>
                 <!-- Customer Info -->
