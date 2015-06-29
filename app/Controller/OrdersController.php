@@ -834,7 +834,6 @@ class OrdersController extends AppController
                         echo json_encode($response);
                         return;
 					}
-					$this->set(compact('order','id'));
 					break;
 				default:
                     $response = array(
