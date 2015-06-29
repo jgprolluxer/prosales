@@ -32,7 +32,15 @@ angular.module('prosales-app')
         
         $scope.init = function($id)
         {
-            
+            var myAlert = $alert({
+                title: 'Inicializando!',
+  				content: '', 
+  				placement: 'top-right', 
+  				type: 'success',
+  				duration: 4,
+  				show: true,
+  				container: '.header-section'
+            });
                 $http.get('/Workstations/getPricelist/').success(function(data)
                 {
                     if (data["success"])
@@ -64,6 +72,8 @@ angular.module('prosales-app')
                 {
                     if(data["success"]){
                         $scope.order = data["xData"];
+                        $log.info('Order');
+                        $log.info($scope.order);
                     } else {
                         
                         var myAlert = $alert({
@@ -98,6 +108,8 @@ angular.module('prosales-app')
       						container: '.header-section'
                         });
                         $scope.order = data["xData"];
+                        $log.info('Order');
+                        $log.info($scope.order);
                     } else {
                         var myAlert = $alert({
                             title: data["message"],

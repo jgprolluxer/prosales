@@ -1,10 +1,10 @@
 angular.module('prosales-app',
     [
-        'mgcrea.ngStrap',
-        'ngAnimate',
-        'ngRoute',
-        'pascalprecht.translate',
-        'angularMoment'
+        'ngRoute'
+        , 'pascalprecht.translate'
+        , 'mgcrea.ngStrap'
+        , 'ngAnimate'
+        , 'angularMoment'
         ])
         .factory('languageConfigStorage', function ()
         {
