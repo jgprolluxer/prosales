@@ -66,10 +66,10 @@ class OrderProductsController extends AppController
                 $this->Session->setFlash(__('The order product could not be saved. Please, try again.'));
             }
         }
-        $orders = $this->OrderProduct->Order->find('list');
+        $orderproducts = $this->OrderProduct->Order->find('list');
         $products = $this->OrderProduct->Product->find('list');
         $resources = $this->OrderProduct->Resource->find('list');
-        $this->set(compact('orders', 'products', 'resources'));
+        $this->set(compact('orderproducts', 'products', 'resources'));
     }
 
     /**
@@ -100,10 +100,10 @@ class OrderProductsController extends AppController
             $options = array('conditions' => array('OrderProduct.' . $this->OrderProduct->primaryKey => $id));
             $this->request->data = $this->OrderProduct->find('first', $options);
         }
-        $orders = $this->OrderProduct->Order->find('list');
+        $orderproducts = $this->OrderProduct->Order->find('list');
         $products = $this->OrderProduct->Product->find('list');
         $resources = $this->OrderProduct->Resource->find('list');
-        $this->set(compact('orders', 'products', 'resources'));
+        $this->set(compact('orderproducts', 'products', 'resources'));
     }
 
     /**
@@ -178,10 +178,10 @@ class OrderProductsController extends AppController
                 $this->Session->setFlash(__('The order product could not be saved. Please, try again.'));
             }
         }
-        $orders = $this->OrderProduct->Order->find('list');
+        $orderproducts = $this->OrderProduct->Order->find('list');
         $products = $this->OrderProduct->Product->find('list');
         $resources = $this->OrderProduct->Resource->find('list');
-        $this->set(compact('orders', 'products', 'resources'));
+        $this->set(compact('orderproducts', 'products', 'resources'));
     }
 
     /**
@@ -212,10 +212,10 @@ class OrderProductsController extends AppController
             $options = array('conditions' => array('OrderProduct.' . $this->OrderProduct->primaryKey => $id));
             $this->request->data = $this->OrderProduct->find('first', $options);
         }
-        $orders = $this->OrderProduct->Order->find('list');
+        $orderproducts = $this->OrderProduct->Order->find('list');
         $products = $this->OrderProduct->Product->find('list');
         $resources = $this->OrderProduct->Resource->find('list');
-        $this->set(compact('orders', 'products', 'resources'));
+        $this->set(compact('orderproducts', 'products', 'resources'));
     }
 
     /**
@@ -464,17 +464,17 @@ class OrderProductsController extends AppController
 								$parentField = $this->request->query["parent_field"];
 								$parentValue = $this->request->query["parent_value"];
 
-								$this->Account->recursive = -1;
-								$orders = $this->Account->find('all', array(
+								$this->OrderProduct->recursive = -1;
+								$orderproducts = $this->OrderProduct->find('all', array(
 									'conditions' => array(
-										'Account.'. $parentField . ' LIKE ' => '%' . $parentValue . '%'
+										'OrderProduct.'. $parentField . ' = ' =>  $parentValue
 									)
 								));
 								
                                 $response = array(
                                     'success' => true,
                                     'message' => 'OK',
-                                    'xData' => $orders
+                                    'xData' => $orderproducts
                                 );
 								echo json_encode($response);
 								return;
@@ -491,17 +491,17 @@ class OrderProductsController extends AppController
 							}
 						} 
 						else {
-						    $orders = $this->Account->find('all', array());
+						    $orderproducts = $this->OrderProduct->find('all', array());
                             $response = array(
                                 'success' => true,
                                 'message' => 'OK',
-                                'xData' => $orders
+                                'xData' => $orderproducts
                             );
 							echo json_encode($response);
 							return;
 						}
 
-					} elseif(!$this->Account->exists($id))
+					} elseif(!$this->OrderProduct->exists($id))
 					{
                         $response = array(
                             'success' => false,
@@ -512,11 +512,11 @@ class OrderProductsController extends AppController
                         return;
 					} else
 					{
-						$order = $this->Account->find('first', array('conditions' => array('Account.' . $this->Account->primaryKey => $id)));
+						$orderproduct = $this->OrderProduct->find('first', array('conditions' => array('OrderProduct.' . $this->OrderProduct->primaryKey => $id)));
                         $response = array(
                             'success' => true,
                             'message' => 'OK',
-                            'xData' => $order
+                            'xData' => $orderproduct
                         );
                         echo json_encode($response);
                         return;
@@ -533,17 +533,17 @@ class OrderProductsController extends AppController
                         echo json_encode($response);
                         return;
 					}
-					$this->Account->create();
+					$this->OrderProduct->create();
 					try
 					{
-						if ( $this->Account->save( $this->request->data['body'] ) )
+						if ( $this->OrderProduct->save( $this->request->data['body'] ) )
 						{
-						    $order = $this->Account->read(null, $this->Account->getLastInsertID());
+						    $orderproduct = $this->OrderProduct->read(null, $this->OrderProduct->getLastInsertID());
 							
                             $response = array(
                                 'success' => true,
                                 'message' => __('El cliente fue guardado'),
-                                'xData' => $order
+                                'xData' => $orderproduct
                             );
                             echo json_encode($response);
                             return;
@@ -553,7 +553,7 @@ class OrderProductsController extends AppController
                             $response = array(
                                 'success' => false,
                                 'message' => __('El cliente no fue guardado'),
-                                'xData' => $this->Account->validationErrors
+                                'xData' => $this->OrderProduct->validationErrors
                             );
                             echo json_encode($response);
                             return;
@@ -594,13 +594,13 @@ class OrderProductsController extends AppController
 						break;
 					}
 					try {
-						if ( $this->Account->save( $this->request->data['body'] ) )
+						if ( $this->OrderProduct->save( $this->request->data['body'] ) )
 						{
-						    $order = $this->Account->read(null, $this->request->data['body']["id"]);
+						    $orderproduct = $this->OrderProduct->read(null, $this->request->data['body']["id"]);
                             $response = array(
                                 'success' => true,
                                 'message' => __('El cliente fue actualizado'),
-                                'xData' => $order
+                                'xData' => $orderproduct
                             );
                             echo json_encode($response);
                             return;
@@ -609,7 +609,7 @@ class OrderProductsController extends AppController
                             $response = array(
                                 'success' => false,
                                 'message' => __('El cliente no fue guardado'),
-                                'xData' => $this->Account->validationErrors
+                                'xData' => $this->OrderProduct->validationErrors
                             );
                             echo json_encode($response);
                             return;
@@ -637,8 +637,8 @@ class OrderProductsController extends AppController
                         echo json_encode($response);
                         return;
 					}
-					$this->Account->id = $id;
-					if ($this->Account->delete())
+					$this->OrderProduct->id = $id;
+					if ($this->OrderProduct->delete())
 					{
                         $response = array(
                             'success' => true,
