@@ -191,6 +191,7 @@
 
         function clickSearchAddress()
         {
+            $("#addressesList").html('');
             var key = "AIzaSyCRb9Wxzl1l8omtJELsQrRvKZ5d4bgdz3A";
             var pluginUrl = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=";
             var params = "", newAddress = "";
@@ -233,6 +234,7 @@
                                             '<p class="list-group-item-text">' + address.formatted_address + '</p>' +
                                         '</div>';
                         $("#addressesList").append(newAddress);
+                        $("#addressesList").show();
                     });
                     $(".addressElement").click(function() {
                         //Se llenan los campos del address con el seleccionado
