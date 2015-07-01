@@ -405,6 +405,7 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
             $("#addAccountAddress").modal();
             $(".empty").hide();
             $(".error").removeClass("has-error");
+            cleanAddress();
         });        
         $(".mapView").click(function(){ loadModalMap(this); });
         $("#closeMap").click(function(){ $("#gmapContainer").fadeOut(500); });
@@ -472,6 +473,8 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
             success: function(data)
             {
                 console.log(data);
+                alert("El domicilio se ha guardado correctamente!");
+                cleanAddress();
                 loadNewAddress(data.xData);
             },
             error: function(xhr, textStatus, errorThrown)
@@ -576,5 +579,17 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
         $("#addressesArea").append(newAddress);        
         $(".mapView").click(function(){ loadModalMap(this); });
         //$("#mapView" + obj.Address.id).click(function(){ loadModalMap(this); });
+    }
+    
+    function cleanAddress(){
+        $("#AddressStreetNo").val('');
+        $("#AddressStreet").val('');
+        $("#AddressSuburb").val('');
+        $("#AddressCity").val('');
+        $("#AddressState").val('');
+        $("#AddressCountry").val('');
+        $("#addAccountAddress").hide();
+        $("#addressesList").html('');
+        $("#addressesList").hide();
     }
 </script>
