@@ -533,7 +533,8 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
                lng: lng,
                zoom: 14,
                disableDefaultUI: true,
-               scrollwheel: true
+               scrollwheel: true,
+               zoomControl: true
            }).addMarkers([
                {
                    lat: lat,
