@@ -1,7 +1,12 @@
 
 angular.module('prosales-app')
-    .controller('OrderPOSController', function ($scope, $http, $location, $log, uniqueID, $alert)
+    .controller('OrderPOSController', function ($scope, $http, $location, $log, uniqueID, $modal, $alert, $q, $injector)
     {
+        //var Notification = $injector.get('Notification');
+        //Notification('Primary notification');
+        
+        //var myModal = $modal({title: 'My Title', content: 'My Content', show: true});
+        
         //////Initialize New Order Object
         $scope.order = {
             Order: {
@@ -28,7 +33,101 @@ angular.module('prosales-app')
             }
         };
         
+        $scope.accounts = [];
+        $scope.account = {};
         $scope.selectedAccount = {};
+        
+        $scope.createOrder = function()
+        {
+            var deferred = $q.defer();
+                $http({
+                	url: '//' + $location.host() + '/Orders/api/',
+                	method: "POST",
+                	data: {
+                	    body: $scope.order
+                	}
+                }).success(function (data, status, headers, config)
+                {
+                    if(data["success"])
+                    {
+                        deferred.resolve(data["xData"]);
+                        $scope.order = data["xData"];
+                        
+                        var myAlert = $alert({
+                            title: 'Nueva venta inicializada!',
+      						content: '', 
+      						placement: 'top-right', 
+      						type: 'success',
+      						duration: 6,
+      						show: true,
+      						container: '.breadcrumb'
+                        });
+                    } else {
+                        var myAlert = $alert({
+                            title: data["message"],
+      						content: '', 
+      						placement: 'top-right', 
+      						type: 'warning',
+      						duration: 8*8000,
+      						show: true,
+      						container: '.breadcrumb'
+                        });
+                        deferred.reject(data["message"]);
+                    }
+                    
+                }).error(function (data, status, headers, config)
+                {
+                	alert(status + ' ' + data);
+                	deferred.reject('Error: '+status + ' ' + data);
+                });
+            return deferred.promise;
+        };
+        
+        $scope.updateOrder = function($order)
+        {
+            var deferred = $q.defer();
+                $http({
+                	url: '//' + $location.host() + '/Orders/api/'+$order.id,
+                	method: "PUT",
+                	data: {
+                	    body: $order
+                	}
+                }).success(function (data, status, headers, config)
+                {
+                    if(data["success"])
+                    {
+                        deferred.resolve(data["xData"]);
+                        $scope.order = data["xData"];
+                        
+                        var myAlert = $alert({
+                            title: 'Venta Actualizada!',
+      						content: '', 
+      						placement: 'top-right', 
+      						type: 'success',
+      						duration: 6,
+      						show: true,
+      						container: '.breadcrumb'
+                        });
+                    } else {
+                        var myAlert = $alert({
+                            title: data["message"],
+      						content: '', 
+      						placement: 'top-right', 
+      						type: 'warning',
+      						duration: 8*8000,
+      						show: true,
+      						container: '.breadcrumb'
+                        });
+                        deferred.reject(data["message"]);
+                    }
+                    
+                }).error(function (data, status, headers, config)
+                {
+                	alert(status + ' ' + data);
+                	deferred.reject('Error: '+status + ' ' + data);
+                });
+            return deferred.promise;
+        };
         
         $scope.init = function($id)
         {
@@ -39,8 +138,10 @@ angular.module('prosales-app')
   				type: 'success',
   				duration: 4,
   				show: true,
-  				container: '.header-section'
+  				container: '.breadcrumb'
             });
+            $scope.findAccounts();
+            
                 $http.get('/Workstations/getPricelist/').success(function(data)
                 {
                     if (data["success"])
@@ -58,7 +159,7 @@ angular.module('prosales-app')
       						type: 'warning',
       						duration: 8*8000,
       						show: true,
-      						container: '.header-section'
+      						container: '.breadcrumb'
                         });
                     }
                 });
@@ -83,60 +184,44 @@ angular.module('prosales-app')
       						type: 'warning',
       						duration: 8*8000,
       						show: true,
-      						container: '.header-section'
+      						container: '.breadcrumb'
                         });
                     }
                 });
             } else {
-                $http({
-                	url: '//' + $location.host() + '/Orders/api/',
-                	method: "POST",
-                	data: {
-                	    body: $scope.order
-                	}
-                }).success(function (data, status, headers, config)
-                {
-                    if(data["success"])
-                    {
-                        var myAlert = $alert({
-                            title: 'Nueva venta inicializada!',
-      						content: '', 
-      						placement: 'top-right', 
-      						type: 'success',
-      						duration: 6,
-      						show: true,
-      						container: '.header-section'
-                        });
-                        $scope.order = data["xData"];
-                        $log.info('Order');
-                        $log.info($scope.order);
-                    } else {
-                        var myAlert = $alert({
-                            title: data["message"],
-      						content: '', 
-      						placement: 'top-right', 
-      						type: 'warning',
-      						duration: 6,
-      						show: true,
-      						container: '.header-section'
-                        });
-                    }
-                    
-                }).error(function (data, status, headers, config)
-                {
-                	alert(status + ' ' + data);
-                });
+                $scope.createOrder();
             }
         };
         
-$scope.selectedAccount = "";
-$scope.accounts = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
-$scope.$watch('selectedAccount', function(newValue, oldValue)
-{
-  $log.info('account changed');
-  $log.info($scope.selectedAccount);
-  $log.info($scope.order.Order.status);
-});
+        $scope.findAccounts = function()
+        {
+            var deferred = $q.defer();
+            $scope.accounts = [];
+            $http.get('//' + $location.host() +'/Accounts/api/').success(function(data)
+            {
+                if(data["success"])
+                {
+                    $scope.accounts = data["xData"];
+                    deferred.resolve($scope.accounts);
+                }else {
+                    deferred.reject('Error: '+ data["message"]);
+                }
+            });
+            return deferred.promise;
+        };
+        
+        $scope.$watch('selectedAccount', function(newValue, oldValue)
+        {
+          $log.info('account changed');
+          if($scope.selectedAccount.Account)
+          {
+              if('open' == $scope.order.Order.status)
+              {
+                  $scope.order.Order.account_id = $scope.selectedAccount.Account.id;
+                  var promise = $scope.updateOrder($scope.order.Order);
+              }
+          }
+        });
         
     });
 angular.module('prosales-app')

@@ -51,6 +51,19 @@ $(document).ready(function ()
                             <td class="text-right"><?php echo __('Estado'); ?></td>
                             <td>{{order.Order.status}}</td>
                         </tr>
+                        <tr>
+                            <td colspan="2">
+                                <a href="javascript:void(0);" class="btn btn-xs btn-danger" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' ">
+                                    <?php echo __('Cancelar'); ?>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " >
+                                    <?php echo __('Cerrar'); ?>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-xs btn-info" ng-disabled=" order.Order.status == 'cancelled' ||  order.Order.status == 'open' " >
+                                    <?php echo __('Imprimir ticket'); ?>
+                                </a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <!-- END Customer Info -->
@@ -64,71 +77,66 @@ $(document).ready(function ()
                 </div>
                 <!-- END Customer Info Title -->
                 <div class="block-section text-center">
-                    
-                    <input type="text" class="form-control" ng-model="selectedAccount" data-animation="am-flip-x"  bs-options="account for account in accounts" placeholder="Enter Account" bs-typeahead>
-                    
+                    <input type="text" class="form-control" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-model="selectedAccount" data-animation="am-flip-x"  bs-options="account.Account.firstname + ' ' + account.Account.lastname for account in accounts" placeholder="<?php echo __('Buscar cliente'); ?>" bs-typeahead>
                 </div>
-                <!-- Customer Info -->
-                <div class="block-section text-center">
-                    <h3>{{order.Account.firstname}}&nbsp;{{order.Account.lastname}}</h3>
-                </div>
-                <table class="table table-borderless table-striped table-vcenter">
-                    <tbody>
-                        <tr>
-                            <td class="text-right" style="width: 50%;"><strong>Social Title</strong></td>
-                            <td>Mr.</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right"><strong>Birthdate</strong></td>
-                            <td>November 20, 1984</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right"><strong>Registration</strong></td>
-                            <td>15/10/2014 - 12:25</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right"><strong>Last Visit</strong></td>
-                            <td>06/11/2014 - 09:41</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right"><strong>Language</strong></td>
-                            <td>English (UK)</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right"><strong>Registrations</strong></td>
-                            <td><span class="label label-primary">Newsletter</span></td>
-                        </tr>
-                        <tr>
-                            <td class="text-right"><strong>Status</strong></td>
-                            <td><span class="label label-success"><i class="fa fa-check"></i> Active</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- END Customer Info -->
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <!-- Shipping Address Block -->
-                        <div class="block">
-                            <!-- Shipping Address Title -->
-                            <div class="block-title">
-                                <h2>Shipping Address</h2>
-                            </div>
-                            <!-- END Shipping Address Title -->
-
-                            <!-- Shipping Address Content -->
-                            <h4><strong>Harry Burke</strong></h4>
-                            <address>
-                                Sunset Str 598<br>
-                                Melbourne<br>
-                                Australia, 21-852<br><br>
-                                <i class="fa fa-phone"></i> (999) 852-22222<br>
-                                <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">harry.burke@example.com</a>
-                            </address>
-                            <!-- END Shipping Address Content -->
-                        </div>
-                        <!-- END Shipping Address Block -->
+                <section ng-if="order.Account.id">
+                    <!-- Customer Info -->
+                    <div class="block-section text-center">
+                        <h3>{{order.Account.firstname}}&nbsp;{{order.Account.lastname}}</h3>
                     </div>
-                </div>
+                    <table class="table table-borderless table-striped table-vcenter">
+                        <tbody ng-if="order.Account.id">
+                            <tr>
+                                <td class="text-right">
+                                    <?php echo __('Cliente desde'); ?>
+                                </td>
+                                <td>{{order.Account.created}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>Last Visit</strong></td>
+                                <td>06/11/2014 - 09:41</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>Language</strong></td>
+                                <td>English (UK)</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>Registrations</strong></td>
+                                <td><span class="label label-primary">Newsletter</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>Status</strong></td>
+                                <td><span class="label label-success"><i class="fa fa-check"></i> Active</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- END Customer Info -->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <!-- Shipping Address Block -->
+                            <div class="block">
+                                <!-- Shipping Address Title -->
+                                <div class="block-title">
+                                    <h2>Shipping Address</h2>
+                                </div>
+                                <!-- END Shipping Address Title -->
+    
+                                <!-- Shipping Address Content -->
+                                <h4><strong>Harry Burke</strong></h4>
+                                <address>
+                                    Sunset Str 598<br>
+                                    Melbourne<br>
+                                    Australia, 21-852<br><br>
+                                    <i class="fa fa-phone"></i> (999) 852-22222<br>
+                                    <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">harry.burke@example.com</a>
+                                </address>
+                                <!-- END Shipping Address Content -->
+                            </div>
+                            <!-- END Shipping Address Block -->
+                        </div>
+                    </div>
+                    
+                </section>
             </div>
             <!-- END Customer Info Block -->
         </div>

@@ -105,7 +105,7 @@ class OrdersController extends AppController
      *
      * @return void
      */
-    public function pos($id)
+    public function pos($id = null)
     {
         if ($this->request->is('post'))
         {

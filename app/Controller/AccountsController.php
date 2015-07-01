@@ -465,7 +465,7 @@ class AccountsController extends AppController {
 								$parentValue = $this->request->query["parent_value"];
 
 								$this->Account->recursive = -1;
-								$orders = $this->Account->find('all', array(
+								$accounts = $this->Account->find('all', array(
 									'conditions' => array(
 										'Account.'. $parentField . ' LIKE ' => '%' . $parentValue . '%'
 									)
@@ -474,7 +474,7 @@ class AccountsController extends AppController {
                                 $response = array(
                                     'success' => true,
                                     'message' => 'OK',
-                                    'xData' => $orders
+                                    'xData' => $accounts
                                 );
 								echo json_encode($response);
 								return;
@@ -491,11 +491,11 @@ class AccountsController extends AppController {
 							}
 						} 
 						else {
-						    $orders = $this->Account->find('all', array());
+						    $accounts = $this->Account->find('all', array());
                             $response = array(
                                 'success' => true,
                                 'message' => 'OK',
-                                'xData' => $orders
+                                'xData' => $accounts
                             );
 							echo json_encode($response);
 							return;
@@ -512,11 +512,11 @@ class AccountsController extends AppController {
                         return;
 					} else
 					{
-						$order = $this->Account->find('first', array('conditions' => array('Account.' . $this->Account->primaryKey => $id)));
+						$account = $this->Account->find('first', array('conditions' => array('Account.' . $this->Account->primaryKey => $id)));
                         $response = array(
                             'success' => true,
                             'message' => 'OK',
-                            'xData' => $order
+                            'xData' => $account
                         );
                         echo json_encode($response);
                         return;
@@ -538,12 +538,12 @@ class AccountsController extends AppController {
 					{
 						if ( $this->Account->save( $this->request->data['body'] ) )
 						{
-						    $order = $this->Account->read(null, $this->Account->getLastInsertID());
+						    $account = $this->Account->read(null, $this->Account->getLastInsertID());
 							
                             $response = array(
                                 'success' => true,
                                 'message' => __('El cliente fue guardado'),
-                                'xData' => $order
+                                'xData' => $account
                             );
                             echo json_encode($response);
                             return;
@@ -596,11 +596,11 @@ class AccountsController extends AppController {
 					try {
 						if ( $this->Account->save( $this->request->data['body'] ) )
 						{
-						    $order = $this->Account->read(null, $this->request->data['body']["id"]);
+						    $account = $this->Account->read(null, $this->request->data['body']["id"]);
                             $response = array(
                                 'success' => true,
                                 'message' => __('El cliente fue actualizado'),
-                                'xData' => $order
+                                'xData' => $account
                             );
                             echo json_encode($response);
                             return;
