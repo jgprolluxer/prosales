@@ -1,6 +1,6 @@
 
 angular.module('prosales-app')
-    .controller('OrderPOSController', function ($scope, $http, $location, $log, uniqueID, $modal, $alert, $q, $injector)
+    .controller('OrderPOSController', function ($scope, $http, $location, $log, uniqueID, $modal, $alert, $q, $injector, formatDollar)
     {
         //var Notification = $injector.get('Notification');
         //Notification('Primary notification');
@@ -36,6 +36,8 @@ angular.module('prosales-app')
         $scope.accounts = [];
         $scope.account = {};
         $scope.selectedAccount = {};
+        
+        $scope.orderProducts = [];
         
         $scope.createOrder = function()
         {
@@ -129,6 +131,30 @@ angular.module('prosales-app')
             return deferred.promise;
         };
         
+        $scope.getOrderProducts = function()
+        {
+            $http.get('//' + $location.host() + '/OrderProducts/api/?parent_field=order_id&parent_value='+$scope.order.Order.id).success(function(data)
+            {
+                if (data["success"])
+                {
+                    $scope.orderProducts = data["xData"];
+                    $log.info('orderProducts');
+                    $log.info($scope.orderProducts);
+                } else {
+                    $log.info('Error al traer los orderProducts');
+                    var myAlert = $alert({
+                        title: data["message"],
+  						content: '', 
+  						placement: 'top-right', 
+  						type: 'warning',
+  						duration: 8*8000,
+  						show: true,
+  						container: '.breadcrumb'
+                    });
+                }
+            });
+        };
+        
         $scope.init = function($id)
         {
             var myAlert = $alert({
@@ -175,6 +201,7 @@ angular.module('prosales-app')
                         $scope.order = data["xData"];
                         $log.info('Order');
                         $log.info($scope.order);
+                        $scope.getOrderProducts();
                     } else {
                         
                         var myAlert = $alert({
@@ -189,7 +216,10 @@ angular.module('prosales-app')
                     }
                 });
             } else {
-                $scope.createOrder();
+                var promise = $scope.createOrder();
+                promise.then(function(data){
+                    $scope.getOrderProducts();
+                });
             }
         };
         
@@ -222,6 +252,12 @@ angular.module('prosales-app')
               }
           }
         });
+        
+        $scope.frmtNumber = function(number)
+        {
+            try{number = parseFloat(number);}catch(err){}
+            return "$" + formatDollar.format(number);
+        };
         
     });
 angular.module('prosales-app')

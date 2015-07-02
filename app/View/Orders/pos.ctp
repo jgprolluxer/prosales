@@ -59,7 +59,7 @@ $(document).ready(function ()
                                 <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " >
                                     <?php echo __('Cerrar'); ?>
                                 </a>
-                                <a href="javascript:void(0);" class="btn btn-xs btn-info" ng-disabled=" order.Order.status == 'cancelled' ||  order.Order.status == 'open' " >
+                                <a href="javascript:void(0);" class="btn btn-xs btn-info" ng-disabled=" order.Order.status == 'cancelled' ||  order.Order.status == 'open' " ng-href="/Orders/raiseticket/{{order.Order.id}}" target="_blank" >
                                     <?php echo __('Imprimir ticket'); ?>
                                 </a>
                             </td>
@@ -146,9 +146,9 @@ $(document).ready(function ()
                 <!-- Products in Cart Title -->
                 <div class="block-title">
                     <div class="block-options pull-right">
-                        <span class="label label-success"><strong>$ 517,00</strong></span>
+                        <span class="label label-success">{{frmtNumber(order.Order.total_amt)}}</span>
                     </div>
-                    <h2><i class="fa fa-shopping-cart"></i> <strong>Products</strong> in Cart (3)</h2>
+                    <h2><i class="fa fa-shopping-cart"></i>&nbsp;<?php echo __('Productos'); ?></h2>
                 </div>
                 <!-- END Products in Cart Title -->
 

@@ -452,6 +452,12 @@ class OrderProductsController extends AppController
                 'message' => 'No Action',
                 'xData' => array()
             );
+            
+            $this->log('$this->request->method()');
+            $this->log($this->request->method());
+            
+            $this->log('$this->request->query');
+            $this->log($this->request->query);
 
 			switch ($this->request->method())
 			{
