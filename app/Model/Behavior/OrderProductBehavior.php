@@ -115,6 +115,10 @@ class OrderProductBehavior extends ModelBehavior
                     $order["Order"]["tax_amt"] = 0;
                     $order["Order"]["subtotal_amt"] = $pSum;
                     $order["Order"]["total_amt"] = ( $pSum );
+                    if(0 < ( $pSum ) )
+                    {
+                        $order["Order"]["status"] = 'pending';
+                    }
                     $order["Order"]["disc"] = 0;
                     $order["Order"]["disc_amt"] = 0;
 

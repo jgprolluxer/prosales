@@ -10,6 +10,7 @@ angular.module('prosales-app')
         //////Initialize New Order Object
         $scope.order = {
             Order: {
+                id: null,
                 type: "POS",
                 status: 'open',
                 folio: uniqueID.getID(12),
@@ -55,25 +56,20 @@ angular.module('prosales-app')
                         deferred.resolve(data["xData"]);
                         $scope.order = data["xData"];
                         
-                        var myAlert = $alert({
-                            title: 'Nueva venta inicializada!',
-      						content: '', 
-      						placement: 'top-right', 
-      						type: 'success',
-      						duration: 6,
-      						show: true,
-      						container: '.breadcrumb'
-                        });
+                        $scope.$emit('orderCreatedLoaded', data["xData"]);
+                        
+                        $.bootstrapGrowl('Nueva venta inicializada!', {
+                                type: 'success',
+                                delay: 2000,
+                                allow_dismiss: true
+                            });
+                        
                     } else {
-                        var myAlert = $alert({
-                            title: data["message"],
-      						content: '', 
-      						placement: 'top-right', 
-      						type: 'warning',
-      						duration: 8*8000,
-      						show: true,
-      						container: '.breadcrumb'
-                        });
+                        $.bootstrapGrowl(data["message"], {
+                                type: 'danger',
+                                delay: 8*8000,
+                                allow_dismiss: false
+                            });
                         deferred.reject(data["message"]);
                     }
                     
@@ -101,25 +97,21 @@ angular.module('prosales-app')
                         deferred.resolve(data["xData"]);
                         $scope.order = data["xData"];
                         
-                        var myAlert = $alert({
-                            title: 'Venta Actualizada!',
-      						content: '', 
-      						placement: 'top-right', 
-      						type: 'success',
-      						duration: 6,
-      						show: true,
-      						container: '.breadcrumb'
-                        });
+                        $scope.$emit('orderUpdatedLoaded', data["xData"]);
+                        
+                        $.bootstrapGrowl('Venta actualizada!', {
+                                type: 'success',
+                                delay: 2000,
+                                allow_dismiss: true
+                            });
+                            
                     } else {
-                        var myAlert = $alert({
-                            title: data["message"],
-      						content: '', 
-      						placement: 'top-right', 
-      						type: 'warning',
-      						duration: 8*8000,
-      						show: true,
-      						container: '.breadcrumb'
-                        });
+                        $.bootstrapGrowl(data["message"], {
+                                type: 'danger',
+                                delay: 8000,
+                                allow_dismiss: true
+                            });
+                            
                         deferred.reject(data["message"]);
                     }
                     
@@ -131,6 +123,37 @@ angular.module('prosales-app')
             return deferred.promise;
         };
         
+        $scope.cancelOrder = function()
+        {
+            $scope.order.Order.status = 'cancelled';
+            $scope.updateOrder($scope.order.Order);
+        };
+        
+        $scope.find = function()
+        {
+            if($scope.order.Order.id)
+            {
+                $http.get('//' + $location.host() + '/Orders/api/' + $scope.order.Order.id).success(function(data)
+                {
+                    if(data["success"]){
+                        $scope.order = data["xData"];
+                        
+                        $scope.$emit('orderLoaded', $scope.order);
+                    } else {
+                        $scope.order.Order.status = 'cancelled';
+                        $.bootstrapGrowl(data["message"], {
+                                type: 'danger',
+                                delay: 8*8000,
+                                allow_dismiss: false
+                            });
+                    }
+                });
+            } else {
+                $scope.createOrder();
+                $scope.$emit('orderLoaded', $scope.order);
+            }
+        };
+        
         $scope.getOrderProducts = function()
         {
             $http.get('//' + $location.host() + '/OrderProducts/api/?parent_field=order_id&parent_value='+$scope.order.Order.id).success(function(data)
@@ -138,89 +161,47 @@ angular.module('prosales-app')
                 if (data["success"])
                 {
                     $scope.orderProducts = data["xData"];
-                    $log.info('orderProducts');
-                    $log.info($scope.orderProducts);
+                    $scope.$emit('orderProductsLoaded', data["xData"]);
                 } else {
-                    $log.info('Error al traer los orderProducts');
-                    var myAlert = $alert({
-                        title: data["message"],
-  						content: '', 
-  						placement: 'top-right', 
-  						type: 'warning',
-  						duration: 8*8000,
-  						show: true,
-  						container: '.breadcrumb'
-                    });
+                    $.bootstrapGrowl(data["message"], {
+                                type: 'success',
+                                delay: 8*8000,
+                                allow_dismiss: false
+                            });
                 }
             });
         };
         
-        $scope.init = function($id)
+        $scope.loadPricelist = function()
         {
-            var myAlert = $alert({
-                title: 'Inicializando!',
-  				content: '', 
-  				placement: 'top-right', 
-  				type: 'success',
-  				duration: 4,
-  				show: true,
-  				container: '.breadcrumb'
-            });
-            $scope.findAccounts();
-            
-                $http.get('/Workstations/getPricelist/').success(function(data)
+            $http.get('/Workstations/getPricelist/').success(function(data)
                 {
                     if (data["success"])
                     {
                         $scope.pricelist = data["xData"];
-                        console.log('pricelist');
-                        console.log($scope.pricelist);
+                        $scope.$emit('pricelistLoaded', data["xData"]);
                         
-                        $scope.find($id);
                     } else {
-                        var myAlert = $alert({
-                            title: 'No hay lista de precios asignada a su puesto, no puede continuar!',
-      						content: '', 
-      						placement: 'top-right', 
-      						type: 'warning',
-      						duration: 8*8000,
-      						show: true,
-      						container: '.breadcrumb'
-                        });
+                        $.bootstrapGrowl('No hay lista de precios asignada a su puesto, no puede continuar!', {
+                                type: 'success',
+                                delay: 8*8000,
+                                allow_dismiss: false
+                            });
                     }
                 });
         };
         
-        $scope.find = function($id)
+        $scope.init = function($idOrder)
         {
-            if($id)
-            {
-                $http.get('//' + $location.host() + '/Orders/api/' + $id).success(function(data)
-                {
-                    if(data["success"]){
-                        $scope.order = data["xData"];
-                        $log.info('Order');
-                        $log.info($scope.order);
-                        $scope.getOrderProducts();
-                    } else {
-                        
-                        var myAlert = $alert({
-                            title: data["message"],
-      						content: '', 
-      						placement: 'top-right', 
-      						type: 'warning',
-      						duration: 8*8000,
-      						show: true,
-      						container: '.breadcrumb'
-                        });
-                    }
-                });
-            } else {
-                var promise = $scope.createOrder();
-                promise.then(function(data){
-                    $scope.getOrderProducts();
-                });
-            }
+            $scope.order.Order.id = $idOrder;
+            
+            $.bootstrapGrowl('Inicializando!', {
+                                type: 'success',
+                                delay: 2000,
+                                allow_dismiss: true
+                            });
+            
+            $scope.loadPricelist();
         };
         
         $scope.findAccounts = function()
@@ -240,6 +221,23 @@ angular.module('prosales-app')
             return deferred.promise;
         };
         
+        $scope.getAccount = function()
+        {
+            var deferred = $q.defer();
+            $http.get('//' + $location.host() +'/Accounts/api/'+$scope.order.Order.account_id).success(function(data)
+            {
+                if(data["success"])
+                {
+                    $scope.account = data["xData"];
+                    deferred.resolve($scope.account);
+                    $scope.$emit('accountLoaded');
+                }else {
+                    deferred.reject('Error: '+ data["message"]);
+                }
+            });
+            return deferred.promise;
+        };
+        
         $scope.$watch('selectedAccount', function(newValue, oldValue)
         {
           $log.info('account changed');
@@ -252,6 +250,45 @@ angular.module('prosales-app')
               }
           }
         });
+        
+        $scope.$on('pricelistLoaded', function(data)
+        {
+            $log.info('pricelistLoaded event emited');
+            $scope.find();
+            $scope.findAccounts();
+        });
+        
+        $scope.$on('orderCreatedLoaded', function()
+        {
+            $scope.find();
+        });
+        
+        $scope.$on('orderUpdatedLoaded', function()
+        {
+            $scope.find();
+        });
+        
+        $scope.$on('orderLoaded', function(data)
+        {
+            $log.info('orderLoaded event emited');
+            $scope.getOrderProducts();
+            $scope.getAccount();
+        });
+        
+        $scope.$on('accountLoaded', function(data)
+        {
+            $log.info('accountLoaded event emited');
+            
+        });
+        
+        $scope.$on('orderProductsLoaded', function(data)
+        {
+            $log.info('orderProductsLoaded event emited');
+            $log.info('orderProducts');
+            $log.info($scope.orderProducts);
+        });
+        
+        
         
         $scope.frmtNumber = function(number)
         {

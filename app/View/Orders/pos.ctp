@@ -53,13 +53,13 @@ $(document).ready(function ()
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <a href="javascript:void(0);" class="btn btn-xs btn-danger" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' ">
+                                <a href="javascript:void(0);" class="btn btn-xs btn-danger" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-click="cancelOrder()">
                                     <?php echo __('Cancelar'); ?>
                                 </a>
-                                <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " >
+                                <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-disabled="0 == order.Order.total_amt || order.Order.status == 'closed' || order.Order.status == 'cancelled' " >
                                     <?php echo __('Cerrar'); ?>
                                 </a>
-                                <a href="javascript:void(0);" class="btn btn-xs btn-info" ng-disabled=" order.Order.status == 'cancelled' ||  order.Order.status == 'open' " ng-href="/Orders/raiseticket/{{order.Order.id}}" target="_blank" >
+                                <a href="javascript:void(0);" class="btn btn-xs btn-info" ng-disabled=" order.Order.status == 'cancelled' " ng-href="/Orders/raiseticket/{{order.Order.id}}" target="_blank" >
                                     <?php echo __('Imprimir ticket'); ?>
                                 </a>
                             </td>
@@ -77,12 +77,12 @@ $(document).ready(function ()
                 </div>
                 <!-- END Customer Info Title -->
                 <div class="block-section text-center">
-                    <input type="text" class="form-control" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-model="selectedAccount" data-animation="am-flip-x"  bs-options="account.Account.firstname + ' ' + account.Account.lastname for account in accounts" placeholder="<?php echo __('Buscar cliente'); ?>" bs-typeahead>
+                    <input type="text" class="form-control" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-model="selectedAccount" data-animation="am-flip-x"  bs-options="staccount.Account.firstname + ' ' + staccount.Account.lastname for staccount in accounts" placeholder="<?php echo __('Buscar cliente'); ?>" bs-typeahead>
                 </div>
                 <section ng-if="order.Account.id">
                     <!-- Customer Info -->
                     <div class="block-section text-center">
-                        <h3>{{order.Account.firstname}}&nbsp;{{order.Account.lastname}}</h3>
+                        <h3>{{account.Account.firstname}}&nbsp;{{account.Account.lastname}}</h3>
                     </div>
                     <table class="table table-borderless table-striped table-vcenter">
                         <tbody ng-if="order.Account.id">
@@ -154,33 +154,38 @@ $(document).ready(function ()
 
                 <!-- Products in Cart Content -->
                 <table class="table table-bordered table-striped table-vcenter">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Impuesto</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
                     <tbody>
                         <tr>
-                            <td class="text-center" style="width: 100px;"><a href="page_ecom_product_edit.html"><strong>PID.8715</strong></a></td>
-                            <td class="hidden-xs" style="width: 15%;"><a href="page_ecom_product_edit.html">Product #98</a></td>
-                            <td class="text-right hidden-xs" style="width: 10%;"><strong>$399,00</strong></td>
-                            <td><span class="label label-success">Available (479)</span></td>
-                            <td class="text-center" style="width: 70px;">
-                                <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                            <td colspan="7" class="text-center" ng-if="orderProducts.length < 1" >
+                                <?php echo __('No hay productos seleccionados'); ?>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8725</strong></a></td>
-                            <td class="hidden-xs"><a href="page_ecom_product_edit.html">Product #98</a></td>
-                            <td class="text-right hidden-xs"><strong>$59,00</strong></td>
-                            <td><span class="label label-success">Available (163)</span></td>
-                            <td class="text-center">
-                                <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8798</strong></a></td>
-                            <td class="hidden-xs"><a href="page_ecom_product_edit.html">Product #98</a></td>
-                            <td class="text-right hidden-xs"><strong>$59,00</strong></td>
-                            <td><span class="label label-danger">Out of Stock</span></td>
-                            <td class="text-center">
-                                <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                            </td>
+                        <tr ng-repeat="orderproduct in orderProducts">
+                        <td>{{ orderproduct.Product.name}}</td>
+                        <td>${{ orderproduct.OrderProduct.product_price}}</td>
+                        <td>{{ orderproduct.OrderProduct.product_qty}}</td>
+                        <td>${{ orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty }}</td>
+                        <td>${{ ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 ) }} </td>
+                        <td>${{ (orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )).toFixed(2)  }}</td>
+                        <td>
+                            <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt && totalPayments != 0  " class="btn btn-warning btn-xs">
+                                <i class="gi gi-pencil"></i>
+                            </a>
+                            <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt && totalPayments != 0 " class="btn btn-danger btn-xs" ng-click="deleteOrderProduct(orderproduct.OrderProduct.id)" >
+                                <i class="gi gi-bin"></i>
+                            </a>
+                        </td>
                         </tr>
                     </tbody>
                 </table>

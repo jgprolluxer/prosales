@@ -452,12 +452,6 @@ class OrderProductsController extends AppController
                 'message' => 'No Action',
                 'xData' => array()
             );
-            
-            $this->log('$this->request->method()');
-            $this->log($this->request->method());
-            
-            $this->log('$this->request->query');
-            $this->log($this->request->query);
 
 			switch ($this->request->method())
 			{
@@ -470,7 +464,7 @@ class OrderProductsController extends AppController
 								$parentField = $this->request->query["parent_field"];
 								$parentValue = $this->request->query["parent_value"];
 
-								$this->OrderProduct->recursive = -1;
+								$this->OrderProduct->recursive = 1;
 								$orderproducts = $this->OrderProduct->find('all', array(
 									'conditions' => array(
 										'OrderProduct.'. $parentField . ' = ' =>  $parentValue
@@ -518,6 +512,7 @@ class OrderProductsController extends AppController
                         return;
 					} else
 					{
+					    $this->OrderProduct->recursive = -1;
 						$orderproduct = $this->OrderProduct->find('first', array('conditions' => array('OrderProduct.' . $this->OrderProduct->primaryKey => $id)));
                         $response = array(
                             'success' => true,
