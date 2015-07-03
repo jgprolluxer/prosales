@@ -242,194 +242,6 @@ class OrderProductsController extends AppController
         }
         return $this->redirect(array('action' => 'index'));
     }
-
-    /**
-     *
-     */
-    public function jsCancelOrderProduct()
-    {
-        Configure::write('debug', 0);
-        $this->autoRender = false;
-        $this->layout = 'ajax';
-
-        $arrayConditions = array();
-        $response = array();
-
-        try
-        {
-            $this->OrderProduct->id = $this->request->data["OrderProduct"]["id"];
-            $this->OrderProduct->recursive = -1;
-            $this->OrderProduct->saveField('status', StatusOfOrderProduct::Inactive);
-
-            $response = array(
-                'success' => true,
-                'message' => 'Correcto',
-                'xData' => array()
-            );
-
-        } catch (Exception $ex)
-        {
-            $this->log('Error to try update the OrderProduct');
-            $this->log($ex->getMessage());
-            $response = array(
-                'success' => false,
-                'message' => $ex->getMessage(),
-                'xData' => array()
-            );
-        }
-        echo json_encode($response);
-    }
-
-    /**
-     *
-     */
-    public function jsfindOrderProduct()
-    {
-        Configure::write('debug', 0);
-        $this->autoRender = false;
-        $this->layout = 'ajax';
-
-        $arrayConditions = array();
-        $response = array();
-        $results = array();
-        try
-        {
-            switch ($this->request->query['format'])
-            {
-                case 'allForPOS':
-                    {
-                        $this->OrderProduct->recursive = 1;
-                        $arrayConditions = array(
-                            'OrderProduct.id >= ' => 1,
-                            'OrderProduct.order_id =' => $this->request->query['orderID'],
-                            'OrderProduct.status' => array(StatusOfOrderProduct::Active)
-                        );
-                        $results = $this->OrderProduct->find('all', array(
-                            'conditions' => $arrayConditions
-                        ));
-                        $response = array(
-                            'success' => true,
-                            'xData' => $results,
-                            'message' => 'Correcto'
-                        );
-                    }
-                    break;
-                default :
-                    break;
-            }
-        } catch (Exception $ex)
-        {
-            $response = array(
-                'success' => false,
-                'message' => $ex->getMessage(),
-                'xData' => array()
-            );
-        }
-        echo json_encode($response);
-    }
-
-    public function addFromPOSByJs()
-    {
-        Configure::write('debug', 0);
-        $this->autoRender = false;
-        $this->layout = 'ajax';
-        $response = array();
-
-        try
-        {
-            $pricelistID = null;
-            $productID = null;
-            $orderID = null;
-            if( isset($this->request->data["OrderProduct"]["product_id"])
-                && isset($this->request->data["OrderProduct"]["pricelist_id"])
-                && isset($this->request->data["OrderProduct"]["order_id"])  )
-            {
-                $pricelistID = $this->request->data["OrderProduct"]["pricelist_id"];
-                $productID = $this->request->data["OrderProduct"]["product_id"];
-                $orderID = $this->request->data["OrderProduct"]["order_id"];
-
-            } else
-            {
-                throw new Exception( ''. __('PRICELIST_PRODUCT_ORDER_INCORRECT') );
-            }
-            $this->loadModel('PricelistProduct');
-            $this->PricelistProduct->recursive = 3;
-            $selectedProduct = $this->PricelistProduct->find('all', array(
-                    'conditions' => array(
-                        'PricelistProduct.id >=' => 1,
-                        'Pricelist.id =' => $pricelistID,
-                        'Product.id =' => $productID
-                    )
-            ));
-
-            if(empty($selectedProduct))
-            {
-                throw new Exception( ''. __('PRODUCT_NOT_FOUNDED') );
-            }else
-            {
-                $selectedProduct = $selectedProduct[0];
-            }
-
-                $orderProduct["OrderProduct"]["created"] = date("Y-m-d H:i:s");
-                $orderProduct["OrderProduct"]["updated"] = date("Y-m-d H:i:s");
-                $orderProduct["OrderProduct"]["created_by"] = $this->Session->read("Auth.User.id");
-                $orderProduct["OrderProduct"]["updated_by"] = $this->Session->read("Auth.User.id");
-                $orderProduct["OrderProduct"]["status"] = 'active';
-                $orderProduct["OrderProduct"]["order_id"] = $orderID;
-                $orderProduct["OrderProduct"]["product_id"] = $productID;
-                $orderProduct["OrderProduct"]["product_qty"] = 1;
-                $orderProduct["OrderProduct"]["product_disc"] = 0;
-                $orderProduct["OrderProduct"]["product_price"] = $selectedProduct["PricelistProduct"]["unit_price"];
-                $orderProduct["OrderProduct"]["product_tax"] = $selectedProduct["PricelistProduct"]["tax"];
-
-                $this->OrderProduct->create();
-                if (!$this->OrderProduct->save($orderProduct["OrderProduct"]))
-                {
-                    $valErrors = $this->OrderProduct->validationErrors;
-                    $valMessage = "";
-                    foreach ($valErrors as $valError)
-                    {
-                        $valMessage .=' ';
-                        if (is_array($valError))
-                        {
-                            foreach ($valError as $prop)
-                            {
-                                $valMessage .= $prop . ' ';
-                            }
-                        } else
-                        {
-                            $valMessage .= $prop . ' ';
-                        }
-                    }
-                    $response = array(
-                        'success' => false,
-                        'message' => $valMessage,
-                        'xData' => array()
-                    );
-                } else
-                {
-                    $response = array(
-                        'success' => true,
-                        'message' => 'Correcto',
-                        'xData' => $this->OrderProduct->read(null, $this->OrderProduct->getLastInsertID())
-                    );
-                }
-
-            $response = array(
-                'success' => true,
-                'message' => 'Correcto',
-                'xData' => array()
-            );
-        } catch (Exception $ex)
-        {
-            $response = array(
-                'success' => false,
-                'message' => $ex->getMessage(),
-                'xData' => array()
-            );
-        }
-        echo json_encode($response);
-    }
         
     /**
 		 * JSON API method
@@ -505,7 +317,7 @@ class OrderProductsController extends AppController
 					{
                         $response = array(
                             'success' => false,
-                            'message' => __('El cliente no fue encontrado'),
+                            'message' => __('El producto de la orden no fue encontrado'),
                             'xData' => array()
                         );
                         echo json_encode($response);
@@ -543,9 +355,13 @@ class OrderProductsController extends AppController
 							
                             $response = array(
                                 'success' => true,
-                                'message' => __('El cliente fue guardado'),
+                                'message' => __('El producto fue guardado'),
                                 'xData' => $orderproduct
                             );
+                            
+                            $this->log('PRODUCTO ORDER FUE GUARDADO');
+                            $this->log($orderproduct);
+                            
                             echo json_encode($response);
                             return;
                             
@@ -553,7 +369,7 @@ class OrderProductsController extends AppController
 						{
                             $response = array(
                                 'success' => false,
-                                'message' => __('El cliente no fue guardado'),
+                                'message' => __('El producto no fue guardado'),
                                 'xData' => $this->OrderProduct->validationErrors
                             );
                             echo json_encode($response);
@@ -600,7 +416,7 @@ class OrderProductsController extends AppController
 						    $orderproduct = $this->OrderProduct->read(null, $this->request->data['body']["id"]);
                             $response = array(
                                 'success' => true,
-                                'message' => __('El cliente fue actualizado'),
+                                'message' => __('El producto de la orden fue actualizado'),
                                 'xData' => $orderproduct
                             );
                             echo json_encode($response);
@@ -609,7 +425,7 @@ class OrderProductsController extends AppController
 						{
                             $response = array(
                                 'success' => false,
-                                'message' => __('El cliente no fue guardado'),
+                                'message' => __('El producto de la orden no fue guardado'),
                                 'xData' => $this->OrderProduct->validationErrors
                             );
                             echo json_encode($response);
@@ -643,7 +459,7 @@ class OrderProductsController extends AppController
 					{
                         $response = array(
                             'success' => true,
-                            'message' => __('El cliente fue eliminado'),
+                            'message' => __('El producto fue eliminado'),
                             'xData' => array()
                         );
                         echo json_encode($response);
@@ -652,7 +468,7 @@ class OrderProductsController extends AppController
 					{
                         $response = array(
                             'success' => true,
-                            'message' => __('El cliente no fue eliminado'),
+                            'message' => __('El producto no fue eliminado'),
                             'xData' => array()
                         );
                         echo json_encode($response);

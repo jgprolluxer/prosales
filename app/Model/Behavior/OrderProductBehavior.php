@@ -28,8 +28,6 @@ class OrderProductBehavior extends ModelBehavior
 
     public function afterSave(\Model $model, $created, $options = array())
     {
-        //$this->log('after save model');
-        //$this->log($model);
         $orderProductID = isset($model->id) ? $model->id : 0;
         $this->updateTotalOrder($orderProductID);
 
@@ -53,6 +51,8 @@ class OrderProductBehavior extends ModelBehavior
 
     public function beforeSave(\Model $model, $options = array())
     {
+        
+        $model = $this->setCreatedUpdated($model);
         return parent::beforeSave($model, $options);
     }
 
@@ -76,6 +76,40 @@ class OrderProductBehavior extends ModelBehavior
         return parent::setup($model, $config);
     }
 
+    /**
+     * 
+     * @param type $Model
+     * @return type
+     */
+    private function setCreatedUpdated($Model)
+    {
+        $loggedUser = CakeSession::read('Auth.User');
+        if (isset($loggedUser))
+        {
+            if ($Model->id)
+            {
+                $Model->data['OrderProduct']['updated'] = date("Y-m-d H:i:s");
+                if (!(isset($Model->data['OrderProduct']['updated_by'])))
+                {
+                    $Model->data['OrderProduct']['updated_by'] = $loggedUser["id"];
+                }
+            } else
+            {
+                $Model->data['OrderProduct']['created'] = date("Y-m-d H:i:s");
+                $Model->data['OrderProduct']['updated'] = date("Y-m-d H:i:s");
+                if (!(isset($Model->data['OrderProduct']['updated_by'])))
+                {
+                    $Model->data['OrderProduct']['updated_by'] = $loggedUser["id"];
+                }
+                if (!(isset($Model->data['OrderProduct']['created_by'])))
+                {
+                    $Model->data['OrderProduct']['created_by'] = $loggedUser["id"];
+                }
+            }
+        }
+        return $Model;
+    }
+    
     public function updateTotalOrder($orderProductID = 0)
     {
         try

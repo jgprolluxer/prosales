@@ -18,7 +18,7 @@ class UtilsController extends AppController {
         
     }
     
-		public function queryModel($params = null )
+		public function queryModel()
 		{
             Configure::write('debug', 0);
             $this->autoRender = false;
@@ -28,13 +28,7 @@ class UtilsController extends AppController {
 
 			try{
 					$objParams = array();
-
-				if($params)
-				{
-					$objParams = json_decode($params, true);
-
-					$this->log('objParams');
-					$this->log($objParams);
+					$objParams = json_decode($this->request->query["params"], true);
 				
 					$dyn_model = $objParams["dyn_model"];
 					$typeSearch = $objParams["type_search"];
@@ -47,7 +41,6 @@ class UtilsController extends AppController {
                         'message' => __('OK'),
                         'xData' => $elData
                     );
-				}
 
 			}catch(Exception $ex)
 			{
@@ -61,31 +54,4 @@ class UtilsController extends AppController {
 
 			echo json_encode($response);
 		}
-		
-		/*
-		
-				var objParams = {
-			'dyn_model':'Favorite', 
-			'type_search':'all', 
-			'search_options': {
-				"conditions": [
-				"Favorite.objectId =" + $object.id,
-				"Favorite.type = 'Opportunity'",  
-				"Favorite.owner = " + $rootScope.currentUser.User.id
-				], 
-			"recursive": -1
-			}
-		};
-
-		$http.get('//' + $location.host() + '/api/utils/?method=queryModel&params='+JSON.stringify(objParams)).success(function(data) {
-			
-			//console.log("toggleFavorite", data);
-			if(data.length > 0) {
-				$scope.favorite = {'flag':true, 'id': data[0].Favorite.id};
-			}
-			else {
-				$scope.favorite = {'flag':false, 'id': 0};
-			}
-		});
-		*/
 }

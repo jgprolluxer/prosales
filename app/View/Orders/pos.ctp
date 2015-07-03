@@ -59,7 +59,7 @@ $(document).ready(function ()
                                 <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-disabled="0 == order.Order.total_amt || order.Order.status == 'closed' || order.Order.status == 'cancelled' " >
                                     <?php echo __('Cerrar'); ?>
                                 </a>
-                                <a href="javascript:void(0);" class="btn btn-xs btn-info" ng-disabled=" order.Order.status == 'cancelled' " ng-href="/Orders/raiseticket/{{order.Order.id}}" target="_blank" >
+                                <a href="javascript:void(0);" class="btn btn-xs btn-info" ng-disabled=" order.Order.status == 'cancelled' || order.Order.status == 'open' " ng-href="/Orders/raiseticket/{{order.Order.id}}" target="_blank" >
                                     <?php echo __('Imprimir ticket'); ?>
                                 </a>
                             </td>
@@ -150,46 +150,60 @@ $(document).ready(function ()
                     </div>
                     <h2><i class="fa fa-shopping-cart"></i>&nbsp;<?php echo __('Productos'); ?></h2>
                 </div>
+                <div class="block-section text-center">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <input type="text" class="form-control" placeholder="<?php echo __('Buscar producto por nombre...'); ?>"  ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-model="selectedProduct" data-animation="am-flip-x" bs-options="thproduct.Product.name for thproduct in getProductByName($viewValue)" bs-typeahead>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <input type="text" class="form-control" placeholder="<?php echo __('Buscar producto por código de barras...'); ?>" ng-if="barcodecompleted"  ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " />
+                        </div>
+                    </div>
+                    <div class="row">
+                            <!--<input type="text" class="form-control" ng-model="selectedAddress" data-animation="am-flip-x" bs-options="address.formatted_address as address.formatted_address for address in getAddress($viewValue)" placeholder="Enter address" bs-typeahead>-->
+                    </div>
+                </div>
                 <!-- END Products in Cart Title -->
-
-                <!-- Products in Cart Content -->
-                <table class="table table-bordered table-striped table-vcenter">
-                    <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
-                        <th>Impuesto</th>
-                        <th>Total</th>
-                        <th>Acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                <div class="table-responsive">
+                    <!-- Products in Cart Content -->
+                    <table class="table table-bordered table-striped table-vcenter">
+                        <thead>
                         <tr>
-                            <td colspan="7" class="text-center" ng-if="orderProducts.length < 1" >
-                                <?php echo __('No hay productos seleccionados'); ?>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th>Impuesto</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="7" class="text-center" ng-if="orderProducts.length < 1" >
+                                    <?php echo __('No hay productos seleccionados'); ?>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="orderproduct in orderProducts">
+                            <td>{{ orderproduct.Product.name}}</td>
+                            <td>${{ orderproduct.OrderProduct.product_price}}</td>
+                            <td>{{ orderproduct.OrderProduct.product_qty}}</td>
+                            <td>${{ orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty }}</td>
+                            <td>${{ ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 ) }} </td>
+                            <td>${{ (orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )).toFixed(2)  }}</td>
+                            <td>
+                                <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " class="btn btn-warning btn-xs">
+                                    <i class="gi gi-pencil"></i>
+                                </a>
+                                <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " class="btn btn-danger btn-xs" ng-click="deleteOrderProduct(orderproduct.OrderProduct.id)" >
+                                    <i class="gi gi-bin"></i>
+                                </a>
                             </td>
-                        </tr>
-                        <tr ng-repeat="orderproduct in orderProducts">
-                        <td>{{ orderproduct.Product.name}}</td>
-                        <td>${{ orderproduct.OrderProduct.product_price}}</td>
-                        <td>{{ orderproduct.OrderProduct.product_qty}}</td>
-                        <td>${{ orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty }}</td>
-                        <td>${{ ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 ) }} </td>
-                        <td>${{ (orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )).toFixed(2)  }}</td>
-                        <td>
-                            <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt && totalPayments != 0  " class="btn btn-warning btn-xs">
-                                <i class="gi gi-pencil"></i>
-                            </a>
-                            <a href="javascript:void(0);" ng-disabled="totalPayments >= newOrder.Order.total_amt && totalPayments != 0 " class="btn btn-danger btn-xs" ng-click="deleteOrderProduct(orderproduct.OrderProduct.id)" >
-                                <i class="gi gi-bin"></i>
-                            </a>
-                        </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- END Products in Cart Content -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    <!-- END Products in Cart Content -->
             </div>
             <!-- END Products in Cart Block -->
             <!-- Products in Cart Block -->

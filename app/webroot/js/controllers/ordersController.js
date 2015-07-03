@@ -39,6 +39,8 @@ angular.module('prosales-app')
         $scope.selectedAccount = {};
         
         $scope.orderProducts = [];
+        $scope.product = {};
+        $scope.selectedProduct = {};
         
         $scope.createOrder = function()
         {
@@ -57,6 +59,7 @@ angular.module('prosales-app')
                         $scope.order = data["xData"];
                         
                         $scope.$emit('orderCreatedLoaded', data["xData"]);
+                        $scope.$emit('orderLoaded', $scope.order);
                         
                         $.bootstrapGrowl('Nueva venta inicializada!', {
                                 type: 'success',
@@ -129,6 +132,45 @@ angular.module('prosales-app')
             $scope.updateOrder($scope.order.Order);
         };
         
+        $scope.createOrderProduct = function($object)
+        {
+            var deferred = $q.defer();
+                $http({
+                	url: '//' + $location.host() + '/OrderProducts/api/',
+                	method: "POST",
+                	data: {
+                	    body: $object
+                	}
+                }).success(function (data, status, headers, config)
+                {
+                    if(data["success"])
+                    {
+                        deferred.resolve(data["xData"]);
+                        $scope.$emit('orderProductCreatedLoaded', data["xData"]);
+                        
+                        $.bootstrapGrowl(data["message"], {
+                                type: 'success',
+                                delay: 2000,
+                                allow_dismiss: true
+                            });
+                        
+                    } else {
+                        $.bootstrapGrowl(data["message"], {
+                                type: 'danger',
+                                delay: 8*8000,
+                                allow_dismiss: true
+                            });
+                        deferred.reject(data["message"]);
+                    }
+                    
+                }).error(function (data, status, headers, config)
+                {
+                	alert(status + ' ' + data);
+                	deferred.reject('Error: '+status + ' ' + data);
+                });
+            return deferred.promise;
+        };
+        
         $scope.find = function()
         {
             if($scope.order.Order.id)
@@ -150,26 +192,57 @@ angular.module('prosales-app')
                 });
             } else {
                 $scope.createOrder();
-                $scope.$emit('orderLoaded', $scope.order);
             }
         };
         
         $scope.getOrderProducts = function()
         {
-            $http.get('//' + $location.host() + '/OrderProducts/api/?parent_field=order_id&parent_value='+$scope.order.Order.id).success(function(data)
-            {
-                if (data["success"])
+            var objParams = {
+    			'dyn_model':'OrderProduct', 
+    			'type_search':'all', 
+    			'search_options': {
+    				"conditions": [
+    				"OrderProduct.id >= 1",
+    				"Order.id = " + $scope.order.Order.id,
+    				"OrderProduct.status = 'active' "
+    				], 
+    			"recursive": 1
+    			}
+    		};
+    		$http.get('//' + $location.host() + '/Utils/queryModel?params='+JSON.stringify(objParams)).success(function(data)
+    		{
+    		    if (data["success"])
                 {
                     $scope.orderProducts = data["xData"];
                     $scope.$emit('orderProductsLoaded', data["xData"]);
                 } else {
                     $.bootstrapGrowl(data["message"], {
-                                type: 'success',
-                                delay: 8*8000,
-                                allow_dismiss: false
-                            });
+                        type: 'danger',
+                        delay: 8*8000,
+                        allow_dismiss: false
+                    });
                 }
-            });
+    		});
+        };
+        
+        $scope.getProductByName = function( sexpr )
+        {
+            var objParams = {
+    			'dyn_model':'PricelistProduct', 
+    			'type_search':'all', 
+    			'search_options': {
+    				"conditions": [
+    				"PricelistProduct.id >= 1",
+    				"Pricelist.id = " + $scope.pricelist.Pricelist.id,
+    				"PricelistProduct.status = 'active' ",
+    				"Product.name LIKE '%25" + sexpr + "%25'"
+    				], 
+    			"recursive": 1
+    			}
+    		};
+    		return $http.get('//' + $location.host() + '/Utils/queryModel?params='+JSON.stringify(objParams)).then(function(res) {
+    			return res.data["xData"];
+    		});
         };
         
         $scope.loadPricelist = function()
@@ -240,16 +313,52 @@ angular.module('prosales-app')
         
         $scope.$watch('selectedAccount', function(newValue, oldValue)
         {
-          $log.info('account changed');
+            $log.info('account changed');
+            $log.info($scope.selectedAccount);
           if($scope.selectedAccount.Account)
           {
-              if('open' == $scope.order.Order.status)
+              if('closed' != $scope.order.Order.status || 'cancelled' != $scope.order.Order.status)
               {
                   $scope.order.Order.account_id = $scope.selectedAccount.Account.id;
                   var promise = $scope.updateOrder($scope.order.Order);
+                  promise.then(function()
+                  {
+                      $scope.selectedAccount = {};
+                  }, function(){
+                      console.log('error al insertar el cliente a la orden');
+                  });
               }
           }
         });
+        
+        $scope.$watch('selectedProduct', function(newValue, oldValue)
+        {
+          if($scope.selectedProduct.Product)
+          {
+            var orderProduct = {
+                OrderProduct: {
+                    status: 'active',
+                    order_id:       $scope.order.Order.id,
+                    product_id:     $scope.selectedProduct.Product.id,
+                    pricelist_id:   $scope.pricelist.Pricelist.id,
+                    product_qty: 1,
+                    product_disc: 0,
+                    product_price: $scope.selectedProduct.PricelistProduct.unit_price,
+                    product_tax: $scope.selectedProduct.PricelistProduct.tax
+                }
+            };
+              var promise = $scope.createOrderProduct(orderProduct.OrderProduct);
+              promise.then(function()
+              {
+                  $scope.selectedProduct = {};
+                  $scope.$emit('pricelistLoaded', {});
+              }, function(){
+                  console.log('error al insertar el producto a la orden');
+              });
+          }
+
+        });
+        
         
         $scope.$on('pricelistLoaded', function(data)
         {
@@ -271,8 +380,8 @@ angular.module('prosales-app')
         $scope.$on('orderLoaded', function(data)
         {
             $log.info('orderLoaded event emited');
-            $scope.getOrderProducts();
             $scope.getAccount();
+            $scope.getOrderProducts();
         });
         
         $scope.$on('accountLoaded', function(data)
@@ -297,6 +406,7 @@ angular.module('prosales-app')
         };
         
     });
+
 angular.module('prosales-app')
     .controller('OrderAddController', function ($scope, $http, $location, DTOptionsBuilder, DTColumnDefBuilder, $modal, $log)
     {
