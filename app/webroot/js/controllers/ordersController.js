@@ -171,6 +171,57 @@ angular.module('prosales-app')
             return deferred.promise;
         };
         
+        $scope.updateOrderProduct = function($object)
+        {
+            var deferred = $q.defer();
+                $http({
+                	url: '//' + $location.host() + '/OrderProducts/api/'+$object.id,
+                	method: "PUT",
+                	data: {
+                	    body: $object
+                	}
+                }).success(function (data, status, headers, config)
+                {
+                    if(data["success"])
+                    {
+                        deferred.resolve(data["xData"]);
+                        
+                        $scope.$emit('orderProductUpdatedLoaded', data["xData"]);
+                        $.bootstrapGrowl(data["message"], {
+                                type: 'success',
+                                delay: 2000,
+                                allow_dismiss: true
+                            });
+                            
+                    } else {
+                        $.bootstrapGrowl(data["message"], {
+                                type: 'danger',
+                                delay: 8000,
+                                allow_dismiss: true
+                            });
+                            
+                        deferred.reject(data["message"]);
+                    }
+                    
+                }).error(function (data, status, headers, config)
+                {
+                	alert(status + ' ' + data);
+                	deferred.reject('Error: '+status + ' ' + data);
+                });
+            return deferred.promise;
+        };
+        
+        $scope.cancelOrderProduct = function(orderProduct, $index)
+        {
+            $log.info('deleting product');
+            $log.info(orderProduct);
+            $log.info($index);
+            orderProduct.status = 'inactive';
+            $scope.updateOrderProduct(orderProduct);
+            $scope.orderProducts.splice($index, 1);
+            $scope.$emit('pricelistLoaded', {});
+        };
+        
         $scope.find = function()
         {
             if($scope.order.Order.id)
@@ -389,7 +440,7 @@ angular.module('prosales-app')
             $log.info('accountLoaded event emited');
             
         });
-        
+        $scope.totalOfProducts = 0;
         $scope.$on('orderProductsLoaded', function(data)
         {
             $log.info('orderProductsLoaded event emited');

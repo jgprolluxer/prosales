@@ -40,6 +40,10 @@ $(document).ready(function ()
                 <table class="table table-borderless table-striped table-vcenter">
                     <tbody>
                         <tr>
+                            <td class="text-right" ><strong><?php echo __('Total'); ?></strong></td>
+                            <td><span class="label label-info">{{frmtNumber(order.Order.total_amt)}}</label></td>
+                        </tr>
+                        <tr>
                             <td class="text-right" ><?php echo __('Creada el'); ?></td>
                             <td>{{order.Order.created}}</td>
                         </tr>
@@ -146,7 +150,7 @@ $(document).ready(function ()
                 <!-- Products in Cart Title -->
                 <div class="block-title">
                     <div class="block-options pull-right">
-                        <span class="label label-success">{{frmtNumber(order.Order.total_amt)}}</span>
+                        <span class="label label-info">{{frmtNumber(order.Order.total_amt)}}</span>
                     </div>
                     <h2><i class="fa fa-shopping-cart"></i>&nbsp;<?php echo __('Productos'); ?></h2>
                 </div>
@@ -195,7 +199,7 @@ $(document).ready(function ()
                                 <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " class="btn btn-warning btn-xs">
                                     <i class="gi gi-pencil"></i>
                                 </a>
-                                <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " class="btn btn-danger btn-xs" ng-click="deleteOrderProduct(orderproduct.OrderProduct.id)" >
+                                <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " class="btn btn-danger btn-xs" ng-click="cancelOrderProduct(orderproduct.OrderProduct, $index)" >
                                     <i class="gi gi-bin"></i>
                                 </a>
                             </td>
@@ -211,7 +215,7 @@ $(document).ready(function ()
                 <!-- Products in Cart Title -->
                 <div class="block-title">
                     <div class="block-options pull-right">
-                        <span class="label label-success"><strong>$ 517,00</strong></span>
+                        <span class="label label-info"><strong>$ 517,00</strong></span>
                     </div>
                     <h2><i class="fa fa-usd"></i>&nbsp;<?php echo __('Pagos'); ?></h2>
                 </div>
