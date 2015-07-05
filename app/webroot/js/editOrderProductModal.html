@@ -1,0 +1,36 @@
+<div class="modal " role="dialog">
+	<div class="modal-dialog ">
+		<div class="modal-content" style ="height:100% !important;">
+			<div class="modal-header text-center">
+                <h4>{{'Ingredientes del producto' | translate}}</h4>
+			</div>
+			<div class="modal-body" style="margin:2px !important; padding:2px !important;">
+			    <div class="table-responsive">
+			    	<table class="table table-bordered table-striped table-vcenter">
+			    		<thead>
+			    			<tr>
+			    				<th>{{'Ingrediente'|translate}}</th>
+			    				<th>{{'Incluir'|translate}}?</th>
+			    			</tr>
+			    		</thead>
+			    		<tbody>
+			    			<tr ng-repeat="orderProductSupply in orderProductSupplies">
+			    				<td>{{orderProductSupply.Supply.name | translate}}</td>
+			    				<td>
+			    					<label class="switch switch-primary" >
+			    						<input type="checkbox" ng-model="orderProductSupply.OrderProductSupply.added" ng-click="toogleOrderProductSupply($index)"><span></span>
+			    					</label>
+			    				</td>
+			    			</tr>
+			    		</tbody>
+			    	</table>
+			    </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-crm-default btn btn-circle btn-xs btn-default" ng-click="$hide();">{{ 'Close' | translate }}</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

@@ -3,6 +3,9 @@
 App::uses('ModelBehavior', 'Model');
 App::import('Model', 'Order');
 App::import('Model', 'OrderProduct');
+App::import('Model', 'ProductSupply');
+App::import('Model', 'OrderProductSupply');
+
 
 class OrderProductBehavior extends ModelBehavior
 {
@@ -29,6 +32,7 @@ class OrderProductBehavior extends ModelBehavior
     public function afterSave(\Model $model, $created, $options = array())
     {
         $orderProductID = isset($model->id) ? $model->id : 0;
+        $model = $this->setOrderProductSupplies($model);
         $this->updateTotalOrder($orderProductID);
 
         return parent::afterSave($model, $created, $options);
@@ -106,6 +110,44 @@ class OrderProductBehavior extends ModelBehavior
                     $Model->data['OrderProduct']['created_by'] = $loggedUser["id"];
                 }
             }
+        }
+        return $Model;
+    }
+    
+    private function setOrderProductSupplies($Model)
+    {
+        $ProductSupplyModel = new ProductSupply();
+        $OrderProductSupplyModel = new OrderProductSupply();
+        
+        $orderID = $Model->data["OrderProduct"]["order_id"];
+        $orderProductID = $Model->data["OrderProduct"]["id"];
+        $productID = $Model->data["OrderProduct"]["product_id"];
+        
+        $loggedUser = CakeSession::read('Auth.User');
+
+        $productSupplies = $ProductSupplyModel->find('all', array(
+            'conditions' => array(
+                'ProductSupply.id >= 1',
+                'ProductSupply.product_id =' => $productID
+            )
+        ));
+        
+        foreach($productSupplies as $idx => $productSupply )
+        {
+            $supply = $productSupply["Supply"];
+            
+            $newOrderProductSupply = array(
+                "created" => date("Y-m-d H:i:s"),
+                'updated' => date("Y-m-d H:i:s"),
+                'created_by' => $loggedUser["id"],
+                'updated_by' => $loggedUser["id"],
+                'order_product_id' => $orderProductID,
+                'supply_id' => $supply["id"],
+                'added' => true
+            );
+            $OrderProductSupplyModel->recursive = -1;
+            $OrderProductSupplyModel->create();
+            $OrderProductSupplyModel->save($newOrderProductSupply);
         }
         return $Model;
     }
