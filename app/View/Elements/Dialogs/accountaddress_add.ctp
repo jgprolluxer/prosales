@@ -218,6 +218,8 @@
                 params += "+" + zip;
             if(country != "")
                 params += "+" + country;
+            
+            $("#addressContent").show();
                                 
             $.ajax({
                 url: pluginUrl + params,
@@ -226,16 +228,17 @@
                 {
                     var addressesList = data.results
                     $(addressesList).each( function(i,address) { 
-                        console.log(address.formatted_address);
-
-                        $("#addressContent").show();
-                        newAddress = '<div number="' + address.address_components[0].long_name + '" street="' + address.address_components[1].long_name + '" suburb="' + address.address_components[2].long_name + '" city="' + address.address_components[3].long_name + '" state="' + address.address_components[4].long_name + '" country="' + address.address_components[5].long_name + '" href="" class="list-group-item" style="cursor:default">' +
-                                            '<span class="badge btn-success addressElement" style="cursor:pointer"><i class="fa fa-check"></i></span>'+
-                                            '<p class="list-group-item-text">' + address.formatted_address + '</p>' +
-                                        '</div>';
-                        $("#addressesList").append(newAddress);
-                        $("#addressesList").show();
+                        console.log(address.formatted_address);                        
+                        if(address.address_components[5] != undefined)
+                        {
+                            newAddress = '<div number="' + address.address_components[0].long_name + '" street="' + address.address_components[1].long_name + '" suburb="' + address.address_components[2].long_name + '" city="' + address.address_components[3].long_name + '" state="' + address.address_components[4].long_name + '" country="' + address.address_components[5].long_name + '" href="" class="list-group-item" style="cursor:default">' +
+                                                '<span class="badge btn-success addressElement" style="cursor:pointer"><i class="fa fa-check"></i></span>'+
+                                                '<p class="list-group-item-text">' + address.formatted_address + '</p>' +
+                                            '</div>';
+                            $("#addressesList").append(newAddress);                            
+                        }
                     });
+                    $("#addressesList").show();
                     $(".addressElement").click(function() {
                         //Se llenan los campos del address con el seleccionado
                         $("#AddressStreetNo").val($(this).parent().attr("number"));
