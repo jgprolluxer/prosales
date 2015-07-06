@@ -205,21 +205,30 @@
             var country = $("#AddressCountry").val();
             
             if(number != "")
-                params += "+" + number;
+                params += encodeURIComponent(" " + number);
             if(street != "")
-                params += "+" + street;
+                params +=  encodeURIComponent(" " + street);
             if(suburb != "")
-                params += "+" + suburb;
+                params +=  encodeURIComponent(" " + suburb);
             if(city != "")
-                params += "+" + city;
-            if(state != "")
-                params += "+" + state;
-            if(zip != "")
-                params += "+" + zip;
-            if(country != "")
-                params += "+" + country;
+                params +=  encodeURIComponent(" " + city);
+            
+            if(country != "" && state != "")
+            {
+                params += "&components=administrative_area:"+encodeURIComponent(state) + "|country:"+encodeURIComponent(country)+"|postal_code:"+encodeURIComponent(zip);
+            } else {
+                if(state != "")
+                    params += "+" + encodeURIComponent(state);
+                if(zip != "")
+                    params += "+" + encodeURIComponent(zip);
+                if(country != "")
+                    params += "+" + encodeURIComponent(country);
+            }
+            
+            params  = params + "&key=" + key;
             
             $("#addressContent").show();
+            
             
             console.log('gmaps search');
             console.log(pluginUrl + params);
