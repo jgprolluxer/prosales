@@ -392,15 +392,14 @@ angular.module('prosales-app')
             });
         };
         
-        $scope.toogleOrderProductSupply = function($index)
+        $scope.toogleOrderProductSupply = function(orderProductSupply)
         {
-            
-            if($scope.orderProductSupplies[$index].OrderProductSupply.added){
-                $scope.orderProductSupplies[$index].OrderProductSupply.added = 0;
+            if(orderProductSupply.OrderProductSupply.added){
+                orderProductSupply.OrderProductSupply.added = false;
             }else {
-                $scope.orderProductSupplies[$index].OrderProductSupply.added = 1;
+                orderProductSupply.OrderProductSupply.added = true;
             }
-            $log.info($scope.orderProductSupplies[$index].OrderProductSupply);
+            $log.info(orderProductSupply.OrderProductSupply);
         };
         
         $scope.findAccounts = function()

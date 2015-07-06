@@ -506,10 +506,9 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
         var city = $("#citAddress" + addressID).text();
         var state = $("#staAddress" + addressID).text();
         
-        params = number + "+" + street.replace(" ","+") + ",+" + suburb.replace(" ","+") + ",+" + city.replace(" ","+") + ",+" + state.replace(" ","+") + "&key=" + key;
+        var params = number + "+" + street.replace(" ","+") + ",+" + suburb.replace(" ","+") + ",+" + city.replace(" ","+") + ",+" + state.replace(" ","+") + "&key=" + key;
         
-        
-        //alert(pluginUrl + params);
+        console.log(pluginUrl + params);
         $.ajax({
             url: pluginUrl + params,
             dataType: "json",

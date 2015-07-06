@@ -220,6 +220,9 @@
                 params += "+" + country;
             
             $("#addressContent").show();
+            
+            console.log('gmaps search');
+            console.log(pluginUrl + params);
                                 
             $.ajax({
                 url: pluginUrl + params,
