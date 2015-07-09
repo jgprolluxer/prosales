@@ -180,7 +180,7 @@ class OrderProductSuppliesController extends AppController {
 					{
                         $response = array(
                             'success' => false,
-                            'message' => __('El producto de la orden no fue encontrado'),
+                            'message' => __('El ingrediente del producto no fue encontrado'),
                             'xData' => array()
                         );
                         echo json_encode($response);
@@ -222,7 +222,7 @@ class OrderProductSuppliesController extends AppController {
 							
                             $response = array(
                                 'success' => true,
-                                'message' => __('El producto fue guardado'),
+                                'message' => __('El ingrediente del producto fue guardado'),
                                 'xData' => $orderproductsupply
                             );
                             
@@ -233,7 +233,7 @@ class OrderProductSuppliesController extends AppController {
 						{
                             $response = array(
                                 'success' => false,
-                                'message' => __('El producto no fue guardado'),
+                                'message' => __('El ingrediente del producto no fue guardado'),
                                 'xData' => $this->OrderProductSupply->validationErrors
                             );
                             echo json_encode($response);
@@ -280,7 +280,7 @@ class OrderProductSuppliesController extends AppController {
 						    $orderproductsupply = $this->OrderProductSupply->read(null, $this->request->data['body']["id"]);
                             $response = array(
                                 'success' => true,
-                                'message' => __('El producto de la orden fue actualizado'),
+                                'message' => __('El ingrediente del producto fue actualizado'),
                                 'xData' => $orderproductsupply
                             );
                             echo json_encode($response);
@@ -289,7 +289,7 @@ class OrderProductSuppliesController extends AppController {
 						{
                             $response = array(
                                 'success' => false,
-                                'message' => __('El producto de la orden no fue guardado'),
+                                'message' => __('El ingrediente del producto no fue guardado'),
                                 'xData' => $this->OrderProductSupply->validationErrors
                             );
                             echo json_encode($response);
@@ -323,7 +323,7 @@ class OrderProductSuppliesController extends AppController {
 					{
                         $response = array(
                             'success' => true,
-                            'message' => __('El producto fue eliminado'),
+                            'message' => __('El ingrediente del producto fue eliminado'),
                             'xData' => array()
                         );
                         echo json_encode($response);
@@ -332,7 +332,7 @@ class OrderProductSuppliesController extends AppController {
 					{
                         $response = array(
                             'success' => true,
-                            'message' => __('El producto no fue eliminado'),
+                            'message' => __('El ingrediente del producto no fue eliminado'),
                             'xData' => array()
                         );
                         echo json_encode($response);

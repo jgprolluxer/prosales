@@ -196,11 +196,13 @@ $(document).ready(function ()
                             <td>${{ ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 ) }} </td>
                             <td>${{ (orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )).toFixed(2)  }}</td>
                             <td>
-                                <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " class="btn btn-warning btn-xs" ng-click="showeditOrderProductModal(orderproduct.OrderProduct)" >
-                                    <i class="gi gi-pencil"></i>
-                                </a>
                                 <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " class="btn btn-danger btn-xs" ng-click="cancelOrderProduct(orderproduct.OrderProduct, $index)" >
                                     <i class="gi gi-bin"></i>
+                                </a>
+                                <br/>
+                                <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " class="btn btn-warning btn-xs" ng-click="showeditOrderProductModal(orderproduct.OrderProduct)" >
+                                    <i class="gi gi-check"></i>
+                                    <?php echo __('Ingredientes'); ?>
                                 </a>
                             </td>
                             </tr>

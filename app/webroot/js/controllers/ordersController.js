@@ -238,6 +238,47 @@ angular.module('prosales-app')
             return deferred.promise;
         };
         
+        $scope.updateOrderProductSupply = function($object)
+        {
+            var deferred = $q.defer();
+                $http({
+                	url: '//' + $location.host() + '/OrderProductSupplies/api/'+$object.id,
+                	method: "PUT",
+                	data: {
+                	    body: $object
+                	}
+                }).success(function (data, status, headers, config)
+                {
+                    if(data["success"])
+                    {
+                        deferred.resolve(data["xData"]);
+                        
+                        $scope.$emit('orderProductSupplyUpdatedLoaded', data["xData"]);
+                        $.bootstrapGrowl(data["message"], {
+                                type: 'success',
+                                delay: 2000,
+                                allow_dismiss: true
+                            });
+                            
+                    } else {
+                        $.bootstrapGrowl(data["message"], {
+                                type: 'danger',
+                                delay: 8000,
+                                allow_dismiss: true
+                            });
+                            
+                        deferred.reject(data["message"]);
+                    }
+                    
+                }).error(function (data, status, headers, config)
+                {
+                	alert(status + ' ' + data);
+                	deferred.reject('Error: '+status + ' ' + data);
+                });
+            return deferred.promise;
+            
+        };
+        
         $scope.cancelOrderProduct = function(orderProduct, $index)
         {
             $scope.enableProcessLoading();
@@ -382,24 +423,21 @@ angular.module('prosales-app')
         $scope.showeditOrderProductModal = function(editingOrderProduct)
         {
             $scope.editingOrderProduct = editingOrderProduct;
-            $scope.getOrderProductSupplies(editingOrderProduct.id);
-            var myModal = $modal({
-                title: 'My Title',
-                content: 'My Content',
-                scope: $scope,
-                template: '/js/editOrderProductModal.html',
-                show: true
+            $scope.getOrderProductSupplies(editingOrderProduct.id).then(function()
+            {
+                var myModal = $modal({
+                    title: 'My Title',
+                    content: 'My Content',
+                    scope: $scope,
+                    template: '/js/editOrderProductModal.html',
+                    show: true
+                });
             });
         };
         
         $scope.toogleOrderProductSupply = function(orderProductSupply)
         {
-            if(orderProductSupply.OrderProductSupply.added){
-                orderProductSupply.OrderProductSupply.added = false;
-            }else {
-                orderProductSupply.OrderProductSupply.added = true;
-            }
-            $log.info(orderProductSupply.OrderProductSupply);
+            $scope.updateOrderProductSupply(orderProductSupply.OrderProductSupply);
         };
         
         $scope.findAccounts = function()
