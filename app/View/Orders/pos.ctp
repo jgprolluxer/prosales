@@ -60,7 +60,7 @@ $(document).ready(function ()
                                 <a href="javascript:void(0);" class="btn btn-xs btn-danger" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-click="cancelOrder()">
                                     <?php echo __('Cancelar'); ?>
                                 </a>
-                                <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-disabled="0 == order.Order.total_amt || order.Order.status == 'closed' || order.Order.status == 'cancelled' " >
+                                <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-disabled=" !order.Order.account_id || 0 == order.Order.total_amt || order.Order.status == 'closed' || order.Order.status == 'cancelled' " >
                                     <?php echo __('Cerrar'); ?>
                                 </a>
                                 <a href="javascript:void(0);" class="btn btn-xs btn-info" ng-disabled=" order.Order.status == 'cancelled' || order.Order.status == 'open' " ng-href="/Orders/raiseticket/{{order.Order.id}}" target="_blank" >

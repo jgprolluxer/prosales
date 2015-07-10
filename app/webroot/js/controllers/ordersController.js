@@ -316,7 +316,9 @@ angular.module('prosales-app')
                     }
                 });
             } else {
-                $scope.createOrder();
+                $scope.createOrder().then(function(data){
+                    window.location.href = '//' + $location.host() + '/Orders/pos/' + $scope.order.Order.id
+                });
             }
         };
         

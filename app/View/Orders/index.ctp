@@ -76,7 +76,7 @@ $(document).ready(function ()
 						'prefix' => null,
 						'admin' => $this->params['admin'],
 						'controller' => $this->params['controller'],
-						'action' => 'view', $order["Order"]["id"]
+						'action' => 'pos', $order["Order"]["id"]
 					),
 					array('escape' => false, 'class' => array('')));
 					?>
@@ -93,7 +93,7 @@ $(document).ready(function ()
 						'prefix' => null,
 						'admin' => $this->params['admin'],
 						'controller' => $this->params['controller'],
-						'action' => 'view', $order["Order"]["id"]
+						'action' => 'pos', $order["Order"]["id"]
 					),
 					array('escape' => false, 'class' => array('btn btn-info')));
 					?>
