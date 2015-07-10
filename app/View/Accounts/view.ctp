@@ -30,6 +30,11 @@ $(document).ready(function ()
             <!-- Customer Info Title -->
             <div class="block-title">
                 <h2><i class="fa fa-file-o"></i> <strong><?php echo __('ACCOUNT_VIEW_BLOCK_TITLE'); ?></strong></h2>
+                <div class="block-options pull-right">
+                    <?php
+                    echo $this->AclView->link(__('<i class="fa fa-edit fa-fw"></i> Editar'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'edit', $account['Account']['id']), array('escape' => false, 'class' => array('btn btn-xs btn-warning')));
+                    ?>
+                </div>
             </div>
             <!-- END Customer Info Title -->
 
