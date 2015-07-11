@@ -27,7 +27,7 @@ $(document).ready(function ()
             <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
             <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
         </div>
-        <h2><?php echo __('Lista de Insumos'); ?></h2>
+        <h2><?php echo __('Lista de Ingredientes'); ?></h2>
     </div>
     <div class="block-content">
         <?php
@@ -40,7 +40,7 @@ $(document).ready(function ()
                         <th><?php echo __('ID'); ?></th>
                         <th><?php echo __('Nombre'); ?></th>
                         <th><?php echo __('Tipo'); ?></th>
-                        <th><?php echo __('UOM'); ?></th>
+                        <th><?php echo __('Unidad de Medida'); ?></th>
                         <th class="text-center"><?php echo __('ACCOUNT_INDEX_LIST_ACTIONS'); ?></th>
                     </tr>
                 </thead>
