@@ -303,6 +303,10 @@ angular.module('prosales-app')
                 $http.get('//' + $location.host() + '/Orders/api/' + $scope.order.Order.id).success(function(data)
                 {
                     if(data["success"]){
+                        
+                        $log.info('Order');
+                        $log.info(data["xData"]);
+                        
                         $scope.order = data["xData"];
                         
                         $scope.$emit('orderLoaded', $scope.order);

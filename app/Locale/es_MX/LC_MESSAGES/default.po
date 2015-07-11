@@ -46,6 +46,9 @@ msgstr "Cerrado"
 msgid "open"
 msgstr "Abierto"
 
+msgid "pending"
+msgstr "Pendiente"
+
 msgid "NONE"
 msgstr "Ninguno"
 

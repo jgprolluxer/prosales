@@ -30,6 +30,11 @@ $(document).ready(function ()
                 <!-- Customer Info Title -->
                 <div class="block-title">
                     <h2><i class="gi gi-shopping_cart"></i>&nbsp;<?php echo __('Venta'); ?></h2>
+                    <div class="block-options pull-right">
+                        <a href="javascript:void(0)" class="btn btn-alt btn-sm  themed-border-spring themed-color-spring">
+                            <small> 1 </small>
+                        </a>
+                    </div>
                 </div>
                 <!-- END Customer Info Title -->
 
@@ -37,39 +42,57 @@ $(document).ready(function ()
                 <div class="block-section text-center">
                     <h3>{{order.Order.folio}}</h3>
                 </div>
-                <table class="table table-borderless table-striped table-vcenter">
-                    <tbody>
-                        <tr>
-                            <td class="text-right" ><strong><?php echo __('Total'); ?></strong></td>
-                            <td><span class="label label-info">{{frmtNumber(order.Order.total_amt)}}</label></td>
-                        </tr>
-                        <tr>
-                            <td class="text-right" ><?php echo __('Creada el'); ?></td>
-                            <td>{{order.Order.created}}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right"><?php echo __('Creada por'); ?></td>
-                            <td>{{order.CreatedBy.firstname}}&nbsp;{{order.CreatedBy.lastname}}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right"><?php echo __('Estado'); ?></td>
-                            <td>{{order.Order.status}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <a href="javascript:void(0);" class="btn btn-xs btn-danger" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-click="cancelOrder()">
-                                    <?php echo __('Cancelar'); ?>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-disabled=" !order.Order.account_id || 0 == order.Order.total_amt || order.Order.status == 'closed' || order.Order.status == 'cancelled' " >
-                                    <?php echo __('Cerrar'); ?>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-xs btn-info" ng-disabled=" order.Order.status == 'cancelled' || order.Order.status == 'open' " ng-href="/Orders/raiseticket/{{order.Order.id}}" target="_blank" >
-                                    <?php echo __('Imprimir ticket'); ?>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="block-section">
+                    <div class="list-group remove-margin">
+                        <a href="javascript:void(0)" class="list-group-item">
+                            <span class="pull-right">
+                                <span class="label label-info">
+                                    <strong>{{frmtNumber(order.Order.total_amt)}}</strong>
+                                </span>
+                            </span>
+                            <h4 class="list-group-item-heading remove-margin">
+                                <i class="fa fa-usd fa-fw"></i>&nbsp;<?php echo __('Total'); ?>
+                            </h4>
+                        </a>
+                        <a href="javascript:void(0)" class="list-group-item">
+                            <span class="pull-right">
+                                <strong>{{order.Order.created}}</strong>
+                            </span>
+                            <h4 class="list-group-item-heading remove-margin">
+                                <i class="fa fa-calendar fa-fw"></i>&nbsp;<?php echo __('Creada el'); ?>
+                            </h4>
+                        </a>
+                        <a href="javascript:void(0)" class="list-group-item">
+                            <span class="pull-right">
+                                <strong>{{order.CreatedBy.firstname}}&nbsp;{{order.CreatedBy.lastname}}</strong>
+                            </span>
+                            <h4 class="list-group-item-heading remove-margin">
+                                <i class="fa fa-user fa-fw"></i>&nbsp;<?php echo __('Creada por'); ?>
+                            </h4>
+                        </a>
+                        <a href="javascript:void(0)" class="list-group-item">
+                            <span class="pull-right">
+                                <strong>{{order.Order.status}}</strong>
+                            </span>
+                            <h4 class="list-group-item-heading remove-margin">
+                                <i class="fa fa-check fa-fw"></i>&nbsp;<?php echo __('Estado'); ?>
+                            </h4>
+                        </a>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12"> <br/>
+                                    <a href="javascript:void(0);" class="btn btn-xs btn-danger" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-click="cancelOrder()">
+                                        <?php echo __('Cancelar'); ?>
+                                    </a>
+                                    <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-disabled=" !account.Account.id || 0 == order.Order.total_amt || order.Order.status == 'closed' || order.Order.status == 'cancelled' " >
+                                        <?php echo __('Cerrar'); ?>
+                                    </a>
+                                    <a href="javascript:void(0);" class="btn btn-xs btn-info" ng-disabled=" order.Order.status == 'cancelled' || order.Order.status == 'open' " ng-href="/Orders/raiseticket/{{order.Order.id}}" target="_blank" >
+                                        <?php echo __('Imprimir ticket'); ?>
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- END Customer Info -->
             </div>
             <!-- END Customer Info Block -->
@@ -78,6 +101,11 @@ $(document).ready(function ()
                 <!-- Customer Info Title -->
                 <div class="block-title">
                     <h2><i class="gi gi-user"></i>&nbsp;<?php echo __('Cliente'); ?></h2>
+                    <div class="block-options pull-right">
+                        <a href="javascript:void(0)" class="btn btn-alt btn-sm  themed-border-spring themed-color-spring">
+                            <small>2</small>
+                        </a>
+                    </div>
                 </div>
                 <!-- END Customer Info Title -->
                 <div class="block-section text-center">
@@ -94,51 +122,17 @@ $(document).ready(function ()
                                 <td class="text-right">
                                     <?php echo __('Cliente desde'); ?>
                                 </td>
-                                <td>{{order.Account.created}}</td>
+                                <td>{{account.Account.created}}</td>
                             </tr>
                             <tr>
-                                <td class="text-right"><strong>Last Visit</strong></td>
-                                <td>06/11/2014 - 09:41</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Language</strong></td>
-                                <td>English (UK)</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Registrations</strong></td>
-                                <td><span class="label label-primary">Newsletter</span></td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Status</strong></td>
-                                <td><span class="label label-success"><i class="fa fa-check"></i> Active</span></td>
+                                <td class="text-right">
+                                    <?php echo __('Creado por'); ?>
+                                </td>
+                                <td>{{account.CreatedBy.firstname}}&nbsp;{{account.CreatedBy.lastname}}</td>
                             </tr>
                         </tbody>
                     </table>
                     <!-- END Customer Info -->
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12">
-                            <!-- Shipping Address Block -->
-                            <div class="block">
-                                <!-- Shipping Address Title -->
-                                <div class="block-title">
-                                    <h2>Shipping Address</h2>
-                                </div>
-                                <!-- END Shipping Address Title -->
-    
-                                <!-- Shipping Address Content -->
-                                <h4><strong>Harry Burke</strong></h4>
-                                <address>
-                                    Sunset Str 598<br>
-                                    Melbourne<br>
-                                    Australia, 21-852<br><br>
-                                    <i class="fa fa-phone"></i> (999) 852-22222<br>
-                                    <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">harry.burke@example.com</a>
-                                </address>
-                                <!-- END Shipping Address Content -->
-                            </div>
-                            <!-- END Shipping Address Block -->
-                        </div>
-                    </div>
                     
                 </section>
             </div>
@@ -149,22 +143,21 @@ $(document).ready(function ()
             <div class="block">
                 <!-- Products in Cart Title -->
                 <div class="block-title">
-                    <div class="block-options pull-right">
-                        <span class="label label-info">{{frmtNumber(order.Order.total_amt)}}</span>
-                    </div>
                     <h2><i class="fa fa-shopping-cart"></i>&nbsp;<?php echo __('Productos'); ?></h2>
+                    <div class="block-options pull-right">
+                        <a href="javascript:void(0)" class="btn btn-alt btn-sm  themed-border-spring themed-color-spring">
+                            <small>3</small>
+                        </a>
+                    </div>
                 </div>
                 <div class="block-section text-center">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <input type="text" class="form-control" placeholder="<?php echo __('Buscar producto por nombre...'); ?>"  ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-model="selectedProduct" data-animation="am-flip-x" bs-options="thproduct.Product.name for thproduct in getProductByName($viewValue)" bs-typeahead>
+                            <input type="text" class="form-control" placeholder="<?php echo __('Buscar producto por nombre...'); ?>"  ng-disabled=" !account.Account.id || order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-model="selectedProduct" data-animation="am-flip-x" bs-options="thproduct.Product.name for thproduct in getProductByName($viewValue)" bs-typeahead>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <input type="text" class="form-control" placeholder="<?php echo __('Buscar producto por código de barras...'); ?>" ng-if="barcodecompleted"  ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " />
                         </div>
-                    </div>
-                    <div class="row">
-                            <!--<input type="text" class="form-control" ng-model="selectedAddress" data-animation="am-flip-x" bs-options="address.formatted_address as address.formatted_address for address in getAddress($viewValue)" placeholder="Enter address" bs-typeahead>-->
                     </div>
                 </div>
                 <!-- END Products in Cart Title -->
@@ -216,10 +209,12 @@ $(document).ready(function ()
             <div class="block">
                 <!-- Products in Cart Title -->
                 <div class="block-title">
-                    <div class="block-options pull-right">
-                        <span class="label label-info"><strong>$ 517,00</strong></span>
-                    </div>
                     <h2><i class="fa fa-usd"></i>&nbsp;<?php echo __('Pagos'); ?></h2>
+                    <div class="block-options pull-right">
+                        <a href="javascript:void(0)" class="btn btn-alt btn-sm  themed-border-spring themed-color-spring">
+                            <small>4</small>
+                        </a>
+                    </div>
                 </div>
                 <!-- END Products in Cart Title -->
 
