@@ -25,7 +25,7 @@ $(document).ready(function ()
 
 <!-- END Normal Form Title -->
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-md-4">
         <div class="block">
             <!-- Customer Info Title -->
             <div class="block-title">
@@ -148,7 +148,7 @@ $(document).ready(function ()
         </div>
         <!-- END Quick Stats Block -->
     </div>
-    <div class="col-lg-8">
+    <div class="col-md-8">
         <!-- Orders Block -->
         <div class="block full">
             <!-- Orders Title -->
@@ -294,7 +294,7 @@ $(document).ready(function ()
                 <?php
                 foreach ($addresses as $address)
                 {?>
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
                         <div class="block">
                             <div class="block-title">
                             <?php
@@ -334,7 +334,7 @@ $(document).ready(function ()
                 ?>
             </div>
             <div class="row" id="gmapContainer" style="display:none">
-                <div class="col-lg-12">
+                <div class="col-md-12">
                         <div class="block full">
                             <div class="block-title">
                                 <h2>Mapa Seleccionado</h2>
@@ -560,7 +560,7 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
 
     function loadNewAddress(obj){
         var newAddress = 
-            '<div class="col-lg-6">' +
+            '<div class="col-md-6">' +
                 '<div class="block">' +
                     '<div class="block-title">' +
                        '<h2>Domicilio de Facturación</h2>' +
