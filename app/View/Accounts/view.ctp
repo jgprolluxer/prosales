@@ -25,7 +25,7 @@ $(document).ready(function ()
 
 <!-- END Normal Form Title -->
 <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="block">
             <!-- Customer Info Title -->
             <div class="block-title">
@@ -148,7 +148,7 @@ $(document).ready(function ()
         </div>
         <!-- END Quick Stats Block -->
     </div>
-    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <!-- Orders Block -->
         <div class="block full">
             <!-- Orders Title -->
