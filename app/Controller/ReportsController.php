@@ -120,13 +120,13 @@ public function getReports()
 	                    'alias' => 'Workstation',
 	                    'type' => 'inner',
 	                    'conditions' => array(
-	                        'Workstation.id = User.workstation_id'
+	                        'Workstation.id = CreatedBy.workstation_id'
 	                    )
 	                ),
 	            ),
 				'fields' => array(
 					'DATE_FORMAT(Order.created, "%Y-%m-%d") AS x__created ',
-					"CONCAT(User.firstname, ' ', Workstation.title, ' ', Workstation.employeenumber) AS z__salesman",
+					"CONCAT(CreatedBy.firstname, ' ', Workstation.title, ' ', Workstation.employeenumber) AS z__salesman",
 					'IFNULL(SUM(Order.total_amt),0) AS y__total'
 				),
 				'conditions' => array(
@@ -135,12 +135,14 @@ public function getReports()
 					'Order.created <=' => $endDt
 				),
 				'group' => array(
-					'DATE_FORMAT(Order.created, "%Y-%m-%d")',
-					"CONCAT(User.firstname, ' ', Workstation.title, ' ', Workstation.employeenumber)"
+					'x__created',
+					'z__salesman'
 				)
 			));
 			
 			$xData["OrderBySalesMan"] = $orders;
+			$this->log('OrderBySalesMan');
+			$this->log($orders);
 			
 		}catch(Exception $ex){
 			

@@ -401,6 +401,14 @@ class UsersController extends AppController
             }
         }
     }
+    
+    public function changepassword()
+    {
+        Configure::write('debug', 0);
+        $this->autoRender = false;
+        $this->layout = 'ajax';
+        
+    }
 
     public function logout()
     {

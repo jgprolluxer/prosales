@@ -113,7 +113,7 @@ class PricelistProductsController extends AppController {
 			$this->PricelistProduct->create();
 			if ($this->PricelistProduct->save($this->request->data)) {
 				$this->Session->setFlash(__('The pricelist product has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array( 'controller' => 'Pricelists', 'action' => 'view', $pricelistID));
 			} else {
 				$this->Session->setFlash(__('The pricelist product could not be saved. Please, try again.'));
 			}

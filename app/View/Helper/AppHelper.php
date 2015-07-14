@@ -209,6 +209,31 @@ class AppHelper extends Helper
         $modal .= '<!-- END asociateUserModal -->';
         return ($modal);
     }
+    
+    function drawUserChangePasswordModal() {
+
+        $modal = '';
+        $modal .= '';
+        $modal .= '<!-- userChangePassowrd -->';
+        $modal .= '<div id="userChangePassowrd" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">';
+        $modal .= '    <div class="modal-dialog">';
+        $modal .= '        <div class="modal-content">';
+        $modal .= '            <div class="modal-header">';
+        $modal .= '                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
+        $modal .= '                <h3 class="modal-title">'.__('Cambiar password').'</h3>';
+        $modal .= '            </div>';
+        $modal .= '            <div class="modal-body">';
+        $modal .= $this->_View->element("Dialogs/user_changepassword");
+        $modal .= '            </div>';
+        $modal .= '            <div class="modal-footer">';
+        $modal .= '                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>';
+        $modal .= '            </div>';
+        $modal .= '        </div>';
+        $modal .= '    </div>';
+        $modal .= '</div>';
+        $modal .= '<!-- END userChangePassowrd -->';
+        return ($modal);
+    }
 
     function no2word($numero)
     {
