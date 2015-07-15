@@ -17,65 +17,93 @@ $(document).ready(function ()
 </div>
 <!-- END eCommerce Order View Header -->
 
-<ul class="breadcrumb breadcrumb-top">
-    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
-</ul>
-<div class="supplies view">
-<h2><?php echo __('Supply'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($supply['Supply']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($supply['Supply']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($supply['Supply']['updated']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created By'); ?></dt>
-		<dd>
-			<?php echo h($supply['Supply']['created_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated By'); ?></dt>
-		<dd>
-			<?php echo h($supply['Supply']['updated_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Status'); ?></dt>
-		<dd>
-			<?php echo h($supply['Supply']['status']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
-			<?php echo h($supply['Supply']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Type'); ?></dt>
-		<dd>
-			<?php echo h($supply['Supply']['type']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Uom'); ?></dt>
-		<dd>
-			<?php echo h($supply['Supply']['uom']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<div class="block">
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('Definición del Ingrediente');?></h2>
+    </div>
+    <div class="block-content">
+        <?php
+        echo $this->Form->create('Supply', array(
+            'onsubmit' => 'return false;',
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+            )));
+        ?>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('name', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Nombre')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('type', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Tipo')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+        </div>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('status', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Estado')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('uom', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Unidad de Medida')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+                <?php
+                echo $this->AclView->link(  __('Editar'),
+                    array('plugin' => $this->params['plugin'], 'prefix' => null,
+                        'admin' => $this->params['admin'], 'controller' => $this->params['controller'],
+                            'action' => 'edit', $this->request->data['Supply']['id']),
+                    array('escape' => false, 'class' => array('btn btn-warning')));
+                    ?>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Supply'), array('action' => 'edit', $supply['Supply']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Supply'), array('action' => 'delete', $supply['Supply']['id']), array(), __('Are you sure you want to delete # %s?', $supply['Supply']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Supplies'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Supply'), array('action' => 'add')); ?> </li>
-	</ul>
-</div>
+
+<script type="text/javascript">
+/**
+*Prevent hit submit form
+*/
+$(document).ready(function()
+{
+  $(window).keydown(function(event)
+  {
+    if(event.keyCode == 13)
+    {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
