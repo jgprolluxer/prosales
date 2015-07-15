@@ -39,6 +39,7 @@ class SuppliesController extends AppController {
             throw new NotFoundException(__('Invalid supply'));
         }
         $options = array('conditions' => array('Supply.' . $this->Supply->primaryKey => $id));
+        $this->request->data = $this->Supply->find('first', $options);
         $this->set('supply', $this->Supply->find('first', $options));
     }
 
