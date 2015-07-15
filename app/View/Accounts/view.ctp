@@ -201,7 +201,7 @@ $(document).ready(function ()
                                     <td><?php echo __($order['Order']['created']); ?></td>
                                     <td class="text-center">
                                         <?php
-                                        echo $this->Html->link(__('<i class="fa fa-eye fa-fw"></i>'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => 'Order', 'action' => 'view', $order['Order']['id']), array('escape' => false, 'class' => array('btn btn-xs btn-info')));
+                                        echo $this->Html->link(__('<i class="fa fa-eye fa-fw"></i>'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => 'Orders', 'action' => 'view', $order['Order']['id']), array('escape' => false, 'class' => array('btn btn-xs btn-info')));
                                         ?>
                                     </td>
                                 </tr>
