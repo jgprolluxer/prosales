@@ -17,44 +17,87 @@ $(document).ready(function ()
 </div>
 <!-- END eCommerce Order View Header -->
 
-<ul class="breadcrumb breadcrumb-top">
-    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
-</ul>
-<div class="productSupplies view">
-<h2><?php echo __('Product Supply'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($productSupply['ProductSupply']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Product'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($productSupply['Product']['name'], array('controller' => 'products', 'action' => 'view', $productSupply['Product']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Uomqty'); ?></dt>
-		<dd>
-			<?php echo h($productSupply['ProductSupply']['uomqty']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Supply'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($productSupply['Supply']['name'], array('controller' => 'supplies', 'action' => 'view', $productSupply['Supply']['id'])); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<div class="block">
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('Definición del Ingrediente');?></h2>
+    </div>
+    <div class="block-content">
+        <?php
+        echo $this->Form->create('ProductSupply', array(
+            'onsubmit' => 'return false;',
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+            )));
+        ?>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('productname', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Producto')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly',
+                'value' => $products["Product"]["name"]
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('uomqty', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Cantidad de Unidad de Medida')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+        </div>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('name', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Ingrediente')),
+                'class' => 'form-control',
+                'type' => 'text',
+                'readonly' => 'readonly',
+                'value' => $supplyName
+            ));
+            ?>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+                <?php
+                echo $this->AclView->link(  __('Editar'),
+                    array('plugin' => $this->params['plugin'], 'prefix' => null,
+                        'admin' => $this->params['admin'], 'controller' => $this->params['controller'],
+                            'action' => 'edit', $this->request->data['ProductSupply']['id']),
+                    array('escape' => false, 'class' => array('btn btn-warning')));
+                    ?>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Product Supply'), array('action' => 'edit', $productSupply['ProductSupply']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Product Supply'), array('action' => 'delete', $productSupply['ProductSupply']['id']), array(), __('Are you sure you want to delete # %s?', $productSupply['ProductSupply']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Product Supplies'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Product Supply'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Products'), array('controller' => 'products', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Product'), array('controller' => 'products', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Supplies'), array('controller' => 'supplies', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Supply'), array('controller' => 'supplies', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+
+<script type="text/javascript">
+/**
+*Prevent hit submit form
+*/
+$(document).ready(function()
+{
+  $(window).keydown(function(event)
+  {
+    if(event.keyCode == 13)
+    {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
