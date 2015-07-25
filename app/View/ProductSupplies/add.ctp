@@ -20,11 +20,31 @@ $(document).ready(function ()
 <ul class="breadcrumb breadcrumb-top">
     <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
 </ul>
-<div class="productSupplies form">
-<?php echo $this->Form->create('ProductSupply'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Product Supply'); ?></legend>
-	<?php
+<div class="block">
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('Definición de Ingrediente de Producto'); ?></h2>
+    </div>
+    <div class="block-content">
+        <?php
+        echo $this->Form->create('ProductSupply', array(
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+        )));
+        ?>
+        <div class="col-sm-6">
+            <?php
             echo $this->Form->input('product_id', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ProductID')),
                 'class' => 'form-control',
@@ -39,20 +59,45 @@ $(document).ready(function ()
                 'readonly' => 'readonly',
                 'value' => $products["Product"]["name"]
             ));
-		echo $this->Form->input('uomqty');
-		echo $this->Form->input('supply_id');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+            ?>
+            <?php
+            echo $this->Form->input('uomqty', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Cantidad de Unidad de Medida')),
+                'class' => 'form-control',
+                'type' => 'text'
+            ));
+            ?>            
+        </div>
+        <div class="col-sm-6">
+            <?php
+            echo $this->Form->input('supply_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('Ingrediente')),
+                'class' => 'form-control',
+                'type' => 'select'
+            ));
+            ?>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+                <button type="submit" class="btn btn-info"><?php echo __('ACCOUNT_ADD_FORM_BTN_SAVE'); ?></button>
+            </div>
+        </div>
+    </div>
+    <p class="text-muted"><?php echo __('ACCOUNT_ADD_BLOCK_CONTENT_FOOTER'); ?></p>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Product Supplies'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Products'), array('controller' => 'products', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Product'), array('controller' => 'products', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Supplies'), array('controller' => 'supplies', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Supply'), array('controller' => 'supplies', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<script type="text/javascript">
+/**
+*Prevent hit submit form
+*/
+$(document).ready(function()
+{
+  $(window).keydown(function(event)
+  {
+    if(event.keyCode == 13)
+    {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
