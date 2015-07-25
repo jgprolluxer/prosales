@@ -85,7 +85,11 @@ class ProductSuppliesController extends AppController {
 			throw new NotFoundException(__('Invalid product supply'));
 		}
 		$options = array('conditions' => array('ProductSupply.' . $this->ProductSupply->primaryKey => $id));
-		$this->set('productSupply', $this->ProductSupply->find('first', $options));
+                $this->request->data = $this->ProductSupply->find('first', $options);
+                $products = $this->ProductSupply->Product->read(null, $this->request->data["Product"]["id"]);
+                $supplies = $this->ProductSupply->Supply->find('list');
+                $supplyName = $supplies[$id];
+		$this->set(compact('productSupply', $this->ProductSupply->find('first', $options), 'products', 'supplyName'));
 	}
 
 /**
