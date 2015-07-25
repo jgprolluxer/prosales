@@ -20,59 +20,62 @@ $(document).ready(function ()
 <ul class="breadcrumb breadcrumb-top">
     <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
 </ul>
-<div class="productSupplies index">
-	<h2><?php echo __('Product Supplies'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('product_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('uomqty'); ?></th>
-			<th><?php echo $this->Paginator->sort('supply_id'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($productSupplies as $productSupply): ?>
-	<tr>
-		<td><?php echo h($productSupply['ProductSupply']['id']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($productSupply['Product']['name'], array('controller' => 'products', 'action' => 'view', $productSupply['Product']['id'])); ?>
-		</td>
-		<td><?php echo h($productSupply['ProductSupply']['uomqty']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($productSupply['Supply']['name'], array('controller' => 'supplies', 'action' => 'view', $productSupply['Supply']['id'])); ?>
-		</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $productSupply['ProductSupply']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $productSupply['ProductSupply']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $productSupply['ProductSupply']['id']), array(), __('Are you sure you want to delete # %s?', $productSupply['ProductSupply']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+<div class="block">
+    <div class="block-title">
+        <!-- Interactive block controls (initialized in js/app.js -> interactiveBlocks()) -->
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('Lista de Ingredientes de Producto'); ?></h2>
+    </div>
+    <div class="block-content">
+        <?php
+        //echo $this->AclView->link(__('ACCOUNT_INDEX_BLOCK_CONTENT_BTN_ADD'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'add'), array('escape' => false, 'class' => array('btn btn-info')));
+        ?>
+        <div class="table-responsive">
+            <table class="table table-striped table-vcenter table-bordered" id="example-datatable">
+                <thead>
+                    <tr>
+                        <th><?php echo __('ID'); ?></th>
+                        <th><?php echo __('Nombre'); ?></th>
+                        <th><?php echo __('Cantidad de Unidad de Medida'); ?></th>
+                        <th><?php echo __('Ingrediente'); ?></th>
+                        <th class="text-center"><?php echo __('ACCOUNT_INDEX_LIST_ACTIONS'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($productSupplies as $idx => $productSupplies) {
+                        ?>
+
+                        <tr>
+                            <td><?php echo __($productSupplies['ProductSupply']['id']); ?></td>
+                            <td><?php echo __($productSupplies['Product']['name']); ?></td>
+                            <td><?php echo __($productSupplies['ProductSupply']['uomqty']); ?></td>
+                            <td><?php echo __($productSupplies['Supply']['name'])?></td>
+                            <td class="text-center">
+                                <?php
+                                echo $this->AclView->link(__('<i class="fa fa-eye fa-fw"></i>'), array('plugin' => $this->params['plugin'], 'prefix' => null, 'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 'action' => 'view', $productSupplies['ProductSupply']['id']), array('escape' => false, 'class' => array('btn btn-xs btn-info')));
+                                ?>
+                            </td>
+                        </tr>
+
+                    <?php
+                        }
+                        ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Product Supply'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Products'), array('controller' => 'products', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Product'), array('controller' => 'products', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Supplies'), array('controller' => 'supplies', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Supply'), array('controller' => 'supplies', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<?php
+echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
+?>
+<!-- Load and execute javascript code used only in this page -->
+
+<script type="text/javascript">
+	$(function() {
+		TablesDatatables.init();
+	});
+</script>
