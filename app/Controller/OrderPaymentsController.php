@@ -354,10 +354,10 @@ class OrderPaymentsController extends AppController {
 								$parentField = $this->request->query["parent_field"];
 								$parentValue = $this->request->query["parent_value"];
 
-								$this->Account->recursive = -1;
-								$orders = $this->Account->find('all', array(
+								$this->OrderPayment->recursive = -1;
+								$orders = $this->OrderPayment->find('all', array(
 									'conditions' => array(
-										'Account.'. $parentField . ' LIKE ' => '%' . $parentValue . '%'
+										'OrderPayment.'. $parentField . ' LIKE ' => '%' . $parentValue . '%'
 									)
 								));
 								
@@ -381,7 +381,7 @@ class OrderPaymentsController extends AppController {
 							}
 						} 
 						else {
-						    $orders = $this->Account->find('all', array());
+						    $orders = $this->OrderPayment->find('all', array());
                             $response = array(
                                 'success' => true,
                                 'message' => 'OK',
@@ -391,18 +391,18 @@ class OrderPaymentsController extends AppController {
 							return;
 						}
 
-					} elseif(!$this->Account->exists($id))
+					} elseif(!$this->OrderPayment->exists($id))
 					{
                         $response = array(
                             'success' => false,
-                            'message' => __('El cliente no fue encontrado'),
+                            'message' => __('El pago no fue encontrado'),
                             'xData' => array()
                         );
                         echo json_encode($response);
                         return;
 					} else
 					{
-						$order = $this->Account->find('first', array('conditions' => array('Account.' . $this->Account->primaryKey => $id)));
+						$order = $this->OrderPayment->find('first', array('conditions' => array('OrderPayment.' . $this->OrderPayment->primaryKey => $id)));
                         $response = array(
                             'success' => true,
                             'message' => 'OK',
@@ -423,16 +423,16 @@ class OrderPaymentsController extends AppController {
                         echo json_encode($response);
                         return;
 					}
-					$this->Account->create();
+					$this->OrderPayment->create();
 					try
 					{
-						if ( $this->Account->save( $this->request->data['body'] ) )
+						if ( $this->OrderPayment->save( $this->request->data['body'] ) )
 						{
-						    $order = $this->Account->read(null, $this->Account->getLastInsertID());
+						    $order = $this->OrderPayment->read(null, $this->OrderPayment->getLastInsertID());
 							
                             $response = array(
                                 'success' => true,
-                                'message' => __('El cliente fue guardado'),
+                                'message' => __('El pago fue guardado'),
                                 'xData' => $order
                             );
                             echo json_encode($response);
@@ -442,8 +442,8 @@ class OrderPaymentsController extends AppController {
 						{
                             $response = array(
                                 'success' => false,
-                                'message' => __('El cliente no fue guardado'),
-                                'xData' => $this->Account->validationErrors
+                                'message' => __('El pago no fue guardado'),
+                                'xData' => $this->OrderPayment->validationErrors
                             );
                             echo json_encode($response);
                             return;
@@ -484,12 +484,12 @@ class OrderPaymentsController extends AppController {
 						break;
 					}
 					try {
-						if ( $this->Account->save( $this->request->data['body'] ) )
+						if ( $this->OrderPayment->save( $this->request->data['body'] ) )
 						{
-						    $order = $this->Account->read(null, $this->request->data['body']["id"]);
+						    $order = $this->OrderPayment->read(null, $this->request->data['body']["id"]);
                             $response = array(
                                 'success' => true,
-                                'message' => __('El cliente fue actualizado'),
+                                'message' => __('El pago fue actualizado'),
                                 'xData' => $order
                             );
                             echo json_encode($response);
@@ -498,7 +498,7 @@ class OrderPaymentsController extends AppController {
 						{
                             $response = array(
                                 'success' => false,
-                                'message' => __('El cliente no fue guardado'),
+                                'message' => __('El pago no fue guardado'),
                                 'xData' => $this->Account->validationErrors
                             );
                             echo json_encode($response);
@@ -527,12 +527,12 @@ class OrderPaymentsController extends AppController {
                         echo json_encode($response);
                         return;
 					}
-					$this->Account->id = $id;
-					if ($this->Account->delete())
+					$this->OrderPayment->id = $id;
+					if ($this->OrderPayment->delete())
 					{
                         $response = array(
                             'success' => true,
-                            'message' => __('El cliente fue eliminado'),
+                            'message' => __('El pago fue eliminado'),
                             'xData' => array()
                         );
                         echo json_encode($response);
@@ -541,7 +541,7 @@ class OrderPaymentsController extends AppController {
 					{
                         $response = array(
                             'success' => true,
-                            'message' => __('El cliente no fue eliminado'),
+                            'message' => __('El pago no fue eliminado'),
                             'xData' => array()
                         );
                         echo json_encode($response);

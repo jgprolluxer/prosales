@@ -42,6 +42,7 @@ class OrderPaymentBehavior extends ModelBehavior
 
     public function beforeSave(\Model $model, $options = array())
     {
+        $model->data['OrderPayment']["folio"] = strtoupper(uniqid("1-"));
         $model = $this->setCreatedUpdated($model);
         return parent::beforeSave($model, $options);
     }

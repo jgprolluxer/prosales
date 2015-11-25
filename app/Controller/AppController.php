@@ -541,6 +541,7 @@ abstract class StatusOfOrder
     const Inactive = "inactive";
     const Cancelled = "cancelled";
     const Open = "open";
+    const Pending = "pending";
     const Closed = "closed";
 
 }

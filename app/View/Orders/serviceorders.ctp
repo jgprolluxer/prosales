@@ -67,7 +67,7 @@ foreach($orders as $oIDX => $order)
                 }
                 echo  '&nbsp;&nbsp;<strong>' . $theAccount["firstname"] . ' ' . $theAccount["lastname"] . '</strong>&nbsp;&nbsp;';
                 ?>
-            <?php echo __('Para entregar en : &nbsp;&nbsp;'); ?>
+            <?php //echo __('Para entregar en : &nbsp;&nbsp;'); ?>
             <?php echo '---- &nbsp;&nbsp; Creada el :  ' . $theOrder["created"] . '&nbsp;&nbsp; Hace: &nbsp;&nbsp;' . $totalDiff; ?>
         </div>
         <div class="table-responsive">
@@ -88,8 +88,19 @@ foreach($orders as $oIDX => $order)
                                 <td class="text-center" style="margin:0px !important; padding:0px !important;" ><?php echo $orderProduct["product_qty"] ?></td>
                                 <td class="text-center" style="margin:0px !important; padding:0px !important;" ><?php echo $orderProduct["Product"]["name"] ?></td>
                                 <td class="text-center" style="margin:0px !important; padding:0px !important;" >
-                                    <a href="javascript:void(0);"><i class="fa fa-pencil text-danger"></i>Third item</a>
-                                    <a href="javascript:void(0);"><i class="fa fa-pencil text-success"></i>Sublist</a>
+                                    <?php
+                                    foreach($orderProduct["OrderProductSupply"] as $opsIDX => $orderProductSupply){
+                                        if($orderProductSupply["added"] == true){
+                                        ?>
+                                        <a href="javascript:void(0);"><i class="fa fa-check text-success"></i><?php echo $orderProductSupply["Supply"]["name"]; ?></a>
+                                        <?php
+                                        }else{
+                                        ?>
+                                        <a href="javascript:void(0);"><i class="fa fa-times text-danger"></i><?php echo $orderProductSupply["Supply"]["name"]; ?></a>
+                                        <?php
+                                        }
+                                    }
+                                    ?>
                                 </td>
                             </tr>
                         <?php
@@ -108,5 +119,9 @@ foreach($orders as $oIDX => $order)
 <script type="text/javascript" >
     setTimeout(function(){
         location.reload();
-    }, 60000 * 2);
+    }, 18000);
 </script>
+
+<?php
+//debug($order["OrderProduct"]);
+?>

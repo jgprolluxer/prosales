@@ -49,7 +49,7 @@ class DashboardsController extends AppController {
                 'IFNULL(SUM(Order.total_amt),0) total'
             ),
             'conditions' => array(
-                'Order.status' => array(StatusOfOrder::Open),
+                'Order.status' => array(StatusOfOrder::Pending),
                 'Order.created >=' => $toDay . ' 00:00:00',
                 'Order.created <=' => $toDay . ' 23:59:59'
             ),

@@ -159,6 +159,12 @@ angular.module('prosales-app')
             $scope.updateOrder($scope.order.Order);
         };
         
+        $scope.closeOrder = function()
+        {
+            $scope.order.Order.status = 'closed';
+            $scope.updateOrder($scope.order.Order);
+        };
+        
         $scope.createOrderProduct = function($object)
         {
             var deferred = $q.defer();
@@ -174,6 +180,45 @@ angular.module('prosales-app')
                     {
                         deferred.resolve(data["xData"]);
                         $scope.$emit('orderProductCreatedLoaded', data["xData"]);
+                        
+                        $.bootstrapGrowl(data["message"], {
+                                type: 'success',
+                                delay: 2000,
+                                allow_dismiss: true
+                            });
+                        
+                    } else {
+                        $.bootstrapGrowl(data["message"], {
+                                type: 'danger',
+                                delay: 8*8000,
+                                allow_dismiss: true
+                            });
+                        deferred.reject(data["message"]);
+                    }
+                    
+                }).error(function (data, status, headers, config)
+                {
+                	alert(status + ' ' + data);
+                	deferred.reject('Error: '+status + ' ' + data);
+                });
+            return deferred.promise;
+        };
+        
+        $scope.createOrderPayment = function($object)
+        {
+            var deferred = $q.defer();
+                $http({
+                	url: '//' + $location.host() + '/OrderPayments/api/',
+                	method: "POST",
+                	data: {
+                	    body: $object
+                	}
+                }).success(function (data, status, headers, config)
+                {
+                    if(data["success"])
+                    {
+                        deferred.resolve(data["xData"]);
+                        $scope.$emit('orderPaymentCreatedLoaded', data["xData"]);
                         
                         $.bootstrapGrowl(data["message"], {
                                 type: 'success',
@@ -478,6 +523,72 @@ angular.module('prosales-app')
                 }
             });
             return deferred.promise;
+        };
+        
+        $scope.orderPayments = [];
+        $scope.getOrderPayments = function()
+        {
+            var objParams = {
+    			'dyn_model':'OrderPayment', 
+    			'type_search':'all', 
+    			'search_options': {
+    				"conditions": [
+    				"OrderPayment.id >= 1",
+    				"Order.id = " + $scope.order.Order.id
+    				], 
+    			"recursive": 1
+    			}
+    		};
+    		$http.get('//' + $location.host() + '/Utils/queryModel?params='+JSON.stringify(objParams)).success(function(data)
+    		{
+    		    if (data["success"])
+                {
+                    $scope.orderPayments = data["xData"];
+                    $scope.$emit('orderPaymentsLoaded', data["xData"]);
+                } else {
+                    $.bootstrapGrowl(data["message"], {
+                        type: 'danger',
+                        delay: 8*8000,
+                        allow_dismiss: false
+                    });
+                }
+    		});
+        };
+        
+        $scope.payment_received_amt = '';
+        $scope.txnChange = '';
+        $scope.checkPayment = function()
+        {
+            if(0 <= $scope.payment_received_amt - $scope.order.Order.total_amt){
+                $scope.txnChange = ($scope.payment_received_amt - $scope.order.Order.total_amt).toFixed(2);
+            } else {
+                $scope.txnChange = 0;
+            }
+        };
+        
+        $scope.applyPayment = function()
+        {
+            if(0 <= $scope.payment_received_amt - $scope.order.Order.total_amt){
+                if($scope.payment_received_amt >= $scope.order.Order.total_amt){
+                    console.log('payment proc');
+                    var orderPayment = {
+                        order_id: $scope.order.Order.id,
+                        total_amt: $scope.order.Order.total_amt,
+                        status: 'applied',
+                        type: 'cash'
+                    };
+                    var promise = $scope.createOrderPayment(orderPayment);
+                    promise.then(function(data){
+                        console.log('data of payment');
+                        console.log(data);
+                        $scope.order.Order.status = 'paid';
+                        $scope.updateOrder($scope.order.Order);
+                    }, function(err){
+                        console.log('error of payment');
+                        console.log(err);
+                    });
+                }
+            }
         };
         
         $scope.$watch('selectedAccount', function(newValue, oldValue)

@@ -48,7 +48,7 @@ $(document).ready(function ()
                 </div>
                 <h3 class="widget-content text-right animation-pullDown">
                     <strong>$</strong><?php echo $totalOpenSaleToday; ?><br>
-                    <small>Ventas abiertas hoy</small>
+                    <small>Ventas pendientes hoy</small>
                 </h3>
             </div>
         </a>

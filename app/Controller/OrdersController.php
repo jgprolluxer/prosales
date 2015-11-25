@@ -322,10 +322,10 @@ class OrdersController extends AppController
     	$startDt = date("Y-m-d H:i:s", strtotime("-40 minutes"));
     	$endDt = date("Y-m-d H:i:s");
         $orders = $this->Order->find('all', array(
-            'recursive' => 2,
+            'recursive' => 3,
             'conditions' => array(
                 'Order.id >=' => 1,
-				'Order.status' => array(StatusOfOrder::Closed),
+				'Order.status' => array(StatusOfOrder::Pending),
 				'Order.created >=' => $startDt,
 				'Order.created <=' => $endDt
             ),

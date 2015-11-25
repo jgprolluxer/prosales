@@ -80,10 +80,10 @@ $(document).ready(function ()
                         </a>
                         <div class="row">
                             <div class="col-lg-12 col-md-12"> <br/>
-                                    <a href="javascript:void(0);" class="btn btn-xs btn-danger" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-click="cancelOrder()">
+                                    <a href="javascript:void(0);" class="btn btn-xs btn-danger" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' || order.Order.status == 'paid' " ng-click="cancelOrder()">
                                         <?php echo __('Cancelar'); ?>
                                     </a>
-                                    <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-disabled=" !account.Account.id || 0 == order.Order.total_amt || order.Order.status == 'closed' || order.Order.status == 'cancelled' " >
+                                    <a href="javascript:void(0);" class="btn btn-xs btn-success" ng-disabled=" !account.Account.id || 0 == order.Order.total_amt || order.Order.status != 'paid' " ng-click="closeOrder()" >
                                         <?php echo __('Cerrar'); ?>
                                     </a>
                                     <a href="javascript:void(0);" class="btn btn-xs btn-info" ng-disabled=" order.Order.status == 'cancelled' || order.Order.status == 'open' " ng-href="/Orders/raiseticket/{{order.Order.id}}" target="_blank" >
@@ -153,10 +153,10 @@ $(document).ready(function ()
                 <div class="block-section text-center">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <input type="text" class="form-control" placeholder="<?php echo __('Buscar producto por nombre...'); ?>"  ng-disabled=" !account.Account.id || order.Order.status == 'closed' || order.Order.status == 'cancelled' " ng-model="selectedProduct" data-animation="am-flip-x" bs-options="thproduct.Product.name for thproduct in getProductByName($viewValue)" bs-typeahead>
+                            <input type="text" class="form-control" placeholder="<?php echo __('Buscar producto por nombre...'); ?>"  ng-disabled=" !account.Account.id || order.Order.status == 'closed' || order.Order.status == 'cancelled'  || order.Order.status == 'paid' " ng-model="selectedProduct" data-animation="am-flip-x" bs-options="thproduct.Product.name for thproduct in getProductByName($viewValue)" bs-typeahead>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <input type="text" class="form-control" placeholder="<?php echo __('Buscar producto por código de barras...'); ?>" ng-if="barcodecompleted"  ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " />
+                            <input type="text" class="form-control" placeholder="<?php echo __('Buscar producto por código de barras...'); ?>" ng-if="barcodecompleted"  ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled'  || order.Order.status == 'paid'  " />
                         </div>
                     </div>
                 </div>
@@ -189,11 +189,11 @@ $(document).ready(function ()
                             <td>${{ ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 ) }} </td>
                             <td>${{ (orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty + ( ( orderproduct.OrderProduct.product_price * orderproduct.OrderProduct.product_qty * orderproduct.OrderProduct.product_tax) /100 )).toFixed(2)  }}</td>
                             <td>
-                                <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " class="btn btn-danger btn-xs" ng-click="cancelOrderProduct(orderproduct.OrderProduct, $index)" >
+                                <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' || order.Order.status == 'paid' " class="btn btn-danger btn-xs" ng-click="cancelOrderProduct(orderproduct.OrderProduct, $index)" >
                                     <i class="gi gi-bin"></i>
                                 </a>
                                 <br/>
-                                <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' " class="btn btn-warning btn-xs" ng-click="showeditOrderProductModal(orderproduct.OrderProduct)" >
+                                <a href="javascript:void(0);" ng-disabled="order.Order.status == 'closed' || order.Order.status == 'cancelled' || order.Order.status == 'paid' " class="btn btn-warning btn-xs" ng-click="showeditOrderProductModal(orderproduct.OrderProduct)" >
                                     <i class="gi gi-check"></i>
                                     <?php echo __('Ingredientes'); ?>
                                 </a>
@@ -209,7 +209,7 @@ $(document).ready(function ()
             <div class="block">
                 <!-- Products in Cart Title -->
                 <div class="block-title">
-                    <h2><i class="fa fa-usd"></i>&nbsp;<?php echo __('Pagos'); ?></h2>
+                    <h2><i class="fa fa-usd"></i>&nbsp;<?php echo __('Pago'); ?></h2>
                     <div class="block-options pull-right">
                         <a href="javascript:void(0)" class="btn btn-alt btn-sm  themed-border-spring themed-color-spring">
                             <small>4</small>
@@ -217,36 +217,45 @@ $(document).ready(function ()
                     </div>
                 </div>
                 <!-- END Products in Cart Title -->
-
-                <!-- Products in Cart Content -->
+                
+                <table class="table table-bordered table-striped table-vcenter">
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <form ng-submit="applyPayment()">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <input type="number" class="form-control" ng-change="checkPayment()" ng-model="payment_received_amt" ng-disabled="order.Order.status !== 'pending'" placeholder="<?php echo __('Pago'); ?>"  />
+                                                </td>
+                                                <td>
+                                                    <input type="submit" class="btn btn-info btn-md" value="<?php echo __('Pagar'); ?>"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                        
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <label for=""><?php echo __('Cambio'); ?></label>
+                                    <div class="block-section text-center">
+                                        <h4>{{txnChange}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                                <!-- Products in Cart Content -->
                 <table class="table table-bordered table-striped table-vcenter">
                     <tbody>
-                        <tr>
-                            <td class="text-center" style="width: 100px;"><a href="page_ecom_product_edit.html"><strong>PID.8715</strong></a></td>
-                            <td class="hidden-xs" style="width: 15%;"><a href="page_ecom_product_edit.html">Product #98</a></td>
-                            <td class="text-right hidden-xs" style="width: 10%;"><strong>$399,00</strong></td>
-                            <td><span class="label label-success">Available (479)</span></td>
-                            <td class="text-center" style="width: 70px;">
-                                <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8725</strong></a></td>
-                            <td class="hidden-xs"><a href="page_ecom_product_edit.html">Product #98</a></td>
-                            <td class="text-right hidden-xs"><strong>$59,00</strong></td>
-                            <td><span class="label label-success">Available (163)</span></td>
-                            <td class="text-center">
-                                <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8798</strong></a></td>
-                            <td class="hidden-xs"><a href="page_ecom_product_edit.html">Product #98</a></td>
-                            <td class="text-right hidden-xs"><strong>$59,00</strong></td>
-                            <td><span class="label label-danger">Out of Stock</span></td>
-                            <td class="text-center">
-                                <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                            </td>
+                        <tr ng-repeat="payment in order.OrderPayment">
+                            <td class="text-center "><strong>{{payment.created}}</strong></td>
+                            <td class="text-center "><strong>{{payment.folio}}</strong></td>
+                            <td class="text-center "><strong>{{payment.type}}</strong></td>
+                            <td class="text-center"><strong>${{payment.total_amt}}</strong></td>
+                            <td><span class="label label-success">{{payment.status | translate}}</span></td>
                         </tr>
                     </tbody>
                 </table>
