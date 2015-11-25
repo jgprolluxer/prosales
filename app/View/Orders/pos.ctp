@@ -230,7 +230,7 @@ $(document).ready(function ()
                                                     <input type="number" class="form-control" ng-change="checkPayment()" ng-model="payment_received_amt" ng-disabled="order.Order.status !== 'pending'" placeholder="<?php echo __('Pago'); ?>"  />
                                                 </td>
                                                 <td>
-                                                    <input type="submit" class="btn btn-info btn-md" value="<?php echo __('Pagar'); ?>"/>
+                                                    <input type="submit" class="btn btn-info btn-md" ng-disabled="order.Order.status !== 'pending'" value="<?php echo __('Pagar'); ?>"/>
                                                 </td>
                                             </tr>
                                         </table>

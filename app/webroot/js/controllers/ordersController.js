@@ -571,6 +571,8 @@ angular.module('prosales-app')
             if(0 <= $scope.payment_received_amt - $scope.order.Order.total_amt){
                 if($scope.payment_received_amt >= $scope.order.Order.total_amt){
                     console.log('payment proc');
+                    var status = $scope.order.Order.status;
+                        $scope.order.Order.status = 'paid';
                     var orderPayment = {
                         order_id: $scope.order.Order.id,
                         total_amt: $scope.order.Order.total_amt,
@@ -581,11 +583,11 @@ angular.module('prosales-app')
                     promise.then(function(data){
                         console.log('data of payment');
                         console.log(data);
-                        $scope.order.Order.status = 'paid';
                         $scope.updateOrder($scope.order.Order);
                     }, function(err){
                         console.log('error of payment');
                         console.log(err);
+                        $scope.order.Order.status = status;
                     });
                 }
             }
