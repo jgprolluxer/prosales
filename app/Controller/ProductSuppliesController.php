@@ -107,7 +107,7 @@ class ProductSuppliesController extends AppController {
 			$this->ProductSupply->create();
 			if ($this->ProductSupply->save($this->request->data)) {
 				$this->Session->setFlash(__('The product supply has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'Products', 'action' => 'view', $productID));
 			} else {
 				$this->Session->setFlash(__('The product supply could not be saved. Please, try again.'));
 			}
