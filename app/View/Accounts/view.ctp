@@ -502,7 +502,8 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
         
     function searchInGMaps(addressID)
     {
-        var key = "AIzaSyCRb9Wxzl1l8omtJELsQrRvKZ5d4bgdz3A";
+        //var key = "AIzaSyCRb9Wxzl1l8omtJELsQrRvKZ5d4bgdz3A";
+        var key = "AIzaSyB1YPpPbvd3Yx8zUtMBAi54-iUZ_i8FFFY";
         var pluginUrl = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=";
         
         var number = $("#numAddress" + addressID).text();
