@@ -130,6 +130,7 @@ function feedReports(startDate, endDate)
             handleTotalOrderByDate(xData["TotalOrderByDate"])
             handleOrdersByProducts(xData["OrderByProducts"]);
             handleTotalOrderBySalesMan(xData["OrderBySalesMan"]);
+            handleOrdersProductsByDate(xData["OrdersProductsByDate"]);
         },
         error: function (data)
         {//
@@ -141,6 +142,117 @@ function feedReports(startDate, endDate)
 
 function handleBarOrderByDate()
 {
+	
+}
+
+function handleOrdersProductsByDate( xData )
+{
+    console.log('handleOrdersProductsByDate');
+    console.log(xData);
+    var categories = [];
+    $.each(xData, function( index, value )
+    {
+		var sIndex = $.inArray( value["0"][ "x__created" ], categories );
+		if (sIndex < 0)
+		{
+			categories.push(value["0"][ "x__created" ]);
+		}
+		
+    });
+    
+    
+	var ret = {},
+	ps = [],
+	series = [],
+	len = xData.length,
+	names = [];
+
+        //generate series 
+        //console.log('categories extracted');
+        //console.log(categories);
+        for (i = 0; i < len; i++)
+        {
+        	var p = xData[i]["0"],
+        	sIndex = $.inArray( p[ "z__productname" ], names );
+
+        	if (sIndex < 0)
+        	{
+        		sIndex = names.push( p[ "z__productname" ]) - 1;
+        		series.push({
+        			name: p[ "z__productname" ],
+        			data: [],
+        		});
+        		
+        		$.each(categories, function( index, value )
+                {
+        			series[sIndex].data.push( null );
+        		});
+        	}
+        	$.each(categories, function(index, value)
+            {
+        		if(value == p[ "x__created" ])
+        		{
+        			series[sIndex].data[index] = parseFloat( p[ "y__total" ] );
+        		}
+                
+            });
+            
+        }
+        //console.log( 'generateSeriesDataByX' );
+        //console.log( series );
+        
+        
+
+    $('#totalOrderBySalesMan').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Productos de temporada'
+        },
+        credits: {
+            enabled: false
+        },
+        xAxis: {
+            categories: categories,
+            crosshair: true,
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Venta ($)'
+            },
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>${point.y:.1f} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: series
+    });
 	
 }
 
