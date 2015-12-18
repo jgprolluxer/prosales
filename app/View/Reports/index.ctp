@@ -194,13 +194,13 @@ function handleOrderStoreByDate( xData )
         for (i = 0; i < len; i++)
         {
         	var p = xData[i]["0"],
-        	sIndex = $.inArray( p[ "z__productname" ], names );
+        	sIndex = $.inArray( p[ "z__storename" ], names );
 
         	if (sIndex < 0)
         	{
-        		sIndex = names.push( p[ "z__productname" ]) - 1;
+        		sIndex = names.push( p[ "z__storename" ]) - 1;
         		series.push({
-        			name: p[ "z__productname" ],
+        			name: p[ "z__storename" ],
         			data: [],
         		});
         		
