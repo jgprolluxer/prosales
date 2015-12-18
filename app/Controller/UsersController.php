@@ -128,12 +128,17 @@ class UsersController extends AppController
             $this->request->data = $this->User->find('first', $options);
         }
         $groups = $this->User->Group->find('list');
-        $workstations = $this->User->Workstation->find('list', array(
+        $lworkstations = $this->User->Workstation->find('list', array(
             'fields' => array(
                 'Workstation.id',
                 "CONCAT( Workstation.title, ' ', Workstation.employeenumber ) as value"
             )
-        ));
+        ));        
+        $workstations = array();
+        foreach ($lworkstations as $key => $lworkstation)
+        {
+            $workstations[$lworkstation["Workstation"]["id"]] = $lworkstation["0"]["value"];
+        }
         $this->set(compact('groups', 'workstations'));
     }
 
