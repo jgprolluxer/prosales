@@ -160,7 +160,7 @@ function handleOrdersProductsByDate( xData )
 {
     console.log('handleOrdersProductsByDate');
     console.log(xData);
-    return;
+
     var categories = [];
     $.each(xData, function( index, value )
     {
