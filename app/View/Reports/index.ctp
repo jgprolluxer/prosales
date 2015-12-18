@@ -140,7 +140,7 @@ function feedReports(startDate, endDate)
 			handlePieOrderByStatusChart(xData["OrderByStatus"]);
             handleTotalOrderByDate(xData["TotalOrderByDate"])
             handleOrdersByProducts(xData["OrderByProducts"]);
-            //handleOrdersProductsByDate(xData["OrdersProductsByDate"]);
+            handleOrdersProductsByDate(xData["OrdersProductsByDate"]);
             handleTotalOrderBySalesMan(xData["OrderBySalesMan"]);
         },
         error: function (data)
@@ -160,6 +160,7 @@ function handleOrdersProductsByDate( xData )
 {
     console.log('handleOrdersProductsByDate');
     console.log(xData);
+    return;
     var categories = [];
     $.each(xData, function( index, value )
     {
