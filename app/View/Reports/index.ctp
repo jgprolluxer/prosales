@@ -66,26 +66,28 @@ echo $this->Html->script("/js/plugins/highcharts/modules/exporting.js");
                     </a>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="tabreportOrderAnalytic">
-                    	<div class="row" >
-                        	<div class="col-md-12 col-sm-12 col-xs-12" id="reportOrderAnalytic"></div>
-                    	</div>
-                    	<div class="row">
-                    		<div class="col-md-12 col-sm-12 col-xs-12" id="totalOrderByDate"></div>	
-                    	</div>
-                    </div>
-                    <div class="tab-pane" id="reportProductAnalytic">
-                    	<div class="row">
-                    		<div class="col-md-12 col-sm-12 col-xs-12" id="totalOrderByProduct"></div>
-                    	</div>
-                        <div class="row">
-                        	<div class="col-md-12 col-sm-12 col-xs-12" id="OrdersProductsByDate"></div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="reportSalesManAnalytic">
-                    	<div class="row">
-                    		<div class="col-md-12 col-sm-12 col-xs-12" id="totalOrderBySalesMan"></div>
-                    	</div>
+                	<div class="table-responsive">
+	                    <div class="tab-pane active" id="tabreportOrderAnalytic">
+	                    	<div class="row" >
+	                        	<div class="col-md-12 col-sm-12 col-xs-12" id="reportOrderAnalytic"></div>
+	                    	</div>
+	                    	<div class="row">
+	                    		<div class="col-md-12 col-sm-12 col-xs-12" id="totalOrderByDate"></div>	
+	                    	</div>
+	                    </div>
+	                    <div class="tab-pane" id="reportProductAnalytic">
+	                    	<div class="row">
+	                    		<div class="col-md-12 col-sm-12 col-xs-12" id="totalOrderByProduct"></div>
+	                    	</div>
+	                        <div class="row">
+	                        	<div class="col-md-12 col-sm-12 col-xs-12" id="OrdersProductsByDate"></div>
+	                        </div>
+	                    </div>
+	                    <div class="tab-pane" id="reportSalesManAnalytic">
+	                    	<div class="row">
+	                    		<div class="col-md-12 col-sm-12 col-xs-12" id="totalOrderBySalesMan"></div>
+	                    	</div>
+	                    </div>
                     </div>
                 </div>
         </div>
