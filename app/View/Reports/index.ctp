@@ -80,7 +80,7 @@ echo $this->Html->script("/js/plugins/highcharts/modules/exporting.js");
 	                    		<div class="col-md-12 col-sm-12 col-xs-12" id="totalOrderByProduct"></div>
 	                    	</div>
 	                        <div class="row">
-	                        	<div class="col-md-12 col-sm-12 col-xs-12" id="OrdersProductsByDate"></div>
+	                        	<div class="col-md-12 col-sm-12 col-xs-12" id="totalOrdersProductsByDate"></div>
 	                        </div>
 	                    </div>
 	                    <div class="tab-pane" id="reportSalesManAnalytic">
@@ -215,7 +215,7 @@ function handleOrdersProductsByDate( xData )
         
         
 
-    $('#OrdersProductsByDate').highcharts({
+    $('#totalOrdersProductsByDate').highcharts({
         chart: {
             type: 'column'
         },
