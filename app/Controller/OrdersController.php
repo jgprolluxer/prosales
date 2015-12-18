@@ -325,7 +325,7 @@ class OrdersController extends AppController
             'recursive' => 3,
             'conditions' => array(
                 'Order.id >=' => 1,
-				'Order.status' => array(StatusOfOrder::Pending),
+				'Order.status' => array(StatusOfOrder::Pending, StatusOfOrder::Paid,StatusOfOrder::Closed),
 				'Order.created >=' => $startDt,
 				'Order.created <=' => $endDt
             ),
