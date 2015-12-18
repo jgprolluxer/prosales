@@ -209,6 +209,9 @@ function handleTotalOrderBySalesMan( xData )
         title: {
             text: 'Ventas por vendedor'
         },
+        credits: {
+            enabled: false
+        },
         xAxis: {
             categories: categories,
             crosshair: true,
