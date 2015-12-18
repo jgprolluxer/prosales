@@ -65,7 +65,6 @@ echo $this->Html->script("/js/plugins/highcharts/modules/exporting.js");
                         <span><?php echo $startDt; ?> - <?php echo $endDt; ?></span> <b class="caret"></b>
                     </a>
                 </div>
-            <div class="table-responsive">
                 <div class="tab-content">
                     <div class="tab-pane active" id="tabreportOrderAnalytic">
                     	<div class="row" >
@@ -89,7 +88,6 @@ echo $this->Html->script("/js/plugins/highcharts/modules/exporting.js");
                     	</div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>
