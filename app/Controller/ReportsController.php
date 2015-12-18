@@ -210,7 +210,7 @@ public function getReports()
             ),
 				'fields' => array(
 					'DATE_FORMAT(Order.created, "%Y-%m-%d") AS x__created ',
-					"Product.name AS z__salesman",
+					"Product.name AS z__productname",
 					'IFNULL(SUM(Order.total_amt),0) AS y__total'
 				),
 				'conditions' => array(
