@@ -88,6 +88,20 @@ echo $this->Html->script("/template_assets/plugins/bootstrap-fileupload/bootstra
                 'type' => 'text'
             ));
             ?>
+            <?php
+            echo $this->Form->input('workstation_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('USER_ADD_FORM_FIELD_WORKSTATION')),
+                'class' => 'form-control',
+                'options' => $workstations
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('group_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('USER_ADD_FORM_FIELD_GROUP')),
+                'class' => 'form-control',
+                'options' => $groups
+            ));
+            ?>
         </div>
         <div class="row">
             <div class="col-md-6">
