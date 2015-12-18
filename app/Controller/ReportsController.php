@@ -130,7 +130,7 @@ public function getReports()
 					'IFNULL(SUM(Order.total_amt),0) AS y__total'
 				),
 				'conditions' => array(
-					'Order.status' => array(StatusOfOrder::Closed),
+					'Order.status' => array(StatusOfOrder::Closed, StatusOfOrder::Paid),
 					'Order.created >=' => $startDt,
 					'Order.created <=' => $endDt
 				),
@@ -175,7 +175,7 @@ public function getReports()
 				'IFNULL(SUM(Order.total_amt),0) total'
 			),
 			'conditions' => array(
-					'Order.status' => array(StatusOfOrder::Closed),
+					'Order.status' => array(StatusOfOrder::Closed, StatusOfOrder::Paid),
 				'Order.created >=' => $startDt,
 				'Order.created <=' => $endDt
 			),
@@ -187,6 +187,55 @@ public function getReports()
 			$rOrder[$key] = array(__($order["Product"]["name"]), intval($order["0"]["total"]) );
 		}
 		$xData["OrderByProducts"] = $rOrder;
+		
+		
+		try{
+			
+			$orders = $this->Order->find('all', array(
+            'joins' => array(
+                array('table' => 'order_products',
+                    'alias' => 'OrderProduct',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'OrderProduct.order_id = Order.id'
+                    )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'Product.id = OrderProduct.product_id'
+                    )
+                ),
+            ),
+				'fields' => array(
+					'DATE_FORMAT(Order.created, "%Y-%m-%d") AS x__created ',
+					"Product.name AS z__salesman",
+					'IFNULL(SUM(Order.total_amt),0) AS y__total'
+				),
+				'conditions' => array(
+					'Order.status' => array(StatusOfOrder::Closed, StatusOfOrder::Paid),
+					'Order.created >=' => $startDt,
+					'Order.created <=' => $endDt
+				),
+				'group' => array(
+					'x__created',
+					'z__salesman'
+				)
+			));
+			
+			$xData["OrdersProductsByDate"] = $orders;
+			$this->log('OrdersProductsByDate');
+			$this->log($orders);
+			
+		}catch(Exception $ex){
+			
+			$this->log('ERROR: SALESMANREPORT');
+			$this->log($ex->getMessage());
+		}
+		
+		
+		
 
 		$response = array(
 			'success' => true,
