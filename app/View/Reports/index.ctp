@@ -68,14 +68,15 @@ echo $this->Html->script("/js/plugins/highcharts/modules/exporting.js");
             <div class="table-responsive">
                 <div class="tab-content">
                     <div class="tab-pane active" id="tabreportOrderAnalytic">
-                        <div id="reportOrderAnalytic"></div>
-                        <div id="totalOrderByDate"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="reportOrderAnalytic"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="totalOrderByDate"></div>
                     </div>
                     <div class="tab-pane" id="reportProductAnalytic">
-                        <div id="totalOrderByProduct"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="totalOrderByProduct"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="OrdersProductsByDate"></div>
                     </div>
                     <div class="tab-pane" id="reportSalesManAnalytic">
-                        <div id="totalOrderBySalesMan"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="totalOrderBySalesMan"></div>
                     </div>
                 </div>
             </div>
@@ -129,8 +130,8 @@ function feedReports(startDate, endDate)
 			handlePieOrderByStatusChart(xData["OrderByStatus"]);
             handleTotalOrderByDate(xData["TotalOrderByDate"])
             handleOrdersByProducts(xData["OrderByProducts"]);
-            handleTotalOrderBySalesMan(xData["OrderBySalesMan"]);
             handleOrdersProductsByDate(xData["OrdersProductsByDate"]);
+            handleTotalOrderBySalesMan(xData["OrderBySalesMan"]);
         },
         error: function (data)
         {//
@@ -203,7 +204,7 @@ function handleOrdersProductsByDate( xData )
         
         
 
-    $('#totalOrderBySalesMan').highcharts({
+    $('#OrdersProductsByDate').highcharts({
         chart: {
             type: 'column'
         },
