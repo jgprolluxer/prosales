@@ -220,7 +220,7 @@ public function getReports()
 				),
 				'group' => array(
 					'x__created',
-					'z__salesman'
+					'z__productname'
 				)
 			));
 			
