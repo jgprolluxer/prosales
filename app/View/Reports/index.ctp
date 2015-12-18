@@ -68,15 +68,15 @@ echo $this->Html->script("/js/plugins/highcharts/modules/exporting.js");
             <div class="table-responsive">
                 <div class="tab-content">
                     <div class="tab-pane active" id="tabreportOrderAnalytic">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="reportOrderAnalytic"></div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="totalOrderByDate"></div>
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="reportOrderAnalytic"></div>
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="totalOrderByDate"></div>
                     </div>
                     <div class="tab-pane" id="reportProductAnalytic">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="totalOrderByProduct"></div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="OrdersProductsByDate"></div>
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="totalOrderByProduct"></div>
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="OrdersProductsByDate"></div>
                     </div>
                     <div class="tab-pane" id="reportSalesManAnalytic">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="totalOrderBySalesMan"></div>
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="totalOrderBySalesMan"></div>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@ function feedReports(startDate, endDate)
 			handlePieOrderByStatusChart(xData["OrderByStatus"]);
             handleTotalOrderByDate(xData["TotalOrderByDate"])
             handleOrdersByProducts(xData["OrderByProducts"]);
-            handleOrdersProductsByDate(xData["OrdersProductsByDate"]);
+            //handleOrdersProductsByDate(xData["OrdersProductsByDate"]);
             handleTotalOrderBySalesMan(xData["OrderBySalesMan"]);
         },
         error: function (data)
