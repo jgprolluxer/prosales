@@ -230,10 +230,56 @@ public function getReports()
 			
 		}catch(Exception $ex){
 			
-			$this->log('ERROR: SALESMANREPORT');
+			$this->log('ERROR: OrdersProductsByDate');
 			$this->log($ex->getMessage());
 		}
-		
+////// Stores reports
+
+
+		try{
+			
+			$orders = $this->Order->find('all', array(
+            'joins' => array(
+	                array('table' => 'workstations',
+	                    'alias' => 'Workstation',
+	                    'type' => 'inner',
+	                    'conditions' => array(
+	                        'Workstation.id = CreatedBy.workstation_id'
+	                    )
+	                ),
+                array('table' => 'stores',
+                    'alias' => 'Store',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'Store.id = Workstation.store_id'
+                    )
+                ),
+            ),
+				'fields' => array(
+					'DATE_FORMAT(Order.created, "%Y-%m-%d") AS x__created ',
+					"Store.name AS z__storename",
+					'IFNULL(SUM(Order.total_amt),0) AS y__total'
+				),
+				'conditions' => array(
+					'Order.status' => array(StatusOfOrder::Closed, StatusOfOrder::Paid),
+					'Order.created >=' => $startDt,
+					'Order.created <=' => $endDt
+				),
+				'group' => array(
+					'x__created',
+					'z__storename'
+				)
+			));
+			
+			$xData["OrderStoreByDate"] = $orders;
+			$this->log('OrderStoreByDate');
+			$this->log($orders);
+			
+		}catch(Exception $ex){
+			
+			$this->log('ERROR: totalOrderStoreByDate');
+			$this->log($ex->getMessage());
+		}
 		
 		
 
