@@ -80,7 +80,7 @@ class DATABASE_CONFIG {
 		'host' => '104.218.12.141',
 		'port' => 3306,
 		'login' => 'aquaserv_prollux',
-		'password' => 'pr011ux3r2015',
+		'password' => 'Vr9-aWh-Bk3-kmE',
 		'database' => 'aquaserv_prosales-db',
 		'prefix' => '',
 		'encoding' => 'utf8',
