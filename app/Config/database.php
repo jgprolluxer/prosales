@@ -86,15 +86,15 @@ class DATABASE_CONFIG {
 		'encoding' => 'utf8',
 	);
 	
-
-	/*public $test = array(
+	/*public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'test_database_name',
+		'host' => '104.218.12.141',
+		'port' => 3306,
+		'login' => 'aquaserv_clnubes',
+		'password' => 'oaP-Ss3-NsL-fd4',
+		'database' => 'aquaserv_coffeelasnubes-db',
 		'prefix' => '',
-		//'encoding' => 'utf8',
-	);*/
+		'encoding' => 'utf8',
+	);*/	
 }
