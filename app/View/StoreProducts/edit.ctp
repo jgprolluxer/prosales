@@ -27,8 +27,6 @@ $(document).ready(function ()
 		<legend><?php echo __('Edit Store Product'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('created_by');
-		echo $this->Form->input('updated_by');
 		echo $this->Form->input('store_id');
 		echo $this->Form->input('product_id');
 		echo $this->Form->input('stock');

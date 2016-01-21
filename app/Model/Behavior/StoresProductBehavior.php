@@ -2,7 +2,7 @@
 
 App::uses('ModelBehavior', 'Model');
 
-class StoreProductBehavior extends ModelBehavior
+class StoresProductBehavior extends ModelBehavior
 {
 
     protected function _addToWhitelist(\Model $model, $field)
@@ -78,22 +78,22 @@ class StoreProductBehavior extends ModelBehavior
         {
             if ($Model->id)
             {
-                $Model->data['StoreProduct']['updated'] = date("Y-m-d H:i:s");
+                $Model->data['StoresProduct']['updated'] = date("Y-m-d H:i:s");
                 if (!(isset($Model->data['Store']['updated_by'])))
                 {
-                    $Model->data['StoreProduct']['updated_by'] = $loggedUser["id"];
+                    $Model->data['StoresProduct']['updated_by'] = $loggedUser["id"];
                 }
             } else
             {
-                $Model->data['StoreProduct']['created'] = date("Y-m-d H:i:s");
-                $Model->data['StoreProduct']['updated'] = date("Y-m-d H:i:s");
-                if (!(isset($Model->data['StoreProduct']['updated_by'])))
+                $Model->data['StoresProduct']['created'] = date("Y-m-d H:i:s");
+                $Model->data['StoresProduct']['updated'] = date("Y-m-d H:i:s");
+                if (!(isset($Model->data['StoresProduct']['updated_by'])))
                 {
-                    $Model->data['StoreProduct']['updated_by'] = $loggedUser["id"];
+                    $Model->data['StoresProduct']['updated_by'] = $loggedUser["id"];
                 }
-                if (!(isset($Model->data['StoreProduct']['created_by'])))
+                if (!(isset($Model->data['StoresProduct']['created_by'])))
                 {
-                    $Model->data['StoreProduct']['created_by'] = $loggedUser["id"];
+                    $Model->data['StoresProduct']['created_by'] = $loggedUser["id"];
                 }
             }
         }
