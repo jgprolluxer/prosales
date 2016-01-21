@@ -10,6 +10,17 @@ $(document).ready(function ()
     $('.dataTables_filter input').attr('placeholder', 'Search');
 });
 </script>
+
+<!-- eCommerce Order View Header -->
+<div class="content-header">
+	<div class="header-section">
+    	<?php echo $this->MenuBuilder->build('menu-header-pos');?>
+	</div>
+</div>
+<!-- END eCommerce Order View Header -->
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
 <div class="storeProducts index">
 	<h2><?php echo __('Store Products'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
