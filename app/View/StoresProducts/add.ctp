@@ -29,7 +29,7 @@ $(document).ready(function ()
             <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
             <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
         </div>
-        <h2><?php echo __('NOTE_ADD_BLOCK_TITLE'); ?></h2>
+        <h2><?php echo __('STORESPRODUCTS_ADD_BLOCK_TITLE'); ?></h2>
     </div>
     <!-- END Normal Form Title -->
     <div class="block-content">
@@ -59,8 +59,7 @@ $(document).ready(function ()
             <?php
             echo $this->Form->input('product_id', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('STORESPRODUCT_ADD_FORM_FIELD_PRODUCT_ID')),
-                'class' => 'form-control',
-                'type' => 'textarea'
+                'class' => 'form-control'
             ));
             ?>
         </div>

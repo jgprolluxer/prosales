@@ -168,6 +168,9 @@ msgstr "<i class='fa fa-list'></i> Listas de Valores"
 msgid "MENU_HEADER_POS_LINK_CONFIG"
 msgstr "<i class='fa fa-gear'></i> Configuración"
 
+msgid "MENU_HEADER_POS_LINK_STORESPRODUCTS"
+msgstr "<i class='fa fa-calculator'></i> Inventario"
+
 # ----------      END MENUES SECTION      ---------- ###################################
 # ####################################################################################
 # ----------      ACCOUNT SECTION      ---------- ###################################
@@ -3207,7 +3210,49 @@ msgstr "Estado"
 msgid "ADMIN_STORE_VIEW_BLOCK_CONTENT_FOOTER"
 msgstr "Vista de solo lectura"
 
+
 # ----------      END ADMIN VIEW SECTION      ----------
+
+
+msgid "STORESPRODUCTS_ADD_BLOCK_TITLE"
+msgstr "Inventario"
+
+msgid "STORESPRODUCT_ADD_FORM_FIELD_STORE_ID"
+msgstr "Sucursal"
+
+msgid "STORESPRODUCT_ADD_FORM_FIELD_PRODUCT_ID"
+msgstr "Producto"
+
+msgid "STORESPRODUCT_ADD_FORM_FIELD_STOCK"
+msgstr "Stock"
+
+msgid "STORESPRODUCT_ADD_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "STORESPRODUCT_ADD_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+
+msgid "STORESPRODUCT_EDIT_BLOCK_TITLE"
+msgstr "Inventario"
+
+msgid "STORESPRODUCT_EDIT_FORM_FIELD_STORE_ID"
+msgstr "Sucursal"
+
+msgid "STORESPRODUCT_EDIT_FORM_FIELD_PRODUCT_ID"
+msgstr "Producto"
+
+msgid "STORESPRODUCT_EDIT_FORM_FIELD_STOCK"
+msgstr "Stock"
+
+msgid "STORESPRODUCT_EDIT_FORM_BTN_SAVE"
+msgstr "Guardar"
+
+msgid "STORESPRODUCT_EDIT_BLOCK_CONTENT_FOOTER"
+msgstr "Recuerda revisar todos los campos"
+
+
+
 #
 # ----------      END STORE SECTION      ---------- ###################################
 # #############################################################################
