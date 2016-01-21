@@ -8,6 +8,8 @@ App::uses('AppModel', 'Model');
  */
 class StoreProduct extends AppModel {
 
+
+	public $actsAs = array('StoreProduct');
 /**
  * Validation rules
  *
