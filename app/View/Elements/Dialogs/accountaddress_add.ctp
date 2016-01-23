@@ -139,6 +139,11 @@
 </div>
 
 <script type="text/javascript">
+    
+        $('#addressForm').submit(function() {
+            return false;
+        });
+    
         function validateFields(){
             var flag = 0;
             if($("#AddressStreet").val() == "") {
@@ -192,7 +197,7 @@
         function clickSearchAddress()
         {
             $("#addressesList").html('');
-            var key = "AIzaSyCRb9Wxzl1l8omtJELsQrRvKZ5d4bgdz3A";
+            var key = "AIzaSyB1YPpPbvd3Yx8zUtMBAi54-iUZ_i8FFFY";
             var pluginUrl = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=";
             var params = "", newAddress = "";
             
@@ -230,17 +235,17 @@
             $("#addressContent").show();
             
             
-            console.log('gmaps search');
-            console.log(pluginUrl + params);
+            //console.log('gmaps search');
+            ///console.log(pluginUrl + params);
                                 
             $.ajax({
                 url: pluginUrl + params,
                 dataType: "json",
                 success: function(data)
                 {
-                    var addressesList = data.results
+                    var addressesList = data.results;
                     $(addressesList).each( function(i,address) { 
-                        console.log(address.formatted_address);                        
+                        //console.log(address.formatted_address);                        
                         if(address.address_components[5] != undefined)
                         {
                             newAddress = '<div number="' + address.address_components[0].long_name + '" street="' + address.address_components[1].long_name + '" suburb="' + address.address_components[2].long_name + '" city="' + address.address_components[3].long_name + '" state="' + address.address_components[4].long_name + '" country="' + address.address_components[5].long_name + '" href="" class="list-group-item" style="cursor:default">' +
@@ -250,6 +255,10 @@
                             $("#addressesList").append(newAddress);                            
                         }
                     });
+                    if(newAddress == "") {
+                        newAddress = "No se encontraron resultados de la búsqueda...";
+                        $("#addressesList").append(newAddress); 
+                    }
                     $("#addressesList").show();
                     $(".addressElement").click(function() {
                         //Se llenan los campos del address con el seleccionado
@@ -259,7 +268,8 @@
                         $("#AddressCity").val($(this).parent().attr("city"));
                         $("#AddressState").val($(this).parent().attr("state"));
                         $("#AddressCountry").val($(this).parent().attr("country"));
-                        $("#AddressDelivery").prop("checked", true);
+                        if(!$("#AddressBilling").is(":checked") && !$("#AddressDelivery").is(":checked"))
+                            $("#AddressDelivery").prop("checked", true);
                         saveAddress();
                     });
                     

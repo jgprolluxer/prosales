@@ -103,48 +103,7 @@ $(document).ready(function ()
                         <strong>$ <?php echo $totOrd ?></strong><br><small>Valor total de Ordenes</small>
                     </h4>
                 </div>
-            </a>
-            <!--<a href="javascript:void(0)" class="widget widget-hover-effect2 themed-background-muted-light">
-                <div class="widget-simple">
-                    <div class="widget-icon pull-right themed-background-warning">
-                        <i class="fa fa-shopping-cart"></i>
-                    </div>
-                    <h4 class="text-left text-warning">
-                        <strong>3</strong> ($ 517,00)<br><small>Products in Cart</small>
-                    </h4>
-                </div>
-            </a>
-            <a href="javascript:void(0)" class="widget widget-hover-effect2 themed-background-muted-light">
-                <div class="widget-simple">
-                    <div class="widget-icon pull-right themed-background-info">
-                        <i class="fa fa-group"></i>
-                    </div>
-                    <h4 class="text-left text-info">
-                        <strong>2</strong><br><small>Referred Members</small>
-                    </h4>
-                </div>
-            </a>
-            <a href="javascript:void(0)" class="widget widget-hover-effect2 themed-background-muted-light">
-                <div class="widget-simple">
-                    <div class="widget-icon pull-right themed-background-danger">
-                        <i class="fa fa-heart"></i>
-                    </div>
-                    <h4 class="text-left text-danger">
-                        <strong>15</strong><br><small>Favorite Products</small>
-                    </h4>
-                </div>
-            </a>
-            <a href="javascript:void(0)" class="widget widget-hover-effect2 themed-background-muted-light">
-                <div class="widget-simple">
-                    <div class="widget-icon pull-right themed-background-muted">
-                        <i class="fa fa-ticket"></i>
-                    </div>
-                    <h4 class="text-left text-muted">
-                        <strong>2</strong><br><small>Tickets</small>
-                    </h4>
-                </div>
-            </a>-->
-            <!-- END Quick Stats Content -->
+            </a>            
         </div>
         <!-- END Quick Stats Block -->
     </div>
@@ -211,70 +170,7 @@ $(document).ready(function ()
                         </tbody>
                     </table>
                 </div>
-            </div>
-            
-            <!-- Orders Content -->
-            <!--<table class="table table-bordered table-striped table-vcenter">
-                <tbody>
-                    <tr>
-                        <td class="text-center" style="width: 100px;"><a href="page_ecom_order_view.html"><strong>ORD.685199</strong></a></td>
-                        <td class="hidden-xs" style="width: 15%;"><a href="javascript:void(0)">5 Products</a></td>
-                        <td class="text-right hidden-xs" style="width: 10%;"><strong>$585,00</strong></td>
-                        <td><span class="label label-warning">Processing</span></td>
-                        <td class="hidden-xs">Paypal</td>
-                        <td class="hidden-xs text-center">16/11/2014</td>
-                        <td class="text-center" style="width: 70px;">
-                            <div class="btn-group btn-group-xs">
-                                <a href="page_ecom_order_view.html" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center"><a href="page_ecom_order_view.html"><strong>ORD.685198</strong></a></td>
-                        <td class="hidden-xs"><a href="javascript:void(0)">2 Products</a></td>
-                        <td class="text-right hidden-xs"><strong>$958,00</strong></td>
-                        <td><span class="label label-info">For delivery</span></td>
-                        <td class="hidden-xs">Credit Card</td>
-                        <td class="hidden-xs text-center">03/10/2014</td>
-                        <td class="text-center">
-                            <div class="btn-group btn-group-xs">
-                                <a href="page_ecom_order_view.html" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center"><a href="page_ecom_order_view.html"><strong>ORD.685197</strong></a></td>
-                        <td class="hidden-xs"><a href="javascript:void(0)">3 Products</a></td>
-                        <td class="text-right hidden-xs"><strong>$318,00</strong></td>
-                        <td><span class="label label-success">Delivered</span></td>
-                        <td class="hidden-xs">Bank Wire</td>
-                        <td class="hidden-xs text-center">17/06/2014</td>
-                        <td class="text-center">
-                            <div class="btn-group btn-group-xs">
-                                <a href="page_ecom_order_view.html" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center"><a href="page_ecom_order_view.html"><strong>ORD.685196</strong></a></td>
-                        <td class="hidden-xs"><a href="javascript:void(0)">6 Products</a></td>
-                        <td class="text-right hidden-xs"><strong>$264,00</strong></td>
-                        <td><span class="label label-success">Delivered</span></td>
-                        <td class="hidden-xs">Paypal</td>
-                        <td class="hidden-xs text-center">27/01/2014</td>
-                        <td class="text-center">
-                            <div class="btn-group btn-group-xs">
-                                <a href="page_ecom_order_view.html" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>-->
-            <!-- END Orders Content -->
+            </div>            
         </div>
         <div class="block full">
             <!-- Customer Addresses Title -->
@@ -298,13 +194,17 @@ $(document).ready(function ()
                         <div class="block">
                             <div class="block-title">
                             <?php
-                                if($address["Address"]["billing"] == "1")
+                                if($address["Address"]["billing"] == "1" && $address["Address"]["delivery"] == "1")
                                 {
-                                    echo "<h2>Domicilio de Facturación</h2>";
+                                    echo "<h2>Domicilio de Entregas y Facturación</h2>";
                                 }
                                 else if($address["Address"]["delivery"] == "1")
                                 {
                                     echo "<h2>Domicilio de Entregas</h2>";
+                                }
+                                else if($address["Address"]["billing"] == "1")
+                                {
+                                    echo "<h2>Domicilio de Facturación</h2>";
                                 }
                                 else
                                 {
@@ -469,7 +369,7 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
     function saveAddress()
     {
         var input = $("#addressForm").serialize();
-        console.log("INPUT:" + input);
+        //console.log("INPUT:" + input);
         $.ajax({
             type: "POST", // Tipo post 
             url: qualifyURL("/Addresses/jsAddress/?CRUD_operation=CREATE&format="),
@@ -477,9 +377,15 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
             dataType: 'json', // Tipo json
             success: function(data)
             {
-                console.log(data);
-                alert("El domicilio se ha guardado correctamente!");
+                //console.log(data);
+                //alert("El domicilio se ha guardado correctamente!");
                 cleanAddress();
+                $("#addAccountAddress").modal("toggle");
+                $.bootstrapGrowl('Domicilio guardado correctamente!', {
+                                type: 'success',
+                                delay: 2000,
+                                allow_dismiss: true
+                            });
                 loadNewAddress(data.xData);
             },
             error: function(xhr, textStatus, errorThrown)
@@ -501,8 +407,7 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
 	});
         
     function searchInGMaps(addressID)
-    {
-        //var key = "AIzaSyCRb9Wxzl1l8omtJELsQrRvKZ5d4bgdz3A";
+    {        
         var key = "AIzaSyB1YPpPbvd3Yx8zUtMBAi54-iUZ_i8FFFY";
         var pluginUrl = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=";
         
@@ -514,7 +419,7 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
         
         var params = number + "+" + street.replace(" ","+") + ",+" + suburb.replace(" ","+") + ",+" + city.replace(" ","+") + ",+" + state.replace(" ","+") + "&key=" + key;
         
-        console.log(pluginUrl + params);
+        //console.log(pluginUrl + params);
         $.ajax({
             url: pluginUrl + params,
             dataType: "json",
@@ -560,13 +465,22 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
     }
 
     function loadNewAddress(obj){
+        var addressTitle = "";
+        if(obj.Address.billing && obj.Address.delivery)
+            addressTitle = "Domicilio de Entregas y Facturación";
+        else if(obj.Address.billing)
+            addressTitle = "Domicilio de Facturación";
+        else if(obj.Address.delivery)
+            addressTitle = "Domicilio de Entregas";
+        else
+            addressTitle = "Domicilio General";
         var newAddress = 
             '<div class="col-md-6">' +
                 '<div class="block">' +
                     '<div class="block-title">' +
-                       '<h2>Domicilio de Facturación</h2>' +
+                       '<h2>' + addressTitle + '</h2>' +
                         '<div class="block-options pull-right">' +
-                            '<a id="mapView' + obj.Address.id + '" href="" class="btn btn-info btn-xs mapView" mapID="' + obj.Address.id + '">' +
+                            '<a id="mapView' + obj.Address.id + '" class="btn btn-info btn-xs mapView" mapID="' + obj.Address.id + '">' +
                                 '<i class="fa fa-eye"></i> <strong>Ver Mapa</strong>' +
                             '</a>' +
                         '</div>' +
@@ -581,8 +495,8 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
                     '</address>' +
                 '</div>' +
             '</div>';
-        $("#addressesArea").append(newAddress);        
-        $(".mapView").click(function(){ loadModalMap(this); });
+        $("#addressesArea").append(newAddress);    
+        $(".mapView").click(function(){ loadModalMap(this); });        
         //$("#mapView" + obj.Address.id).click(function(){ loadModalMap(this); });
     }
     
