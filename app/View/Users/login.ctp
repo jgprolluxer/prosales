@@ -44,7 +44,7 @@
         </div>
         <div class="form-group form-actions">
             <div class="col-xs-4">
-                <label class="switch switch-primary" data-toggle="tooltip" title="Remember Me?">
+                <label class="switch switch-primary" data-toggle="tooltip" title="Recordarme?">
                     <input type="checkbox" id="login-remember-me" name="login-remember-me" checked>
                     <span></span>
                 </label>
