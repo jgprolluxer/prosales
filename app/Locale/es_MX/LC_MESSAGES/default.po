@@ -3551,6 +3551,9 @@ msgstr "Email"
 msgid "USER_ADD_FORM_FIELD_WORKSTATION"
 msgstr "Estación de Trabajo"
 
+msgid "USER_ADD_FORM_FIELD_GROUP"
+msgstr "Grupo"
+
 msgid "USER_ADD_FORM_BTN_SAVE"
 msgstr "Guardar"
 

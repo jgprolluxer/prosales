@@ -55,7 +55,7 @@
         </div>
         <div class="form-group">
             <div class="col-xs-12 text-center">
-                <a href="javascript:void(0)" id="link-reminder-login"><small>Forgot password?</small></a>
+                <a href="javascript:void(0)" id="link-reminder-login"><small>Olvidaste tu contraseña?</small></a>
             </div>
         </div>
         </form>
