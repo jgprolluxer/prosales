@@ -279,8 +279,8 @@ $(document).ready(function ()
                 foreach ($notes as $note) {
                     ?>
                     <div class="alert alert-info alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <?php echo $note["Note"]["description"]; ?>
+                        <button type="button" class="close" onclick="deleteNote(this)" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" title="Eliminar" noteID="<?php echo $note["Note"]["id"]; ?>"><span aria-hidden="true">&times;</span></button>
+                        <?php echo $note["Note"]["description"]; ?>                        
                     </div>
                 <?php } ?>
             </div>
@@ -353,7 +353,7 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
                 $("#private-note").val('');
                 var description = data["xData"]["Note"]["description"];
                 var html = '<div class="alert alert-info alert-dismissible" role="alert">' +
-                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                        '<button type="button" class="close" onclick="deleteNote(this)" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" title="Eliminar" noteID="' + data.xData.Note.id + '"><span aria-hidden="true">&times;</span></button>' +
                         description +
                         '</div>';
                 $("#notesHistory").html(html + $("#notesHistory").html());
@@ -464,7 +464,8 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
            $("html, body").animate({ scrollTop: $('#gmapContainer').offset().top }, 1000);
     }
 
-    function loadNewAddress(obj){
+    function loadNewAddress(obj)
+    {
         var addressTitle = "";
         if(obj.Address.billing && obj.Address.delivery)
             addressTitle = "Domicilio de Entregas y Facturación";
@@ -500,7 +501,8 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
         //$("#mapView" + obj.Address.id).click(function(){ loadModalMap(this); });
     }
     
-    function cleanAddress(){
+    function cleanAddress()
+    {
         $("#AddressStreetNo").val('');
         $("#AddressStreet").val('');
         $("#AddressSuburb").val('');
@@ -510,5 +512,33 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
         $("#addAccountAddress").hide();
         $("#addressesList").html('');
         $("#addressesList").hide();
+    }
+    
+    function deleteNote(obj)
+    {        
+        var deletedNote = {
+            Note: {
+                id: $(obj).attr("noteID")
+            }
+        };
+        
+        $.ajax({
+            type: "POST",
+            url: qualifyURL("/Notes/jsNote/?CRUD_operation=DELETE&format="),
+            data: deletedNote,
+            dataType: 'json',
+            success: function(data)
+            {
+                $.bootstrapGrowl('Se eliminó la Nota!', {
+                                type: 'warning',
+                                delay: 2000,
+                                allow_dismiss: true
+                            });
+            },
+            error: function(xhr, textStatus, errorThrown)
+            {
+                alert("Ocurrió un error inesperado al borrar la nota " + textStatus);
+            }
+        });
     }
 </script>

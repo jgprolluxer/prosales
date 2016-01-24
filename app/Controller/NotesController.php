@@ -242,7 +242,8 @@ class NotesController extends AppController {
             } else {
                 throw new Exception(__('NOTE_CONTROLLER') . ' ' . __('CRUD_OPERATION_NOT_SET'));
             }
-            switch ($operation) {
+            switch ($operation) 
+            {
                 case "CREATE":
                     $this->Note->recursive = -1;
                     $this->Note->create();
@@ -259,7 +260,31 @@ class NotesController extends AppController {
                             'xData' => array()
                         );
                     }
-                    break;                
+                    break;
+                case "DELETE":
+                    $noteID = $this->request->data['Note']['id'];
+                    debug.log($noteID);
+                    $this->Note->id = $noteID;
+                    if (!$this->Note->exists()) {
+			throw new NotFoundException(__('Invalid Note'));
+                    }
+                    $this->request->allowMethod('post', 'delete');                    
+                    if ($this->Note->delete())
+                    {
+                        $response = array(
+                            'success' => true,
+                            'message' => 'Correcto',
+                        );
+                    } 
+                    else
+                    {
+                        $response = array(
+                            'success' => false,
+                            'message' => json_encode($this->Note->validationErrors),
+                            'xData' => array()
+                        );
+                    }                    
+                    break;
             }
         } catch (Exception $ex) {
             $response = array(
