@@ -53,13 +53,15 @@ $(document).ready(function ()
             <?php
             echo $this->Form->input('store_id', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('STORESPRODUCT_ADD_FORM_FIELD_STORE_ID')),
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'readonly' => 'readonly'
             ));
             ?>
             <?php
             echo $this->Form->input('product_id', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('STORESPRODUCT_ADD_FORM_FIELD_PRODUCT_ID')),
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'readonly' => 'readonly'
             ));
             ?>
         </div>

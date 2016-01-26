@@ -21,8 +21,17 @@ class StoresProductsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->StoresProduct->recursive = 0;
-		$this->set('storesProducts', $this->Paginator->paginate());
+		
+		/*$this->StoresProduct->recursive = 0;
+		$this->set('storesProducts', $this->Paginator->paginate());*/
+		
+        $this->StoresProduct->recursive = 1;
+        $storesproducts = $this->StoresProduct->find('all', array(
+            'conditions' => array(
+                'StoresProduct.id >=' => 1
+            )
+        ));
+        $this->set('storesproducts', $storesproducts);
 	}
 
 /**
@@ -37,6 +46,7 @@ class StoresProductsController extends AppController {
 			throw new NotFoundException(__('Invalid stores product'));
 		}
 		$options = array('conditions' => array('StoresProduct.' . $this->StoresProduct->primaryKey => $id));
+		$this->request->data = $this->StoresProduct->find('first', $options);
 		$this->set('storesProduct', $this->StoresProduct->find('first', $options));
 	}
 

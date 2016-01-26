@@ -1,78 +1,113 @@
-<div class="storesProducts view">
-<h2><?php echo __('Stores Product'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($storesProduct['StoresProduct']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($storesProduct['StoresProduct']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($storesProduct['StoresProduct']['updated']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created By'); ?></dt>
-		<dd>
-			<?php echo h($storesProduct['StoresProduct']['created_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated By'); ?></dt>
-		<dd>
-			<?php echo h($storesProduct['StoresProduct']['updated_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Store'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($storesProduct['Store']['name'], array('controller' => 'stores', 'action' => 'view', $storesProduct['Store']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Product'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($storesProduct['Product']['name'], array('controller' => 'products', 'action' => 'view', $storesProduct['Product']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Stock'); ?></dt>
-		<dd>
-			<?php echo h($storesProduct['StoresProduct']['stock']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Awaiting'); ?></dt>
-		<dd>
-			<?php echo h($storesProduct['StoresProduct']['awaiting']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Commited'); ?></dt>
-		<dd>
-			<?php echo h($storesProduct['StoresProduct']['commited']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Sold'); ?></dt>
-		<dd>
-			<?php echo h($storesProduct['StoresProduct']['sold']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Revenue'); ?></dt>
-		<dd>
-			<?php echo h($storesProduct['StoresProduct']['revenue']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<script type="text/javascript">
+$(document).ready(function ()
+{
+    //$('#page-container').removeClass('sidebar-visible-xs');
+    //$('#page-container').removeClass('sidebar-visible-lg');
+
+    $('#page-container').attr('class', 'sidebar-no-animations footer-fixed');
+    $('header').hide();
+    /* Add placeholder attribute to the search input */
+    $('.dataTables_filter input').attr('placeholder', 'Search');
+});
+</script>
+
+<!-- eCommerce Order View Header -->
+<div class="content-header">
+    <div class="header-section">
+        <?php echo $this->MenuBuilder->build('menu-header-pos'); ?>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Stores Product'), array('action' => 'edit', $storesProduct['StoresProduct']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Stores Product'), array('action' => 'delete', $storesProduct['StoresProduct']['id']), array(), __('Are you sure you want to delete # %s?', $storesProduct['StoresProduct']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stores Products'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Stores Product'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Stores'), array('controller' => 'stores', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Store'), array('controller' => 'stores', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Products'), array('controller' => 'products', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Product'), array('controller' => 'products', 'action' => 'add')); ?> </li>
-	</ul>
+<!-- END eCommerce Order View Header -->
+
+<ul class="breadcrumb breadcrumb-top">
+    <?php echo $this->Navigation->printBacklinks($trail, 10); ?>
+</ul>
+<!-- END Forms General Header -->
+<!-- Normal Form Block -->
+<div class="block">
+    <!-- Normal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-content"><i class="fa fa-arrows-v"></i></a>
+            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-primary" data-toggle="block-toggle-fullscreen"><i class="fa fa-desktop"></i></a>
+        </div>
+        <h2><?php echo __('STORESPRODUCT_VIEW_BLOCK_TITLE');?></h2>
+    </div>
+    <!-- END Normal Form Title -->
+    <div class="block-content">
+        <!-- User Assist Content -->
+        <?php
+        echo $this->Form->create('StoresProduct', array(
+            'onsubmit' => 'return false;',//////NOT SAVE READ ONLY
+            'class' => 'form-horizontal',
+            'type' => 'file',
+            'inputDefaults' => array(
+                'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
+                'div' => array('class' => 'form-group'),
+                'between' => '<div class="col-md-8">',
+                'after' => '</div>',
+                'error' => array(
+                    'attributes' => array('wrap' => 'span', 'class' => 'help-block')
+                ),
+            )));
+        ?>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('store_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('STORESPRODUCT_VIEW_FORM_FIELD_STORE_ID')),
+                'class' => 'form-control',
+                'value' => $this->request->data['Store']['name'],
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('product_id', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('STORESPRODUCT_VIEW_FORM_FIELD_PRODUCT_ID')),
+                'class' => 'form-control',
+                'value' => $this->request->data['Product']['name'],
+                'type' => 'text',
+                'readonly' => 'readonly'
+            ));
+            ?>
+        </div>
+        <div class="col-md-6">
+            <?php
+            echo $this->Form->input('stock', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('STORESPRODUCT_VIEW_FORM_FIELD_STOCK')),
+                'class' => 'form-control',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('awaiting', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('STORESPRODUCT_VIEW_FORM_FIELD_AWAITING')),
+                'class' => 'form-control',
+                'readonly' => 'readonly'
+            ));
+            ?>
+            <?php
+            echo $this->Form->input('sold', array(
+                'label' => array('class' => 'col-md-4 control-label', 'text' => __('STORESPRODUCT_VIEW_FORM_FIELD_SOLD')),
+                'class' => 'form-control',
+                'readonly' => 'readonly'
+            ));
+            ?>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-sm-9 col-sm-offset-3">
+                <?php
+                echo $this->AclView->link(  __('Editar'),
+                    array('plugin' => $this->params['plugin'], 'prefix' => null, 
+                        'admin' => $this->params['admin'], 'controller' => $this->params['controller'], 
+                        'action' => 'edit', $this->request->data['StoresProduct']['id']),
+                    array('escape' => false, 'class' => array('btn btn-warning')));
+                    ?>
+            </div>
+        </div>
+        </form>
+        <!-- END User Assist Content -->
+    </div>
+    <p class="text-muted"><?php echo __('STORESPRODUCT_VIEW_BLOCK_CONTENT_FOOTER');?></p>
 </div>
+<!-- END Normal Form Block -->
