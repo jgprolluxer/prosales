@@ -316,8 +316,7 @@ echo $this->Html->script("/template_assets/js/pages/tablesDatatables.js");
 
 
 <script type="text/javascript">
-    $(document).ready(function()
-    {
+    $(document).ready(function() {
         $("#addAddress").click(function(){ 
             $("#addAccountAddress").modal();
             $(".empty").hide();
