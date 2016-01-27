@@ -126,7 +126,7 @@ $(document).ready(function ()
                             <tr>
                                 <th># Folio</th>
                                 <th>Precio</th>
-                                <th>Status</th>
+                                <th>Estado</th>
                                 <th>Fecha</th>
                                 <th>Ver</th>
                             </tr>
@@ -145,15 +145,27 @@ $(document).ready(function ()
                                     <td><?php
                                         if($order['Order']['status'] == "closed")
                                         {
-                                            echo __('<span class="label label-success">'.$order['Order']['status'].'</label>');
+                                            echo __('<span class="label label-success">cerrada</label>');
                                         }
                                         else if($order['Order']['status'] == "open")
                                         {
-                                            echo __('<span class="label label-info">'.$order['Order']['status'].'</label>');
+                                            echo __('<span class="label label-info">abierta</label>');
+                                        }
+                                        else if($order['Order']['status'] == "paid")
+                                        {
+                                            echo __('<span class="label label-success">pagada</label>');
+                                        }
+                                        else if($order['Order']['status'] == "cancelled")
+                                        {
+                                            echo __('<span class="label label-danger">cancelada</label>');
+                                        }
+                                        else if($order['Order']['status'] == "pending")
+                                        {
+                                            echo __('<span class="label label-danger">pendiente</label>');
                                         }
                                         else
                                         {
-                                            echo __('<span class="label label-danger">'.$order['Order']['status'].'</label>');
+                                            echo __('<span class="label label-warning">pendiente</label>');
                                         }
                                         
                                         ?></td>
