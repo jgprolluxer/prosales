@@ -79,8 +79,9 @@ $(document).ready(function ()
             <?php
             echo $this->Form->input('birthdate', array(
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('ACCOUNT_EDIT_FORM_FIELD_BIRTHDATE')),
-                'class' => 'form-control',
-                'type' => 'text'
+                'class' => 'form-control input-datepicker',
+                'type' => 'text',
+                'data-date-format' => 'yyyy/mm/dd'
             ));
             ?>
         </div>
