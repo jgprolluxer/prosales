@@ -57,7 +57,7 @@ $(document).ready(function ()
                 'label' => array('class' => 'col-md-4 control-label', 'text' => __('WORKSTATION_VIEW_FORM_FIELD_PARENT')),
                 'class' => 'form-control',
                 'type' => 'text',
-                'value' => $this->request->data["ParentWorkstation"]["title"],
+                'value' => $directBoss,
                 'readonly' => 'readonly'
             ));
             ?>

@@ -96,8 +96,10 @@ class WorkstationsController extends AppController {
 			throw new NotFoundException(__('Invalid workstation'));
 		}
 		$options = array('conditions' => array('Workstation.' . $this->Workstation->primaryKey => $id));
-        $this->request->data = $this->Workstation->find('first', $options);
+                $this->request->data = $this->Workstation->find('first', $options);
 		$this->set('workstation', $this->Workstation->find('first', $options));
+                $directBoss = is_null($this->request->data["ParentWorkstation"]["title"]) ? "Ninguno" : $this->request->data["ParentWorkstation"]["title"];
+                $this->set(compact('directBoss'));
 	}
 
 /**
